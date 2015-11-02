@@ -1,0 +1,4 @@
+[
+	{"name": "idxWebuserUid",			"fields": "uid",		"type": "unique index"},
+	{"name": "idxWebuserSessionId",			"fields": "sessionid",		"type": "index"}
+]

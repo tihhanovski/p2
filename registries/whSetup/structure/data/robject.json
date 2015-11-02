@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 10009,
+			"name": "whSetup",
+			"state": 2,
+			"typeId": 3,
+			"module": 7,
+			"menupartId": 4,
+			"pos": 0
+		}
+	]
+}

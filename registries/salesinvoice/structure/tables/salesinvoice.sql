@@ -1,0 +1,20 @@
+CREATE TABLE salesinvoice (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  dt date not null,
+  nrprefix varchar(10) not null default '',
+  nrsuffix varchar(10) not null default '',
+  nr int not null,
+  nrsequenceId int not null,
+  fullNr varchar(50) not null default '',
+  customerId int not null,
+  payerId int not null,
+  locked tinyint not null default 0,
+  memo text not null default '',
+  totalNoVat decimal(18,2) not null default 0,
+  totalVat decimal(18,2) not null default 0,
+  totalWithVat decimal(18,2) not null default 0,
+  mdCreated datetime,
+  mdUpdated datetime,
+  mdCreatorId int,
+  mdUpdaterId int
+) COMMENT='Sales invoices'

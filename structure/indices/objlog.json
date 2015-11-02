@@ -1,0 +1,4 @@
+[
+	{"name": "robject",			"fields": "robject",		"type": "index"},
+	{"name": "dt",				"fields": "dt",				"type": "index"}
+]

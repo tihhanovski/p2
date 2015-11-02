@@ -1,0 +1,6 @@
+[
+	{"name": "idxArticleCode", 			"fields": "code",					"type": "index"},
+	{"name": "idxArticleUnitId", 		"fields": "unitId",					"type": "index"},
+	{"name": "idxArticleName", 			"fields": "name",					"type": "index"},
+	{"name": "idxArticleType", 			"fields": "typeId",					"type": "index"}
+]

@@ -1,0 +1,17 @@
+{
+	"data":
+	[
+		{
+			"id": 1,
+			"name": "statistics"
+		},
+		{
+			"id": 2,
+			"name": "user manipulation"
+		},
+		{
+			"id": 3,
+			"name": "security"
+		}
+	]
+}

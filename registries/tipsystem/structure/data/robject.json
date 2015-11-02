@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 1005,
+			"name": "tipsystem",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 1
+		}
+	]
+}

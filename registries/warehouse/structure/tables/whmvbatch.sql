@@ -1,0 +1,23 @@
+CREATE TABLE whmvbatch (
+  id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  typeId int not null,
+  dt date not null,
+  nrprefix varchar(10) not null default '',
+  nrsuffix varchar(10) not null default '',
+  nr int not null,
+  nrsequenceId int not null,
+  fullNr varchar(50) not null default '',
+  whSrcId int not null,
+  whDstId int not null,
+  companySrcId int not null,
+  companyDstId int not null,
+  locked tinyint not null default 0,
+  memo text not null default '',
+  totalCost decimal(18,2) not null default 0,
+  totalPrice decimal(18,2) not null default 0,
+  mdCreated datetime,
+  mdUpdated datetime,
+  mdCreatorId int,
+  mdUpdaterId int,
+  whinventoryId int
+)

@@ -1,0 +1,73 @@
+[
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_typeId",
+		"fields": "typeId",
+		"refs": "whmvtype(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_whSrcId",
+		"fields": "whSrcId",
+		"refs": "warehouse(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_whDstId",
+		"fields": "whDstId",
+		"refs": "warehouse(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_companySrcId",
+		"fields": "companySrcId",
+		"refs": "company(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_companyDstId",
+		"fields": "companyDstId",
+		"refs": "company(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "whinventoryId",
+		"refs": "whinventory(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_mdCreatorId",
+		"fields": "mdCreatorId",
+		"refs": "webuser(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_mdUpdaterId",
+		"fields": "mdUpdaterId",
+		"refs": "webuser(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"name": "fk_whmvbatch_nrsequenceId",
+		"fields": "nrsequenceId",
+		"refs": "nrsequence(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	}
+]

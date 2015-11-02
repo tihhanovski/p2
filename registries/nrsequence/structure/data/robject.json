@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 10002,
+			"name": "nrsequence",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"menupartId": 3,
+			"pos": 0
+		}
+	]
+}

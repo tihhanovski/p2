@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 2,
+			"name": "role",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"menupartId": 1,
+			"pos": 0
+		}
+	]
+}

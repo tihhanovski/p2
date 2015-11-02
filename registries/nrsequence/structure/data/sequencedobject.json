@@ -1,0 +1,26 @@
+{
+	"data":
+	[
+		{
+			"name": "whincome"
+		},
+		{
+			"name": "whinitial"
+		},
+		{
+			"name": "whintra"
+		},
+		{
+			"name": "whinventory"
+		},
+		{
+			"name": "whoutcome"
+		},
+		{
+			"name": "whproduction"
+		},
+		{
+			"name": "whwriteoff"
+		}
+	]
+}

@@ -1,0 +1,77 @@
+{
+	"data":
+	[
+		{
+			"id": 1,
+			"name": "robject",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 3
+		},
+		{
+			"id": 2,
+			"name": "role",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 1
+		},
+		{
+			"id": 3,
+			"name": "webuser",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 1
+		},
+		{
+			"id": 19,
+			"name": "message",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 3
+		},
+		{
+			"id": 20,
+			"name": "profile",
+			"state": 2,
+			"typeId": 3,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 4
+		},
+		{
+			"id": 23,
+			"name": "userstats",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 3
+		},
+		{
+			"id": 28,
+			"name": "sysprofile",
+			"state": 2,
+			"typeId": 3,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 4
+		},
+		{
+			"id": 34,
+			"name": "email",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 3
+		}
+	]
+}

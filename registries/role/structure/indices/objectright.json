@@ -1,0 +1,7 @@
+[
+	{
+		"name": "PK",
+		"fields": "roleId,registryId",
+		"type": "primary key"
+	}
+]

@@ -1,0 +1,1 @@
+alter table objectproperty add unique index(robject, name);

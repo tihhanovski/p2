@@ -1,0 +1,17 @@
+{
+	"data":
+	[
+		{
+			"id": 1,
+			"name": "draft"
+		},
+		{
+			"id": 2,
+			"name": "normal"
+		},
+		{
+			"id": 3,
+			"name": "deleted"
+		}
+	]
+}

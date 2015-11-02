@@ -1,0 +1,1 @@
+alter table userproperty add unique index(userId, name);

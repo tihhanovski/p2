@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 1004,
+			"name": "translated",
+			"state": 2,
+			"typeId": 1,
+			"module": 1,
+			"pos": 0,
+			"menupartId": 3
+		}
+	]
+}

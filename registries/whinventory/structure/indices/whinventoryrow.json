@@ -1,0 +1,30 @@
+[
+	{
+		"type": "foreign key",
+		"fields": "whinventoryId",
+		"refs": "whinventory(id)",
+		"ondelete": "cascade",
+		"onupdate": "cascade"
+	},
+	{
+		"type": "foreign key",
+		"fields": "articleId",
+		"refs": "article(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "mdCreatorId",
+		"refs": "webuser(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "mdUpdaterId",
+		"refs": "webuser(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	}
+]

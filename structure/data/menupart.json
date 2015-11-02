@@ -1,0 +1,21 @@
+{
+	"data":
+	[
+		{
+			"id": 1,
+			"name": "document"
+		},
+		{
+			"id": 2,
+			"name": "report"
+		},
+		{
+			"id": 3,
+			"name": "registry"
+		},
+		{
+			"id": 4,
+			"name": "settings"
+		}
+	]
+}

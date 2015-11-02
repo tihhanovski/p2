@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 10010,
+			"name": "whinventory",
+			"state": 2,
+			"typeId": 1,
+			"module": 7,
+			"menupartId": 1,
+			"pos": 0
+		}
+	]
+}

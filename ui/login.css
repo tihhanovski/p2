@@ -1,0 +1,76 @@
+*
+{
+	font-family: Arial;
+	font-size: 10pt;
+}
+
+body
+{
+	margin: 0px;
+}
+
+.loginBox
+{
+	float: right;
+	margin-right: 50px;
+	border: 1px solid #eeeeee;
+	background-color: #ffffff;
+	padding: 20px;
+}
+
+.loginLabel
+{
+	padding-top: 12px;
+	padding-bottom: 4px;
+}
+
+.loginInput
+{
+	width: 300px;
+	font-size: 12pt;
+	height: 30px;
+}
+
+.submitPanel
+{
+	width: 305px;
+	padding-top: 20px;
+	text-align: right;
+}
+
+.submit
+{
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.loginError
+{
+	border-color: red;
+}
+
+.loginHeader
+{
+	padding: 20px;
+	font-size: 50pt;
+	border-bottom: 1px solid #dddddd;
+	margin-bottom: 40px;
+	font-weight: bold;
+	color: #c9c9c9;
+	background-color: #ffffff;
+}
+
+.loginSignInBoxHeader
+{
+	font-size: 16pt; font-weight: bold; color: #c9c9c9;
+}
+
+.loginFooter
+{
+	padding: 20px;
+	margin-top:  1px solid #dddddd;
+	text-align: center;
+	background-color: #ffffff;
+	display: none;
+	position: fixed;
+}

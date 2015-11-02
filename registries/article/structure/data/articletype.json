@@ -1,0 +1,21 @@
+{
+	"data":
+	[
+		{
+			"id": 0,
+			"name": "component"
+		},
+		{
+			"id": 1,
+			"name": "expenses"
+		},
+		{
+			"id": 2,
+			"name": "salary"
+		},
+		{
+			"id": 3,
+			"name": "salary taxes"
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 4,
+			"name": "article",
+			"state": 2,
+			"typeId": 1,
+			"module": 2,
+			"menupartId": 3,
+			"pos": 0
+		}
+	]
+}

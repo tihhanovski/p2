@@ -1,0 +1,37 @@
+[
+	{
+		"type": "foreign key",
+		"fields": "whId",
+		"refs": "warehouse(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "articlegroupId",
+		"refs": "articlegroup(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "nrsequenceId",
+		"refs": "nrsequence(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "mdCreatorId",
+		"refs": "webuser(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	},
+	{
+		"type": "foreign key",
+		"fields": "mdUpdaterId",
+		"refs": "webuser(id)",
+		"ondelete": "restrict",
+		"onupdate": "restrict"
+	}
+]
