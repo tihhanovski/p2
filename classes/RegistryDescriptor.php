@@ -269,7 +269,16 @@
 				include app()->getAbsoluteFile("ui/edit.finish.php");
 			}
 			else
-				include app()->getAbsoluteFile("ui/detailNotFound.php");
+			{
+				if(method_exists($this, "getSimpleformComponents"))
+				{
+					include app()->getAbsoluteFile("ui/edit.start.php");
+					echo simpleform($this->getSimpleformComponents($obj));
+					include app()->getAbsoluteFile("ui/edit.finish.php");
+				}
+				else
+					include app()->getAbsoluteFile("ui/detailNotFound.php");
+			}
 
 			include app()->getAbsoluteFile("ui/pagefinish.php");
 		}
@@ -945,7 +954,10 @@
 			if(!$this->isEditable())
 				if($p = app()->getFormFile($this->registry, ".view.php"))	//getAbsoluteFile("registries/" . $this->registry . ".view.php"))
 					return $p;
-			return app()->getFormFile($this->registry, ".df.php"); 		//app()->getAbsoluteFile("registries/" . $this->registry . ".df.php");
+			if($p = app()->getFormFile($this->registry, ".df.php"))		//app()->getAbsoluteFile("registries/" . $this->registry . ".df.php");
+				return $p;
+
+			return "";
 		}
 
 		function getFilterFormPath()
