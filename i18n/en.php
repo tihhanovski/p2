@@ -52,5 +52,6 @@
 			"customer" => "Customer",
 			"referral" => "Referral",
 			"ro_whArtStateReport" => "Article warehouse state",
+			"ro_nrsequence" => "Number series",
 		)
 	);
