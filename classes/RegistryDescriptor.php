@@ -1183,10 +1183,16 @@
 		}
 	}
 
+	/**
+	 * Class for simple standard registry consisting of fields id, code, name, memo and created/updated metadata fields.
+	 */
 	class SimpleCodedAndNamedRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql;
 
+		/**
+		 * {@inheritdoc}
+		 */
 		public function __construct()
 		{
 			$reg = app()->getCurrentRegistry();
@@ -1194,6 +1200,9 @@
 			$this->init($reg);
 		}
 
+		/**
+		 * {@inheritdoc}
+		 */
 		public function init($table)
 		{
 			$this->gridSql = "select t.id, if(t.closed = 1, 'gclosed', '') as style,
@@ -1206,6 +1215,9 @@
 				left join webuser u on u.id = t.mdUpdaterId";
 		}
 
+		/**
+		 * {@inheritdoc}
+		 */
 		public function getGrid()
 		{
 			$ret = new RegFlexiGrid();
@@ -1222,6 +1234,19 @@
 			$ret->addColumn(new MGridColumn("updater", "updater", "u.uid", 80));
 
 			return $ret;
+		}
+
+		/**
+		 * Constructs and returns array of simpleform components
+		 * @param DB_Dataobject $obj - data object for created for
+		 */
+		public function getSimpleformComponents($obj)
+		{
+			return array(
+					textbox($obj, "code", "Code"),
+					textbox($obj, "name", "Name"),
+					textarea($obj, "memo", "Memo")
+				);
 		}
 	}
 
