@@ -37,7 +37,7 @@ class WHMVRegistryDescriptor extends RegistryDescriptor
 	{
 		return rightPanel($context,
 				array(
-					new PrintButton($context),
+					new PrintButtonAsRequested($context),
 					new LockButton($context),
 				),
 				false, false

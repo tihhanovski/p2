@@ -1432,7 +1432,9 @@
 
 		function isLocked()
 		{
-			return false;
+			return $this->isLockable() &&
+				property_exists($this, "locked") &&
+				isset($this->locked) && $this->locked;	//TODO what if field name is not "locked"?
 		}
 
 		function lock()

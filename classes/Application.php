@@ -2040,7 +2040,6 @@
 			return isset($this->mimetypes[$e]) ? $this->mimetypes[$e] : "";
 		}
 
-
 	}	//end of Application
 
 	/** @var Current application instance */
@@ -2236,3 +2235,19 @@
 	{
 		return $dt . " " . $tm;
 	}
+
+	function xmlField($f, $v)
+	{
+		return "<$f>$v</$f>\n";
+	}
+
+	function xmlSimpleField($f, $v)
+	{
+		return "<$f>" . xmlize($v) . "</$f>\n";
+	}
+
+	function xmlize($v)
+	{
+		return $v;
+	}
+

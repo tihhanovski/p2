@@ -261,6 +261,26 @@
 		}
 	}
 
+	class PrintButtonAsRequested extends RightPanelItem
+	{
+		function __construct($context, $form = "", $caption = "print document")
+		{
+			$this->context = $context;
+			$this->form = $form;
+			$this->caption = $caption;
+		}
+
+		function toHtml()
+		{
+			return "<div class=\"rightPanelItem\">" .
+					"<a href=\"?action=printDocument&registry=" . app()->request(REQUEST_REGISTRY) .
+					($this->form ? "&form=" . $this->form : "") .
+					"&id=" . $this->context->obj->getIdValue() . "\" target=\"_blank\" tabindex=\"-1\">" .
+					"<img src=\"" . app()->url("ui/img/16/print.png") . "\" border=\"0\"/>" . t($this->caption) .
+					"</a></div>";
+		}
+	}
+
 	class EmailButton extends RightPanelItem
 	{
 		function __construct($context, $form, $caption)
