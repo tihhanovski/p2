@@ -2251,3 +2251,46 @@
 		return $v;
 	}
 
+	function getXmlValidationErrors($xml, $xsd)
+	{
+        //echo "validate $xml against $xsd<br/>";
+        $d = new DOMDocument();
+        $d->load($xml);
+		libxml_use_internal_errors(true);
+		if($d->schemaValidate($xsd) === true)
+			return "";
+		else
+        	return libxml_format_errors();
+	}
+
+	function libxml_format_error($error)
+	{
+    	$r = "";
+    	switch ($error->level)
+    	{
+        	case LIBXML_ERR_WARNING:
+            	$r .= "<b>Warning $error->code</b>: ";
+            	break;
+        	case LIBXML_ERR_ERROR:
+            	$r .= "<b>Error $error->code</b>: ";
+            	break;
+        	case LIBXML_ERR_FATAL:
+            	$r .= "<b>Fatal Error $error->code</b>: ";
+            	break;
+    	}
+    	$r .= trim($error->message);
+    	if ($error->file)
+        	$r .= " in <b>$error->file</b>";
+    	$r .= " on line <b>$error->line</b>\n";
+    	return $r;
+	}
+
+	function libxml_format_errors()
+	{
+		$ret = "";
+    	$errors = libxml_get_errors();
+    	foreach ($errors as $error)
+	    	$ret .= libxml_format_error($error) . "<br/>";
+    	libxml_clear_errors();
+	    return $ret;
+	}
