@@ -79,6 +79,16 @@ class WarehouseModule
 		return $ret;
 	}
 
+	/**
+	 *
+	 */
+	public function getWarehouseState($warehouseId, $articleId, $modifierId = DEFAULT_WHMV_MODIFIER, $date = "")
+	{
+		$s = new WarehouseState($warehouseId, $articleId, $modifier, $date);
+		$s->calculate();
+		return $s;
+	}
+
 	private function dbg($s)
 	{
 		if(!isset($this->_dbg))

@@ -26,6 +26,8 @@
 	require_once "WHMVRegistryDescriptor.php";
 	require_once "queries-wh.php";
 
+	require_once "WarehouseState.php";
+
 	require_once "dbo/WhmvParent.php";
 	require_once "dbo/WhmvbatchParent.php";
 	require_once "dbo/WhinventoryParent.php";

@@ -32,7 +32,19 @@ class WhinventoryrowParent extends WFWObject
     public function validate_realQuantity()
     {
         $this->setValue("delta", $this->realQuantity - $this->quantity);
+        if($this->delta > 0)
+            $this->calcCost();
+        else
+            $this->setValue("cost", "");    //TODO is it good approach?
         return true;
+    }
+
+    /**
+     * Used to calculate cost if real quantity is bigger than quantity
+     */
+    protected function calcCost()
+    {
+
     }
 
     /**
