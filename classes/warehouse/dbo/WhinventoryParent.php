@@ -29,6 +29,9 @@ class WhinventoryParent extends WFWObject
         return true;
     }
 
+    /**
+     * Creates rows on first inventory save
+     */
     public function fillRows()
     {
         $showMods = app()->warehouse()->isArticleModifiersEnabled();

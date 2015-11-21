@@ -6,8 +6,12 @@
  *
  */
 
+	$a = app()->dbo("article");
+	$ts = new KeySelSetup($obj, "articleId", "article", $a->keySelColumns());
+
 	echo simpleform(array(
-			textboxAutocompleteSql($obj, "artx", "Article", SQL_AUTOCOMPLETE_ARTICLE_ALL),
+			keySel($obj, "articleId", "Article", $ts),
+			//textboxAutocompleteSql($obj, "artx", "Article", SQL_AUTOCOMPLETE_ARTICLE_ALL),
 			app()->warehouse()->isArticleModifiersEnabled() ?
 				selectSqlNotNullable($obj, "modId", "Modifier", SQL_COMBO_WHMV_MODIFIER) : 
 				"",

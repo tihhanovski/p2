@@ -162,7 +162,7 @@
 	    		return null;
 	    }
 
-	    protected function keySelColumns()
+	    public function keySelColumns()
 	    {
 	    	return array();
 	    }

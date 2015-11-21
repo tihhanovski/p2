@@ -14,7 +14,7 @@ class FWArticle extends WFWObject
     );
 
 
-    protected function keySelColumns()
+    public function keySelColumns()
     {
         return array(
                 array(

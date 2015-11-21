@@ -8,7 +8,8 @@
 
 
 	$obj = $context->obj;
-	$obj->artId = $this->getArtxId($obj->artx);
+	//$obj->articleId = $this->getArtxId($obj->artx);
+	$obj->articleId = (int)$obj->articleId;
 	$model = new ReportModel();
 	//$model->landscape();
 
@@ -18,9 +19,9 @@
 
 	$d1 = $df->decodeHuman($obj->dt1);
 	$d2 = $df->decodeHuman($obj->dt2);
-	if($obj->artId)
+	if($obj->articleId)
 	{
-		$art = app()->get("article", $obj->artId);
+		$art = app()->get("article", $obj->articleId);
 		$model->addFilter(t("Article"), $art->getCaption());
 	}
 	if($modFiltered = app()->warehouse()->isArticleModifiersEnabled() && $obj->modId != DEFAULT_WHMV_MODIFIER)
@@ -49,7 +50,7 @@
 		from (
 			select m.quantity, $qmodSql as qmod, m.cost from
 			whmv m
-			where m.articleId = {$obj->artId} and m.dt < $sd1
+			where m.articleId = {$obj->articleId} and m.dt < $sd1
 			$filterSql
 		) x
 
@@ -78,7 +79,7 @@
 			left join company sc on sc.id = m.companySrcId
 			left join company dc on dc.id = m.companyDstId" .
 			($obj->whId != DEFAULT_WAREHOUSE ? " left join warehouse sw on sw.id = m.whSrcId left join warehouse dw on dw.id = m.whDstId " : "") .
-			"where m.articleId = {$obj->artId}" .
+			"where m.articleId = {$obj->articleId}" .
 			($obj->dt1 ? " and m.dt >= $sd1" : "") .
 			($obj->dt2 ? " and m.dt <= $sd2" : "") .
 			"$filterSql

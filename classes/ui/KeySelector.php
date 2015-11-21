@@ -16,7 +16,7 @@
 				$setup = $obj->getForeignKeyTable($field);
 			if($setup)
 				$setup = app()->dbo($setup)->getKeySelSetup($obj, $field);
-		}
+		}//echo "<pre><small>" . print_r($setup, 1) . "</small></pre>";
 
 		if(!$obj->isEditable())
 		{
