@@ -63,12 +63,16 @@ class WhmvParent extends WFWObject
         return true;
     }
 
-    private function initFormats()
+    /**
+     * Initializes price, quantity and cost fields formatting.
+     * Formatting could be set in setup.php, see FORMAT_%_WAREHOUSE consts.
+     */
+    protected function initFormats()
     {
         app()->warehouse();
         $this->formats["price"] = FORMAT_PRICE_WAREHOUSE;
         $this->formats["quantity"] = FORMAT_QUANTITY_WAREHOUSE;
-        $this->formats["cost"] = FORMAT_PRICE_WAREHOUSE;
+        $this->formats["cost"] = FORMAT_COST_WAREHOUSE;
     }
 
     /**
