@@ -47,9 +47,7 @@
 			$cols[] = $this->ui_rows_unitName();
 			$cols[] = $this->ui_rows_whDstId();
 			$cols[] = $this->ui_rows_quantity();
-			$cols[] = new DetailGridColumn("goodCost", "Cost", $t, 4, null, "gridCellRight");
-			$cols[] = new DetailGridColumn("addedCost", "Added cost", $t, 4, null, "gridCellRight");
-			$cols[] = $this->ui_rows_cost_locked();
+			$cols[] = $this->ui_rows_cost();
 			$cols[] = $this->ui_rows_memo();
 
 			return array(
