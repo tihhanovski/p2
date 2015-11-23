@@ -28,8 +28,13 @@
 		{
 			app()->requireLogin();
 			$id = (int)app()->request("id");
-			if($tName = app()->get("whmvbatch", $id)->getLink("typeId")->name)
+			$batch = app()->get("whmvbatch", $id);
+			if($tName = $batch->getLink("typeId")->name)
+			{
+				if($tName == "whinventory")
+					$id = (int)$batch->whinventoryId;
 				return app()->location("?action=open&registry=$tName&id=$id");
+			}
 			return parent::open();
 		}
 
