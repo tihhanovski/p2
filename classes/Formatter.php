@@ -6,25 +6,25 @@
  *
  */
 
-	define("FORMAT_INT", "int");
-	define("FORMAT_FLOAT", "float");
-	define("FORMAT_FLOAT0", "float0");
-	define("FORMAT_FLOAT1", "float1");
-	define("FORMAT_FLOAT2_NULLABLE", "float2n");
-	define("FORMAT_FLOAT2", "float2");
-	define("FORMAT_FLOAT3", "float3");
-	define("FORMAT_FLOAT4", "float4");
-	define("FORMAT_FLOAT6", "float6");
-	define("FORMAT_DATE", "date");
-	define("FORMAT_DATE2", "date2");
-	define("FORMAT_DATETIME", "datetime");
-	define("FORMAT_DATETIME_SHORT", "datetimeshort");
-	define("FORMAT_TIME", "time");
-	define("FORMAT_VARCHAR", "varchar");
-	define("FORMAT_DEFAULT", "default");
-	define("FORMAT_TRANSLATED", "translated");
-	define("FORMAT_LINK_TO_OBJECT", "link");
-	define("FORMAT_FILESIZE", "filesize");
+	const FORMAT_INT = "int";
+	const FORMAT_FLOAT  = "float";
+	const FORMAT_FLOAT0  = "float0";
+	const FORMAT_FLOAT1  = "float1";
+	const FORMAT_FLOAT2_NULLABLE  = "float2n";
+	const FORMAT_FLOAT2  = "float2";
+	const FORMAT_FLOAT3  = "float3";
+	const FORMAT_FLOAT4  = "float4";
+	const FORMAT_FLOAT6  = "float6";
+	const FORMAT_DATE  = "date";
+	const FORMAT_DATE2  = "date2";
+	const FORMAT_DATETIME  = "datetime";
+	const FORMAT_DATETIME_SHORT  = "datetimeshort";
+	const FORMAT_TIME  = "time";
+	const FORMAT_VARCHAR  = "varchar";
+	const FORMAT_DEFAULT  = "default";
+	const FORMAT_TRANSLATED  = "translated";
+	const FORMAT_LINK_TO_OBJECT  = "link";
+	const FORMAT_FILESIZE  = "filesize";
 
 	const FORMATSTRING_DATETIME_MACHINE = "Y-m-d H:i:s";
 	const FORMATSTRING_DATE_MACHINE = "Y-m-d";
@@ -41,7 +41,6 @@
 	if(!defined("FORMATSTRING_DATETIME_SHORT_HUMAN"))
 		define("FORMATSTRING_DATETIME_SHORT_HUMAN", FORMATSTRING_DATETIME_MACHINE);
 
-
 	/**
 	 * Formatters superclass
 	 */
@@ -56,18 +55,20 @@
 			return self::$c;
 		}
 
-		/*
-		 ** @param mixed $s
-		 ** @return string data in human readable format
+		/**
+		 * Returns data in human readable format.
+		 * @param mixed $s
+		 * @return string
 		 */
 		function encodeHuman($s)
 		{
 			return $s;
 		}
 
-		/*
-		 ** @param mixed $s
-		 ** @return string data in inner "machine suited" format
+		/**
+		 * Returns data in inner "machine suited" format.
+		 * @param mixed $s
+		 * @return string
 		 */
 		function decodeHuman($s)
 		{
@@ -75,8 +76,16 @@
 		}
 	}
 
+	/**
+	 * Encapsulates common method for datetime formatters
+	 */
 	class DTFormatter extends Formatter
 	{
+		/**
+		 * Used to get year number from string.
+		 * @param string s - Date in string format. If $s is "NULL" or empty, returns 0, otherwise tries to get year from given string
+		 * @return int
+		 */
 		protected function getYear($s)
 		{
 			if($s == "NULL" || $s == "")
@@ -86,6 +95,10 @@
 		}
 	}
 
+	/**
+	 * Date formatter
+	 * @see FORMATSTRING_DATE_HUMAN, FORMATSTRING_DATE_MACHINE
+	 */
 	class DateFormatter extends DTFormatter
 	{
 		private static $c;
@@ -117,6 +130,10 @@
 		}
 	}
 
+	/**
+	 * Time formatter
+	 * @see FORMATSTRING_TIME_HUMAN
+	 */
 	class TimeFormatter extends Formatter
 	{
 		private static $c;
@@ -145,6 +162,10 @@
 		}
 	}
 
+	/**
+	 * Formats datetime values
+	 * @see FORMATSTRING_DATETIME_HUMAN, MIN_DATE, FORMATSTRING_DATE_MACHINE
+	 */
 	class DateTimeFormatter extends DTFormatter
 	{
 		private static $c;
@@ -170,10 +191,13 @@
 				return "NULL";
 			else
 				return date(FORMATSTRING_DATE_MACHINE, date_create_from_format(FORMATSTRING_DATETIME_HUMAN, $s)->getTimestamp());
-				//return date(FORMATSTRING_DATETIME_MACHINE, strtotime($s));
 		}
 	}
 
+	/**
+	 * Formats datetime values
+	 * @see FORMATSTRING_DATETIME_SHORT_HUMAN, MIN_DATE, FORMATSTRING_DATETIME_MACHINE
+	 */
 	class DateTimeShortFormatter extends DateTimeFormatter
 	{
 		private static $c;
@@ -195,6 +219,10 @@
 
 	}
 
+	/**
+	 * Formats float value
+	 * @todo Usage of "," as decimals delimiter is not always needed
+	 */
 	class FloatFormatter extends Formatter
 	{
 		private static $c;
@@ -220,6 +248,9 @@
 		}
 	}
 
+	/**
+	 * Formats numbers with 1 decimal places
+	 */
 	class FloatFormatter1 extends FloatFormatter
 	{
 		private static $c;
@@ -240,6 +271,9 @@
 		}
 	}
 
+	/**
+	 * Formats numbers with 2 decimal places
+	 */
 	class FloatFormatter2 extends FloatFormatter
 	{
 		private static $c;
@@ -260,6 +294,9 @@
 		}
 	}
 
+	/**
+	 * Formats numbers with 3 decimal places
+	 */
 	class FloatFormatter3 extends FloatFormatter
 	{
 		private static $c;
@@ -281,6 +318,9 @@
 
 	}
 
+	/**
+	 * Formats nullable numbers
+	 */
 	class FloatFormatterNullable extends FloatFormatter
 	{
 		private static $c;
@@ -301,6 +341,9 @@
 		}
 	}
 
+	/**
+	 * Formats nullable numbers with 2 decimal places
+	 */
 	class FloatFormatter2Nullable extends FloatFormatterNullable
 	{
 		private static $c;
@@ -322,6 +365,9 @@
 
 	}
 
+	/**
+	 * Formats numbers with no decimal places
+	 */
 	class FloatFormatter0 extends FloatFormatter
 	{
 		private static $c;
@@ -343,6 +389,9 @@
 
 	}
 
+	/**
+	 * Formats numbers with 4 decimal places
+	 */
 	class FloatFormatter4 extends FloatFormatter
 	{
 		private static $c;
@@ -364,6 +413,9 @@
 
 	}
 
+	/**
+	 * Formats numbers with 6 decimal places
+	 */
 	class FloatFormatter6 extends FloatFormatter
 	{
 		private static $c;
@@ -384,6 +436,10 @@
 		}
 	}
 
+	/**
+	 * Formats file size in bytes, kb, mb, gb etc
+	 * encodeHuman only
+	 */
 	class FileSizeFormatter extends FloatFormatter2
 	{
 		private static $c;
