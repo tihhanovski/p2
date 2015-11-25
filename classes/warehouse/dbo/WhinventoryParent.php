@@ -175,19 +175,9 @@ class WhinventoryParent extends WFWObject
             while($r->fetch())
                 if($r->quantity != $r->realQuantity)
                 {
-                    $delta = $r->realQuantity - $r->quantity;
-                    $m = app()->dbo("whmv");
-                    $m->typeId = $batch->typeId;
+                    $m = $r->getWhmv($this);
                     $m->batchId = $batch->id;
                     $m->dt = $batch->dt;
-                    $m->articleId = $r->articleId;
-                    $m->modifierId = $r->modifierId;
-                    $m->whSrcId = $delta > 0 ? DEFAULT_WAREHOUSE : $this->whId;
-                    $m->whDstId = $delta > 0 ? $this->whId : DEFAULT_WAREHOUSE;
-                    $m->companySrcId = DEFAULT_COMPANY;
-                    $m->companyDstId = DEFAULT_COMPANY;
-                    $m->quantity = abs($delta);
-                    $m->cost = $delta > 0 ? $r->cost : 0;
                     $m->insert();
                     $batch->totalCost += $m->cost * $m->quantity;
                     $m->free();

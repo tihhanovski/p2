@@ -66,4 +66,20 @@ class WhinventoryrowParent extends WFWObject
         $this->delta = $this->realQuantity - $this->quantity;
         $this->initFormats();
     }
+
+    public function getWhmv($iv)
+    {
+        $delta = $this->realQuantity - $this->quantity;
+        $m = app()->dbo("whmv");
+        $m->typeId = WHMVTYPE_INVENTORY;
+        $m->articleId = $this->articleId;
+        $m->modifierId = $this->modifierId;
+        $m->whSrcId = $delta > 0 ? DEFAULT_WAREHOUSE : $iv->whId;
+        $m->whDstId = $delta > 0 ? $iv->whId : DEFAULT_WAREHOUSE;
+        $m->companySrcId = DEFAULT_COMPANY;
+        $m->companyDstId = DEFAULT_COMPANY;
+        $m->quantity = abs($delta);
+        $m->cost = $delta > 0 ? $this->cost : 0;
+        return $m;
+    }
 }
