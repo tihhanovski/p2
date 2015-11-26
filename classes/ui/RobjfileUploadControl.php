@@ -17,7 +17,7 @@
 		<input type=\"hidden\" name=\"action\" value=\"uploadRobjfile\"/>
 		<input type=\"hidden\" name=\"id\" id=\"fileInputFormid\" value=\"\"/>
 		<span class=\"chooseFileButton fileinput-button\">
-        	<span>Select file</span>
+        	<span>" . t("Upload file") . "</span>
 				<input type=\"file\" name=\"fc\" id=\"fileInput\"/>
 			</span>
 		</span>
