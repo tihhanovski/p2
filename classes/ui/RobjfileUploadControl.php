@@ -16,7 +16,11 @@
 		<input type=\"hidden\" name=\"registry\" id=\"fileInputFormregistry\" value=\"\"/>
 		<input type=\"hidden\" name=\"action\" value=\"uploadRobjfile\"/>
 		<input type=\"hidden\" name=\"id\" id=\"fileInputFormid\" value=\"\"/>
-		<input type=\"file\" name=\"fc\" id=\"fileInput\"/>
+		<span class=\"chooseFileButton fileinput-button\">
+        	<span>Select file</span>
+				<input type=\"file\" name=\"fc\" id=\"fileInput\"/>
+			</span>
+		</span>
 	</form>
 	</div>
 	<script type=\"text/javascript\">

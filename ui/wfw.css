@@ -973,3 +973,30 @@
 		padding-top: 10px;
 		margin-bottom: 10px;
 	}
+
+	.chooseFileButton
+	{
+	    display: inline-block;
+	    cursor: pointer;
+	 	text-decoration: underline;
+	    color: #0000ff;
+	}
+
+	.fileinput-button
+	{
+	    position: relative;
+	    overflow: hidden;
+	}
+
+	.fileinput-button input
+	 {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    margin: 0;
+	    opacity: 0;
+	    -ms-filter:'alpha(opacity=0)';
+	    font-size: 200px;
+	    direction: ltr;
+	    cursor: pointer;
+	}

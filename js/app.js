@@ -186,7 +186,7 @@ var app = {
 			try{
 				if(!obj.__isNotSaved)
 					if(obj.__caption)
-						document.title = obj.__caption;
+						document.title = document.title + " " + obj.__caption;
 			}catch(e){}
 
 			app.user = setup.user;
