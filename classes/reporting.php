@@ -769,7 +769,7 @@
 			$cap = $this->model->getGroupCaption($row);
 			$fs = $this->FontSize;
 			$this->SetFont(REPORT_FONTFAMILY, "B", 12);
-			$this->MultiCell(100, 1, $cap, 0, "L");
+			$this->MultiCell($this->maxX - $this->minX, 1, $cap, 0, "L");	//TODO page width instead of 180
 			$this->SetFont(REPORT_FONTFAMILY, "", $fs);
 		}
 
