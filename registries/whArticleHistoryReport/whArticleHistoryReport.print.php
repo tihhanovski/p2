@@ -77,8 +77,10 @@
 			from whmv m
 			left join whmvbatch b on b.id = m.batchId
 			left join company sc on sc.id = m.companySrcId
-			left join company dc on dc.id = m.companyDstId" .
-			($obj->whId != DEFAULT_WAREHOUSE ? " left join warehouse sw on sw.id = m.whSrcId left join warehouse dw on dw.id = m.whDstId " : "") .
+			left join company dc on dc.id = m.companyDstId
+			left join warehouse sw on sw.id = m.whSrcId
+			left join warehouse dw on dw.id = m.whDstId
+			" . ($obj->whId != DEFAULT_WAREHOUSE ? " left join warehouse sw on sw.id = m.whSrcId left join warehouse dw on dw.id = m.whDstId " : "") .
 			"where m.articleId = {$obj->articleId}" .
 			($obj->dt1 ? " and m.dt >= $sd1" : "") .
 			($obj->dt2 ? " and m.dt <= $sd2" : "") .
