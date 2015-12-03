@@ -1,17 +1,14 @@
 <?php
-/*
- * Created on 15.03.2015
- *
- * (c) Ilja Tihhanovski, Intellisoft OÜ
- *
+/**
+ * Article history report print form
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  */
 
 
 	$obj = $context->obj;
-	//$obj->articleId = $this->getArtxId($obj->artx);
 	$obj->articleId = (int)$obj->articleId;
 	$model = new ReportModel();
-	//$model->landscape();
 
 	$model->setupVisibleColumnsAndOrder($this, $obj);
 
@@ -80,8 +77,7 @@
 			left join company dc on dc.id = m.companyDstId
 			left join warehouse sw on sw.id = m.whSrcId
 			left join warehouse dw on dw.id = m.whDstId
-			" . ($obj->whId != DEFAULT_WAREHOUSE ? " left join warehouse sw on sw.id = m.whSrcId left join warehouse dw on dw.id = m.whDstId " : "") .
-			"where m.articleId = {$obj->articleId}" .
+			where m.articleId = {$obj->articleId}" .
 			($obj->dt1 ? " and m.dt >= $sd1" : "") .
 			($obj->dt2 ? " and m.dt <= $sd2" : "") .
 			"$filterSql

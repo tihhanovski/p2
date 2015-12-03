@@ -1,9 +1,8 @@
 <?php
-/*
- * Created on 15.03.2015
- *
- * (c) Ilja Tihhanovski, Intellisoft OÜ
- *
+/**
+ * Article history report registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  */
 
 	app()->initReporting();

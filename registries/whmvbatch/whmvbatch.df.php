@@ -1,5 +1,4 @@
 <?php
-
 /**
  * General warehouse movement detailform
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
