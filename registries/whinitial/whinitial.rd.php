@@ -1,13 +1,16 @@
 <?php
-/*
- * Created on Nov 03, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
+/**
+ * Warehouse initial document registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  *
  */
 
 
-	class _RegistryDescriptor extends WHMVRegistryDescriptor
+	/**
+	 * Warehouse initial document registry descriptor
+	 */
+	class WhinitialRegistryDescriptor extends WHMVRegistryDescriptor
 	{
 		public $gridSql = "select
 			b.id, b.locked,

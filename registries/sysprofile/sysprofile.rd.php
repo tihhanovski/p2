@@ -1,14 +1,16 @@
 <?php
-/*
- * Created on Nov 17, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * System profile registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 TMB Elements OÜ
  */
- 
-	class _RegistryDescriptor extends SetupFormDescriptor
+
+	/**
+	 * System prodile descriptor
+	 */
+	class SysprofileRegistryDescriptor extends SetupFormDescriptor
 	{
-		function getObj()
+		public function getObj()
 		{
 			return app()->system();
 		}

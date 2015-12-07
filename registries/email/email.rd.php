@@ -1,19 +1,20 @@
 <?php
-/*
- * Created on Sep 29, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * E-mail registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  */
 
-
-	class _RegistryDescriptor extends RegistryDescriptor
+	/**
+	 * E-mail registry descriptor
+	 */
+	class EmailRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select e.id, e.recipient, e.subject, e.sent, e.mdCreated, e.mdUpdated, e.sender
 				from email e
 				";
 
-		function getGrid()
+		public function getGrid()
 		{
 			$ret = new RegFlexiGrid();
 
@@ -30,12 +31,10 @@
 			return $ret;
 		}
 
-		function getChildrenTree()
-		{
-			//return array("webuser" => array("userroles" => "userrole"));
-		}
-
-		function send()
+		/**
+		 * Sends currently opened document
+		 */
+		public function send()
 		{
 			if(is_object($context = app()->getContext($this->getContextName())))
 			{

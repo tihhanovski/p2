@@ -1,13 +1,14 @@
 <?php
-/*
- * Created on Sep 19, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * Tip system registry
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  */
 
-
-	class _RegistryDescriptor extends RegistryDescriptor
+	/**
+	 * Tip system unit registry
+	 */
+	class TipsystemRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select id, page, control, active, mdCreated, mdUpdated from tipsystem";
 

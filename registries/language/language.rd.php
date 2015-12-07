@@ -1,12 +1,14 @@
 <?php
-/*
- * Created on Nov 29, 2011
- *
- * (c) Intellisoft
+/**
+ * Language registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  */
 
-
-	class _RegistryDescriptor extends SimpleCodedAndNamedRegistryDescriptor
+	/**
+	 * Language registry descriptor
+	 */
+	class LanguageRegistryDescriptor extends SimpleCodedAndNamedRegistryDescriptor
 	{
 		/**
 		 * {@inheritdoc}

@@ -1,13 +1,16 @@
 <?php
-/*
- * Created on Nov 03, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
+/**
+ * Warehouse incomes registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  *
  */
 
 
-	class _RegistryDescriptor extends WHMVRegistryDescriptor
+	/**
+	 * Warehouse incomes registry descriptor
+	 */
+	class WhincomeRegistryDescriptor extends WHMVRegistryDescriptor
 	{
 		public $gridSql = "select
 			b.id, b.locked,

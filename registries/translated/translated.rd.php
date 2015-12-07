@@ -1,13 +1,14 @@
 <?php
-/*
- * Created on Sep 19, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * Translation queue registry
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  */
 
-
-	class _RegistryDescriptor extends RegistryDescriptor
+	/**
+	 * Translation queue registry
+	 */
+	class TranslatedRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select id, name, mdCreated
 				from translated

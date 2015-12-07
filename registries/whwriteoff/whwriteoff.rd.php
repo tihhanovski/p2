@@ -1,13 +1,16 @@
 <?php
-/*
- * Created on Nov 03, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
+/**
+ * Warehouse writeoff documents registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  *
  */
 
 
-	class _RegistryDescriptor extends WHMVRegistryDescriptor
+	/**
+	 * Warehouse writeoff documents registry descriptor
+	 */
+	class WhwriteoffRegistryDescriptor extends WHMVRegistryDescriptor
 	{
 		public $gridSql = "select
 			b.id,

@@ -6,7 +6,10 @@
  *
  */
 
-	class _RegistryDescriptor extends SetupFormDescriptor
+	/**
+	 * Warehouse setup descriptor
+	 */
+	class WhsetupRegistryDescriptor extends SetupFormDescriptor
 	{
 		function getObj()
 		{

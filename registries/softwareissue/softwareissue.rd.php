@@ -9,7 +9,7 @@
 /**
  * Software issue registry descriptor
  */
-class _RegistryDescriptor extends RegistryDescriptor
+class SoftwareissueRegistryDescriptor extends RegistryDescriptor
 {
 	public $gridSql = "select i.id, if(i.closed = 1, 'gclosed', '') as style, i.closed,
 		i.id, i.caption, i.priority, i.deadline, i.state,

@@ -5,10 +5,9 @@
  * (c) Ilja Tihhanovski, Intellisoft
  *
  */
- 
- 
+
+
 	echo textbox($obj, "name"),
 		textbox($obj, "state"),
 		textbox($obj, "typeId"),
 		dynMultiTextArea($obj, "HelpLink", "Help link");
-	

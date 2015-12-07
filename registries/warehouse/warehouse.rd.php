@@ -1,12 +1,13 @@
 <?php
-/*
- * Created on Sep 29, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
+/**
+ * Warehouses registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  *
  */
 
 
-	class _RegistryDescriptor extends SimpleCodedAndNamedRegistryDescriptor
-	{
-	}
+	/**
+	 * Warehouses registry descriptor
+	 */
+	class WarehouseRegistryDescriptor extends SimpleCodedAndNamedRegistryDescriptor{}

@@ -1,13 +1,14 @@
 <?php
-/*
- * Created on Sep 29, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * User role registry
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  */
 
-
-	class _RegistryDescriptor extends RegistryDescriptor
+/**
+ * User role unit registry
+ */
+	class RoleRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select t.id, t.name, t.memo from role t where t.id > 1";
 

@@ -1,23 +1,24 @@
 <?php
-/*
- * Created on Nov 03, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * Registries list registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  */
 
-
-	class _RegistryDescriptor extends RegistryDescriptor
+	/**
+	 * Registries list registry descriptor
+	 */
+	class RobjectRegistryDescriptor extends RegistryDescriptor
 	{
-		public $gridSql = "select id, name, state, typeId from robject";
+		public $gridSql = "select id, name, typeId from robject";
 
-		function getGrid()
+		public function getGrid()
 		{
 			$ret = new RegFlexiGrid();
 			$ret->sortname = "name";
 			$ret->sortorder = MGRID_ORDER_ASC;
 			$ret->addColumn(new SimpleFlexiGridColumn("name", "name", "300"));
-			$ret->addColumn(stateGridColumn());
+			//$ret->addColumn(stateGridColumn());
 			return $ret;
 		}
 	}

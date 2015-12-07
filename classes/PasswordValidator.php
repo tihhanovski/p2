@@ -36,7 +36,7 @@
 	//some default password validators
 
 	/**
-	 *	//Checks minimal password length
+	 *	Checks minimal password length
 	 */
 	class ShortPasswordValidator extends PasswordValidator
 	{
@@ -58,7 +58,7 @@
 	}
 
 	/**
-	 *	//Checks that username is not equal to password
+	 *	Checks that username is not equal to password
 	 */
 	class SameWithUsernamePasswordValidator extends PasswordValidator
 	{
@@ -80,7 +80,7 @@
 	}
 
 	/**
-	 *	//Checks that password contains at least ona upper case char (A-Z)
+	 *	Checks that password contains at least ona upper case char (A-Z)
 	 */
 	class UppercaseCharPasswordValidator extends PasswordValidator
 	{
@@ -102,7 +102,7 @@
 	}
 
 	/**
-	 *	//Checks that password contains at least ona lower case char (a-z)
+	 *	Checks that password contains at least ona lower case char (a-z)
 	 */
 	class LowerCharPasswordValidator extends PasswordValidator
 	{
@@ -124,7 +124,7 @@
 	}
 
 	/**
-	 *	//Checks that password contains at least ona number (0-9)
+	 *	Checks that password contains at least ona number (0-9)
 	 */
 	class NumberPasswordValidator extends PasswordValidator
 	{

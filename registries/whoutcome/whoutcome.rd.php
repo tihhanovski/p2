@@ -1,13 +1,16 @@
 <?php
-/*
- * Created on Nov 03, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
+/**
+ * Warehouse outcome registry descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
  *
  */
 
 
-	class _RegistryDescriptor extends WHMVRegistryDescriptor
+	/**
+	 * Warehouse outcome Registry descriptor
+	*/
+	class WhoutcomeRegistryDescriptor extends WHMVRegistryDescriptor
 	{
 		public $gridSql = "select
 			b.id, b.locked,
@@ -21,9 +24,6 @@
 			left join company dc on dc.id = b.companyDstId
 			where b.typeId = 3";
 
-		/**
-		 * {@inheritdoc}
-		 */
 		public function getGrid()
 		{
 			$ret = new RegFlexiGrid();

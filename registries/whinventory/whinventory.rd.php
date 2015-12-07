@@ -9,7 +9,7 @@
 	/**
 	 * Warehouse inventory registry descriptor
 	 */
-	class _RegistryDescriptor extends RegistryDescriptor
+	class WhinventoryRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select i.id, i.locked, i.fullNr, i.dt, w.code as
 				whCode, w.name as whName, g.name as gName, i.memo,

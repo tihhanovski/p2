@@ -45,6 +45,8 @@
  	define("USERSTATTYPE_MANIPULATION", 2);
  	define("USERSTATTYPE_SECURITY", 3);
 
+ 	const DEFAULT_REGISTRYDESCRIPTOR_CLASSNAME = "_RegistryDescriptor";
+
  	define("SQL_COMBO_WEBUSER", "select id, uid from webuser order by uid");
 
 	require_once "connect.php";
@@ -695,13 +697,18 @@
 	 			if($fn = $this->getAbsoluteFile("registries/" . $reg . ".rd.php"))
  					include_once($fn);
 
-	 		if(!class_exists("_RegistryDescriptor"))
-	 		{
-	 			$this->showError(t("No registry descriptor for") . " " . $reg);
-	 			die();
-	 		}
+ 			$rdClassName = ucfirst($reg) . "RegistryDescriptor";
+ 			if(!class_exists($rdClassName))
+ 			{
+ 				$rdClassName = DEFAULT_REGISTRYDESCRIPTOR_CLASSNAME;
+		 		if(!class_exists($rdClassName))
+		 		{
+		 			$this->showError(t("No registry descriptor for") . " " . $reg);
+		 			die();
+		 		}
+ 			}
 
-	 		app()->setRegistryDescriptor(new _RegistryDescriptor($reg));
+	 		app()->setRegistryDescriptor(new $rdClassName($reg));
 		}
 
 		/**

@@ -8,7 +8,7 @@
 	/**
 	 * Company registry descriptor
 	 */
- 	class _RegistryDescriptor extends RegistryDescriptor
+ 	class CompanyRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select t.id, if(t.closed = 1, 'gclosed', '') as style,
 				t.closed,

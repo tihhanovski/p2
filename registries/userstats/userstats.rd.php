@@ -1,14 +1,16 @@
 <?php
-/*
- * Created on Sep 29, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
+/**
+ * User statistics registry
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  */
 
 	define("USERSTATTYPE_CAPTION_PREFIX", "userstattype_");
 
-	class _RegistryDescriptor extends RegistryDescriptor
+	/**
+	 * User statistics registry
+	 */
+	class UserstatsRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select s.id, u.uid, s.dt, concat('userstattype_', t.name) as type, s.name, s.memo, a.uid as actor
 			from userstats s

@@ -1,15 +1,15 @@
 <?php
 /**
- * Article registry descriptor
+ * Sales invoice registry descriptor
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
  * @copyright (c) 2015 Intellisoft OÜ
  */
 
 
 	/**
-	 * Article registry descriptor
+	 * Sales invoice registry descriptor
 	 */
-	class _RegistryDescriptor extends RegistryDescriptor
+	class SalesinvoiceRegistryDescriptor extends RegistryDescriptor
 	{
 		public $gridSql = "select
 			i.id, i.locked,

@@ -8,5 +8,5 @@
 /**
  * Measurement unit registry
  */
-class _RegistryDescriptor extends SimpleNamedRegistryDescriptor{}
+class UnitRegistryDescriptor extends SimpleNamedRegistryDescriptor{}
 

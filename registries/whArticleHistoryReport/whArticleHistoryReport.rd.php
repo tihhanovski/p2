@@ -7,7 +7,10 @@
 
 	app()->initReporting();
 
-	class _RegistryDescriptor extends ReportDescriptor
+	/**
+	 * Article history report registry descriptor
+	 */
+	class WharticlehistoryreportRegistryDescriptor extends ReportDescriptor
 	{
 		public $pdfEnabled = true;
 		public $htmlEnabled = false;

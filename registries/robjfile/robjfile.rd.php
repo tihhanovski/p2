@@ -1,14 +1,14 @@
 <?php
 /**
- * Measurement unit registry
+ * File registry
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
- * @copyright (c) 2011 TMB Elements OÜ
+ * @copyright (c) 2015 Intellisoft OÜ
  */
 
 /**
- * Measurement unit registry
+ * File unit registry
  */
-class _RegistryDescriptor extends SimpleNamedRegistryDescriptor
+class RobjfileRegistryDescriptor extends SimpleNamedRegistryDescriptor
 {
 
 	public function showFile()

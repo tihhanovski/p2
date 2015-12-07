@@ -1,14 +1,18 @@
 <?php
-/*
- * Created on 17.03.2015
- *
- * (c) Ilja Tihhanovski, Intellisoft OÜ
+/**
+ * Warehouse state report descriptor
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2011 Intellisoft OÜ
  *
  */
 
+
 	app()->initReporting();
 
-	class _RegistryDescriptor extends ReportDescriptor
+	/**
+	 * Warehouse state report descriptor
+	 */
+	class WhstatereportRegistryDescriptor extends ReportDescriptor
 	{
 		public $pdfEnabled = true;
 		public $htmlEnabled = false;
