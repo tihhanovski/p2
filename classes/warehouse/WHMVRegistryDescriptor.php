@@ -33,13 +33,18 @@ class WHMVRegistryDescriptor extends RegistryDescriptor
 	{
 	}
 
+	protected function getRightPanelItems($context)
+	{
+		return array(
+					new PrintButtonAsRequested($context),
+					new LockButton($context),
+				);
+	}
+
 	protected function getRightPanel($context)
 	{
 		return rightPanel($context,
-				array(
-					new PrintButtonAsRequested($context),
-					new LockButton($context),
-				),
+				$this->getRightPanelItems($context),
 				false, false
 			);
 	}

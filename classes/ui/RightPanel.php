@@ -82,6 +82,13 @@
 				"</div>";
 		}
 
+		function noIconPlainTextItem($caption)
+		{
+			return "<div class=\"rightPanelItem rightPanelItemNoIcon\">" .
+				$caption .
+				"</div>";
+		}
+
 		function toHtml()
 		{
 			return "";
@@ -120,6 +127,40 @@
 		function toHtml()
 		{
 			return $this->item($this->icon, "JavaScript:{$this->action}", $this->caption);
+		}
+	}
+
+	class ModificationDataRightPanel extends RightPanelItem
+	{
+		private $action, $caption;
+
+		function __construct($context)
+		{
+			$this->context = $context;
+		}
+
+		function toHtml()
+		{
+			$html = "";
+			if(is_object($obj = $this->context->obj))
+			{
+				$df = getFormatter(FORMAT_DATETIME);
+				app()->uiHelper()->modificationDataWritten = true;
+
+				$cl = trim(
+						(is_object($c = $obj->getCreatorUser()) ? "<div>" . app()->getLinkedCaption($c) . "</div>" : "") .
+						(isset($obj->mdCreated) && ($cd = $obj->mdCreated) ? "<div>" . $df->encodeHuman($cd) . "</div>" : "")
+					);
+				$ul = trim(
+						(is_object($u = $obj->getUpdaterUser()) ? "<div>" . app()->getLinkedCaption($u) . "</div>" : "") .
+						(isset($obj->mdUpdated) && ($ud = $obj->mdUpdated) ? "<div>" . $df->encodeHuman($ud) . "</div>" : "")
+					);
+				$html =
+					($cl ? "<div>" . t("Created") . "</div>" . $cl : "") .
+					($ul ? "<div>" . t("Updated") . "</div>" . $ul : "");
+
+			}
+			return $this->noIconPlainTextItem($html);
 		}
 	}
 
