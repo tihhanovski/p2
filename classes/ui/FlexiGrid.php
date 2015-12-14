@@ -209,7 +209,7 @@
 	function addUpdatedAndChangedColumns($grid, $tableAlias = "t", $creatorAlias = "c", $updaterAlias = "u")
 	{
 		$grid->addColumn(new MGridColumn("mdCreated", "mdCreated", $tableAlias . ".mdCreated", 80, MGRID_ALIGN_LEFT, FORMAT_DATE));
-		$grid->addColumn(new MGridColumn("creator", "creator", $creatorAlias . ".uid", 80));
+		$grid->addColumn(new MGridColumn("creator", "creator", $creatorAlias . ".uid", 100));
 		$grid->addColumn(new MGridColumn("mdUpdated", "mdUpdated", $tableAlias . ".mdUpdated", 80, MGRID_ALIGN_LEFT, FORMAT_DATE));
-		$grid->addColumn(new MGridColumn("updater", "updater", $updaterAlias . ".uid", 80));
+		$grid->addColumn(new MGridColumn("updater", "updater", $updaterAlias . ".uid", 100));
 	}

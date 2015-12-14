@@ -129,7 +129,6 @@
 
 	class VerticalMultiselectSql extends MultiselectSql
 	{
-		
 	}
 
 	class MultiselectSql extends BaseMultiselect
@@ -162,11 +161,16 @@
 			 			$key = $row[0];
 			 			$val = $row[1];
 			 			if(in_array($key, $values))
-			 				$ret[] = sanitize($val);
+			 				$ret[] = $this->processValue($val);
 			 		}
 		 		}
 	 		}
 	 		return implode(";", $ret);
+		}
+
+		public function processValue($v)
+		{
+			return sanitize($v);
 		}
 
 		function getSqlSelectOptions()
@@ -184,7 +188,7 @@
 			 		while($q->fetchInto($row, DB_FETCHMODE_ORDERED))
 			 		{
 			 			$key = sanitize($row[0]);
-			 			$val = sanitize($row[1]);
+			 			$val = $this->processValue($row[1]);
 						$ahtml .= "<option value=\"$key\"";
 						if(in_array($key, $values))
 							$ahtml .= " selected";
@@ -206,6 +210,14 @@
 				$this->sql = $sql;
 			return parent::prepareInput($obj, $field, $caption, $attr, $addAttr);
  		 }
+	}
+
+	class MultiselectSqlTranslated extends MultiselectSql
+	{
+		public function processValue($v)
+		{
+			return t(sanitize($v));
+		}
 	}
 
 	class Select extends BaseSelect
@@ -267,6 +279,12 @@
 	function multiselectSql($obj, $field, $caption = null, $sql = null, $attr = null, $addAttr = null)
 	{
 		$x = new MultiselectSql();
+		return $x->prepareInput($obj, $field, $caption, $sql, $attr, $addAttr);
+	}
+
+	function multiselectSqlTranslated($obj, $field, $caption = null, $sql = null, $attr = null, $addAttr = null)
+	{
+		$x = new MultiselectSqlTranslated();
 		return $x->prepareInput($obj, $field, $caption, $sql, $attr, $addAttr);
 	}
 
