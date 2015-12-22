@@ -137,6 +137,8 @@ var app = {
 			setNumericDbl(".numericDbl");
 		},
 
+		"rightPanelThreshold": 30,
+
 		"start": function()
 		{
 			try
@@ -157,7 +159,7 @@ var app = {
 			$(window).resize(function()
 			{
 				var w = $(window).width();
-				$(".rightPanel").css("left", w - $(".rightPanel").width() - 40);
+				$(".rightPanel").css("left", w - $(".rightPanel").width() - app.rightPanelThreshold);
 
 				$("#mainMenu").offset({ top: 30, left: 0 })
 					.width(w - 100)
