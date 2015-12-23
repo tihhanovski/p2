@@ -1289,4 +1289,16 @@
 
 			return $ret;
 		}
+
+		/**
+		 * Constructs and returns array of simpleform components
+		 * @param DB_Dataobject $obj - data object for created for
+		 */
+		public function getSimpleformComponents($obj)
+		{
+			return array(
+					textbox($obj, "name", "Name"),
+					textarea($obj, "memo", "Memo")
+				);
+		}
 	}
