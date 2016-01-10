@@ -1,6 +1,6 @@
 <?php
 /**
- * Warehouse initialisation printform
+ * Warehouse writeoff printform
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
  * @copyright (c) 2015 Intellisoft OÜ
  *
@@ -8,13 +8,13 @@
 
 	app()->warehouse();
 
-	class WhinitialPrintout extends WhmvbatchPrintout
+	class WhwriteoffPrintout extends WhmvbatchPrintout
 	{
 		public function getTopFilters($obj)
 		{
 			return array(
 					"dt" => $obj->getValue("dt"),
-					"Destination warehouse" => $obj->getLink("whDstId")->name,
+					"Source warehouse" => $obj->getLink("whSrcId")->name,
 				);
 		}
 
@@ -40,9 +40,9 @@
 
 		public function getCaption($obj)
 		{
-			return t("ru_whinitial") . " " . $obj->fullNr;
+			return t("ru_whwriteoff") . " " . $obj->fullNr;
 		}
 	}
 
-	$c = new WhinitialPrintout();
+	$c = new WhwriteoffPrintout();
 	$c->run($context->obj);

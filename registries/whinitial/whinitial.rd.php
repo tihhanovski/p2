@@ -47,6 +47,7 @@
 			$cols[] = $this->ui_rows_memo();
 
 			return array(
+					$this->getRightPanel($this->getContext()),
 					$this->ui_number($obj),
 					$this->ui_dt($obj),
 					$this->ui_whDstId($obj),

@@ -25,6 +25,7 @@
 	require_once "WarehouseModule.php";
 	require_once "WHMVRegistryDescriptor.php";
 	require_once "queries-wh.php";
+	require_once "WhmvbatchPrintout.php";
 
 	require_once "WarehouseState.php";
 

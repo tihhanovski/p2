@@ -400,6 +400,7 @@
 	{
 		public $rows;
 		public $filters;
+		public $bottomFilters;
 		public $header;
 		public $autoGroupCaption = false;
 		public $groupStartNewPage = false;
@@ -612,6 +613,17 @@
 			 	}
 		}
 
+		function bottomFiltersToXLS()
+		{
+		 	if(is_array($this->bottomFilters))
+			 	foreach ( $this->bottomFilters as $k => $v )
+			 	{
+			 		$this->y++;
+			 		$this->w->write("A" . $this->y, encodeXLS($k));
+			 		$this->w->write("B" . $this->y, encodeXLS($v));
+			 	}
+		}
+
 		private function getExportFileName()
 		{
 			$rr = "ro_" . app()->getCurrentRegistry();
@@ -648,6 +660,8 @@
 		 	$this->tableHeaderToXLS();
 		 	$this->tableRowsToXLS();
 
+		 	$this->bottomFiltersToXLS();
+
 			$this->w->download();
 		}
 
@@ -656,6 +670,13 @@
 			if(!is_array($this->filters))
 				$this->filters = array();
 			$this->filters[$k] = $v;
+		}
+
+		function addBottomFilter($k, $v)
+		{
+			if(!is_array($this->bottomFilters))
+				$this->bottomFilters = array();
+			$this->bottomFilters[$k] = $v;
 		}
 
 		function addColumn($col)
@@ -710,6 +731,8 @@
 			$this->Ln();
 
 			$this->outputModel();
+
+			$this->outputBottomFilters();
 		}
 
 		public function prepareModel()
@@ -727,6 +750,17 @@
 			if(is_array($this->model->filters))
 				foreach ( $this->model->filters as $k => $v)
 					$this->printFilter($k, $v);
+		}
+
+		public function outputBottomFilters()
+		{
+			$this->SetFont($this->defaultFontFamily, "", $this->defaultFontSize);
+			if(is_array($this->model->bottomFilters))
+			{
+				$this->Ln();
+				foreach ( $this->model->bottomFilters as $k => $v)
+					$this->printFilter($k, $v);
+			}
 		}
 
 		public function printFilter($k, $v)
