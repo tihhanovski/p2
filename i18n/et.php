@@ -213,5 +213,8 @@
 			"and" => "ja",
 			"Number in words" => "Summa sõnadega",
 			"Movement" => "Liikumine",
+			"Sales" => "Müük",
+			"Common" => "Üldine",
+
 		)
 	);
