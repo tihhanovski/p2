@@ -160,7 +160,7 @@
 		if(is_object($c))
 		{
 			$ret = "";
-			foreach(array("pdf", "html", "xls") as $fmt)
+			foreach(array("pdf", "html", "xls", "xml") as $fmt)
 			{
 				$f = $fmt . "Enabled";
 				if($c->$f)
