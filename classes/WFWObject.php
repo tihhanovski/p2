@@ -36,11 +36,6 @@
 			&& $name !== "rights");
 	}
 
-	class WFWException extends Exception
-	{
-
-	}
-
 	class WFWObject extends DB_DataObject
 	{
 

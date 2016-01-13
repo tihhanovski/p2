@@ -24,6 +24,11 @@
 		float: left;
 	}
 
+	.floatRight
+	{
+		float: right;
+	}
+
 	.logItem
 	{
 		cursor: pointer;

@@ -6,17 +6,20 @@
  *
  */
 
-
-	class NoPathException extends Exception
+	class WFWException extends Exception
 	{
 	}
 
-	class NoContextException extends Exception
+	class NoPathException extends WFWException
+	{
+	}
+
+	class NoContextException extends WFWException
 	{
 
 	}
 
-	class CloseDocumentException extends Exception
+	class CloseDocumentException extends WFWException
 	{
 
 	}
