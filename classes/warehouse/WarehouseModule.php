@@ -107,14 +107,14 @@ class WarehouseModule
 	public function resetCosts($aId, $wId, $mId, $qp = 0)
 	{
 		$this->dbg("<b>resetCosts($aId, $wId, $mId, $qp)</b><br/>");
-		$inSql = "select id, quantity, cost, iqp
+		$inSql = "select id, quantity, cost, iqp, typeId, batchId
 			from whmv
 			where articleId = $aId
 			and whDstId = $wId
 			and modifierId = $mId
 			and iqp >= $qp
 			order by iqp";
-		$outSql = "select id, quantity, cost, oqp
+		$outSql = "select id, quantity, cost, oqp, typeId, batchId
 			from whmv
 			where articleId = $aId
 			and whSrcId = $wId
@@ -128,7 +128,7 @@ class WarehouseModule
 		foreach ($out as $outr)
 		{
 			//$this->dbg("<small><small><pre>" . print_r($in, 1) . "</pre></small></small><br/>");
-			$this->dbg("<br/><br/>MVOUT #{$outr->id}: " . (0 + $outr->quantity) . " * " . (0 + $outr->cost) . " //oqp=" . (0 + $outr->oqp) . "<br/>");
+			$this->dbg("<br/><br/>MVOUT #{$outr->id}: t: \"{$outr->typeId}\" " . (0 + $outr->quantity) . " * " . (0 + $outr->cost) . " //oqp=" . (0 + $outr->oqp) . "<br/>");
 			$oqp = $outr->oqp;
 			$qty = $outr->quantity;
 			$sum = 0;
@@ -161,15 +161,75 @@ class WarehouseModule
 			}
 			$cost = $outr->quantity == 0 ? 0 : $sum / $outr->quantity;
 			$this->dbg("total: $sum<br/>new cost: $cost<br/>");
-			if($outr->cost != $cost)
+			if(round(0 + $outr->cost, 6) != round(0 + $cost, 6))
 			{
 				$updSql = "update whmv set cost = $cost where id = {$outr->id}";
 				$this->dbg("[!]$updSql<br/>");
 				app()->query($updSql);
+
+				/*if($outr->typeId == WHMVTYPE_PRODUCTION) //update produced article cost
+				{
+					$this->dbg("production");
+					$incomeCost = $this->getProducedCost($outr->batchId);
+					$rprodIn = app()->dbo("whmv");
+					$rprodIn->batchId = $outr->batchId;
+					if($rprodIn->find())
+						while($rprodIn->fetch())
+							if($rprodIn->cost != $incomeCost)
+							{
+								$this->dbg("update cost for {$rprodIn->id} to $incomeCost");
+								$rprodIn->cost = $incomeCost;
+								$rprodIn->update();
+							}
+				}*/
 			}
 			$this->dbg("</small>");
 		}
 		$this->dbg("<hr/>");
+	}
+
+	public function calculateProducedCost($batchId)
+	{
+		$this->dbg("calculateProducedCost($batchId) START<br/><small>");
+		$cost = $this->getProducedCost($batchId);
+		$r = app()->dbo("whmv");
+		$r->batchId = $batchId;
+		$r->whSrcId = DEFAULT_WAREHOUSE;
+		if($r->find())
+			while($r->fetch())
+			{
+				$this->dbg("found row #{$r->id}. old cost = {$r->cost}; new cost: $cost<br/>");
+				if(round(0 + $r->cost, 6) != round(0 + $cost, 6))
+				{
+					//TODO optimize? DB_Dataobject -> sql + resetQPForWhmv($r) ?
+					$sql = "update whmv set cost = $cost where id = {$r->id}";
+					$this->dbg("$sql<br/>");
+					app()->query($sql);
+					$r->cost = $cost;
+					$r->update();
+				}
+			}
+		$this->dbg("</small>calculateProducedCost($batchId) END<br/>");
+	}
+
+	public function getProducedCost($batchId)
+	{
+		//get total outcome cost
+		$this->dbg("getProducedCost($batchId)<br/>");
+		$sql = "select sum(cost * quantity) from whmv where batchId = $batchId and whDstId = " . DEFAULT_WAREHOUSE;
+		$this->dbg($sql . "<br/>");
+		$totalOutCost = 0 + app()->valFromDB($sql);
+		$this->dbg("total out cost: " . $totalOutCost . "<br/>");
+
+		//get total income amount
+		$sql = "select sum(quantity) from whmv where batchId = $batchId and whSrcId = " . DEFAULT_WAREHOUSE;
+		$this->dbg($sql . "<br/>");
+		$totalInAmount = 0 + app()->valFromDB($sql);
+		$this->dbg("total in amount: " . $totalInAmount . "<br/>");
+
+		$incomeCost = $totalInAmount == 0 ? 0 : $totalOutCost / $totalInAmount;
+		$this->dbg("new cost: $incomeCost<hr/>");
+		return $incomeCost;
 	}
 
 	/**

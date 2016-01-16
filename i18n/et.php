@@ -215,6 +215,6 @@
 			"Movement" => "Liikumine",
 			"Sales" => "Müük",
 			"Common" => "Üldine",
-
+			"unlock" => "Kinnitus maha",
 		)
 	);

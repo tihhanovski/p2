@@ -53,7 +53,7 @@
 			}
 
 			if($html)
-				$html = "<div " . ($this->id? "id=\"{$this->id}\"" : "") . " class=\"rightPanel ui-corner-all\" style=\"display: none;\">$html</div>";
+				$html = "<div " . ($this->id? "id=\"{$this->id}\"" : "") . " class=\"rightPanel\" style=\"display: none;\">$html</div>";
 			return $html;
 		}
 	}

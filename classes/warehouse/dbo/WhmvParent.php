@@ -249,6 +249,9 @@ class WhmvParent extends WFWObject
         $this->findModifier();
         $ret = parent::update();
         app()->warehouse()->resetQPForWhmv($this);
+        if($this->typeId == WHMVTYPE_PRODUCTION && $this->whSrcId == DEFAULT_WAREHOUSE)
+            app()->warehouse()->calculateProducedCost($this->batchId);
+
         return $ret;
     }
 
@@ -260,6 +263,8 @@ class WhmvParent extends WFWObject
         $this->findModifier();
         $ret = parent::insert();
         app()->warehouse()->resetQPForWhmv($this);
+        if($this->typeId == WHMVTYPE_PRODUCTION && $this->whSrcId == DEFAULT_WAREHOUSE)
+            app()->warehouse()->calculateProducedCost($this->batchId);
         return $ret;
     }
 
