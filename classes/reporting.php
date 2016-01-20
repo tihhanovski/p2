@@ -455,9 +455,9 @@
 			foreach($rd->getAvailableColumns() as $c)
 			{
 				$cn = AVAILABLECOLUMN_FIELD_PREFIX . $c->name;
-				if($obj->$cn)
+				if(isset($obj->$cn) && $obj->$cn)
 					$this->addColumn($c);
-				if($obj->orderBy == $c->name)
+				if(isset($obj->orderBy) and $obj->orderBy == $c->name)
 					$this->orderBy = $c->name;
 			}
 		}
