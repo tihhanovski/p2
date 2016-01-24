@@ -95,6 +95,22 @@
 		}
 	}
 
+	class TextRightPanelItem extends RightPanelItem
+	{
+		function __construct($h)
+		{
+			$this->html = $h;
+		}
+
+		function toHtml()
+		{
+			if($this->html)
+				return $this->noIconPlainTextItem($this->html);
+			else
+				return "";
+		}
+	}
+
 	class CopyOfButton extends RightPanelItem
 	{
 		function __construct($context)

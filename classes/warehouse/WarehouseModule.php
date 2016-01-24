@@ -84,7 +84,7 @@ class WarehouseModule
 	 */
 	public function getWarehouseState($warehouseId, $articleId, $modifierId = DEFAULT_WHMV_MODIFIER, $date = "")
 	{
-		$s = new WarehouseState($warehouseId, $articleId, $modifier, $date);
+		$s = new WarehouseState($warehouseId, $articleId, $modifierId, $date);
 		$s->calculate();
 		return $s;
 	}
