@@ -46,6 +46,7 @@
 			if(app()->warehouse()->isArticleModifiersEnabled())
 				$cols[] = $this->ui_rows_modifier();
 			$cols[] = $this->ui_rows_unitName();
+			$cols[] = $this->ui_rows_whSrcId();
 			$cols[] = $this->ui_rows_quantity();
 			$cols[] = $this->ui_rows_cost_locked();
 			$cols[] = $this->ui_rows_memo();

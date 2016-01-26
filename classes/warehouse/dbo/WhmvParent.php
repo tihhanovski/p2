@@ -52,8 +52,8 @@ class WhmvParent extends WFWObject
     public function validate_whSrcId()
     {
         if($this->whSrcId == DEFAULT_WAREHOUSE && (
-            $this->typeId == WHMVTYPE_OUTCOME ||
-            $this->typeId == WHMVTYPE_WRITEOFF ||
+            //$this->typeId == WHMVTYPE_OUTCOME ||
+            //$this->typeId == WHMVTYPE_WRITEOFF ||
             $this->typeId == WHMVTYPE_INTRA
             ))
         {

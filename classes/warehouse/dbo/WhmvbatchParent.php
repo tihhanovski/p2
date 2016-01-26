@@ -41,7 +41,7 @@ class WhmvbatchParent extends WFWObject
 
     private function updChildrenWhField($f)
     {
-        if($this->$f !== DEFAULT_WAREHOUSE)
+        if($this->$f != DEFAULT_WAREHOUSE)
             foreach ($this->rows as $r)
                 $r->setValue($f, $this->$f);
     }

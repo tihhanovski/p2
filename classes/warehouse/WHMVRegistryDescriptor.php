@@ -131,7 +131,7 @@ class WHMVRegistryDescriptor extends RegistryDescriptor
 
 	protected function ui_rows_articleId()
 	{
-		$w = 16;
+		$w = 20;
 		return $this->isObjEditable() ?
 			new KeySelColumn("articleId", "component", $w, "whmv") :
 			new DetailGridColumn("articleLink", "component", "static", $w);
