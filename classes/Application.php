@@ -64,6 +64,14 @@
 	*/
 	class EmptyObject{}
 
+	class ApplicationDeferredTask
+	{
+		public function run()
+		{
+			//implement in child
+		}
+	}
+
 	/**
 	* Application object,
 	* @see app() function
@@ -104,6 +112,31 @@
 			if(!isset($this->dbdoc))
 				$this->dbdoc = new DBDocumentor();
 			return $this->dbdoc;
+		}
+
+		protected $deferredTasks = array();
+
+		public function addDeferredTask($task, $index = "")
+		{
+			if($index === "")
+				$this->deferredTasks[] = $task;
+			else
+				$this->deferredTasks[$index] = $task;
+		}
+
+		public function runDeferredTasks()
+		{
+			$this->debug("<h2>runDeferredTasks</h2>");
+			$this->debug(print_r($this->deferredTasks, 1));
+			$this->debug("<hr/>");
+			$this->organizeDeferredTasks();
+			foreach ($this->deferredTasks as $task)
+				$task->run();
+		}
+
+		public function organizeDeferredTasks()
+		{
+			//implement in child classes if needed
 		}
 
 		/**

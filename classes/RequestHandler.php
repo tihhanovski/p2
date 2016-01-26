@@ -25,10 +25,8 @@
 
 	class RequestHandler
 	{
-		function handle()
+		function doHandle()
 		{
-			try
-			{
 				if($action = app()->request(REQUEST_ACTION, "index"))
 				{
 					if($registry = app()->request(REQUEST_REGISTRY))
@@ -36,22 +34,30 @@
 						app()->requireLogin();
 						if(is_object($d = app()->getRegistryDescriptor()))
 							if($d->handleRequest($action))
-								die();
-
+								return;
 					}
 
 					if(method_exists($this, $action))
 					{
 						$this->$action();
-						die();				//TODO replace with something more clever
+						return;
 					}
 				}
 				else
 				{
 					$this->index();
-					die();
+					return;
 				}
-			}catch(Exception $e)
+		}
+
+		function handle()
+		{
+			try
+			{
+				$this->doHandle();
+				app()->runDeferredTasks();
+			}
+			catch(Exception $e)
 			{
 				app()->addWarning(new Warning($e->getMessage(), "", WARNING_ERROR));
 				echo app()->jsonMessage(RESULT_ERROR, t($e->getMessage()));
@@ -82,8 +88,6 @@
 				define("ANNOUNCE_LANG", "");
 
 			$url = "http://intellisoft.ee/webservices/announce.php?l=" . urlencode(ANNOUNCE_LANG) . "&c=" . urlencode(ANNOUNCE_COMPONENTS);
-
-			//echo $url;
 
 			echo file_get_contents($url);
 		}

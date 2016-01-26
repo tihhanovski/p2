@@ -28,7 +28,6 @@
  	require_once "CronTask.php";
  	require_once "CLITask.php";
 
- 	require_once "warehouse/index.php";
  	require_once "ddl/index.php";
 
  	require_once "ContextProvider.php";
@@ -44,3 +43,5 @@
 
 	require_once "queries.php";
 
+	//modules
+ 	require_once "warehouse/index.php";

@@ -28,6 +28,7 @@
 	require_once "WhmvbatchPrintout.php";
 
 	require_once "WarehouseState.php";
+	require_once "DeferredBatchTotalCostCalculator.php";
 
 	require_once "dbo/WhmvParent.php";
 	require_once "dbo/WhmvbatchParent.php";

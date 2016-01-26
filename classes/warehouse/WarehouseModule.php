@@ -166,6 +166,7 @@ class WarehouseModule
 				$updSql = "update whmv set cost = $cost where id = {$outr->id}";
 				$this->dbg("[!]$updSql<br/>");
 				app()->query($updSql);
+				app()->addDeferredTask(new DeferredBatchTotalCostCalculator($outr->batchId), "dbtcc" . $outr->batchId);
 
 				/*if($outr->typeId == WHMVTYPE_PRODUCTION) //update produced article cost
 				{
