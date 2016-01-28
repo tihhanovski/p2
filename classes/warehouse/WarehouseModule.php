@@ -128,19 +128,19 @@ class WarehouseModule
 		foreach ($out as $outr)
 		{
 			//$this->dbg("<small><small><pre>" . print_r($in, 1) . "</pre></small></small><br/>");
-			$this->dbg("<br/><br/>MVOUT #{$outr->id}: t: \"{$outr->typeId}\" " . (0 + $outr->quantity) . " * " . (0 + $outr->cost) . " //oqp=" . (0 + $outr->oqp) . "<br/>");
+			$this->dbg("<br/><br/>MVOUT id={$outr->id}: type: \"{$outr->typeId}\" " . (0 + $outr->quantity) . " * " . (0 + $outr->cost) . " //oqp=" . (0 + $outr->oqp) . "<br/>");
 			$oqp = $outr->oqp;
 			$qty = $outr->quantity;
 			$sum = 0;
 			$this->dbg("<small>");
 			foreach ($in as $inr)
 			{
-				$this->dbg("&nbsp;&nbsp;&nbsp;found MVIN #{$inr->id} //iqp=" . (0 + $inr->iqp) . "<br/>");
+				$this->dbg("&nbsp;&nbsp;&nbsp;found MVIN #{$inr->id} //iqp=" . (0 + $inr->iqp) . "; q = " . (0 + $inr->quantity) . "<br/>");
 				$inrfn = $inr->iqp + $inr->quantity;
-				$this->dbg("* {$inrfn} >= " . (0 + $oqp) . "?<br/>");
-				if($inrfn >= $oqp)	// && $inr->iqp <= $oqp + $qty
+				$this->dbg("* {$inr->quantity} > 0?<br/>");
+				if($inr->quantity > 0)	// && $inr->iqp <= $oqp + $qty
 				{
-					$this->dbg("&nbsp;&nbsp;&nbsp;FIT<br/>");
+					$this->dbg("&nbsp;&nbsp;&nbsp;<font color=\"green\"><b>FIT</b></font><br/>");
 					$this->dbg("&nbsp;&nbsp;&nbsp;inr: " . (0 + $inr->quantity) . " * " . (0 + $inr->cost) . "<br/>");
 					$qtyUsable = $inr->quantity; // - ($outr->oqp - $inr->iqp);
 					$qtyDeducted = ($qty < $qtyUsable ? $qty : $qtyUsable);
@@ -156,7 +156,7 @@ class WarehouseModule
 				}
 				else
 				{
-					$this->dbg("NO FIT");
+					$this->dbg("&nbsp;&nbsp;&nbsp;<font color=\"red\">NO FIT</font><br/>");
 				}
 			}
 			$cost = $outr->quantity == 0 ? 0 : $sum / $outr->quantity;
