@@ -189,7 +189,7 @@ class WarehouseModule
 		}
 		$this->dbg("<hr/>");
 		$t = microtime(true) - $t;								//TODO REMOVE
-		app()->addMetrics("resetCosts", "a: $aId, w: $wId", $aId, $t);	//TODO REMOVE
+		//app()->addMetrics("resetCosts", "a: $aId, w: $wId", $aId, $t);	//TODO REMOVE
 	}
 
 	public function calculateProducedCost($batchId)
@@ -235,7 +235,7 @@ class WarehouseModule
 		$incomeCost = $totalInAmount == 0 ? 0 : $totalOutCost / $totalInAmount;
 		$this->dbg("new cost: $incomeCost<hr/>");
 		$t = microtime(true) - $t;								//TODO REMOVE
-		app()->addMetrics("getProducedCost", "", $batchId, $t);	//TODO REMOVE
+		//app()->addMetrics("getProducedCost", "", $batchId, $t);	//TODO REMOVE
 		return $incomeCost;
 	}
 
@@ -272,7 +272,7 @@ class WarehouseModule
 			$qt += $o["quantity"];
 		}
 		$t = microtime(true) - $t;								//TODO REMOVE
-		app()->addMetrics("resetQ", "$qpx : updated $cnt", $aId, $t);	//TODO REMOVE
+		//app()->addMetrics("resetQ", "$qpx : updated $cnt", $aId, $t);	//TODO REMOVE
 	}
 
 	/**
