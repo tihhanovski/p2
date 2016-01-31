@@ -106,6 +106,7 @@ class WarehouseModule
 	 */
 	public function resetCosts($aId, $wId, $mId, $qp = 0)
 	{
+		$t = microtime(true);									//TODO REMOVE
 		$this->dbg("<b>resetCosts($aId, $wId, $mId, $qp)</b><br/>");
 		$inSql = "select id, quantity, cost, iqp, typeId, batchId
 			from whmv
@@ -187,6 +188,8 @@ class WarehouseModule
 			$this->dbg("</small>");
 		}
 		$this->dbg("<hr/>");
+		$t = microtime(true) - $t;								//TODO REMOVE
+		app()->addMetrics("resetCosts", "a: $aId, w: $wId", $aId, $t);	//TODO REMOVE
 	}
 
 	public function calculateProducedCost($batchId)
@@ -215,6 +218,7 @@ class WarehouseModule
 
 	public function getProducedCost($batchId)
 	{
+		$t = microtime(true);									//TODO REMOVE
 		//get total outcome cost
 		$this->dbg("getProducedCost($batchId)<br/>");
 		$sql = "select sum(cost * quantity) from whmv where batchId = $batchId and whDstId = " . DEFAULT_WAREHOUSE;
@@ -230,6 +234,8 @@ class WarehouseModule
 
 		$incomeCost = $totalInAmount == 0 ? 0 : $totalOutCost / $totalInAmount;
 		$this->dbg("new cost: $incomeCost<hr/>");
+		$t = microtime(true) - $t;								//TODO REMOVE
+		app()->addMetrics("getProducedCost", "", $batchId, $t);	//TODO REMOVE
 		return $incomeCost;
 	}
 
@@ -243,6 +249,7 @@ class WarehouseModule
 	 */
 	private function resetQ($aId, $wId, $mId, $qpx, $whx)
 	{
+		$t = microtime(true);									//TODO REMOVE
 		$this->dbg("<b>resetQ($aId, $wId, $mId, $qpx, $whx)</b><br/>");
 		$sql = "select id, quantity, $qpx
 			from whmv
@@ -251,16 +258,21 @@ class WarehouseModule
 		$this->dbg($sql . "<br/>");
 		$q = app()->query($sql);
 		$qt = 0;
+		$cnt = 0;												//TODO REMOVE
 		while($q->fetchInto($o, DB_FETCHMODE_ASSOC))
 		{
-			if($qt != $o[$qpx])
+			$oldq = "" . (0 + $o[$qpx]);
+			if("" . $qt != $oldq)								//TODO WTF?
 			{
 				$sqlu = "update whmv set $qpx = $qt where id = " . $o["id"];
 				$this->dbg("$sqlu<br/>");
 				app()->query($sqlu);
+				$cnt++;											//TODO REMOVE
 			}
 			$qt += $o["quantity"];
 		}
+		$t = microtime(true) - $t;								//TODO REMOVE
+		app()->addMetrics("resetQ", "$qpx : updated $cnt", $aId, $t);	//TODO REMOVE
 	}
 
 	/**

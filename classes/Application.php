@@ -114,6 +114,19 @@
 			return $this->dbdoc;
 		}
 
+		public function addMetrics($meteredObjectType, $meteredObjectDescription, $objId, $val, $memo = "")
+		{
+			$m = app()->dbo("metrics");
+			$m->meteredObjectType = $meteredObjectType;
+			$m->meteredObjectDescription = $meteredObjectDescription;
+			$m->objId = $objId;
+			$m->val = $val;
+			$m->dt = app()->now();
+			$m->memo = $memo;
+			$m->insert();
+			$m->free();
+		}
+
 		protected $deferredTasks = array();
 
 		public function addDeferredTask($task, $index = "")
@@ -124,11 +137,16 @@
 				$this->deferredTasks[$index] = $task;
 		}
 
+		public function clearDeferredTasks()
+		{
+			$this->deferredTasks = array();
+		}
+
 		public function runDeferredTasks()
 		{
-			$this->debug("<h2>runDeferredTasks</h2>");
-			$this->debug(print_r($this->deferredTasks, 1));
-			$this->debug("<hr/>");
+			//$this->debug("<h2>runDeferredTasks</h2>");
+			//$this->debug(print_r($this->deferredTasks, 1));
+			//$this->debug("<hr/>");
 			$this->organizeDeferredTasks();
 			foreach ($this->deferredTasks as $task)
 				$task->run();
