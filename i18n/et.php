@@ -238,5 +238,6 @@
 			"Finish" => "Lõpp",
 			"print form not found" => "Väljatrükivorm ei leitud",
 			"Report exported" => "Genereeritud",
+			"Total" => "Kokku",
 		)
 	);
