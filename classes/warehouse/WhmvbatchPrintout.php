@@ -1,43 +1,20 @@
 <?php
+/**
+ * General WH movement printform helper
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) 2015 Intellisoft OÜ
+ *
+ */
 
-class WhmvbatchPrintout
+/**
+ * General WH movement printform helper
+ */
+class WhmvbatchPrintout extends SimpleDocumentReport
 {
 	public function run($obj)
 	{
 		app()->warehouse();
-		app()->initReporting();
-
-		$model = new ReportModel($this->getCaption($obj));
-
-		foreach ($this->getTopFilters($obj) as $c => $f)
-			$model->addFilter(t($c), $f);
-		foreach ($this->getBottomFilters($obj) as $c => $f)
-			$model->addBottomFilter(t($c), $f);
-
-		foreach ($this->getColumns($obj) as $c)
-			$model->addColumn($c);
-
-		foreach ($obj->rows as $row)
-			$model->addRow($this->getRow($row));
-
-		$model->output();
-	}
-
-	public function getTopFilters($obj)
-	{
-	}
-
-	public function getBottomFilters($obj)
-	{
-	}
-
-	public function getColumns($obj)
-	{
-	}
-
-	public function getCaption($obj)
-	{
-		return "";
+		parent::run($obj);
 	}
 
 	public function getRow($row)
@@ -55,6 +32,5 @@ class WhmvbatchPrintout
 				"whDstName" => $row->getLink("whDstId")->name,
 				"whSrcName" => $row->getLink("whSrcId")->name,
 			);
-
 	}
 }

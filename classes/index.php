@@ -43,5 +43,8 @@
 
 	require_once "queries.php";
 
+	//reporting
+	require_once "reporting/index.php";
+
 	//modules
  	require_once "warehouse/index.php";
