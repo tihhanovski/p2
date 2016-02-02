@@ -239,5 +239,16 @@
 			"print form not found" => "Väljatrükivorm ei leitud",
 			"Report exported" => "Genereeritud",
 			"Total" => "Kokku",
+
+			"Password" => "Salasõna",
+			"Old password" => "Vana salasõna",
+			"New password" => "Uus salasõna",
+			"Change password" => "Vaheta salasõna",
+			"Change password?" => "Kas vahetada salasõna?",
+			"Password minimal length is 8 symbols" => "Salasõna peab olema vähemalt 8 sümbolit pikk.",
+			"Password cant be same as user name" => "Salasõna ei tohi olla sama mis kasutajanimi.",
+			"Password should contain at least one upper case character (A-Z)" => "Salasõna peab sisaldama vähemalt ühte suurt tähte (A-Z).",
+			"Password should contain at least one lower case character (a-z)" => "Salasõna peab sisaldama vähemalt ühte väikest tähte (a-z).",
+			"Password should contain at least one number (0-9)" => "Salasõna peab sisaldama vähemalt ühte numbrit (0-9).",
 		)
 	);
