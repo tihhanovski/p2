@@ -165,8 +165,8 @@ var app = {
 					.width(w - 100)
 					.height($(window).height() - 130);
 
-				$(".formRowLocked").width(w - 40);
-				$(".formInputContainerLocked").width(w - 270);
+				//$(".formRowLocked").width(w - 40);
+				//$(".formInputContainerLocked").width(w - 270);	//TODO test 05.02.2016
 			});
 			$(window).resize();
 			$(".rightPanel").show();

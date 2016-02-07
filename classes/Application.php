@@ -1509,7 +1509,7 @@
 			if(!$this->hasRight($privilege, $reg))
 				die($this->jsonMessage(RESULT_ERROR, t(MSG_INSUFFICIENT_RIGHTS)));	//TODO consider throwing exception
 		}
-
+		
 		/**
 		 * If user does not have specific privilege on specific registry, dies with JSON encoded message
 		 */

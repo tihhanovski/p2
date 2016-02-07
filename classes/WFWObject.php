@@ -525,7 +525,7 @@
 			foreach ($pros as $pro)
 			{
         		$name = $pro->getName();
-        		if($s = $this->getDefaultValue($name))
+        		if(($s = $this->getDefaultValue($name)) !== "")
         			$this->$name = $s;
 			}
 		}
@@ -1711,5 +1711,3 @@
 
 	    public function canCopy(){return true;}
 	}
-
-	

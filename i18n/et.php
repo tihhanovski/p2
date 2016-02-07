@@ -53,8 +53,8 @@
 			"ru_warehouse" => "Ladu",
 			"ro_nrsequence" => "Numbriseeriad",
 			"ru_nrsequence" => "Numbriseeria",
-			"ro_whmvbatch" => "Üldised lao liikumised",
-			"ru_whmvbatch" => "Üldine lao liikumine",
+			"ro_whmvbatch" => "Lao liikumised",
+			"ru_whmvbatch" => "Lao liikumine",
 			"ro_whinitial" => "Lao algseisud",
 			"ru_whinitial" => "Lao algseis",
 			"ro_whincome" => "Lao sissetulekud",
@@ -62,26 +62,14 @@
 			"ro_whoutcome" => "Lao väljaminekud",
 			"ru_whoutcome" => "Lao väljaminek",
 			"ro_whintra" => "Ladudevahelised liikumised",
-			"ru_whintra" => "Ladudevaheline liikumise",
+			"ru_whintra" => "Ladudevaheline liikumine",
 			"ro_whwriteoff" => "Mahakandmised",
 			"ru_whwriteoff" => "Mahakandmine",
 			"ru_whproduction" => "Tootmine",
 			"ro_whproduction" => "Tootmised",
 			"ru_whinventory" => "Inventuur",
 			"ro_whinventory" => "Inventuurid",
-			"ro_unit" => "Ühikud",
-			"ru_unit" => "Ühik",
-
-			"system" => "Süsteem",
-			"sales" => "Müük",
-			"document" => "Dokument",
-			"report" => "Aruanne",
-			"registry" => "Register",
-			"settings" => "Seadistused",
-			"Logout" => "Välja",
-			"Frontpage" => "Esileht",
-			"close" => "Sulge",
-
+			"Default warehouse" => "Vaikimisi ladu",
 
 			"Destination warehouse" => "Kuhu lattu",
 			"Source warehouse" => "Kust laost",
@@ -100,6 +88,42 @@
 			"ro_whArtStateReport" => "Kaubaseis ladude lõikes",
 			"Warehouse code" => "Lao kood",
 			"Warehouse name" => "Lao nimetus",
+
+
+			"ro_whArtStateReport" => "Laoseisu aruanne",
+			"ro_stallArticlesReport" => "Seisvate materjalide aruanne",
+			"Real quantity" => "Tegelik kogus",
+			"Save to fill articles grid" => "Salvesta artiklite nimekirja täitmiseks",
+			"Inventory report" => "Inventuuri aruanne",
+			"Delta" => "Vahe",
+
+
+
+			"whincome" => "Lao sissetulek",
+			"whoutcome" => "Lao väljaminek",
+			"whinitial" => "Lao algseis",
+			"whintra" => "Ladudevaheline liikumine",
+			"whwriteoff" => "Mahakandmine",
+			"whproduction" => "Tootmine",
+			"whinventory" => "Inventuur",
+			"ro_whArticleHistoryReport" => "Materjali ajalugu",
+			"Document" => "Dokument",
+			"Endpoint" => "Siht-/Lähtekoht",
+			"Total cost" => "Summa omahinnas",
+			"Total price" => "Summa müügihinnas",
+			"ro_whStateReport" => "Laoseis",
+
+			"system" => "Süsteem",
+			"sales" => "Müük",
+			"document" => "Dokument",
+			"report" => "Aruanne",
+			"registry" => "Register",
+			"settings" => "Seadistused",
+			"Logout" => "Välja",
+			"Frontpage" => "Esileht",
+			"close" => "Sulge",
+
+
 
 			"name" => "Nimi",
 			"prefix" => "Prefiks",
@@ -250,5 +274,7 @@
 			"Password should contain at least one upper case character (A-Z)" => "Salasõna peab sisaldama vähemalt ühte suurt tähte (A-Z).",
 			"Password should contain at least one lower case character (a-z)" => "Salasõna peab sisaldama vähemalt ühte väikest tähte (a-z).",
 			"Password should contain at least one number (0-9)" => "Salasõna peab sisaldama vähemalt ühte numbrit (0-9).",
+
+			"Close" => "Sulge",
 		)
 	);

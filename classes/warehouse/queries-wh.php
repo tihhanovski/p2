@@ -12,3 +12,4 @@
 
 	const SQL_AUTOCOMPLETE_ARTICLE_ALL = "select concat(code, '   :    ', name) from article where closed = 0 order by code desc";
 	const SQL_COMBO_WHMV_MODIFIER = "select id, name from whmvmodifier order by name";
+	const SQL_COMBO_MBE_WAREHOUSE = "select id, concat(code, ' : ', name) from warehouses where closed = 0 order by name";
