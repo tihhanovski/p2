@@ -276,5 +276,7 @@
 			"Password should contain at least one number (0-9)" => "Salasõna peab sisaldama vähemalt ühte numbrit (0-9).",
 
 			"Close" => "Sulge",
+			"Find" => "Otsi",
+			"Ready" => "Valmis",
 		)
 	);

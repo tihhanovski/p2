@@ -499,7 +499,10 @@
 			{
 				var kk = event.keyCode;
 				if(kk == 13)
+				{
 					grid.doFind($("#gridFindBox").val());
+					$("#gridFindBox").select();
+				}
 			});
 
 			$("#gridFilterButton").click(function(event)

@@ -829,6 +829,7 @@
 						"CURRENCY_DEFAULT_N2" => "EUR",
 						"CURRENCY_DEFAULT_D1" => "c",
 						"CURRENCY_DEFAULT_D2" => "c",
+						"FORMATSTRING_DATEPICKER" => "dd.mm.yy",
 					);
 
 			foreach ($this->defaultDefines as $k => $v)
