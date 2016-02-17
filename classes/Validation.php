@@ -67,7 +67,7 @@
  	{
  		public function validate($obj, $field)
  		{
- 			if(!$obj->$field)
+ 			if($obj->$field == "")
  			{
  				$obj->addWarning(new Warning("Field empty", $field, WARNING_ERROR));
  				return false;

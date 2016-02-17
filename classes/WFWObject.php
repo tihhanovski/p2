@@ -105,7 +105,7 @@
 
 		function validateFieldIsEmpty($field)
 		{
-			if(!$this->$field)
+			if(!$this->$field)	//TODO
 			{
 				$this->addWarning(new Warning("Field empty", $field, WARNING_ERROR));
 				return true;
@@ -927,7 +927,7 @@
 		function isNew()
 		{
 			$f = $this->getPrimaryKeyField();
-			return !($this->$f);
+			return !(isset($this->$f) && $this->$f);
 		}
 
 	    function loadChildrenByClass($var, $cls, $tree)
@@ -993,7 +993,7 @@
 
 			    		//echo "parentID: $parentID\n thisID: $thisID\n id: $c->id";
 
-			    		if(!$c->$cID)
+			    		if($c->isNew())
 			    		{
 			    			$le = $c->logEnabled;
 			    			$c->setLogEnabled(false);
