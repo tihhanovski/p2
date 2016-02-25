@@ -814,7 +814,7 @@
 			if(!isset($this->defaultDefines))
 				$this->defaultDefines = array(
 						"SETUP_TOOLBAR_CAPTIONS_VISIBLE" => false,
-						"REPORT_FONTFAMILY" => "helvetica",	//freesans
+						"REPORT_FONTFAMILY" => "freesans",	//helvetica
 						"DEBUG" => false,
 						"DEFAULT_LOCALE" => "en",
 						"ENTER_AS_TAB" => false,
@@ -1958,6 +1958,16 @@
 		function addClientTranslations($arr)
 		{
 			$this->clientTranslations = array_merge($this->clientTranslations, $arr);
+		}
+
+		/**
+		 * Add own client translation
+		 * @param string $m message
+		 * @param string $t translation
+		 */
+		function addClientTranslation($m)
+		{
+			$this->clientTranslations[] = $m;
 		}
 
 		/**

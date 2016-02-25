@@ -9,7 +9,8 @@
 	/**
 	 * "unsaved" properties prefix
 	 */
-	const UNSAVED_PREFIX = "unsaved.";
+	const UNSAVED_PREFIX = "unsaved";
+	const SAVENOW_PREFIX = "savenow";
 
 	/**
 	 * DBO for filter
@@ -40,9 +41,13 @@
 		{
 			if(isset($this->formats) && is_array($this->formats))
 				foreach ($this->formats as $k => $v)
-					if(strpos($k, UNSAVED_PREFIX) === false)
+					if((strpos($k, UNSAVED_PREFIX) === false) && (strpos($k, SAVENOW_PREFIX) === false))
+					{
 						if(!isset($this->formats[UNSAVED_PREFIX . $k]))
 							$this->formats[UNSAVED_PREFIX . $k] = $v;
+						if(!isset($this->formats[SAVENOW_PREFIX . $k]))
+							$this->formats[SAVENOW_PREFIX . $k] = $v;
+					}
 			parent::fetch();
 		}
 
@@ -127,6 +132,9 @@
 		 */
 		function setValue($field, $value)
 		{
-			parent::setValue(UNSAVED_PREFIX . $field, $value);
+			if(strpos($field, SAVENOW_PREFIX) === 0)
+				parent::setValue(substr($field, strlen(SAVENOW_PREFIX)), $value);
+			else
+				parent::setValue(UNSAVED_PREFIX . $field, $value);
 		}
 	}

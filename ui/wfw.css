@@ -1008,3 +1008,6 @@
 	    direction: ltr;
 	    cursor: pointer;
 	}
+
+	select{border: 1px solid #c9c9c9;}
+	option{font-size: 10pt;}

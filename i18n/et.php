@@ -8,6 +8,8 @@
 
 	app()->addTranslations(
 		array(
+			"ro_holiday" => "Riigipühad",
+			"ru_holiday" => "Riigipüha",
 			"ro_role" => "Kasutajarollid",
 			"ru_role" => "Kasutajaroll",
 			"ro_webuser" => "Kasutajad",
@@ -282,5 +284,7 @@
 			"logaction-0" => "insert",
 			"logaction-1" => "update",
 			"logaction-2" => "delete",
+			"Period" => "Periood",
+			"Loading" => "Laeb",
 		)
 	);

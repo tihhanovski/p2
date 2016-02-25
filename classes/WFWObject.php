@@ -943,13 +943,23 @@
 
 	    	$parentID = $c->getParentIdField($this->__table);
 	    	$thisID = $this->getPrimaryKeyField();
+	    	if(!$parentID)
+	    		throw new Exception("ParentId not found for $cls >- {$this->__table}");
+	    	if(!$thisID)
+	    		throw new Exception("Primary key not found for {$this->__table}");
+
 	    	$array = array();
 	    	$c->$parentID = $this->$thisID;
-	    	$c->initOrder();
+	    	$this->initChildOrder($c);	//was $c->initOrder();
 	    	if($c->find())
 	    		while($c->fetch())
 	    			$this->appendChild($array, clone $c, $var, $tree);
 	    	$this->$var = $array;
+	    }
+
+	    public function initChildOrder($c)
+	    {
+	    	$c->initOrder();
 	    }
 
 	    /**

@@ -6,7 +6,6 @@
  *
  */
 
-	define("PWD_MIN_LENGTH", 8);
 	define("SYSTEM_USER_ID", 1);
 
 	class FWWebuser extends WFWObject
