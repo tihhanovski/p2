@@ -811,14 +811,28 @@
 		 */
 		function checkSetup()
 		{
-			if(!isset($this->defaultDefines))
-				$this->defaultDefines = array(
+			foreach ($this->getDefaultDefines() as $k => $v)
+				if(!defined($k))
+					define($k, $v);
+		}
+
+		public function getDefaultDefines()
+		{
+			return array(
+						"STRUCTURE_COLLATION" => "utf8_general_ci",
+						"FORMATSTRING_DATE_HUMAN" => "d.m.Y",
+						"FORMATSTRING_TIME_HUMAN" => "H:i",
+						"FORMATSTRING_DATETIME_HUMAN" => "d.m.Y H:i",
+						"FORMATSTRING_DATETIME_SHORT_HUMAN" => "d.m.Y H:i",
+						"I18N_EXTENDED_LOCALES" => true,
+						"CONTEXT_PROVIDER_FLAVOR" => "UserFilesContextProvider",
+
+
 						"SETUP_TOOLBAR_CAPTIONS_VISIBLE" => false,
-						"REPORT_FONTFAMILY" => "freesans",	//helvetica
+						"REPORT_FONTFAMILY" => "freesans",
 						"DEBUG" => false,
 						"DEFAULT_LOCALE" => "en",
 						"ENTER_AS_TAB" => false,
-						"SOFTWAREISSUES_EMAIL_ON_INSERT" => true,
 						"SETUP_CHARSET" => "utf-8",
 						"TRANSLATED_WATCH" => false,
 						"CONTEXT_AUTOSAVE" => false,
@@ -830,11 +844,32 @@
 						"CURRENCY_DEFAULT_D1" => "c",
 						"CURRENCY_DEFAULT_D2" => "c",
 						"FORMATSTRING_DATEPICKER" => "dd.mm.yy",
-					);
 
-			foreach ($this->defaultDefines as $k => $v)
-				if(!defined($k))
-					define($k, $v);
+						//TODO get rid of it
+						"SETUP_3RD_COMBOGRID_CSS" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery-ui-1.8.9.custom.css",
+						"SETUP_3RD_COMBOGRID_CSS2" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery.ui.combogrid.css",
+
+
+						"SETUP_CSS_MAIN" => WFW_WEB . "ui/styles/dark/wfw.css",
+						"SETUP_HOTKEYS" => L3RD_WEB . "jquery.hotkeys.js",
+						"SETUP_3RD_XLS" => L3RD_ROOT . "phpexcel/Classes/PHPExcel.php",
+						"SETUP_3RD_MULTISELECT_JS" => L3RD_WEB . "jquery.multiselect.js",
+						"SETUP_3RD_MULTISELECT_CSS" => L3RD_WEB . "jquery.multiselect.css",
+						"SETUP_JQUERY" => L3RD_WEB . "jquery.js",
+						"SETUP_JQUERY_UI" => L3RD_WEB . "combogrid-1.5.0/resources/jquery/jquery-ui-1.8.9.custom.min.js",
+						"SETUP_JQUERY_I18N" => L3RD_WEB . "jquery-ui-i18n.js",
+						"SETUP_COMBOGRID" => L3RD_WEB . "combogrid-1.5.0/resources/plugin/jquery.ui.combogrid-1.5.0.js",
+
+						"SETUP_TCPDF_CLASS" => L3RD_ROOT . "tcpdf/6_2_6/tcpdf.php",
+
+						//"SETUP_TINY_MCE" => L3RD_WEB . "tinymce/jscripts/tiny_mce/",
+
+						"SOFTWAREISSUES_EMAIL_ON_INSERT" => true,
+						"DEVELOPER_USER" => "admin",
+
+						//TODO remove, backward compatibility only
+						"WEB_ROOT" => INSTANCE_WEB,
+				);
 		}
 
 		/**
