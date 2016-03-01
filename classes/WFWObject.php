@@ -71,9 +71,9 @@
 		    					break;
 		    				}
 
-		    			$sql = "select mdUpdated as d" . 
-		    				($updField ? ", $updField as u" : "") . 
-		    				" from " . $this->__table . 
+		    			$sql = "select mdUpdated as d" .
+		    				($updField ? ", $updField as u" : "") .
+		    				" from " . $this->__table .
 		    				" where " . $this->getPrimaryKeyField() . " = " . filter_var($this->getIdValue(), FILTER_SANITIZE_NUMBER_INT);
 
 		    			$a = app()->queryAsArray($sql, DB_FETCHMODE_OBJECT);
@@ -1614,11 +1614,11 @@
 		{
 			if(!isset($this->_addressFields))
 				$this->_addressFields = array(
-				"Street1" => " ", 
-				"Street2" => " ",  
-				"City" => " ",  
-				"Index" => " ",  
-				"Country" => " ", 
+				"Street1" => " ",
+				"Street2" => " ",
+				"City" => " ",
+				"Index" => " ",
+				"Country" => " ",
 				);
 			return $this->_addressFields;
 		}
