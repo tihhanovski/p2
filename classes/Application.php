@@ -850,7 +850,7 @@
 						"SETUP_3RD_COMBOGRID_CSS2" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery.ui.combogrid.css",
 
 
-						"SETUP_CSS_MAIN" => WFW_WEB . "ui/styles/dark/wfw.css",
+						"SETUP_CSS_MAIN" => WFW_WEB . "ui/wfw.css",
 						"SETUP_HOTKEYS" => L3RD_WEB . "jquery.hotkeys.js",
 						"SETUP_3RD_XLS" => L3RD_ROOT . "phpexcel/Classes/PHPExcel.php",
 						"SETUP_3RD_MULTISELECT_JS" => L3RD_WEB . "jquery.multiselect.js",

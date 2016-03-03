@@ -286,5 +286,7 @@
 			"logaction-2" => "delete",
 			"Period" => "Periood",
 			"Loading" => "Laeb",
+			"ro_unit" => "Ühikud",
+			"ru_unit" => "Ühik",
 		)
 	);
