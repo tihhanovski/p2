@@ -1234,7 +1234,7 @@
 
 	    function canLog()
 	    {
-	    	if(isset($this->logEnabled) && $this->logEnabled)
+	    	if(OBJLOG_ENABLED && isset($this->logEnabled) && $this->logEnabled)
 	    	{
 	    		$logBlackList = array(
 	    			"objlog",
@@ -1720,4 +1720,39 @@
 	    );
 
 	    public function canCopy(){return true;}
-	}
+
+	    public function advancedComboColumns()
+	    {
+	    	return array(
+				array(
+					"columnName" => "code",
+					"label" => t("code"),
+					"width" => "30",
+					"align" => "left"
+				),
+				array(
+					"columnName" => "name",
+					"label" => t("name"),
+					"width" => "70",
+					"align" => "left"
+				)
+			);
+	    }
+
+	    public function keySelColumns()
+	    {
+	    	return array(
+				array(
+					"columnName" => "code",
+					"label" => t("code"),
+					"width" => "30",
+					"align" => "left"
+				),
+				array(
+					"columnName" => "name",
+					"label" => t("name"),
+					"width" => "70",
+					"align" => "left"
+				)
+			);
+	    }	}

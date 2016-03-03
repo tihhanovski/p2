@@ -9,7 +9,7 @@
 	include app()->getAbsoluteFile("ui/pagestart.php");
 
 	$sys = app()->system();
-	$cn = $sys->dynCompanyName;
+	$cn = $sys->getValue("dynCompanyName");
 
 
 

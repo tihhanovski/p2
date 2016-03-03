@@ -827,6 +827,7 @@
 						"I18N_EXTENDED_LOCALES" => true,
 						"CONTEXT_PROVIDER_FLAVOR" => "UserFilesContextProvider",
 
+						"OBJLOG_ENABLED" => true,
 
 						"SETUP_TOOLBAR_CAPTIONS_VISIBLE" => false,
 						"REPORT_FONTFAMILY" => "freesans",

@@ -241,6 +241,11 @@
 					foreach ( $data->data as $d )
 					{
 						$o = app()->dbo($name);
+						if(app()->isDBError($o))
+						{
+							echo "NB! Cant retrieve object. Possible cause: no class definition.\nRun class generator procedure and try again\n";
+							return;
+						}
 						foreach ( $o->keys() as $key)
 							$o->$key = $d->$key;
 						$found = $o->find(true);
