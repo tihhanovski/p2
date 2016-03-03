@@ -53,5 +53,7 @@
 			"referral" => "Referral",
 			"ro_whArtStateReport" => "Article warehouse state",
 			"ro_nrsequence" => "Number series",
+			"ro_vat" => "VAT tariffs",
+			"ru_vat" => "VAT tariff",
 		)
 	);
