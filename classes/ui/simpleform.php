@@ -543,7 +543,7 @@
 		?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html><head><title><?=$caption?></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><?php
 
-	$scripts = array(SETUP_JQUERY, "http://code.jquery.com/ui/1.10.2/jquery-ui.js");
+	$scripts = array(SETUP_JQUERY);		//, "http://code.jquery.com/ui/1.10.2/jquery-ui.js"
 
 	foreach ( $scripts as $src)
 		echo "<script type=\"text/javascript\" src=\"$src\"></script>";
