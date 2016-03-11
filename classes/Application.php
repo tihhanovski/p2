@@ -867,6 +867,7 @@
 
 						"SOFTWAREISSUES_EMAIL_ON_INSERT" => true,
 						"DEVELOPER_USER" => "admin",
+						"CLEAR_CONTECTS_ON_LOGIN" => false,
 
 						//TODO remove, backward compatibility only
 						"WEB_ROOT" => INSTANCE_WEB,
@@ -1464,6 +1465,9 @@
 					$this->user->update();
 					$this->user->setLogEnabled(true);
 					$this->addStat("login", "success", "ok");
+
+					if(CLEAR_CONTECTS_ON_LOGIN)
+						$this->getContextProvider()->clearContexts();
 
 					//check password errors
 					$u = app()->get("webuser", $this->user->getIdValue());

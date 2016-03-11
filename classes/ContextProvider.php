@@ -47,6 +47,10 @@
 
 			die("No context provider found for flavor " . CONTEXT_PROVIDER_FLAVOR);
 		}
+
+		public function clearContexts()
+		{
+		}
 	}
 
 	/**
@@ -85,11 +89,8 @@
 
 		/** @var String */
 		private $userDir;
-		/**
-		 * @param String $name
-		 * @return String;
-		 */
-		protected function getFileName($name)
+
+		protected function getUserDir()
 		{
 			if(!isset($this->userDir))
 			{
@@ -100,7 +101,25 @@
 				if(!file_exists($this->userDir))
 					mkdir($this->userDir);
 			}
-			return $this->userDir . $name . ".context";
+			return $this->userDir;
+		}
+
+		/**
+		 * @param String $name
+		 * @return String;
+		 */
+		protected function getFileName($name)
+		{
+			/*if(!isset($this->userDir))
+			{
+				$mainDir = INSTANCE_ROOT . USERFILES . CONTEXTDIRECTORY;
+				if(!file_exists($mainDir))
+					mkdir($mainDir);
+				$this->userDir = $mainDir . app()->user()->uid . "/";
+				if(!file_exists($this->userDir))
+					mkdir($this->userDir);
+			}*/
+			return $this->getUserDir() . $name . ".context";
 		}
 
 		function getContext($name)
@@ -114,6 +133,16 @@
 		function putContext($context)
 		{
 			file_put_contents($this->getFileName($context->name()), serialize($context));
+		}
+
+		public function clearContexts()
+		{
+			$ud = $this->getUserDir();
+			$d = dir($ud);
+			while (false !== ($file = $d->read()))
+				if(substr($file, 0, 1) != ".")
+					unlink($ud . $file);
+			$d->close();
 		}
 	}
 
