@@ -40,7 +40,7 @@
 		function __construct($display, $name = null, $findSql = null, $width, $align = MGRID_ALIGN_LEFT, $format = "", $handler = "", $sortable = true)
 		{
 			$this->init($display, $name, $findSql, $width, $align, $format, $handler, $sortable);
-		} 		
+		}
  	}
 
 	class FlexiGridColumn

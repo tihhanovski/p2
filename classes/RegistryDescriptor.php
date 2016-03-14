@@ -631,6 +631,7 @@
 			 			}
 		 			}
 		 	}
+		 	$w->autosize();
 			$w->download();
 		}
 
