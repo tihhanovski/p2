@@ -662,6 +662,8 @@
 
 		 	$this->bottomFiltersToXLS();
 
+		 	$this->w->autosize();
+
 			$this->w->download();
 		}
 

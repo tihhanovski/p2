@@ -91,7 +91,30 @@
 			$nr = $x - 1;
 			$i1 = (int)($nr / 26);
 			$i2 = $nr - $i1 * 26;
-			return ($i1 ? chr(64 + $i1) : "") . chr(65 + $i2) . $y;
+			$p1 = ($i1 ? chr(64 + $i1) : "") . chr(65 + $i2);
+			$this->addRange($p1);
+			return $p1 . $y;
+		}
+
+		function addRange($r)
+		{
+			if(!isset($this->xlsRange))
+				$this->xlsRange = array();
+			if(!isset($this->xlsRange[$r]))
+				$this->xlsRange[$r] = $r;
+		}
+
+		function autosize()
+		{
+		 	if(isset($this->xlsRange) && is_array($this->xlsRange))
+		 		//die(print_r($this->xlsRange, 1));
+		 		foreach ($this->xlsRange as $r)
+		 			$this->xls->getActiveSheet()->getColumnDimension($r)->setAutoSize(true);
+		}
+
+		function mergeCells($range)
+		{
+			$this->xls->getActiveSheet()->mergeCells($range);
 		}
 
 		function download()
