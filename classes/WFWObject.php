@@ -55,7 +55,15 @@
 	    		$c->comment = $comment;
 	    		$c->userId = app()->user()->id;
 	    		$c->dt = app()->now();
-	    		return $c->insert();
+	    		$r = $c->insert();
+	    		if($r && property_exists($this, "mdCommentsCount"))
+	    		{
+	    			$sql = "update " . $this->__table .
+	    				" set mdCommentsCount = mdCommentsCount + 1 " .
+	    				"where " . $this->getPrimaryKeyField() . " = " . $this->getIdValue();
+	    			app()->query($sql);
+	    		}
+	    		return $r;
 	    	}
 	    	return false;
 	    }

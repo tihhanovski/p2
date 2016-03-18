@@ -170,6 +170,13 @@
 			$this->addColumn($c);
 		}
 
+		function addCommentsColumn($column = "mdCommentsCount")
+		{
+			$c = new SimpleFlexiGridColumn("", $column, 16, MGRID_ALIGN_CENTER, FORMAT_DEFAULT, "comments");
+			$c->printable = false;
+			$this->addColumn($c);
+		}
+
 		function addClosedIconColumn($column = "closed")
 		{
 			$c = new SimpleFlexiGridColumn("", $column, 16, MGRID_ALIGN_CENTER, FORMAT_DEFAULT, "closedicon");

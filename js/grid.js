@@ -236,6 +236,13 @@
 						return '<img src="' + setup.WFW_WEB + 'ui/img/16/check-' + v + '.png" border="0"/>';
 					case "state":
 						return '<img src="' + setup.WFW_WEB + 'ui/img/16/state-' + v + '.png" border="0"/>';
+					case"comments":
+					{
+						if(v == 0)
+							return '<img src="' + setup.WFW_WEB + 'ui/img/16/z.png" border="0"/>';
+						else
+							return '<img src="' + setup.WFW_WEB + 'ui/img/16/comments.png" border="0"/>';
+					}
 				}
 				return v;
 			}catch(e)
