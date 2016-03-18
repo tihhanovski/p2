@@ -39,6 +39,7 @@
 					WFW_WEB . "js/detailGrid.js",
 					WFW_WEB . "js/filesControl.js",
 					WFW_WEB . "js/messagesControl.js",
+					WFW_WEB . "js/commentsControl.js",
 				);
 
 			foreach ( $scripts as $src)

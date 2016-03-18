@@ -24,10 +24,10 @@
 	if($this->needAskBeforeLeavePage())
 		echo "window.onbeforeunload = function() {return app.askBeforeLeave();};";
 
-?> try{ 
+	// try{
 	//var xstartfocused = false; $("input,select").each(function(){if(!xstartfocused) if(!$(this).hasClass("datepicker")) {log(this.id); xstartfocused = true; this.focus();}}) 
-}catch(e){} 
+	//}catch(e){}
+	//});
 
-}); 
 
-</script>
+?>});</script>

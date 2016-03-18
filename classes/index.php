@@ -6,7 +6,7 @@
  *
  */
 
- 	define("JS_VERSION", 24);
+ 	const JS_VERSION = 25;
 
  	require_once "WFWException.php";
  	require_once "WFWObject.php";

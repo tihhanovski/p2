@@ -319,6 +319,7 @@
 
 		function sendMessage()
 		{
+			echo "<pre><small>";
 			app()->requireLoginJson();
 			app()->requirePrivilegeJson(PRIVILEGE_UPDATE, "message");
 
@@ -362,6 +363,7 @@
 				if($robj)
 					$msg->robject = $robj;
 				$msg->send();
+				print_r($msg);
 			}
 
 			app()->addWarning(new Warning(t("message sent")));

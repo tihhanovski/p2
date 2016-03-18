@@ -338,6 +338,11 @@ var app = {
 			}
 		},
 
+		"contextName": function()
+		{
+			return req.registry + req.id;
+		},
+
 		"copyDocument": function()
 		{
 			if(app.hasUnsavedChanges())
@@ -351,7 +356,7 @@ var app = {
 				app.progressMsg(t("making copy"));
 				$.get(baseUrl() +
 					"?action=copyObject" +
-					"&path=" + contextName(),
+					"&path=" + app.contextName(),
 					function(data)
 					{
 						if(data.state == "ok")

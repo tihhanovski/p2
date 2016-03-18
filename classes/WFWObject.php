@@ -45,6 +45,30 @@
 	    protected $changed = array();
 	    protected $captionFields;
 
+	    public function comment($comment)
+	    {
+	    	if($this->isInDatabase())
+	    	{
+	    		$c = app()->dbo("objcomment");
+	    		$c->objreg = $this->__table;
+	    		$c->objId = $this->getIdValue();
+	    		$c->comment = $comment;
+	    		$c->userId = app()->user()->id;
+	    		$c->dt = app()->now();
+	    		return $c->insert();
+	    	}
+	    	return false;
+	    }
+
+	    public function getComments()
+	    {
+	    	$sql = "select c.id, c.comment, c.dt, u.uid
+				from objcomment c
+				left join webuser u on u.id = c.userId where objreg = " . quote($this->__table) . "
+				and objid = " . (int)$this->getIdValue();
+			return app()->queryAsArray($sql, DB_FETCHMODE_ASSOC, array("dt" => FORMAT_DATETIME));
+	    }
+
 	    /**
 	     * called after all saved
 	     */

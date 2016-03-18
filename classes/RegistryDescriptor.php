@@ -41,6 +41,34 @@
 		}
 
 		/**
+		 * adds comment
+		 */
+		public function comment()
+		{
+			app()->requirePrivilegeJson(PRIVILEGE_SELECT);	//TODO update privilege?
+			if(is_object($context = app()->getContext($this->getContextName())))
+				if(is_object($obj = $context->obj))
+					if($obj->comment(app()->request("comment")))
+					{
+						echo app()->jsonMessage();
+						return;
+					}
+			echo app()->jsonMessage(RESULT_ERROR, t("Cant comment"));
+		}
+
+		public function getComments()
+		{
+			app()->requirePrivilegeJson(PRIVILEGE_SELECT);	//TODO update privilege?
+			if(is_object($context = app()->getContext($this->getContextName())))
+				if(is_object($obj = $context->obj))
+				{
+					echo app()->jsonMessage(RESULT_OK, "comments", array("items" => $obj->getComments()));
+					return;
+				}
+			echo app()->jsonMessage(RESULT_ERROR, t("Cant retriev comments"));
+		}
+
+		/**
 		 * uploads file
 		 */
 		public function uploadRobjfile()

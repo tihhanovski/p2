@@ -1034,3 +1034,43 @@
 		text-align: right;
 		color: #505050;
 	}
+
+	.commentsItem
+	{
+		margin-top: 2px;
+		margin-bottom: 8px;
+	}
+
+	.commentsItemUser
+	{
+		color: #5050ff;
+		margin-right: 5px;
+		font-size: 8pt;
+	}
+
+	.commentItemBody
+	{
+		font-size: 8pt;
+	}
+
+	.commentItemDate
+	{
+		font-size: 7pt;
+		text-align: right;
+		color: #707070;
+	}
+
+	.commentsContainer
+	{
+		min-height: 16px;
+		max-height: 200px;
+		overflow: auto;
+	}
+
+	.newCommentText
+	{
+		width: 100%;
+		min-width: 100%;
+		max-width: 100%;
+		height: 30px;
+	}

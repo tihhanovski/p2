@@ -13,6 +13,5 @@ class FWMessage extends WFWObject
     {
     	$this->sent = app()->now();
     	$this->senderId = app()->user()->getIdValue();
-    	$this->persist();
     }
 }

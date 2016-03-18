@@ -6,7 +6,7 @@
  *
  */
 
-	function rightPanel($context, $controls = null, $filesCtrl = RPCONTROL_FILES_ENABLED, $msgCtrl = RPCONTROL_MESSAGES_ENABLED)
+	function rightPanel($context, $controls = null, $filesCtrl = RPCONTROL_FILES_ENABLED, $msgCtrl = RPCONTROL_MESSAGES_ENABLED, $commentsCtrl = RPCONTROL_COMMENTS_ENABLED)
 	{
 		if(isset($context->obj->logEntry) && $context->obj->logEntry)
 			return "";
@@ -18,6 +18,8 @@
 			$rp->addControl(new FilesControl());
 		if($msgCtrl)
 			$rp->addControl(new MsgControl());
+		if($commentsCtrl)
+			$rp->addControl(new CommentsControl());
 
 		return $rp->toHtml();
 	}
@@ -382,5 +384,17 @@
 					"style=\"padding-left: 16px; background: url('" . app()->url("ui/img/16/messages.png") . "'); " .
 					"background-repeat: no-repeat; background-position: left top; min-height: 16px;\" " .
 					"id=\"msgControl\"></div>";
+		}
+	}
+
+	class CommentsControl extends RightPanelItem
+	{
+		function toHtml()
+		{
+			return "<div class=\"rightPanelItem rightPanelItemFiles\" " .
+					"style=\"padding-left: 16px; background: url('" . app()->url("ui/img/16/comments.png") . "'); " .
+					"background-repeat: no-repeat; background-position: left top; min-height: 16px;\" " .
+					"id=\"commentsControl\"></div>" .
+					"<script type=\"text/javascript\"> $(function(){commentsControl.create($(\"#commentsControl\"))});</script>";
 		}
 	}

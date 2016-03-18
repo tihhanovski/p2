@@ -725,12 +725,36 @@
 		}
 
 		/**
-		 * Returns absolute URL of file based on file existance in filesystem
+		 * Returns current registry name based on request
 		 * @return String
 		 */
 		function getCurrentRegistry()
 		{
 			return $this->request(REQUEST_REGISTRY);
+		}
+
+		/**
+		 * Add comment and return result of inserting it to DB
+		 * @param string $comment
+		 * @param string $objreg
+		 * @param int $objId
+		 * @param int $userId
+		 * @return mixed
+		 */
+		public function addComment($comment, $objreg = "", $objId = 0, $userId = 0)
+		{
+			echo "addComment<br/>";
+			if(!$comment)
+				throw new WFWException("no comment");
+			if($objreg = "")
+				$objreg = $this->getCurrentRegistry();
+			if($objId == 0)
+				$objId = $this->request("id");
+			if($userId == 0)
+				$userId = $this->user()->id;
+			$c = app()->dbo("objcomment");
+			$c->comment = $comment;
+			return $c->insert();
 		}
 
 		/**
@@ -840,6 +864,8 @@
 						"PWD_MIN_LENGTH" => 5,
 						"RPCONTROL_FILES_ENABLED" => true,
 						"RPCONTROL_MESSAGES_ENABLED" => true,
+						"RPCONTROL_COMMENTS_ENABLED" => true,
+
 						"CURRENCY_DEFAULT_N1" => "EUR",
 						"CURRENCY_DEFAULT_N2" => "EUR",
 						"CURRENCY_DEFAULT_D1" => "c",
@@ -868,6 +894,7 @@
 						"SOFTWAREISSUES_EMAIL_ON_INSERT" => true,
 						"DEVELOPER_USER" => "admin",
 						"CLEAR_CONTECTS_ON_LOGIN" => false,
+
 
 						//TODO remove, backward compatibility only
 						"WEB_ROOT" => INSTANCE_WEB,
