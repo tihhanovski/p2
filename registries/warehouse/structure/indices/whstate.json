@@ -1,0 +1,20 @@
+[
+	{
+		"type": "primary key",
+		"fields": "whId, articleId"
+	},
+	{
+		"type": "foreign key",
+		"fields": "whId",
+		"refs": "warehouse(id)",
+		"ondelete": "cascade",
+		"onupdate": "cascade"
+	},
+	{
+		"type": "foreign key",
+		"fields": "articleId",
+		"refs": "article(id)",
+		"ondelete": "cascade",
+		"onupdate": "cascade"
+	}
+]

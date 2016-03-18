@@ -29,6 +29,7 @@
 
 	require_once "WarehouseState.php";
 	require_once "DeferredBatchTotalCostCalculator.php";
+	require_once "DeferredWhstateRecalculator.php";
 
 	require_once "dbo/WhmvParent.php";
 	require_once "dbo/WhmvbatchParent.php";

@@ -97,6 +97,27 @@ class WarehouseModule
 			echo $s;
 	}
 
+	public function saveWarehouseState($warehouseId, $articleId)
+	{
+		$warehouseId = (int)$warehouseId;
+		$articleId = (int)$articleId;
+		if($warehouseId > DEFAULT_WAREHOUSE)
+		{
+			$sql = "select sum(q) as q, sum(c * q) as tc
+					from (
+						select cost as c, quantity * if(whDstId = $warehouseId, 1, -1) as q
+						from whmv where articleId = $articleId
+					) x";
+			$r = app()->rowFromDB($sql);
+			$q = 0 + $r[0];
+			$t = 0 + $r[1];
+
+			app()->query("insert into whstate (whId, articleId, quantity, total)
+					values($warehouseId, $articleId, $q, $t)
+					on duplicate key update quantity = $q, total = $t");
+		}
+	}
+
 	/**
 	 * recalculates costs for given params.
 	 * @param int $aId article id
@@ -107,6 +128,9 @@ class WarehouseModule
 	public function resetCosts($aId, $wId, $mId, $qp = 0)
 	{
 		$t = microtime(true);									//TODO REMOVE
+
+		app()->addDeferredTask(new DeferredWhstateRecalculator($wId, $aId), "dwr" . $wId . "_" . $aId);
+
 		$this->dbg("<b>resetCosts($aId, $wId, $mId, $qp)</b><br/>");
 		$inSql = "select id, quantity, cost, iqp, typeId, batchId
 			from whmv
