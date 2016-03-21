@@ -6,29 +6,10 @@
  *
  */
 
-class FWArticle extends WFWObject
+class FWArticle extends WFWCodedAndNamed
 {
-    protected $validators = array(
-        "code" => VALIDATION_NOT_EMPTY,
-        "name" => VALIDATION_NOT_EMPTY,
-    );
-
-
-    public function keySelColumns()
+    public function getDefaultFor_typeId()
     {
-        return array(
-                array(
-                    "columnName" => "code",
-                    "label" => t("Code"),
-                    "width" => "30",
-                    "align" => "left"
-                ),
-                array(
-                    "columnName" => "name",
-                    "label" => t("Name"),
-                    "width" => "70",
-                    "align" => "left"
-                ),
-        );
+        return 1;
     }
 }

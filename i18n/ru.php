@@ -432,7 +432,6 @@
 			"Specifications module" => "Спецификации",
 			"Production warehouse module" => "Готовая продукция",
 			"Planned only" => "Только запланированные",
-			"Yes" => "Да",
 			"Product types" => "Виды изделий",
 			"Produced also" => "Также произведенные",
 			"Article group" => "Группа материалов",
@@ -1014,5 +1013,13 @@
 			"Apply" => "Применить",
 			"ro_nrsequence" => "Серии нумерации",
 			"ro_nrsequence" => "Серия нумерации",
+			"sales" => "Продажи",
+			"customer" => "Клиент",
+			"supplier" => "Поставщик",
+			"component" => "Материал",
+			"expenses" => "Расход",
+			"Tel" => "Тел",
+			"Yes" => "Да",
+			"No" => "Нет",
 		)
 	);

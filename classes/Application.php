@@ -259,6 +259,28 @@
 		}
 
 		/**
+		 * @param string $langCode
+		 * @return string
+		 */
+		function getCompanyAddress($langCode = null)
+		{
+			if(is_null($langCode))
+				$langCode = app()->getLocale();
+			$sys = app()->system();
+			$sys->loadDynamicPropertiesIfNotLoaded();
+
+			$myAddr = "";
+			if($langCode)
+			{
+				$af = PROPERTY_PREFIX . "CompanyAddress_" . $langCode;
+				$myAddr = $sys->$af;
+			}
+			if(!$myAddr)
+				$myAddr = $sys->dynCompanyAddress;
+			return $myAddr;
+		}
+
+		/**
 		* shows error message
 		* @return void
 		*/
@@ -863,7 +885,7 @@
 						"CONTEXT_AUTOSAVE" => false,
 						"PWD_MIN_LENGTH" => 5,
 						"RPCONTROL_FILES_ENABLED" => true,
-						"RPCONTROL_MESSAGES_ENABLED" => true,
+						"RPCONTROL_MESSAGES_ENABLED" => false,
 						"RPCONTROL_COMMENTS_ENABLED" => true,
 
 						"CURRENCY_DEFAULT_N1" => "EUR",

@@ -334,7 +334,7 @@
 			$this->drawGridBoxes();
 			$this->SetX($this->minRowX);
 
-			if($this->maxRowY > $this->maxY)
+			if($this->maxRowY > $this->getMaxY())
 			{
 				$this->AddPage();
 				$this->MasterHeader();

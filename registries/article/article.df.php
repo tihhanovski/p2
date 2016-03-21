@@ -9,7 +9,7 @@
 	echo simpleform(array(
 			textbox($obj, "code", "Code"),
 			textbox($obj, "name", "Name"),
-			selectSql($obj, "typeId", "Type", SQL_COMBO_ARTICLETYPE),
+			selectSqlTranslated($obj, "typeId", "Type", SQL_COMBO_ARTICLETYPE),
 			selectSql($obj, "unitId", "Unit", SQL_COMBO_UNIT),
 			textarea($obj, "memo", "Memo"),
 

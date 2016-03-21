@@ -288,5 +288,13 @@
 			"Loading" => "Laeb",
 			"ro_unit" => "Ühikud",
 			"ru_unit" => "Ühik",
+			"sales" => "Müük",
+			"customer" => "Klient",
+			"supplier" => "Tarnija",
+			"component" => "Materjal",
+			"expenses" => "Kuluartikkel",
+			"Tel" => "Tel",
+			"Yes" => "Jah",
+			"No" => "Ei",
 		)
 	);

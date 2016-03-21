@@ -55,5 +55,11 @@
 			"ro_nrsequence" => "Number series",
 			"ro_vat" => "VAT tariffs",
 			"ru_vat" => "VAT tariff",
+			"sales" => "Sales",
+			"customer" => "Customer",
+			"supplier" => "Supplier",
+			"component" => "Component",
+			"expenses" => "Expenses",
+			"Tel" => "Ph",
 		)
 	);
