@@ -8,43 +8,45 @@
 
  	const JS_VERSION = 25;
 
- 	require_once "WFWException.php";
- 	require_once "WFWObject.php";
-	require_once "SetupObject.php";
-	require_once "ReportObject.php";
-	require_once "FilterObject.php";
+ 	define("WFW_CLASSPATH", WFW_ROOT . "classes/");
 
-	require_once "RequestHandler.php";
-	require_once "Warning.php";
-	require_once "Context.php";
-	require_once "ReportContext.php";
-	require_once "RegistryDescriptor.php";
-	require_once "SubdocumentRegistryDescriptor.php";	//TODO remove it!
-	require_once "ReportDescriptor.php";
-	require_once "SetupFormDescriptor.php";
- 	require_once "address_syntax.php";
- 	require_once "Formatter.php";
- 	require_once "Validation.php";
- 	require_once "CronTask.php";
- 	require_once "CLITask.php";
+ 	require_once WFW_CLASSPATH . "WFWException.php";
+ 	require_once WFW_CLASSPATH . "WFWObject.php";
+	require_once WFW_CLASSPATH . "SetupObject.php";
+	require_once WFW_CLASSPATH . "ReportObject.php";
+	require_once WFW_CLASSPATH . "FilterObject.php";
 
- 	require_once "ddl/index.php";
+	require_once WFW_CLASSPATH . "RequestHandler.php";
+	require_once WFW_CLASSPATH . "Warning.php";
+	require_once WFW_CLASSPATH . "Context.php";
+	require_once WFW_CLASSPATH . "ReportContext.php";
+	require_once WFW_CLASSPATH . "RegistryDescriptor.php";
+	require_once WFW_CLASSPATH . "SubdocumentRegistryDescriptor.php";	//TODO remove it!
+	require_once WFW_CLASSPATH . "ReportDescriptor.php";
+	require_once WFW_CLASSPATH . "SetupFormDescriptor.php";
+ 	require_once WFW_CLASSPATH . "address_syntax.php";
+ 	require_once WFW_CLASSPATH . "Formatter.php";
+ 	require_once WFW_CLASSPATH . "Validation.php";
+ 	require_once WFW_CLASSPATH . "CronTask.php";
+ 	require_once WFW_CLASSPATH . "CLITask.php";
 
- 	require_once "ContextProvider.php";
- 	require_once "UIHelper.php";
- 	require_once "PasswordValidator.php";
-	require_once "Application.php";
+ 	require_once WFW_CLASSPATH . "ddl/index.php";
 
-	require_once "XLSExporter.php";
+ 	require_once WFW_CLASSPATH . "ContextProvider.php";
+ 	require_once WFW_CLASSPATH . "UIHelper.php";
+ 	require_once WFW_CLASSPATH . "PasswordValidator.php";
+	require_once WFW_CLASSPATH . "Application.php";
 
-	require_once "ui/index.php";
+	require_once WFW_CLASSPATH . "XLSExporter.php";
 
-	require_once "dbo/index.php";
+	require_once WFW_CLASSPATH . "ui/index.php";
 
-	require_once "queries.php";
+	require_once WFW_CLASSPATH . "dbo/index.php";
+
+	require_once WFW_CLASSPATH . "queries.php";
 
 	//reporting
-	require_once "reporting/index.php";
+	require_once WFW_CLASSPATH . "reporting/index.php";
 
 	//modules
- 	require_once "warehouse/index.php";
+ 	require_once WFW_CLASSPATH . "warehouse/index.php";

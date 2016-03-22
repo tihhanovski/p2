@@ -6,19 +6,19 @@
  *
  */
 
-	require_once "HtmlComponent.php";
-	require_once "BaseInput.php";
-	require_once "FlexiGrid.php";
-	require_once "RightPanel.php";
-	require_once "ColumnLayout.php";
-	require_once "AdvancedCombo.php";
-	require_once "KeySelector.php";
-	require_once "TextArea.php";
-	require_once "DatePicker.php";
-	require_once "CheckBox.php";
-	require_once "TextBox.php";
-	require_once "Select.php";
-	require_once "StaticValue.php";
-	require_once "Tabulator.php";
-	require_once "RobjfileUploadControl.php";
-	require_once "simpleform.php";
+	require_once WFW_CLASSPATH . "ui/HtmlComponent.php";
+	require_once WFW_CLASSPATH . "ui/BaseInput.php";
+	require_once WFW_CLASSPATH . "ui/FlexiGrid.php";
+	require_once WFW_CLASSPATH . "ui/RightPanel.php";
+	require_once WFW_CLASSPATH . "ui/ColumnLayout.php";
+	require_once WFW_CLASSPATH . "ui/AdvancedCombo.php";
+	require_once WFW_CLASSPATH . "ui/KeySelector.php";
+	require_once WFW_CLASSPATH . "ui/TextArea.php";
+	require_once WFW_CLASSPATH . "ui/DatePicker.php";
+	require_once WFW_CLASSPATH . "ui/CheckBox.php";
+	require_once WFW_CLASSPATH . "ui/TextBox.php";
+	require_once WFW_CLASSPATH . "ui/Select.php";
+	require_once WFW_CLASSPATH . "ui/StaticValue.php";
+	require_once WFW_CLASSPATH . "ui/Tabulator.php";
+	require_once WFW_CLASSPATH . "ui/RobjfileUploadControl.php";
+	require_once WFW_CLASSPATH . "ui/simpleform.php";

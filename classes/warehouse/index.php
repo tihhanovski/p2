@@ -22,16 +22,16 @@
 	const DEFAULT_WAREHOUSE = 1;
 	const DEFAULT_COMPANY = 1;
 
-	require_once "WarehouseModule.php";
-	require_once "WHMVRegistryDescriptor.php";
-	require_once "queries-wh.php";
-	require_once "WhmvbatchPrintout.php";
+	require_once WFW_CLASSPATH . "warehouse/WarehouseModule.php";
+	require_once WFW_CLASSPATH . "warehouse/WHMVRegistryDescriptor.php";
+	require_once WFW_CLASSPATH . "warehouse/queries-wh.php";
+	require_once WFW_CLASSPATH . "warehouse/WhmvbatchPrintout.php";
 
-	require_once "WarehouseState.php";
-	require_once "DeferredBatchTotalCostCalculator.php";
-	require_once "DeferredWhstateRecalculator.php";
+	require_once WFW_CLASSPATH . "warehouse/WarehouseState.php";
+	require_once WFW_CLASSPATH . "warehouse/DeferredBatchTotalCostCalculator.php";
+	require_once WFW_CLASSPATH . "warehouse/DeferredWhstateRecalculator.php";
 
-	require_once "dbo/WhmvParent.php";
-	require_once "dbo/WhmvbatchParent.php";
-	require_once "dbo/WhinventoryParent.php";
-	require_once "dbo/WhinventoryrowParent.php";
+	require_once WFW_CLASSPATH . "warehouse/dbo/WhmvParent.php";
+	require_once WFW_CLASSPATH . "warehouse/dbo/WhmvbatchParent.php";
+	require_once WFW_CLASSPATH . "warehouse/dbo/WhinventoryParent.php";
+	require_once WFW_CLASSPATH . "warehouse/dbo/WhinventoryrowParent.php";

@@ -17,5 +17,5 @@
  	if(!defined("STRUCTURE_ENGINE"))
  		define("STRUCTURE_ENGINE", DEFAULT_STRUCTURE_ENGINE);
 
-	require_once "DBUpdater.php";
-	require_once "DBDocumentor.php";
+	require_once WFW_CLASSPATH . "ddl/DBUpdater.php";
+	require_once WFW_CLASSPATH . "ddl/DBDocumentor.php";
