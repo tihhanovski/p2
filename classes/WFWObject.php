@@ -724,7 +724,7 @@
 		function addChild2($alias, $c)
 		{
 			//$alias should be array in this
-			$a = $this->$alias;
+			$a = isset($this->$alias) && is_array($this->$alias) ? $this->$alias : array();
 			$a[] = $c;
 			$key = array_search($c, $a, true);
 			$this->$alias = $a;

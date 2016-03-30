@@ -499,7 +499,8 @@
 		 	if($reloadRow = 0 + app()->request("reloadRow"))
 		 	{
 		 		//find first col sql
-		 		$a = explode(",", $this->sql);
+		 		$s = $this->plainSql($this->sql);
+		 		$a = explode(",", $s);
 		 		$idc = $a[0];
 		 		$a = explode(" ", $idc);
 		 		$idc = $a[1];
@@ -508,6 +509,17 @@
 		 	}
 
 		 	$this->initSort();
+		}
+
+		function plainSql($s)
+		{
+			$s = str_replace("\n", " ", $s);
+			$s = str_replace("\t", " ", $s);
+			$a = array();
+			foreach(explode(" ", $s) as $i)
+				if($i <> "")
+					$a[] = $i;
+			return implode(" ", $a);
 		}
 
 		/**

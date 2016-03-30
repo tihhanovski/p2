@@ -84,7 +84,7 @@ class WhmvParent extends WFWObject
             $this->validate_articleId();
         $this->calcTotalCost();
         $this->calcTotalPrice();
-        if($this->modifierId !== DEFAULT_WHMV_MODIFIER)
+        if(isset($this->modifierId) && $this->modifierId !== DEFAULT_WHMV_MODIFIER)
             $this->modifier = $this->getLink("modifierId")->name;
 
 

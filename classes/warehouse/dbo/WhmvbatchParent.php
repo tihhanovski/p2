@@ -42,8 +42,9 @@ class WhmvbatchParent extends WFWObject
     private function updChildrenWhField($f)
     {
         if($this->$f != DEFAULT_WAREHOUSE)
-            foreach ($this->rows as $r)
-                $r->setValue($f, $this->$f);
+            if(isset($this->rows) && is_array($this->rows))
+                foreach ($this->rows as $r)
+                    $r->setValue($f, $this->$f);
     }
 
     public function getDefaultFor_typeId()

@@ -296,5 +296,7 @@
 			"Tel" => "Tel",
 			"Yes" => "Jah",
 			"No" => "Ei",
+			"Number is not unique" => "Number ei ole unikaalne!",
+			"Warehouse state will be negative after save" => "Peale salvestamist laoseis muutub negatiivseks",
 		)
 	);
