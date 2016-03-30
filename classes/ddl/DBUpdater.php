@@ -29,12 +29,14 @@
 			app()->localAuth();
 			$x = app()->dbo("SqlUpdateLog");
 			$c =$x->getDatabaseConnection();
-			$c->query("SET NAMES utf8");
+			//$c->query("SET NAMES utf8");
 
 			//TODO ensure that SqlUpdateLog table exists. It is necessary for DBUpdater to operate
 			$c->query("create table SqlUpdateLog(ID int not null auto_increment primary key, file varchar(100), command text, result text);");
 
 			$this->doUpdate(WFW_ROOT, "framework:");
+			foreach (moduleManager()->getList() as $web => $root)
+				$this->doUpdate($root, $web . ":");
 			$this->doUpdate(APP_ROOT, "app:");
 			$this->doUpdate(INSTANCE_ROOT, "instance:");
 		}

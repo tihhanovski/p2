@@ -90,6 +90,11 @@ class CronTask
  */
 function runCronTasks($dir = "")
 {
+	if(php_sapi_name() != "cli")
+	{
+		app()->location();
+		return;
+	}
 	app()->localAuth();
 	app()->setLocale(DEFAULT_LOCALE);
 
@@ -106,6 +111,8 @@ function runCronTasks($dir = "")
 	{
 		if(defined("WFW_ROOT"))
 			runCronTasks(WFW_ROOT . CRONTASK_DIRECTORY);
+		foreach (moduleManager()->getList() as $root)
+			runCronTasks($root . CRONTASK_DIRECTORY);
 		if(defined("APP_ROOT"))
 			runCronTasks(APP_ROOT . CRONTASK_DIRECTORY);
 		if(defined("INSTANCE_ROOT"))

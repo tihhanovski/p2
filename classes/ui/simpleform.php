@@ -163,7 +163,7 @@
 			foreach(array("pdf", "html", "xls", "xml") as $fmt)
 			{
 				$f = $fmt . "Enabled";
-				if($c->$f)
+				if(isset($c->$f) && $c->$f)
 				{
 					$url = app()->url("?registry=" . app()->request("registry") . "&action=previewReport&output=$fmt");
 					$ret .= "<div class=\"startReportButton\"><a href=\"$url\" target=\"_blank\"><img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\" class=\"topmenuIcon\"/></a>" .

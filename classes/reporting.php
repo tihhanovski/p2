@@ -79,6 +79,11 @@
 
 		public $gridSetup = array();
 
+		public function finish()
+		{
+			$this->Output("test.pdf", "I");
+		}
+
 		public function xywhCell($x, $y, $w, $h, $s, $a = "L")
 		{
 			$this->SetY($y);
@@ -282,7 +287,7 @@
 
 				$this->setMasterDataParams();
 				foreach ( $this->columns as $col)
-					$this->GridCell($col->format($row[$col->name]), $col->width, $col->align);	//TODO PHP Notice:  Undefined index
+					$this->GridCell($col->format(isset($row[$col->name]) ? $row[$col->name] : ""), $col->width, $col->align);	//TODO PHP Notice:  Undefined index
 				$this->finishRow();
 				$this->processAggregate($row);
 			}

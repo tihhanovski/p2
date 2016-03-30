@@ -10,6 +10,7 @@
 
  	define("WFW_CLASSPATH", WFW_ROOT . "classes/");
 
+ 	require_once WFW_CLASSPATH . "ModuleManager.php";
  	require_once WFW_CLASSPATH . "WFWException.php";
  	require_once WFW_CLASSPATH . "WFWObject.php";
 	require_once WFW_CLASSPATH . "SetupObject.php";

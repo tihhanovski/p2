@@ -68,6 +68,11 @@ function discoverCLITasks($dir, &$arr)
  */
 function runCLITask()
 {
+	if(php_sapi_name() != "cli")
+	{
+		app()->location();
+		return;
+	}
 	global $argv;
 	$task = isset($argv[1]) ? $argv[1] : "";
 	app()->localAuth();
@@ -75,6 +80,8 @@ function runCLITask()
 
 	$at = array();
 	discoverCLITasks(WFW_ROOT, $at);
+	foreach (moduleManager()->getList() as $root)
+		discoverCLITasks($root, $at);
 	discoverCLITasks(APP_ROOT, $at);
 	discoverCLITasks(INSTANCE_ROOT, $at);
 

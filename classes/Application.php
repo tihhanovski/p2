@@ -51,12 +51,11 @@
 
 	require_once "connect.php";
 
-	if(file_exists($clsFn = APP_ROOT . "classes/classes.php"))
+	if(file_exists($clsFn = APP_ROOT . "index.php"))
 		include_once $clsFn;
-
-	if(defined("SERVER_TIMEZONE"))
-		date_default_timezone_set(SERVER_TIMEZONE);
-
+	else
+		if(file_exists($clsFn = APP_ROOT . "classes/classes.php"))		//TODO deprecate it
+			include_once $clsFn;
 
 	/**
 	* just the same as PHP stdObject
@@ -273,10 +272,12 @@
 			if($langCode)
 			{
 				$af = PROPERTY_PREFIX . "CompanyAddress_" . $langCode;
-				$myAddr = $sys->$af;
+				if(isset($sys->$af))
+					$myAddr = $sys->$af;
 			}
 			if(!$myAddr)
-				$myAddr = $sys->dynCompanyAddress;
+				if(isset($sys->dynCompanyAddress))
+					$myAddr = $sys->dynCompanyAddress;
 			return $myAddr;
 		}
 
@@ -345,6 +346,7 @@
 		function includeAll($s)
 		{
 			$this->includeIfExists(WFW_ROOT . $s);
+			moduleManager()->includeAll($s);
 			$this->includeIfExists(APP_ROOT . $s);
 			$this->includeIfExists(INSTANCE_ROOT . $s);
 		}
@@ -492,29 +494,29 @@
 		 */
 		function setLocale($l)
 		{
+			$l = stripDirBack($l);
 			$this->locale = $l;
-			if(!defined("I18N_EXTENDED_LOCALES"))
-				define("I18N_EXTENDED_LOCALES", false);
+			$iFile = "i18n/" . $l . ".php";
+			$reg = stripDirBack($this->request(REQUEST_REGISTRY));
 
 			if(I18N_EXTENDED_LOCALES)
+			{
 				$this->translations = array();
-
-			if(I18N_EXTENDED_LOCALES)
-				if(file_exists($lf = WFW_ROOT . "i18n/" . stripDirBack($l) . ".php"))
+				if(file_exists($lf = WFW_ROOT . $iFile))
 					include $lf;
+				moduleManager()->includeAll($iFile);
+				//foreach (moduleManager()->getList() as $root)
+				//	$this->includeIfExists($root . $iFile);
+			}
 
-			if(file_exists($lf = APP_ROOT . "i18n/" . stripDirBack($l) . ".php"))
-				include $lf;
+			$this->includeIfExists(APP_ROOT . $iFile);
 
-			if(I18N_EXTENDED_LOCALES)
-				if($r = $this->request(REQUEST_REGISTRY))
-				{
-					//error_log("\n\n$fn\n\n")
-					if($lf = $this->getAbsoluteFile("registries/" . stripDirBack($r) . "/i18n/" . stripDirBack($l) . ".php"))
-					{
-						include $lf;
-					}
-				}
+			if(I18N_EXTENDED_LOCALES && $reg)
+			{
+				moduleManager()->includeAll("registries/" . $reg . "/" . $iFile);
+				if($lf = $this->getAbsoluteFile("registries/" . $reg . "/" . $iFile))
+					include $lf;
+			}
 		}
 
 		/**
@@ -705,6 +707,8 @@
 				return INSTANCE_WEB . $s;
 			if(file_exists(APP_ROOT . $s))
 				return APP_WEB . $s;
+			if($fn = moduleManager()->getLastUrl($s))
+				return $fn;
 			if(file_exists(WFW_ROOT . $s))
 				return WFW_WEB . $s;
 
@@ -727,9 +731,10 @@
 				return $f;
 			if(file_exists($f = APP_ROOT . $file))
 				return $f;
+			if($fn = moduleManager()->getLastAbs($file))
+				return $fn;
 			if(file_exists($f = WFW_ROOT . $file))
 				return $f;
-			//echo "not found.<br/>looked for:<br/>'" . INSTANCE_ROOT . $file . "'<br/>'" . APP_ROOT . $file . "'<br/>'" . WFW_ROOT . $file . "'";
 			return "";
 		}
 
@@ -849,6 +854,9 @@
 		function __construct()
 		{
 			$this->checkSetup();
+
+			if(defined("SERVER_TIMEZONE"))
+				date_default_timezone_set(SERVER_TIMEZONE);
 		}
 
 		/**
@@ -893,6 +901,7 @@
 						"CURRENCY_DEFAULT_D1" => "c",
 						"CURRENCY_DEFAULT_D2" => "c",
 						"FORMATSTRING_DATEPICKER" => "dd.mm.yy",
+						"SERVER_TIMEZONE" => "Europe/Tallinn",
 
 						//TODO get rid of it
 						"SETUP_3RD_COMBOGRID_CSS" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery-ui-1.8.9.custom.css",
@@ -1072,6 +1081,8 @@
 		private function initConnection()
 		{
 			$this->user = DB_DataObject::Factory("webuser");
+			if($this->isDBError($this->user))
+				throw new WFWException("Cant initialize DB connection");
 			$this->user->getDatabaseConnection()->query("SET NAMES utf8");
 		}
 
@@ -1134,7 +1145,12 @@
 				$this->loadRights();
 			}
 
-			include APP_ROOT . "i18n/index.php";
+			//if(file_exists(APP_ROOT . "i18n/index.php"))
+			//	include APP_ROOT . "i18n/index.php";
+			if($fn = $this->getAbsoluteFile("i18n/index.php"))
+				include $fn;
+			else
+				$this->setLocalesList(array(DEFAULT_LOCALE));
 			$this->initLocale();
 		}
 
@@ -1599,7 +1615,7 @@
 			if(!$this->hasRight($privilege, $reg))
 				die($this->jsonMessage(RESULT_ERROR, t(MSG_INSUFFICIENT_RIGHTS)));	//TODO consider throwing exception
 		}
-		
+
 		/**
 		 * If user does not have specific privilege on specific registry, dies with JSON encoded message
 		 */
@@ -1953,8 +1969,8 @@
 			{
 				$sys = $this->system();
 				$sys->loadDynamicPropertiesIfNotLoaded();
-				if($sys->dynCurrency)
-					$cur = app()->get("Valuutad", $sys->dynCurrency);
+				if(isset($sys->dynCurrency) && $sys->dynCurrency)
+					$cur = app()->get("currency", $sys->dynCurrency);
 				if(is_object($cur))
 				{
 					$sCur = $cur->code;
@@ -2211,7 +2227,10 @@
 	{
 		global $_app;
 		if(!isset($_app))
-			$_app = new Application();
+			if(class_exists("Application"))
+				$_app = new Application();
+			else
+				$_app = new WFWApp();
 
 		return $_app;
 	}

@@ -758,7 +758,7 @@
 	    	if(is_array($keys))
 	    	{
 	    		if(count($keys) != 1)
-	    			die("wrong number of keys for " . $this->__table . "<hr/>" . print_r($this, true) . "<hr/>");
+	    			die("wrong number of keys for " . $this->__table . "<hr/><pre>" . print_r($this, true) . "</pre><hr/>");
 	    		return $keys[0];
 	    	}
 	    	else

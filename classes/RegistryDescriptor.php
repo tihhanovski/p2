@@ -669,27 +669,26 @@
 		protected function getFilterCaption()
 		{
 			$ret = array();
-			foreach ($this->getFilterFields() as $c)
-				if(is_object($c))
-				{
-
-					$mr = $c->getMinimalRepresentation();
-					if($c->field == "active")
+			if (is_array($ff = $this->getFilterFields()))
+				foreach ($ff as $c)
+					if(is_object($c))
 					{
-						if($mr == "")
-							return array();
+						$mr = $c->getMinimalRepresentation();
+						if($c->field == "active")
+						{
+							if($mr == "")
+								return array();
+						}
+						else
+							if($c->field != "filterOnStartup")
+								if(is_array($mr))
+								{
+									foreach ($mr as $a)
+										$ret[] = $a;
+								}
+								else
+									$ret[] = $mr;
 					}
-					else
-						if($c->field != "filterOnStartup")
-							if(is_array($mr))
-							{
-								foreach ($mr as $a)
-									$ret[] = $a;
-							}
-							else
-								$ret[] = $mr;
-				}
-
 			return $ret;
 		}
 
