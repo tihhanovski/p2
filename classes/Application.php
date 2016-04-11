@@ -494,6 +494,8 @@
 		 */
 		function setLocale($l)
 		{
+			//if(I18N_EXTENDED_LOCALES)
+			//	$this->translations = array();
 			$l = stripDirBack($l);
 			$this->locale = $l;
 			$iFile = "i18n/" . $l . ".php";
