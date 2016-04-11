@@ -134,13 +134,6 @@
 			"memo" => "Lisainfo",
 			"startNr" => "Esimene number",
 
-			"whincome" => "Lao sissetulek",
-			"whoutcome" => "Lao väljaminek",
-			"whinitial" => "Lao algseis",
-			"whintra" => "Ladudevaheline liikumine",
-			"whwriteoff" => "Mahakandmine",
-			"whproduction" => "Tootmine",
-			"whinventory" => "Inventuur",
 			"salesinvoice" => "Müügiarve",
 			"Date" => "Kuupäev",
 			"Customer" => "Klient",
