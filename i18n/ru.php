@@ -1045,8 +1045,8 @@
 			"ru_whinventory" => "Инвентаризации",
 			"ro_whinventory" => "Инвентаризация",
 			"Default warehouse" => "Склад по умолчанию",
-			"Destination warehouse" => "С какого склада",
-			"Source warehouse" => "На какой склад",
+			"Destination warehouse" => "На какой склад",
+			"Source warehouse" => "С какого склада",
 			"Modifier" => "Партия",
 			"Modifiers" => "Партии",
 			"Show null quantities" => "Показывать материалы с нулевым количеством",
@@ -1080,6 +1080,11 @@
 			"Total cost" => "Сумма в себестоимости",
 			"Total price" => "Сумма в продажной цене",
 			"ro_whStateReport" => "Состояние склада",
-
+			"Columns" => "Столбцы",
+			"Delete row?" => "Удалить строку?",
+			"m2" => "m²",
+			"Total" => "Всего",
+			"Date not entered" => "Дата не выбрана",
 		)
+
 	);

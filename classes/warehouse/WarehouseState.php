@@ -32,14 +32,14 @@
 			$sql = "select sum(q) as q, sum(c * q) as tc from (
 				select cost as c,
 				quantity *
-				if(" . ($this->warehouseId > 1 ? "whDstId = " . $this->warehouseId : "whSrcId = " . DEFAULT_WAREHOUSE) . ", 1, -1) as q
+				if(" . ($this->warehouseId > DEFAULT_WAREHOUSE ? "whDstId = " . $this->warehouseId : "whSrcId = " . DEFAULT_WAREHOUSE) . ", 1, -1) as q
 				from whmv
-				where articleId = {$this->articleId}
-				" . ($this->date ? "and dt < " . quote($this->date) : "") . "
+				where articleId = {$this->articleId} and (whSrcId = {$this->warehouseId} or whDstId = {$this->warehouseId})
+				" . ($this->date ? "and dt <= " . quote($this->date) : "") . "
 				" . (ARTICLEMODIFIERS_ENABLED && $this->modifierId ? "and modifierId = " . $this->modifierId : "") . "
 				) x";
 
-			//echo "<hr/>$sql<hr/>";
+			//echo "<hr/>$sql<hr/>\n";
 
 			$r = app()->rowFromDB($sql);
 			//print_r($r);
