@@ -10,8 +10,9 @@
 		{
 			$styles = array(
 					SETUP_CSS_MAIN,
-					SETUP_3RD_COMBOGRID_CSS2,
-					SETUP_3RD_COMBOGRID_CSS,	//combogrid
+					//SETUP_3RD_COMBOGRID_CSS2,
+					//SETUP_3RD_COMBOGRID_CSS,	//combogrid
+					SETUP_JQUERY_UI_CSS,
 					app()->url("resources/ui.css"),
 					SETUP_3RD_MULTISELECT_CSS
 				);
@@ -23,6 +24,7 @@
 		{
 			$scripts = array(
 					SETUP_JQUERY,
+					SETUP_JQUERY_MIGRATE,
 					SETUP_JQUERY_I18N,
 					SETUP_JQUERY_UI,
 					SETUP_HOTKEYS,

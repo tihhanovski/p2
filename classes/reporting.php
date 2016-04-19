@@ -86,8 +86,10 @@
 
 		public function xywhCell($x, $y, $w, $h, $s, $a = "L")
 		{
-			$this->SetY($y);
-			$this->SetX($x);
+			if($y != 0)
+				$this->SetY($y);
+			if($x != 0)
+				$this->SetX($x);
 			$this->MultiCell($w, $h, $s, 0, $a);
 		}
 
@@ -165,7 +167,7 @@
 			$x = $this->GetX();
 			$this->minX = $x;
 			$this->SetX(-1);
-			$this->maxX = $this->GetX() - 10;
+			$this->maxX = $this->GetX() - 9;
 			$this->SetX($x);
 		}
 

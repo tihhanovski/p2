@@ -906,7 +906,7 @@
 						"SERVER_TIMEZONE" => "Europe/Tallinn",
 
 						//TODO get rid of it
-						"SETUP_3RD_COMBOGRID_CSS" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery-ui-1.8.9.custom.css",
+						//"SETUP_3RD_COMBOGRID_CSS" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery-ui-1.8.9.custom.css",
 						"SETUP_3RD_COMBOGRID_CSS2" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery.ui.combogrid.css",
 
 
@@ -916,7 +916,11 @@
 						"SETUP_3RD_MULTISELECT_JS" => L3RD_WEB . "jquery.multiselect.js",
 						"SETUP_3RD_MULTISELECT_CSS" => L3RD_WEB . "jquery.multiselect.css",
 						"SETUP_JQUERY" => L3RD_WEB . "jquery.js",
-						"SETUP_JQUERY_UI" => L3RD_WEB . "combogrid-1.5.0/resources/jquery/jquery-ui-1.8.9.custom.min.js",
+						"SETUP_JQUERY_MIGRATE" => L3RD_WEB . "jquery-migrate-1.3.0.js",
+						"SETUP_JQUERY_UI" => L3RD_WEB . "jquery-ui/jquery-ui.js",
+						"SETUP_JQUERY_UI_CSS" => L3RD_WEB . "jquery-ui/jquery-ui.css",
+
+						//"SETUP_JQUERY_UI" => L3RD_WEB . "combogrid-1.5.0/resources/jquery/jquery-ui-1.8.9.custom.min.js",
 						"SETUP_JQUERY_I18N" => L3RD_WEB . "jquery-ui-i18n.js",
 						"SETUP_COMBOGRID" => L3RD_WEB . "combogrid-1.5.0/resources/plugin/jquery.ui.combogrid-1.5.0.js",
 
