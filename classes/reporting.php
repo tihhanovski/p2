@@ -10,6 +10,7 @@
 
  	define("AGG_SUM", "sum");
  	define("AGG_TEXT", "text");
+ 	define("AGG_COUNT", "count");
 
  	define("RPT_GRIDSETUP_LEFTMARGIN", "margin-left");
  	define("RPT_GRIDSETUP_RIGHTMARGIN", "margin-right");
@@ -231,6 +232,12 @@
 						if(!isset($this->agg[$col->name]))
 							$this->agg[$col->name] = 0;
 						$this->agg[$col->name] += $d;
+					}
+					if($col->agg == AGG_COUNT)
+					{
+						if(!isset($this->agg[$col->name]))
+							$this->agg[$col->name] = 0;
+						$this->agg[$col->name] += 1;
 					}
 				}
        		}
@@ -797,6 +804,12 @@
 								{
 									$d = 0 + $this->agg[$col->name];
 									if($col->agg == AGG_SUM)
+									{
+										if(!isset($agg[$col->name]))
+											$agg[$col->name] = 0;
+										$agg[$col->name] += $d;
+									}
+									if($col->agg == AGG_COUNT)
 									{
 										if(!isset($agg[$col->name]))
 											$agg[$col->name] = 0;
