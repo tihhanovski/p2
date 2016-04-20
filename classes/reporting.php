@@ -111,7 +111,7 @@
 			'cap' => 'butt',
 			'join' => 'miter',
 			'dash' => 0,
-			'color' => array(200, 200, 200)
+			'color' => array(200, 200, 200),
 		);
 
 		function setDefaultFont()
