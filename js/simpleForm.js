@@ -591,7 +591,7 @@
 			log(data);
 			processError(data.message, ctrlId);
 			if(data.message != "")
-				alert(data.message);
+				app.alert(data.message);
 		}
 
 		if(data.state == "ok")
@@ -662,9 +662,10 @@
 	function deleteDocument()
 	{
 		if(obj.__isNotSaved)
-			return alert(t("cant delete new document"));
-		if(confirm(msg["Delete document?"]))
+			return app.alert(t("cant delete new document"));
+		app.confirm(msg["Delete document?"], function(){
 			ajaxCommand(baseUrl() + "?action=delete&path=" + contextName());
+		})
 	}
 
 	function newVersion()
@@ -688,15 +689,14 @@
 
 	function unlockDocument()
 	{
-		if(confirm(t("unlock document")))
-		{
+		app.confirm(t("unlock document"), function(){
 			$("#rightPanelLockButtonLink").attr("href", "JavaScript:void(0);");
 			$("#rightPanelLockButtonText").html(t("unlocking"));
 			app.progressMsg(t("unlocking"));
 			ajaxCommand(baseUrl() +
 					"?action=unlock" +
 					"&path=" + contextName());
-		}
+		})
 	}
 
 	function saveDocument()
@@ -817,34 +817,34 @@
 
 	function delRow(path)
 	{
-		if(!confirm(t("Delete row?")))
-			return;
-		var url = baseUrl() +
-			"?action=deleteChild" +
-			"&path=" + path;
+		app.confirm(t("Delete row?"), function(){
+			var url = baseUrl() +
+				"?action=deleteChild" +
+				"&path=" + path;
 
-		log("delRow: " + path);
-		$("#" + path).addClass("waitingToDelete");
-		$.get(url,
-			function(data)
-			{
-				if(data.state == "ok")
+			log("delRow: " + path);
+			$("#" + path).addClass("waitingToDelete");
+			$.get(url,
+				function(data)
 				{
-					$("#" + path).remove();
-
-					try
+					if(data.state == "ok")
 					{
-						onRowDeleteSuccess(path);
-					}catch(e){}
-				}
-				else
-				{
-					alert(data.message);
-					$("#" + path).removeclass("waitingToDelete");
-				}
-				updateOtherFields(data.update);
+						$("#" + path).remove();
 
-			}, "json");
+						try
+						{
+							onRowDeleteSuccess(path);
+						}catch(e){}
+					}
+					else
+					{
+						app.alert(data.message);
+						$("#" + path).removeclass("waitingToDelete");
+					}
+					updateOtherFields(data.update);
+
+				}, "json");
+		});
 	}
 
 	function createNewAndSelectInCombo(registryName, returnToId)

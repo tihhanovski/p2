@@ -1,5 +1,50 @@
 var app = {
 
+		"alert": function(message)
+		{
+			var html = '<h1>' + message + '</h1>' +
+				'<div class="confirmButtons" style="text-align: center;">' +	//TODO
+					'<button id="btnOK">' + t('OK') + '</button>' +
+				'</div>';
+			bubble.dimensions(400, 150).show(html);
+			$("#btnOK").button().click(function( event ) {
+        		event.preventDefault();
+        		bubble.hide();
+      		}).focus();
+
+			var h1 = $("#bubbleContents").children().height();
+				$("#bubbleContents").height(h1 + 60);
+		},
+
+		"confirm": function(message, func)
+		{
+			var html = '<h1>' + message + '</h1>' +
+				'<div class="confirmButtons">' +
+					'<button id="btnYes" class="floatLeft">' + t('Yes') + '</button>' +
+					'<button id="btnNo" class="floatRight">' + t('No') + '</button>' +
+				'</div>';
+			bubble.dimensions(400, 150).show(html);
+			$("#btnYes").button({icons: {primary: "ui-icon-check"}}).click(function( event ) {
+        		event.preventDefault();
+        		bubble.hide();
+        		func();
+      		});
+			$("#btnNo").button({icons: {primary: "ui-icon-close"}}).click(function( event ) {
+        		event.preventDefault();
+        		bubble.hide();
+      		});
+
+			var h1 = $("#bubbleContents").children().height();
+				$("#bubbleContents").height(h1 + 60);
+			$("#btnYes").focus();
+		},
+
+		"confirmedFunc": function(message, func)
+		{
+			log(func);
+			app.confirm(message, function(){app.func(func)});
+		},
+
 		"saveDocument": function()
 		{
 			app.removeWarnings();
@@ -439,7 +484,7 @@ var app = {
 				//log(data);
 				processError(data.message, ctrlId);
 				if(data.message != "")
-					alert(data.message);
+					app.alert(data.message);
 			}
 
 			if(data.state == "ok")

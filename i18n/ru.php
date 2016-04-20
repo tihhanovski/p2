@@ -1086,6 +1086,9 @@
 			"m3" => "m³",
 			"Total" => "Всего",
 			"Date not entered" => "Дата не выбрана",
+			"cant delete new document" => "Невозможно удалить новый несохраненный документ!",
+			"new passwords does not match" => "Новые пароли не совпадают!",
+			"Change password?" => "Сменить пароль?",
 		)
 
 	);

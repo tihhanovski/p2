@@ -49,7 +49,7 @@
 		var n2 = $("#profile_newpwd2").val();
 
 		if(n != n2)
-			return alert("<?=t("new passwords does not match")?>");
+			return app.alert("<?=t("new passwords does not match")?>");
 
 		$("#profile_oldpwd").val("");
 		$("#profile_newpwd").val("");

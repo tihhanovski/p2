@@ -157,6 +157,7 @@
 
 	function startReportButton($c = null)
 	{
+		$html = "";
 		if(is_object($c))
 		{
 			$ret = "";
@@ -166,17 +167,22 @@
 				if(isset($c->$f) && $c->$f)
 				{
 					$url = app()->url("?registry=" . app()->request("registry") . "&action=previewReport&output=$fmt");
-					$ret .= "<div class=\"startReportButton\"><a href=\"$url\" target=\"_blank\"><img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\" class=\"topmenuIcon\"/></a>" .
-							"<span class=\"topMenuCaption\"><a href=\"$url\" target=\"_blank\">" . t(strtoupper($fmt)) . "</a></span></div>";
+					//$ret .= "<div class=\"startReportButton\"><a href=\"$url\" target=\"_blank\" class=\"startReportButton\"><img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\" class=\"topmenuIcon\"/></a>" .
+					//		"<span class=\"topMenuCaption\"><a href=\"$url\" target=\"_blank\">" . t(strtoupper($fmt)) . "</a></span></div>";
+					$ret .= "<a href=\"$url\" target=\"_blank\" class=\"startReportButton\"><span>" .
+							"<img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\"/>" .
+							t(strtoupper($fmt)) . "</span></a>";
 				}
 			}
-			return lockedMemo($ret, "Start report");
+			$html = lockedMemo($ret, "Start report");
 		}
 		else
-			return "<div class=\"formRow\" style=\"padding-top: 20px;\">" .
+			$html = "<div class=\"formRow\" style=\"padding-top: 20px;\">" .
 				"<div class=\"formLabel\">&nbsp;</div>" .
 				"<a href=\"" . app()->url("?registry=" . app()->request("registry") . "&action=previewReport") . "\" " .
-				"target=\"_blank\">" . t("Start report") . "</a></div>";
+				"target=\"_blank\" class=\"startReportButton\">" . t("Start report") . "</a></div>";
+
+		return $html . "<script language=\"JavaScript\"> \$(function(){\$(\".startReportButton\").button();}); </script>";
 
 	}
 

@@ -2060,6 +2060,8 @@
 			"unlocking",
 			"Leave unsaved document?",
 			"cant delete new document",
+			"Yes",
+			"No",
 		);
 
 		/**

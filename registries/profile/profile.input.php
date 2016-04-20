@@ -91,11 +91,12 @@
 		$("#profile_newpwd2").val("");
 
 		if(n != n2)
-			return alert("<?=t("new passwords does not match")?>");
-		if(confirm("<?=t("Change password?")?>"))
+			return app.alert("<?=t("new passwords does not match")?>");
+		app.confirm("<?=t("Change password?")?>", function(){
 			ajaxCommand(baseUrl() + "?action=passwd" +
 				"&old=" + encodeURIComponent(o) +
 				"&new=" + encodeURIComponent(n));
+		});
 	}
 
 </script>
