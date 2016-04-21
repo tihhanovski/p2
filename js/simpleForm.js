@@ -33,14 +33,12 @@
 
 	function moveChildUp(path)
 	{
-		log("move up " + path);
-		ajaxCommand("?action=moveChildUp&path=" + path);
+		app.ajaxCommand("?action=moveChildUp&path=" + path);
 	}
 
 	function moveChildDn(path)
 	{
-		log("move dn " + path);
-		ajaxCommand("?action=moveChildDn&path=" + path);
+		app.ajaxCommand("?action=moveChildDn&path=" + path);
 	}
 
 	function processError(message, field)
