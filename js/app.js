@@ -266,7 +266,7 @@ var app = {
 
 		"initMSelectList": function()
 		{
-			$(".mselect-list-item-checkbox").live("click", app.multiselClicker);
+			$(document).on("click", ".mselect-list-item-checkbox", app.multiselClicker);
 
 			$(".multiSelect").multiselect();
 		},

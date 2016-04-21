@@ -529,7 +529,7 @@
 			{
 				var o = arr[x];
 				var c = $("#" + o.id + ":checkbox");
-				if(c.size() == 1)
+				if(c.length == 1)
 				{
 					if(o.value == 1)
 						c[0].checked = true;

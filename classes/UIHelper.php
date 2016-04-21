@@ -42,6 +42,7 @@
 					WFW_WEB . "js/filesControl.js",
 					WFW_WEB . "js/messagesControl.js",
 					WFW_WEB . "js/commentsControl.js",
+					WFW_WEB . "js/combobox.js",
 				);
 
 			foreach ( $scripts as $src)
