@@ -16,7 +16,7 @@ var app = {
 				$("#bubbleContents").height(h1 + 60);
 		},
 
-		"confirm": function(message, func)
+		"confirm": function(message, func, funcNo)
 		{
 			var html = '<h1>' + message + '</h1>' +
 				'<div class="confirmButtons">' +
@@ -32,6 +32,8 @@ var app = {
 			$("#btnNo").button({icons: {primary: "ui-icon-close"}}).click(function( event ) {
         		event.preventDefault();
         		bubble.hide();
+        		if(funcNo)
+        			funcNo();
       		});
 
 			var h1 = $("#bubbleContents").children().height();
