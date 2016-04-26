@@ -466,6 +466,7 @@
 		{
 			$gridMethod = "getGrid";
 			$gridSqlMethod = "getGridSql";
+			$gridGroupByMethod = "getGridGroupBy";
 
 			if($modifier = app()->request("mod"))
 			{
@@ -473,9 +474,14 @@
 					$gridMethod = $m;
 				if(method_exists($this, $m = $gridSqlMethod .= "_" . $modifier))
 					$gridSqlMethod = $m;
+				if(method_exists($this, $m = $gridGroupByMethod .= "_" . $modifier))
+					$gridGroupByMethod = $m;
 				$modifier = "." . $modifier;
 			}
-			$this->sql = $this->$gridSqlMethod();
+			//$ga = explode("group by", );
+			$this->sql = $this->$gridSqlMethod(); //$ga[0];
+			$this->sqlGroupBy = $this->$gridGroupByMethod(); //isset($ga[1]) ? $ga[1] : "";
+
 			$this->grid = $this->$gridMethod();
 
 
@@ -552,6 +558,7 @@
 			return $this->sql .
 						$this->sqlQuery .
 						$this->sqlRrQuery .
+						($this->sqlGroupBy ? " group by " . $this->sqlGroupBy : "") .
 						$this->sqlSort .
 						(($limited && ! $this->sqlRrQuery) ? $this->sqlLimit : "");
 		}
@@ -938,10 +945,21 @@
 
 		function addWhere($sql, $clause)
 		{
-			if(stripos($sql, "where") === false)
-				return $sql . " where " . $clause;
+			$ga = explode("group by", $sql);
+			$s1 = $ga[0];
+
+			if(stripos($s1, "where") === false)
+				$s1 = $s1 . " where " . $clause;
 			else
-				return $sql . " and " . $clause;
+				$s1 = $s1 . " and " . $clause;
+
+			if(count($ga) > 1)
+			{
+				$ga[0] = $s1;
+				return implode(" group by ", $ga);
+			}
+			else
+				return $s1;
 		}
 
 		function appendFilter($sql, $filter)
@@ -957,6 +975,11 @@
 				$sql = $this->appendFilter($sql, $filter);
 
 			return $sql;
+		}
+
+		function getGridGroupBy()
+		{
+			return "";
 		}
 
 		function getReportInputPath()
