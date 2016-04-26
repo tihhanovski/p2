@@ -470,11 +470,12 @@
 
 			if($modifier = app()->request("mod"))
 			{
-				if(method_exists($this, $m = $gridMethod .= "_" . $modifier))
+				if(method_exists($this, $m = $gridMethod . "_" . $modifier))
 					$gridMethod = $m;
-				if(method_exists($this, $m = $gridSqlMethod .= "_" . $modifier))
+				if(method_exists($this, $m = $gridSqlMethod . "_" . $modifier))
 					$gridSqlMethod = $m;
-				if(method_exists($this, $m = $gridGroupByMethod .= "_" . $modifier))
+				;
+				if(method_exists($this, $m = $gridGroupByMethod . "_" . $modifier))
 					$gridGroupByMethod = $m;
 				$modifier = "." . $modifier;
 			}
