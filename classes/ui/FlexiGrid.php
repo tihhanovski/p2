@@ -163,6 +163,13 @@
 			$this->addColumn($c);
 		}
 
+		function addIconColumn($column = "icon")
+		{
+			$c = new SimpleFlexiGridColumn("", $column, 16, MGRID_ALIGN_CENTER, FORMAT_ICON, "icon");
+			$c->printable = false;
+			$this->addColumn($c);
+		}
+
 		function addLockboxColumn($column = "locked")
 		{
 			$c = new SimpleFlexiGridColumn("", $column, 16, MGRID_ALIGN_CENTER, FORMAT_DEFAULT, "lockbox");

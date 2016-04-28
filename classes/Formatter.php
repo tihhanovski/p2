@@ -25,6 +25,7 @@
 	const FORMAT_TRANSLATED  = "translated";
 	const FORMAT_LINK_TO_OBJECT  = "link";
 	const FORMAT_FILESIZE  = "filesize";
+	const FORMAT_ICON = "icon";
 
 	const FORMATSTRING_DATETIME_MACHINE = "Y-m-d H:i:s";
 	const FORMATSTRING_DATE_MACHINE = "Y-m-d";
@@ -474,6 +475,35 @@
 	}
 
 	/**
+	 * Icons formatter
+	 * encodeHuman only
+	 */
+	class IconFormatter extends Formatter
+	{
+		private static $c;
+		private $icons = array();
+
+		static function singleton()
+		{
+			if(!is_object(self::$c))
+				self::$c = new IconFormatter();
+			return self::$c;
+		}
+
+		function encodeHuman($s)
+		{
+			if(!isset($this->icons[$s]))
+			{
+				$fn = "ui/img/16/" . $s . ".png";
+				if(app()->getAbsoluteFile($fn) == "")
+					$fn = "ui/img/16/z.png";
+				$this->icons[$s] = app()->url($fn);
+			}
+			return $this->icons[$s];
+		}
+	}
+
+	/**
 	 * instantiates (if needed) and returns formatter for specified format descriptor
 	 * @param string $format
 	 * @return Formatter
@@ -496,6 +526,7 @@
 			case FORMAT_TRANSLATED: 		return TranslatedFormatter::singleton();
 			case FORMAT_TIME: 				return TimeFormatter::singleton();
 			case FORMAT_FILESIZE:			return FileSizeFormatter::singleton();
+			case FORMAT_ICON: 				return IconFormatter::singleton();
 		}
 		return Formatter::singleton();
 	}

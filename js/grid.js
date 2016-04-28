@@ -228,6 +228,8 @@
 				{
 					case "":
 						return unnull(v);
+					case "icon":
+						return '<img src="' + v + '" border="0"/>';
 					case "closedicon":
 						return '<img src="' + setup.WFW_WEB + 'ui/img/16/closed-' + v + '.png" border="0"/>';
 					case "lockbox":
