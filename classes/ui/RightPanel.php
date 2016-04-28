@@ -166,16 +166,16 @@
 				app()->uiHelper()->modificationDataWritten = true;
 
 				$cl = trim(
-						(is_object($c = $obj->getCreatorUser()) ? "<div>" . app()->getLinkedCaption($c) . "</div>" : "") .
-						(isset($obj->mdCreated) && ($cd = $obj->mdCreated) ? "<div>" . $df->encodeHuman($cd) . "</div>" : "")
+						(is_object($c = $obj->getCreatorUser()) ? "<span class=\"smallText\">" . app()->getLinkedCaption($c) . "</span>" : "") .
+						(isset($obj->mdCreated) && ($cd = $obj->mdCreated) ? "<div class=\"smallText\">" . $df->encodeHuman($cd) . "</div>" : "")
 					);
 				$ul = trim(
-						(is_object($u = $obj->getUpdaterUser()) ? "<div>" . app()->getLinkedCaption($u) . "</div>" : "") .
-						(isset($obj->mdUpdated) && ($ud = $obj->mdUpdated) ? "<div>" . $df->encodeHuman($ud) . "</div>" : "")
+						(is_object($u = $obj->getUpdaterUser()) ? "<span  class=\"smallText\">" . app()->getLinkedCaption($u) . "</span>" : "") .
+						(isset($obj->mdUpdated) && ($ud = $obj->mdUpdated) ? "<div class=\"smallText\">" . $df->encodeHuman($ud) . "</div>" : "")
 					);
 				$html =
-					($cl ? "<div>" . t("Created") . "</div>" . $cl : "") .
-					($ul ? "<div>" . t("Updated") . "</div>" . $ul : "");
+					($cl ? "<span class=\"smallText rightPanelModDataCaption\">" . t("Created") . "</span>" . $cl : "") .
+					($ul ? "<span class=\"smallText rightPanelModDataCaption\">" . t("Updated") . "</span>" . $ul : "");
 
 			}
 			return $this->noIconPlainTextItem($html);
@@ -196,6 +196,24 @@
 		function toHtml()
 		{
 			return $this->item("z.png", "JavaScript:app.func('{$this->action}')", $this->caption);
+		}
+	}
+
+	class AppConfirmedFuncButton extends RightPanelItem
+	{
+		private $action, $caption;
+
+		function __construct($context, $action, $caption, $confirmMessage)
+		{
+			$this->context = $context;
+			$this->action = $action;
+			$this->caption = $caption;
+			$this->confirmMessage = $confirmMessage;
+		}
+
+		function toHtml()
+		{
+			return $this->item("z.png", "JavaScript:app.confirmedFunc('" . t("$this->confirmMessage") . "', '{$this->action}')", $this->caption);
 		}
 	}
 
