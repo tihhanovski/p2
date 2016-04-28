@@ -418,6 +418,7 @@
 		public $header;
 		public $autoGroupCaption = false;
 		public $groupStartNewPage = false;
+		public $groupedPrintTotals = true;
 		public $htmlCells = false;
 		public $footerEnabled = true;
 
@@ -864,9 +865,12 @@
 				}
 				$this->MasterTotals();
 				$this->appendAgg($agg);
-				$this->Ln();
-				$this->Ln();
-				$this->MasterTotals($agg);
+				if($this->model->groupedPrintTotals)
+				{
+					$this->Ln();
+					$this->Ln();
+					$this->MasterTotals($agg);
+				}
 			}
 		}
 
