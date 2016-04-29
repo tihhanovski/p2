@@ -32,9 +32,14 @@
 		<div style="float: left; font-size: 32px; font-weight: bold; color: #505050;"><?=APP_TITLE . ($cn ? " / " . $cn : "")?></div>
 		<div style="float: right;">
 			<div><a href="JavaScript:logout();"><?=t("Logout")?></a></div>
-			<div style="margin-top: 10px;" id="toolbar_Locales"></div>
-			<div><a href="JavaScript:showNews();"><?=t("ver") . " " . app()->getVersion()?></a></div>
-		</div>
+			<div style="margin-top: 10px;" id="toolbar_Locales"></div><?php
+
+				if($v = app()->getVersion())
+				{
+					?><div><a href="JavaScript:showNews();"><?=t("ver") . " " . $v?></a></div><?php
+				}
+
+		?></div>
 	</div>
 
 	<div style="margin: 50px; padding-top: 50px;"><?php
