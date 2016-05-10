@@ -7,6 +7,15 @@ var bubble = {
 
 	"containerId": "#bubbleContainer",
 
+	"reset": function()
+	{
+		this.left = -1;
+		this.top = -1;
+		this.width = -1;
+		this.height = -1;
+		return this;
+	},
+
 	"pos": function(x, y)
 	{
 		this.left = x;

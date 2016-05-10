@@ -554,14 +554,22 @@
 		 	}
 		}
 
+		function replaceQueryVariables($sql)
+		{
+			$sql = str_replace("[user.id]", app()->user()->id, $sql);		//TODO more vars
+			return $sql;
+
+		}
+
 		function getGridDataSql($limited = true)
 		{
-			return $this->sql .
+			$sql = $this->sql .
 						$this->sqlQuery .
 						$this->sqlRrQuery .
 						($this->sqlGroupBy ? " group by " . $this->sqlGroupBy : "") .
 						$this->sqlSort .
 						(($limited && ! $this->sqlRrQuery) ? $this->sqlLimit : "");
+			return $sql;
 		}
 
 		function exportGridAsJSON()
@@ -968,6 +976,107 @@
 			return $sql;
 		}
 
+		function gridSelectAll()
+		{
+			app()->requirePrivilege(PRIVILEGE_SELECT);
+			$this->initGridVariables();
+			$gsql = $this->getGridDataSql(false);
+	 		$q = app()->query($gsql);
+	 		if(app()->isDBError($q))
+	 			die($gsql . "\n\n\n" . print_r($q, true));	//TODO
+
+			$userId = (int)app()->user()->id;
+			$reg = app()->request("registry");
+
+	 		while($q->fetchInto($row))
+	 		{
+	 			$id = (int)$row[0];
+	 			$this->selectRow($id, $userId, $reg, true);
+		 	}
+		 	echo app()->jsonMessage(RESULT_OK, "1");
+		}
+
+		function gridUnselectAll()
+		{
+			app()->requirePrivilege(PRIVILEGE_SELECT);
+
+			$userId = (int)app()->user()->id;
+			$reg = quote(app()->request("registry"));
+
+			app()->query("delete from selected where userId = $userId and objreg = $reg");
+
+		 	echo app()->jsonMessage(RESULT_OK, "0");
+		}
+
+		protected function getGlobalSelection()
+		{
+			$userId = (int)app()->user()->id;
+			$reg = quote(app()->request("registry"));
+			$q = app()->query("select objId from selected where userId = $userId and objreg = $reg");
+	 		if(app()->isDBError($q))
+	 			die($gsql . "\n\n\n" . print_r($q, true));	//TODO
+			$a = array();
+			while($q->fetchInto($row))
+				$a[$row[0]] = $row[0];
+			return $a;
+		}
+
+		public function gridInvertSelection()
+		{
+			app()->requirePrivilege(PRIVILEGE_SELECT);
+
+			$this->initGridVariables();
+			$gsql = $this->getGridDataSql(false);
+	 		$q = app()->query($gsql);
+	 		if(app()->isDBError($q))
+	 			die($gsql . "\n\n\n" . print_r($q, true));	//TODO
+
+	 		$a = $this->getGlobalSelection();
+
+			$userId = (int)app()->user()->id;
+			$reg = app()->request("registry");
+
+	 		while($q->fetchInto($row))
+	 		{
+	 			$id = (int)$row[0];
+	 			$this->selectRow($id, $userId, $reg, !isset($a[$id]));
+		 	}
+		 	echo app()->jsonMessage(RESULT_OK, "1");
+
+		}
+
+		private function selectRow($id, $userId, $reg, $m)
+		{
+				$reg = quote($reg);
+				if($m)
+					app()->query("insert into selected(userId, objreg, objid)values($userId, $reg, $id)");
+				else
+					app()->query("delete from selected where userId = $userId and objreg = $reg and objid = $id");
+		}
+
+		private function selectionMethod($m)
+		{
+			app()->requirePrivilegeJson(PRIVILEGE_SELECT);
+			$id = (int)app()->request("id");
+			$userId = (int)app()->user()->id;
+			$reg = app()->request("registry");
+			if($id && $reg)
+			{
+				$this->selectRow($id, $userId, $reg, $m);
+				echo app()->jsonMessage(RESULT_OK, $m ? "1" : "0");
+			}
+		}
+
+		function setSelected()
+		{
+			$this->selectionMethod(true);
+		}
+
+		function unsetSelected()
+		{
+			$this->selectionMethod(false);
+		}
+
 		function getGridSql()
 		{
 			$sql = $this->gridSql;
@@ -975,6 +1084,7 @@
 			if($filter->isActive())
 				$sql = $this->appendFilter($sql, $filter);
 
+			$sql = $this->replaceQueryVariables($sql);
 			return $sql;
 		}
 

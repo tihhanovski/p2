@@ -1089,6 +1089,10 @@
 			"cant delete new document" => "Невозможно удалить новый несохраненный документ!",
 			"new passwords does not match" => "Новые пароли не совпадают!",
 			"Change password?" => "Сменить пароль?",
+			"Unselect all" => "Отменить весь выбор",
+			"Invert selection" => "Инвертировать выбор",
+			"Show selected only" => "Показывать только выбранные",
+			"More" => "Еще",
 		)
 
 	);

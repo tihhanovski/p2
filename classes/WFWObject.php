@@ -587,7 +587,7 @@
 					list($x, $s1) = explode("}", $value);
 					list($idx, $sel) = explode(":", $s1);
 
-					if($this->$field)
+					if(isset($this->$field) && $this->$field)
 						$va = explode(",", $this->$field);
 					else
 						$va = array();

@@ -177,6 +177,13 @@
 			$this->addColumn($c);
 		}
 
+		function addSelectionColumn($column = "sel")
+		{
+			$c = new SimpleFlexiGridColumn("", $column, 16, MGRID_ALIGN_CENTER, FORMAT_DEFAULT, "selectionbox");
+			$c->printable = false;
+			$this->addColumn($c);
+		}
+
 		function addCommentsColumn($column = "mdCommentsCount")
 		{
 			$c = new SimpleFlexiGridColumn("", $column, 16, MGRID_ALIGN_CENTER, FORMAT_DEFAULT, "comments");
@@ -208,6 +215,7 @@
 		public $resizable = false;
 		public $fixedHeight = 0;
 		public $filterWidth = 400;
+		public $selectionEnabled = false;
 
 		function toHtml($id)
 		{

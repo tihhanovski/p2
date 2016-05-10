@@ -6,6 +6,7 @@ var app = {
 				'<div class="confirmButtons" style="text-align: center;">' +	//TODO
 					'<button id="btnOK">' + t('OK') + '</button>' +
 				'</div>';
+			bubble.reset();
 			bubble.dimensions(400, 150).show(html);
 			$("#btnOK").button().click(function( event ) {
         		event.preventDefault();
@@ -23,6 +24,7 @@ var app = {
 					'<button id="btnYes" class="floatLeft">' + t('Yes') + '</button>' +
 					'<button id="btnNo" class="floatRight">' + t('No') + '</button>' +
 				'</div>';
+			bubble.reset();
 			bubble.dimensions(400, 150).show(html);
 			$("#btnYes").button({icons: {primary: "ui-icon-check"}}).click(function( event ) {
         		event.preventDefault();

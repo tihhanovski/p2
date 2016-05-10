@@ -1,0 +1,11 @@
+[
+	{
+		"name": "selected_objregId",
+		"fields": "objreg,objId",
+		"type": "unique index"
+	},
+	{
+		"fields": "userId",
+		"type": "index"
+	}
+]

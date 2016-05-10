@@ -228,6 +228,10 @@
 				{
 					case "":
 						return unnull(v);
+					case "selectionbox":
+						return '<img src="' + grid.getSelectedIcon(v) + '" border="0" width="16" height="16" ' +
+							'onclick="' + grid.getSelectedIconFunction(v, row.id) + '" ' +
+							'id="rowselected' + row.id + '"/>';
 					case "icon":
 						return '<img src="' + v + '" border="0"/>';
 					case "closedicon":
@@ -251,6 +255,48 @@
 			{
 				return "";
 			}
+		}
+
+		grid.getSelectedIcon = function(m)
+		{
+			return setup.WFW_WEB + 'ui/img/16/selected-' + m + '.png';
+		}
+
+		grid.getSelectedIconFunction = function(m, id)
+		{
+			return 'JavaScript:grid.' + (m && m > 0 ? 'un' : '') + 'setSelected(event, ' + id + ');'
+		}
+
+		grid.selectionMethod = function(m, id)
+		{
+			var tgtIcon = $("#rowselected" + id);
+			tgtIcon.hide("clip");
+			log(m + 'Selected: ' + id);
+			$.get(setup.INSTANCE_WEB + "?action=" + m + "Selected&registry=" + req.registry + "&id=" + id, function(data)
+			{
+				log("id: " + id);
+				log(data);
+				if(data.state == "ok")
+					tgtIcon
+						.attr("src", grid.getSelectedIcon(data.message))
+						.attr("onclick", grid.getSelectedIconFunction(data.message, id));
+				else
+					grid.reloadRow(id);
+
+				tgtIcon.show("clip");
+			}, "json")
+		}
+
+		grid.setSelected = function(event, id)
+		{
+			event.stopPropagation();
+			grid.selectionMethod("set", id);
+		}
+
+		grid.unsetSelected = function(event, id)
+		{
+			event.stopPropagation();
+			grid.selectionMethod("unset", id);
 		}
 
 		grid.onRowClick = function(ctrlId)
@@ -436,7 +482,9 @@
 				'<div id="gridFind" class="mGridFooterPanel"><input type="text" id="gridFindBox" value="' + quote(this.query) + '"/></div>' +
 				'<div id="gridStats" class="mGridFooterPanel"></div>' +
 				'<div id="gridStats3" class="mGridFooterPanel"></div>' +
-				'<div id="gridExport" class="mGridFooterPanel"></div>';
+				'<div id="gridExport" class="mGridFooterPanel"></div>' +
+				//(this.selectionEnabled ? '<div id="gridSelection" class="mGridFooterPanel">' + t('Selection') + '</div>' : '')
+				'';
 		}
 
 		grid.getFooter = function()
@@ -539,6 +587,8 @@
 						bubble.dimensions(300, h).show(html);
 					});
 
+			//$(this.containerId).find(".gridSelection")
+
 			$("#gridScroller").scroll(function()
 			{
 				grid.doScroll();
@@ -547,6 +597,50 @@
 			$(window).resize();
 			if(this.postInitTasks)
 				this.postInitTasks();
+		}
+
+		grid.showMore = function()
+		{
+			bubble
+				.pos($("#gridMoreButton").position().left, $("#gridMoreButton").position().top + $("#gridMoreButton").height())
+				.dimensions(200, 200)
+				.show(t("Loading..."));
+			$.get(setup.INSTANCE_WEB + "?action=moreMenuItemsHtml&registry=" + req.registry,
+				function(data)
+				{
+					$("#bubbleContents").html(data);
+					bubble.packHeight();
+				});
+		}
+
+		grid.selectAll = function()
+		{
+			$.get(setup.INSTANCE_WEB + "?action=gridSelectAll&registry=" + req.registry,
+				function(data)
+				{
+					bubble.hide();
+					grid.reload();
+				},"json");
+		}
+
+		grid.unselectAll = function()
+		{
+			$.get(setup.INSTANCE_WEB + "?action=gridUnselectAll&registry=" + req.registry,
+				function(data)
+				{
+					bubble.hide();
+					grid.reload();
+				},"json");
+		}
+
+		grid.invertSelection = function()
+		{
+			$.get(setup.INSTANCE_WEB + "?action=gridInvertSelection&registry=" + req.registry,
+				function(data)
+				{
+					bubble.hide();
+					grid.reload();
+				},"json");
 		}
 
 		grid.getFilterWidth = function()
@@ -614,7 +708,7 @@
 
 		grid.makeGrid = function()
 		{
-			var s = $("#gridScroller").size();
+			var s = $("#gridScroller").length;
 			var gg = this;
 
 			if(s == 0)
