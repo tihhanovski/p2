@@ -1513,6 +1513,17 @@
 			return $this->user->escape($s);
 		}
 
+		public function getContextByPath($path)
+		{
+			if($path)
+			{
+				list($pref, $path2) = $this->explodePath($path);
+				if(is_object($context = $this->getContext($pref)))
+					return $context;
+			}
+			throw new NoPathException(ERROR_NO_PATH);
+		}
+
 		/**
 		 * Login user
 		 */

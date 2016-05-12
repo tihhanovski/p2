@@ -158,8 +158,8 @@
 
 		"reorder": function(data, col)
 		{
-			var html = '<a href="JavaScript:moveChildUp(\'' + data.fullpath + '\');">' + img('up.png', '') + '</a>' +
-				'<a href="JavaScript:moveChildDn(\'' + data.fullpath + '\');">' + img('dn.png', '') + '</a>';
+			var html = '<div style="padding-top: 4px;"><a href="JavaScript:moveChildUp(\'' + data.fullpath + '\');">' + img('up.png', '') + '</a>' +
+				'<a href="JavaScript:moveChildDn(\'' + data.fullpath + '\');">' + img('dn.png', '') + '</a></div>';
 			$('#' + data.fullpath + '_' + col.name + 'CellContainer').html(html);
 		},
 

@@ -883,7 +883,7 @@
 			"delete" => "Удаление",
 			"Verp code" => "Код VERP",
 			"Hansa code" => "Код Hansa",
-			"Reg no" => "Регистрационный номер",
+			"Reg no" => "Рег.№",
 			"VAT no" => "Номер НДС",
 			"Bank" => "Банк",
 			"Bank account" => "Банковский счет",

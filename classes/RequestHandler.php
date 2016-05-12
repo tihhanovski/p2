@@ -470,13 +470,14 @@
 
 		private function getContextByPath($path)
 		{
-			if($path)
+			return app()->getContextByPath($path);
+			/*if($path)
 			{
 				list($pref, $path2) = app()->explodePath($path);
 				if(is_object($context = app()->getContext($pref)))
 					return $context;
 			}
-			throw new NoPathException(ERROR_NO_PATH);
+			throw new NoPathException(ERROR_NO_PATH);*/
 		}
 
 		function finishAndSaveContext($context)
