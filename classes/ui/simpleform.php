@@ -438,6 +438,23 @@
 
 	function mainMenuNew()
 	{
+		$widgets = array();
+		foreach (app()->registries() as $widget)
+			if($widget->typeId == ROBJECT_TYPE_SIMPLEWIDGET)
+				$widgets[] = $widget;
+		if(count($widgets))
+		{
+			echo "<div class=\"mainMenuWidgets\">";
+
+			foreach ($widgets as $widget)
+				if(file_exists($fn = app()->getAbsoluteFile("registries/" . $widget->name . "/" . $widget->name . ".wt.php")))
+					include $fn;
+
+			echo "</div><div class=\"clearBoth\"></div>";
+			//echo "<hr/>";	//TODO REMOVE
+		}
+
+
 	 	$p = app()->dbo("menupart");
 	 	$p->orderBy("id");
 	 	$parts = array();
@@ -462,7 +479,7 @@
 				{
 					$l = array();
 					foreach (app()->registries() as $val)
-						if(($val->module == $m->getIdValue()) && ($val->menupartId == $p->getIdValue()))
+						if(($val->module == $m->getIdValue()) && ($val->menupartId == $p->getIdValue()) && ($val->typeId < 10))	//TODO
 							$l[] = $val;
 
 					$mh .= "<td valign=\"top\">";

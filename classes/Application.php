@@ -47,6 +47,8 @@
 
  	const DEFAULT_REGISTRYDESCRIPTOR_CLASSNAME = "_RegistryDescriptor";
 
+ 	const ROBJECT_TYPE_SIMPLEWIDGET = 11;
+
  	define("SQL_COMBO_WEBUSER", "select id, uid from webuser order by uid");
 
 	require_once "connect.php";

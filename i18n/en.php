@@ -85,5 +85,9 @@
 			"teen" => "teen",
 			"ty" => "ty",
 			"and" => "and",
+
+			"ro_article" => "Articles",
+			"logaction-1" => "Updated",
+			"ro_whArticleHistoryReport" => "Article history report",
 		)
 	);
