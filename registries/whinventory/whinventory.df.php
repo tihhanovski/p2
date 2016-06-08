@@ -15,6 +15,8 @@
 					new PrintButton($context, "", "Print"),
 					$obj->isLocked() ? new PrintButton($context, "rpt", "Inventory report") : "",
 					new LockButton($context),
+					!$obj->isLocked() ? "<hr/>" : "",
+					!$obj->isLocked() ? new AppFuncButton($context, "fillQuantitiesNotFilledYet", "Fill quantities not filled yet") : "",
 				),
 				false, false
 			),
@@ -44,3 +46,12 @@
 
 			textarea($obj, "memo"),
 		));
+
+?><script type="text/javascript">
+
+	function xfillQuantitiesNotFilledYet()
+	{
+		app.alert("hei!");
+	}
+
+</script>

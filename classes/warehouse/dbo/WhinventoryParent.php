@@ -209,4 +209,20 @@ class WhinventoryParent extends WFWObject
         return $this->locked == 1;
     }
 
+    function isLockable()
+    {
+        return true;
+    }
+
+    public function fillQuantitiesNotFilledYet()
+    {
+        if($this->isInDatabase() && !$this->isLocked())
+        {
+            if(isset($this->rows) && is_array($this->rows))
+                foreach ($this->rows as $row)
+                    $row->fillQuantitiyNotFilledYet();
+        }
+        else
+            return false;
+    }
 }

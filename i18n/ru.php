@@ -1093,6 +1093,8 @@
 			"Invert selection" => "Инвертировать выбор",
 			"Show selected only" => "Показывать только выбранные",
 			"More" => "Еще",
+			"Fill quantities not filled yet" => "Заполнить до сих пор не заполненные количества",
+
 		)
 
 	);

@@ -6,6 +6,7 @@
  */
 
 	app()->initReporting();
+	app()->warehouse();
 
 	$obj = $context->obj;
 
@@ -15,13 +16,13 @@
 	if($obj->articlegroupId)
 	$model->addFilter(t("Article group"), $obj->getLink("articlegroupId")->getCaption());
 
-	$model->columns = array(
-		new PdfReportColumn("code", "Code", 10),
-		new PdfReportColumn("name", "Article name", 40),
-		new PdfReportColumn("unit", "Unit", 8),
-		new PdfReportColumn("quantity", "Quantity", 15, "R", FORMAT_FLOAT2),
-		new PdfReportColumn("realQuantity", "Real quantity", 20),
-	);
+	$model->columns = array();
+	if(ARTICLECODE_ENABLED)
+		$model->columns[] = new PdfReportColumn("code", "Code", 10);
+	$model->columns[] = new PdfReportColumn("name", "Article name", 40);
+	$model->columns[] = new PdfReportColumn("unit", "Unit", 8);
+	$model->columns[] = new PdfReportColumn("quantity", "Quantity", 15, "R", FORMAT_FLOAT2);
+	$model->columns[] = new PdfReportColumn("realQuantity", "Real quantity", 20);
 
 	foreach ($obj->rows as $row)
 	{

@@ -82,4 +82,10 @@ class WhinventoryrowParent extends WFWObject
         $m->cost = $delta > 0 ? $this->cost : 0;
         return $m;
     }
+
+    public function fillQuantitiyNotFilledYet()
+    {
+        if(!isset($this->realQuantity))
+            $this->setValue("realQuantity", $this->quantity);
+    }
 }

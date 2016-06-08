@@ -58,6 +58,7 @@ class WarehouseModule
 			"FORMAT_QUANTITY_WAREHOUSE" => FORMAT_FLOAT6,
 			"FORMAT_PRICE_WAREHOUSE" => FORMAT_FLOAT6,
 			"ARTICLEMODIFIERS_ENABLED" => false,
+			"ARTICLECODE_ENABLED" => true,
 			"SQL_COMBO_WAREHOUSE_ARTICLE" => "select id, concat(code, ' : ', name ) from article where closed = 0 order by code",
 			"WAREHOUSE_ARTICLE_SELECTOR" => "keysel",
 			);

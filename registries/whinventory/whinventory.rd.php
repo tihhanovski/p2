@@ -53,4 +53,17 @@
 			);
 		}
 
+		public function fillQuantitiesNotFilledYet()
+		{
+			app()->requirePrivilegeJson(PRIVILEGE_UPDATE);
+			if(is_object($context = app()->getContext($this->getContextName())))
+				if(is_object($obj = $context->obj))
+				{
+					$obj->fillQuantitiesNotFilledYet();
+					app()->putContext($context);
+				}
+			echo app()->jsonMessage();
+
+		}
+
 	}
