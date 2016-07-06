@@ -33,8 +33,8 @@
 			$ret->addColumn(new MGridColumn("Nr", "fullNr", "i.fullNr", 60));
 			$ret->addColumn(new MGridColumn("Date", "dt", "i.dt", 100, MGRID_ALIGN_LEFT, FORMAT_DATE));
 			$ret->addColumn(new MGridColumn("Warehouse code", "whCode", "w.code", 60));
-			$ret->addColumn(new MGridColumn("Warehouse name", "whName", "w.name", 60));
-			$ret->addColumn(new MGridColumn("Article group", "gName", "g.name", 60));
+			$ret->addColumn(new MGridColumn("Warehouse name", "whName", "w.name", 200));
+			$ret->addColumn(new MGridColumn("Article group", "gName", "g.name", 200));
 			$ret->addColumn(new MGridColumn("memo", "memo", "t.memo", 200));
 			$ret->addColumn(new MGridColumn("mdCreated", "mdCreated", "i.mdCreated", 80, MGRID_ALIGN_LEFT, FORMAT_DATE));
 			$ret->addColumn(new MGridColumn("creator", "creator", "c.uid", 80));

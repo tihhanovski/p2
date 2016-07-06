@@ -1,10 +1,5 @@
 <?php
-/*
- * Created on Nov 5, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
- *
- */
+	//TODO remove this file
 
 	include app()->getAbsoluteFile("ui/pagestart.php");
 
@@ -44,7 +39,7 @@
 
 	<div style="margin: 50px; padding-top: 50px;"><?php
 
-	include app()->getAbsoluteFile("ui/mainmenu.php");
+	echo app()->uiHelper()->getMainMenu()->toHtml();
 
 	echo "</div>";
 

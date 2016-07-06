@@ -6,10 +6,23 @@
 		public $closeDocumentToolbarWritten = false;
 		public $modificationDataWritten = false;
 
+		public function getMainMenu()
+		{
+			if(!isset($this->mainMenu))
+			{
+				if(!defined(MAIN_MENU_CLASS))
+					define("MAIN_MENU_CLASS", "MainMenu");
+				if(class_exists($cls = MAIN_MENU_CLASS))
+					$this->mainMenu = new $cls;
+			}
+			return $this->mainMenu;
+		}
+
 		public function includeStyles()
 		{
 			$styles = array(
 					SETUP_CSS_MAIN,
+					L3RD_FONT_AWESOME_CSS,
 					//SETUP_3RD_COMBOGRID_CSS2,
 					//SETUP_3RD_COMBOGRID_CSS,	//combogrid
 					SETUP_JQUERY_UI_CSS,
@@ -30,7 +43,6 @@
 					SETUP_HOTKEYS,
 					SETUP_COMBOGRID,
 					SETUP_3RD_MULTISELECT_JS,
-					//SETUP_TINY_MCE . "jquery.tinymce.js",
 					WFW_WEB . "js/app.js",
 					WFW_WEB . "js/utils.js",
 					WFW_WEB . "js/autocomplete.js",

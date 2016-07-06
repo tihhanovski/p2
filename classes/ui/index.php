@@ -21,4 +21,6 @@
 	require_once WFW_CLASSPATH . "ui/StaticValue.php";
 	require_once WFW_CLASSPATH . "ui/Tabulator.php";
 	require_once WFW_CLASSPATH . "ui/RobjfileUploadControl.php";
+	require_once WFW_CLASSPATH . "ui/MainMenu.php";
 	require_once WFW_CLASSPATH . "ui/simpleform.php";
+	require_once WFW_CLASSPATH . "ui/AbstractUIModule.php";

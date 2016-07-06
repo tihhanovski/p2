@@ -95,7 +95,7 @@
 		function index()
 		{
 			app()->requireLogin();
-			include app()->getAbsoluteFile("ui/index.default.php");
+			app()->ui()->outputFrontpage();
 		}
 
 		function translationTool()
@@ -193,7 +193,7 @@
 		{
 			if(!app()->user()->isNew())
 			{
-				mainMenuNew();
+				echo app()->uiHelper()->getMainMenu()->toHtml();
 				echo hr(),
 					linkItem("document.location = '" . app()->url() . "';", "Frontpage"),
 					linkItem("app.mainMenu();", "close");

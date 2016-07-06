@@ -912,6 +912,7 @@
 						"SETUP_3RD_COMBOGRID_CSS2" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery.ui.combogrid.css",
 
 
+						"L3RD_FONT_AWESOME_CSS" => L3RD_WEB . "font-awesome/css/font-awesome.min.css",
 						"SETUP_CSS_MAIN" => WFW_WEB . "ui/wfw.css",
 						"SETUP_HOTKEYS" => L3RD_WEB . "jquery.hotkeys.js",
 						"SETUP_3RD_XLS" => L3RD_ROOT . "phpexcel/Classes/PHPExcel.php",
@@ -933,6 +934,7 @@
 						"SOFTWAREISSUES_EMAIL_ON_INSERT" => true,
 						"DEVELOPER_USER" => "admin",
 						"CLEAR_CONTECTS_ON_LOGIN" => false,
+						"UI_MODULE" => "ui/old/",
 
 
 						//TODO remove, backward compatibility only
@@ -1367,6 +1369,21 @@
 			if(!isset($this->_uiHelper))
 				$this->_uiHelper = new UIHelper();
 			return $this->_uiHelper;
+		}
+
+		private $_uiModule;
+
+		function ui()
+		{
+			if(!isset($this->_uiModule))
+			{
+				$fn = $this->getAbsoluteFile(UI_MODULE . "index.php");
+				if($fn)
+					require_once $fn;
+				else
+					$this->panic("No UI module found");
+			}
+			return $this->_uiModule;
 		}
 
 
