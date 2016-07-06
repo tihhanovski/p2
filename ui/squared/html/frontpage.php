@@ -34,11 +34,11 @@
 </script>
 <link rel="stylesheet" type="text/css" href="<?=$ui->url("styles.css")?>" />
 <div id="dh" class="frontpageTopMenu">
-	<div style="float: left; font-size: 32px; font-weight: bold; color: #505050;">
+	<div class="frontpageCaption">
 		<img src="<?=app()->url("resources/p2logo.png")?>" border="0" height="24"/>
 		<?=APP_TITLE . ($cn ? " / " . $cn : "")?> sq
 	</div>
-	<div style="float: right;">
+	<div class="squaredUserMenu">
 		<div>
 			<!--a href="JavaScript:logout();"><?=t("Logout")?></a-->
 			<i class="userMenuItem fa fa-share-alt" aria-hidden="true"></i>

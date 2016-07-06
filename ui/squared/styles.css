@@ -86,3 +86,30 @@
 	font-size: 20pt;
 	margin-left: 10px;
 }
+
+.squaredUserMenu
+{
+	float: right;
+}
+
+.frontpageCaption
+{
+	float: left;
+	font-size: 32px;
+	font-weight: bold;
+	color: #505050;
+	margin-top: -6px;
+}
+
+.partItemsContainer
+{
+	height: 124px;
+	border: 1px solid red;
+	overflow-y: hidden;
+	display: none;
+}
+
+.partSelected
+{
+	background-color: #c9c9c9;
+}
