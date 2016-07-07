@@ -1,0 +1,122 @@
+.frontpageTopMenu
+{
+	margin: 40px;
+	padding-bottom: 40px;
+	border-bottom: 3px solid #000000;
+	height: 32px;
+}
+
+.frontpageBody
+{
+	margin: 40px;
+}
+
+.frontpageMainMenu
+{
+	width: 400px;
+	border-right: 3px solid #000000;
+	overflow: auto;
+}
+
+.frontpageMainMenuContents
+{
+	width: 360px;
+	height: 360px;
+	overflow: auto;
+}
+
+.partContainer
+{
+	clear: both;
+	margin-bottom: 4px;
+	height: 120px;
+}
+
+.partHeader
+{
+	width: 124px;
+	height: 124px;
+	float: left;
+	background-color: black;
+	color: white;
+	text-transform: uppercase;
+	text-align: center;
+	display: table;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+
+.menuItemBoxContainer
+{
+	width: 60px;
+	height: 60px;
+	max-width: 60px;
+	overflow-x: hidden;
+	float: left;
+	background-color: black;
+	color: white;
+	margin-right: 4px;
+	margin-bottom: 4px;
+}
+
+.menuItemBox
+{
+	width: 60px;
+	height: 60px;
+	max-width: 60px;
+	overflow-x: hidden;
+	float: left;
+	background-color: black;
+	color: white;
+	text-transform: uppercase;
+	text-align: center;
+	display: table;
+}
+
+.menuItemName
+{
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 6pt;
+
+}
+
+.userMenuItem
+{
+	font-size: 20pt;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.userMenuItem:hover
+{
+	color: #7b33fe;
+}
+
+.squaredUserMenu
+{
+	float: right;
+}
+
+.frontpageCaption
+{
+	float: left;
+	font-size: 32px;
+	font-weight: bold;
+	color: #7b33fe;
+	margin-top: -6px;
+}
+
+.partItemsContainer
+{
+	height: 124px;
+	xborder: 1px solid red;
+	overflow-y: hidden;
+	display: none;
+}
+
+.partSelected
+{
+	background-color: #505050;
+}

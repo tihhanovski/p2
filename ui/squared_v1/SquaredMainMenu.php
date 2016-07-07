@@ -44,7 +44,7 @@
 					}
 
 
-		 		$ret .= "<div class=\"partContainer\"><div class=\"partHeader\" onclick=\"JavaScript:togglePart({$p->id});\"><span class=\"menuItemName\">" . t($p->name) . "</span></div><div id=\"partItemsContainer{$p->id}\" class=\"partItemsContainer\">" . $pc . "</div></div>";
+		 		$ret .= "<div class=\"partContainer\"><div class=\"partHeader partHeader{$p->id}\" onclick=\"JavaScript:togglePart({$p->id});\"><span class=\"menuItemName\">" . t($p->name) . "</span></div><div id=\"partItemsContainer{$p->id}\" class=\"partItemsContainer\">" . $pc . "</div></div>";
 		 	}
 
 		 	$ret .= "<script src=\"" . app()->ui()->url("js/mainMenu.js") . "\"></script>";

@@ -19,13 +19,13 @@
 
 				var w = $(window).width();
 				var h = $(window).height();
-				var dh = 40;
-				var dw = 30;
+				var dh = 200;
+				var dw = 80;
 
 				$("#dh").width(w - dw);
 
 				$(".frontpageMainMenu").height(h - dh);
-				$(".frontpageDashboard").height(h - dh - 40).width(w - 340);
+				$(".frontpageMainMenuContents").height(h - dh);
 			});
 
 			$(window).resize();
@@ -35,15 +35,25 @@
 <link rel="stylesheet" type="text/css" href="<?=$ui->url("styles.css")?>" />
 <div id="dh" class="frontpageTopMenu">
 	<div class="frontpageCaption">
-		<img src="<?=app()->url("resources/p2logo.png")?>" border="0" height="16"/>
-		<?=APP_TITLE?>
-	</div><?=$ui->getUserMenu()->toHtml()?>
+		<img src="<?=app()->url("resources/p2logo.png")?>" border="0" height="24"/>
+		<?=APP_TITLE . ($cn ? " / " . $cn : "")?> sq
+	</div>
+	<div class="squaredUserMenu">
+		<div>
+			<!--a href="JavaScript:logout();"><?=t("Logout")?></a-->
+			<i class="userMenuItem fa fa-share-alt" aria-hidden="true"></i>
+			<i class="userMenuItem fa fa-user" aria-hidden="true"></i>
+			<i class="userMenuItem fa fa-cog" aria-hidden="true"></i>
+		</div>
+	</div>
 </div>
 <div class="frontpageBody">
-	<div class="frontpageMainMenu"><?=$ui->getMainMenu()->toHtml()?></div>
+	<div class="frontpageMainMenu">
+		<div class="frontpageMainMenuContents"><?=$ui->getMainMenu()->toHtml()?></div>
+	</div>
 	<div class="frontpageDashboard">
 		<div class="frontpageDashboardContents">
-			<div><?=$cn?></div>
+			dashboard contents
 		</div>
 	</div>
 </div>

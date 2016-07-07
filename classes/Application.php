@@ -913,6 +913,10 @@
 
 
 						"L3RD_FONT_AWESOME_CSS" => L3RD_WEB . "font-awesome/css/font-awesome.min.css",
+						"L3RD_METISMENU_JS" => L3RD_WEB . "metisMenu/metisMenu.min.js",
+						"L3RD_METISMENU_CSS" => L3RD_WEB . "metisMenu/metisMenu.min.css",
+						//"L3RD_BOOTSTRAP_CSS" => "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css",
+						//"L3RD_BOOTSTRAP_JS" => "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js",
 						"SETUP_CSS_MAIN" => WFW_WEB . "ui/wfw.css",
 						"SETUP_HOTKEYS" => L3RD_WEB . "jquery.hotkeys.js",
 						"SETUP_3RD_XLS" => L3RD_ROOT . "phpexcel/Classes/PHPExcel.php",

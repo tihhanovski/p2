@@ -2,17 +2,51 @@
 
 	class AbstractUIModule
 	{
-		//TODO
+		private $componentPrefix;
+
+		public function __construct($s)
+		{
+			$this->componentPrefix = $s;
+			$this->initComponents($s);
+		}
+
+		public function initComponents($s)
+		{
+			$uiModuleDir = app()->getAbsoluteFile(UI_MODULE);
+			$compClasses = array(
+					"MainMenu",
+					"Toolbar",
+					"UserMenu",
+				);
+			foreach ($compClasses as $cls)
+				require_once $uiModuleDir . "classes/" . $s . "UIModule.php";
+		}
+
 		public function getMainMenu()
 		{
-			if(!isset($this->mainMenu))
+			return $this->getUIComponentObject("MainMenu");
+		}
+
+		public function getToolbar()
+		{
+			return $this->getUIComponentObject("Toolbar");
+		}
+
+		public function getUserMenu()
+		{
+			return $this->getUIComponentObject("UserMenu");
+		}
+
+		public function getUIComponentObject($component)
+		{
+			if(!isset($this->$component))
 			{
-				if(!defined(MAIN_MENU_CLASS))
-					define("MAIN_MENU_CLASS", "MainMenu");
-				if(class_exists($cls = MAIN_MENU_CLASS))
-					$this->mainMenu = new $cls;
+				$className = $this->componentPrefix . $component;
+				if(!class_exists($className))
+					app()->panic("Component class does not exist: $component");
+				$this->component = new $className();
 			}
-			return $this->mainMenu;
+			return $this->component;
 		}
 
 		private $modulePath;

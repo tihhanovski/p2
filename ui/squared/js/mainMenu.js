@@ -1,11 +1,4 @@
-
-	function togglePart(partId)
-	{
-		$("#partItemsContainer" + partId).toggle();
-		$(this).toggleClass("partSelected");
-	}
-
-	$(function()
-	{
-		$("")
-	});
+$(function()
+{
+	$("#menu").metisMenu();
+});
