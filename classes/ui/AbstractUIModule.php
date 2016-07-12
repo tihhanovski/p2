@@ -57,6 +57,11 @@
 			return $modulePath . $path;
 		}
 
+		public function includeFile($path)
+		{
+			include $this->getFilePath($path);
+		}
+
 		public function url($path)
 		{
 			return app()->url(UI_MODULE . $path);
@@ -67,4 +72,16 @@
 		{
 			include $this->getFilePath("html/frontpage.php");
 		}
+
+		//misc functions
+		/**
+		* app top menu class to distinguish test version from production
+		* @return String
+		*/
+		function getTopMenuClass()
+		{
+			return "topMenu" . (defined("TOPMENU_COLOR") ? " " . TOPMENU_COLOR : "");
+		}
+
+
 	}

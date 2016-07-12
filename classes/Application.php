@@ -196,15 +196,6 @@
 		}
 
 		/**
-		* app top menu class to distinguish test version from production
-		* @return String
-		*/
-		function getTopMenuClass()
-		{
-			return "topMenu" . (defined("TOPMENU_COLOR") ? " " . TOPMENU_COLOR : "");
-		}
-
-		/**
 		* Is it possible for new users to add themselves, not implemented yet
 		* @return bool
 		*/

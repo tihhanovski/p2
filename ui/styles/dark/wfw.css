@@ -454,33 +454,6 @@ a.topMenu
 	color: #909090;
 }
 
-.mainMenu
-{
-	color: #505050;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#E0FFFFFF,endColorstr=#E0FFFFFF);
-	background: rgba(255,255,255,0.95);
-	position: fixed;
-	overflow: auto;
-	padding: 50px;
-	z-index: 30;
-}
-
-.mainMenuItem
-{
-	width: 150px;
-	height: 40px;
-	float: left;
-	font-size: 14px;
-	font-weight: bold;
-	cursor: pointer;
-	text-align: left;
-	padding: 10px;
-}
-
-.mmi
-{
-	margin-bottom: 10px; margin-right: 20px;
-}
 
 .gridFloatDisabled
 {

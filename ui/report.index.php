@@ -10,7 +10,7 @@
 
 ?><body><?php
 
-	include "topmenu.php";
+	include app()->ui()->getFilePath("html/topmenu.php");
 
 ?><div class="editorContent"><div class="reportInputContents"><?php
 

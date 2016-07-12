@@ -8,14 +8,7 @@
 
 		public function getMainMenu()
 		{
-			if(!isset($this->mainMenu))
-			{
-				if(!defined(MAIN_MENU_CLASS))
-					define("MAIN_MENU_CLASS", "MainMenu");
-				if(class_exists($cls = MAIN_MENU_CLASS))
-					$this->mainMenu = new $cls;
-			}
-			return $this->mainMenu;
+			return app()->ui()->getMainMenu();
 		}
 
 		public function includeStyles()
@@ -26,6 +19,7 @@
 					//SETUP_3RD_COMBOGRID_CSS2,
 					//SETUP_3RD_COMBOGRID_CSS,	//combogrid
 					SETUP_JQUERY_UI_CSS,
+					app()->ui()->url("css/styles.css"),
 					app()->url("resources/ui.css"),
 					SETUP_3RD_MULTISELECT_CSS,
 					L3RD_METISMENU_CSS,
@@ -59,6 +53,7 @@
 					WFW_WEB . "js/messagesControl.js",
 					WFW_WEB . "js/commentsControl.js",
 					WFW_WEB . "js/combobox.js",
+					app()->ui()->url("js/mainMenu.js"),
 				);
 
 			foreach ( $scripts as $src)

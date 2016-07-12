@@ -193,7 +193,7 @@
 		{
 			if(!app()->user()->isNew())
 			{
-				echo app()->uiHelper()->getMainMenu()->toHtml();
+				echo app()->ui()->getMainMenu()->toHtml();
 				echo hr(),
 					linkItem("document.location = '" . app()->url() . "';", "Frontpage"),
 					linkItem("app.mainMenu();", "close");

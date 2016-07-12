@@ -6,8 +6,25 @@
  *
  */
 
-	class SquaredMainMenu extends HtmlComponent
+	class SquaredMainMenuItem extends HtmlComponent
 	{
+		public $icon, $href, $caption;
+		public $items = array();
+
+		public function __construct($icon, $href, $caption)
+		{
+			$this->icon = $icon;
+			$this->href = $href;
+			$this->caption = $caption;
+		}
+	}
+
+	class SquaredMainMenu extends SquaredMainMenuItem
+	{
+		public $items = array();
+
+
+
 		public function toHtml()
 		{
 		 	$p = app()->dbo("menupart");
@@ -69,8 +86,7 @@
 		 			"</li>";
 		 	}
 
-		 	$ret .= "</ul></nav></aside>" .
-		 		"<script src=\"" . app()->ui()->url("js/mainMenu.js") . "\"></script>";
+		 	$ret .= "</ul></nav></aside>";
 
 
 		 	return $ret;

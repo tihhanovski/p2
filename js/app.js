@@ -188,6 +188,14 @@ var app = {
 
 		"rightPanelThreshold": 30,
 
+		"resizeMainMenu": function()
+		{
+			var w = $(window).width();
+			$("#mainMenu").offset({ top: 30, left: 0 })
+				.width(w - 100)
+				.height($(window).height() - 130);
+		},
+
 		"start": function()
 		{
 			try
@@ -210,9 +218,7 @@ var app = {
 				var w = $(window).width();
 				$(".rightPanel").css("left", w - $(".rightPanel").width() - app.rightPanelThreshold);
 
-				$("#mainMenu").offset({ top: 30, left: 0 })
-					.width(w - 100)
-					.height($(window).height() - 130);
+				app.resizeMainMenu();
 
 				//$(".formRowLocked").width(w - 40);
 				//$(".formInputContainerLocked").width(w - 270);	//TODO test 05.02.2016

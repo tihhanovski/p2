@@ -32,7 +32,6 @@
 		});
 
 </script>
-<link rel="stylesheet" type="text/css" href="<?=$ui->url("styles.css")?>" />
 <div id="dh" class="frontpageTopMenu">
 	<div class="frontpageCaption">
 		<img src="<?=app()->url("resources/p2logo.png")?>" border="0" height="16"/>
@@ -44,6 +43,17 @@
 	<div class="frontpageDashboard">
 		<div class="frontpageDashboardContents">
 			<div><?=$cn?></div>
+			<div class="frontpageDasboardItems">
+				<div class="dashboardWidget dww1 dwh1">widget 1</div>
+				<div class="dashboardWidget dww2 dwh2">widget 2</div>
+				<div class="dashboardWidget dww2 dwh1">widget 3</div>
+				<div class="dashboardWidget dww1 dwh1">widget 4</div>
+				<div class="dashboardWidget">widget 5</div>
+				<div class="dashboardWidget">widget 6</div>
+				<div class="dashboardWidget">widget 7</div>
+				<div class="dashboardWidget">widget 8</div>
+				<div class="dashboardWidget">widget 8</div>
+			</div>
 		</div>
 	</div>
 </div>

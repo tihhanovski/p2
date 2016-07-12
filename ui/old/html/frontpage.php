@@ -47,7 +47,7 @@
 			}, "json");
 		}
 
-</script><div id="dh" class="mainMenuTopDiv <?=app()->getTopMenuClass()?>">
+</script><div id="dh" class="mainMenuTopDiv <?=app()->ui()->getTopMenuClass()?>">
 		<div style="float: left; font-size: 32px; font-weight: bold; color: #505050;"><?=APP_TITLE . ($cn ? " / " . $cn : "")?></div>
 		<div style="float: right;">
 			<div><a href="JavaScript:logout();"><?=t("Logout")?></a></div>

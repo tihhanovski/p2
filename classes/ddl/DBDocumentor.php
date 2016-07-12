@@ -266,7 +266,7 @@
 			$ts = array();
 			$q = app()->query("show tables");
 			$this->db = $q->dbh->dsn["database"];
-			while($q->fetchInto($o, DB_FETCHMODE_ARRAY))
+			while($q->fetchInto($o, 0))
 				$ts[strtolower($o[0])] = new DBDocTableData($this->db, $o[0]);
 
 			ksort($ts); //TODO PHP 5.4 | SORT_FLAG_CASE
