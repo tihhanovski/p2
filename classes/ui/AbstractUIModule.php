@@ -83,5 +83,14 @@
 			return "topMenu" . (defined("TOPMENU_COLOR") ? " " . TOPMENU_COLOR : "");
 		}
 
+		public function getAppMenuHtml()
+		{
+			return
+				$this->getMainMenu()->toHtml() .
+				hr() .
+				linkItem("document.location = '" . app()->url() . "';", "Frontpage") .
+				linkItem("app.mainMenu();", "close");
+		}
+
 
 	}

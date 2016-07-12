@@ -193,10 +193,14 @@
 		{
 			if(!app()->user()->isNew())
 			{
+				echo app()->ui()->getAppMenuHtml();
+				/*
+				$menu = app()->ui()->getMainMenu();
+				$menu->addItem(new );
 				echo app()->ui()->getMainMenu()->toHtml();
 				echo hr(),
 					linkItem("document.location = '" . app()->url() . "';", "Frontpage"),
-					linkItem("app.mainMenu();", "close");
+					linkItem("app.mainMenu();", "close");*/
 			}
 		}
 
