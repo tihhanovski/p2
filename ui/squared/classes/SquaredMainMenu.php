@@ -96,7 +96,7 @@
 		 		foreach ($parts as $icon => $mp)
 		 			foreach ($registries as $reg)
 		 				if($reg->module == $m->getIdValue() && $reg->menupartId == $mp->getIdValue() && $reg->typeId < 10)
-		 					$mnuModule->addItem(new SquaredMainMenuItem($icon, app()->url("?registry=" . $reg->name), t($reg->getCaption())));
+		 					$mnuModule->addItem(new SquaredMainMenuItem(/*$icon*/"", app()->url("?registry=" . $reg->name), t($reg->getCaption())));
 
 		 		$this->addItem($mnuModule);
 
