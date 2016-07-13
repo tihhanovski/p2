@@ -19,7 +19,7 @@
 
 				var w = $(window).width();
 				var h = $(window).height();
-				var dh = 40;
+				var dh = $(".frontpageTopMenu").outerHeight();
 				var dw = 30;
 
 				$("#dh").width(w - dw);

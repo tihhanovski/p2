@@ -13,9 +13,9 @@
 			return '<div class="squaredUserMenu">
 					<div>
 						<!--a href="JavaScript:logout();"><?=t("Logout")?></a-->
-						<i class="userMenuItem fa fa-share-alt" aria-hidden="true"></i>
-						<i class="userMenuItem fa fa-user" aria-hidden="true"></i>
-						<i class="userMenuItem fa fa-cog" aria-hidden="true"></i>
+						<!--i class="userMenuItem fa fa-share-alt" aria-hidden="true"></i></a-->
+						<i onclick="Javascript:app.userMenu();" class="userMenuItem fa fa-user" aria-hidden="true"></i>
+						<!--i class="userMenuItem fa fa-cog" aria-hidden="true"></i-->
 					</div>
 				</div>';
 		}
