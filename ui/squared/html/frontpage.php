@@ -43,7 +43,35 @@
 	<div class="frontpageDashboard">
 		<div class="frontpageDashboardContents">
 			<div><?=$cn?></div>
-			<div class="frontpageDasboardItems">
+			<div class="frontpageDasboardItems"><?php
+
+				$widgets = array();
+				foreach (app()->registries() as $widget)
+					if($widget->typeId == ROBJECT_TYPE_SIMPLEWIDGET)
+						$widgets[] = $widget;
+				if(count($widgets))
+				{
+					//$ret .= "<div class=\"mainMenuWidgets\">";
+
+					foreach ($widgets as $widget)
+					{
+						if(file_exists($fn = app()->getAbsoluteFile("registries/" . $widget->name . "/" . $widget->name . ".rd.php")))
+						{
+							include $fn;
+							if(class_exists($clsName = ucfirst($widget->name) .  "RegistryDescriptor"))
+							{
+								$wobj = new $clsName();
+								$wobj->name = $widget->name;
+								echo $wobj->toHtml();
+							}
+						}
+					}
+
+					//$ret .= "</div><div class=\"clearBoth\"></div>";
+				}
+
+
+				/*
 				<div class="dashboardWidget dww1 dwh1">widget 1</div>
 				<div class="dashboardWidget dww2 dwh2">widget 2</div>
 				<div class="dashboardWidget dww2 dwh1">widget 3</div>
@@ -53,7 +81,9 @@
 				<div class="dashboardWidget">widget 7</div>
 				<div class="dashboardWidget">widget 8</div>
 				<div class="dashboardWidget">widget 8</div>
-			</div>
+				*/
+
+			?></div>
 		</div>
 	</div>
 </div>

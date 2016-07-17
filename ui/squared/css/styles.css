@@ -272,3 +272,33 @@ a.topMenuLink:hover
 .dwh1{height: 60px;}
 .dww2{width: 120px;}
 .dwh2{height: 120px;}
+
+
+.mainMenuWidget
+{
+	border: 1px solid black;
+	margin: 3px;
+	float: left;
+}
+
+  	.mainMenuWidgetHeader
+  	{
+  		background-color: #37b7e1;
+  		margin-bottom: 5px;
+  		padding: 4px;
+  		padding-left: 5px;
+  		padding-right: 5px;
+  		color: white;
+  		height: 16px;
+  	}
+
+  	.mainMenuWidgetContentBig
+  	{
+  		font-size: 18pt;
+  		text-align: center;
+  		font-weight: bold;
+  		vertical-align: middle;
+  		height: 65px;
+  		padding-top: 5px;
+  		color: #1b8cb1;
+  	}

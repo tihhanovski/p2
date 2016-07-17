@@ -1,5 +1,26 @@
 var app = {
 
+		"frontpageWidgets": new Array(),
+
+		"addFrontpageWidget": function(widgetData)
+		{
+			//log("addFrontpageWidget");
+			//log(widgetData);
+			this.frontpageWidgets.push(widgetData);
+			this.loadWidgetData(widgetData);
+		},
+
+		"loadWidgetData": function(widgetData)
+		{
+			var url = setup.INSTANCE_WEB + "?registry=" + widgetData.name + "&action=data";
+			$.get(url,
+					function(data)
+					{
+						$("#" + widgetData.name + "Content").html(data);
+					},
+					widgetData.dataFormat);
+		},
+
 		"alert": function(message)
 		{
 			var html = '<h1>' + message + '</h1>' +
@@ -196,6 +217,23 @@ var app = {
 				.height($(window).height() - 130);
 		},
 
+		"resizeFrontpageWidgets": function()
+		{
+			if(this.frontpageWidgets.length > 0)
+			{
+				var x;
+				var ww = $(".frontpageDasboardItems").width();
+				var u = ww / 4;
+				for(x = 0; x < this.frontpageWidgets.length; x++)
+				{
+					var widget = this.frontpageWidgets[x];
+					var wi = $("#" + widget.name);
+					wi.width(widget.width * u) - 10;
+					wi.height(widget.height * u) - 10;
+				}
+			}
+		},
+
 		"start": function()
 		{
 			try
@@ -219,6 +257,7 @@ var app = {
 				$(".rightPanel").css("left", w - $(".rightPanel").width() - app.rightPanelThreshold);
 
 				app.resizeMainMenu();
+				app.resizeFrontpageWidgets();
 
 				//$(".formRowLocked").width(w - 40);
 				//$(".formInputContainerLocked").width(w - 270);	//TODO test 05.02.2016

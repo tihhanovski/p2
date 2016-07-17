@@ -41,7 +41,7 @@ $(function()
 		return mm[0].style.display != "none" && mm.position().left > -10;
 	};
 
-	app.resizeMainMenu =function()
+	app.resizeMainMenu = function()
 	{
 			var w = $(window);
 			var tmh = $(".topMenu").outerHeight();
