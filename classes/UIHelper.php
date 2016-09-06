@@ -23,6 +23,7 @@
 					app()->url("resources/ui.css"),
 					SETUP_3RD_MULTISELECT_CSS,
 					L3RD_METISMENU_CSS,
+					L3RD_MORRIS_CSS,
 					//L3RD_BOOTSTRAP_CSS,
 				);
 			foreach ( $styles as $src)
@@ -40,6 +41,8 @@
 					SETUP_COMBOGRID,
 					SETUP_3RD_MULTISELECT_JS,
 					L3RD_METISMENU_JS,
+					L3RD_RAPHAEL_JS,
+					L3RD_MORRIS_JS,
 					//L3RD_BOOTSTRAP_JS,
 					WFW_WEB . "js/app.js",
 					WFW_WEB . "js/utils.js",

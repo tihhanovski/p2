@@ -10,15 +10,31 @@ var app = {
 			this.loadWidgetData(widgetData);
 		},
 
+		"getWidgetLoadFormat": function(fmt)
+		{
+			if(fmt == "Morris.Area")
+				return "json";
+		},
+
 		"loadWidgetData": function(widgetData)
 		{
 			var url = setup.INSTANCE_WEB + "?registry=" + widgetData.name + "&action=data";
 			$.get(url,
 					function(data)
 					{
+						if(widgetData.processData)
+						{
+							widgetData.processData(data);
+							return;
+						}
+						if(widgetData.dataFormat == "Morris.Area")
+						{
+							Morris.Area(data);
+							return;
+						}
 						$("#" + widgetData.name + "Content").html(data);
 					},
-					widgetData.dataFormat);
+					this.getWidgetLoadFormat(widgetData.dataFormat));
 		},
 
 		"alert": function(message)
@@ -228,8 +244,12 @@ var app = {
 				{
 					var widget = this.frontpageWidgets[x];
 					var wi = $("#" + widget.name);
-					wi.width(widget.width * u) - 10;
-					wi.height(widget.height * u) - 10;
+					wi.width(widget.width * u - 10);
+					wi.height(widget.height * u - 10);
+
+					var wic = $("#" + widget.name + "Content");
+					wic.width(widget.width * u - 12);
+					wic.height(widget.height * u - 30);
 				}
 			}
 		},
