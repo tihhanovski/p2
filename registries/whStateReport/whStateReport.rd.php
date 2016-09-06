@@ -24,7 +24,8 @@
 		function initColumns()
 		{
 			$ret = array();
-			$ret[] = new PdfReportColumn("code", "Code", 20);
+			if(ARTICLECODE_ENABLED)
+				$ret[] = new PdfReportColumn("code", "Code", 20);
 			$ret[] = new PdfReportColumn("name", "Name", 40);
 			if(app()->warehouse()->isArticleModifiersEnabled())
 				$ret[] = new PdfReportColumn("md", "Modifier", 20);
