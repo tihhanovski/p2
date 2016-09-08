@@ -49,6 +49,9 @@
 
  	const ROBJECT_TYPE_SIMPLEWIDGET = 11;
 
+ 	const ARTICLETYPE_COMPONENT = 1;
+ 	const ARTICLETYPE_EXPENSE = 2;
+
  	define("SQL_COMBO_WEBUSER", "select id, uid from webuser order by uid");
 
 	require_once "connect.php";
@@ -938,6 +941,7 @@
 
 						//TODO remove, backward compatibility only
 						"WEB_ROOT" => INSTANCE_WEB,
+						"PDF_FONT_SUBSETTING" => true,
 				);
 		}
 

@@ -521,6 +521,7 @@
 
 		function setupPdf($pdf)
 		{
+			$pdf->setFontSubsetting(PDF_FONT_SUBSETTING);
 			$pdf->SetMargins($this->pdfOptions[PDFOPTS_LEFTMARGIN], $this->pdfOptions[PDFOPTS_TOPMARGIN], $this->pdfOptions[PDFOPTS_RIGHTMARGIN]);
 
 			if(isset($this->pdfOptions[PDFOPTS_AUTOPAGEBREAK]))

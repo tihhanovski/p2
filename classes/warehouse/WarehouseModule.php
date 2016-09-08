@@ -43,7 +43,7 @@ class WarehouseModule
 
 	public function getDefaultWarehouseId()
 	{
-		return app()->system()->dynDefaultWarehouseId;
+		return isset(app()->system()->dynDefaultWarehouseId) ? app()->system()->dynDefaultWarehouseId : 0;
 	}
 
 	public function isArticleModifiersEnabled()
