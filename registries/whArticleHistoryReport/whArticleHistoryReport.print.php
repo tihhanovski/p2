@@ -39,7 +39,7 @@
 		($obj->whId != DEFAULT_WAREHOUSE ? " and (m.whSrcId = {$obj->whId} or m.whDstId = {$obj->whId})" : " and m.typeId <> " . WHMVTYPE_INTRA);
 
 
-	$sql = "select 0 as pri, 'A' as d, '' as doc, $sd1 as dt, 'Perioodi algseis' as ep,
+	$sql = "select 0 as pri, 'A' as d, '' as doc, $sd1 as dt, " . quote(t("Period initial state")) . " as ep,
 		coalesce(sum(quantity * qmod), 0) as qty,
 		coalesce(if(sum(quantity * qmod) = 0, 0, sum(quantity * qmod * cost) / sum(quantity * qmod)), 0) as cost, 
 		coalesce(sum(quantity * qmod * cost), 0) as tcost,

@@ -9,7 +9,8 @@
 	$ts = new KeySelSetup($obj, "articleId", "article", $a->keySelColumns());
 
 	echo simpleform(array(
-			keySel($obj, "articleId", "Article", $ts),
+			selectSql($obj, "articleId", "Article", ARTICLECODE_ENABLED ? SQL_COMBO_ARTICLE : SQL_COMBO_ARTICLE_NAMEONLY),
+			//keySel($obj, "articleId", "Article", $ts),
 			//textboxAutocompleteSql($obj, "artx", "Article", SQL_AUTOCOMPLETE_ARTICLE_ALL),
 			app()->warehouse()->isArticleModifiersEnabled() ?
 				selectSqlNotNullable($obj, "modId", "Modifier", SQL_COMBO_WHMV_MODIFIER) : 

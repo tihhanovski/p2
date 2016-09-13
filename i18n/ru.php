@@ -1097,7 +1097,9 @@
 			"Show selected only" => "Показывать только выбранные",
 			"More" => "Еще",
 			"Fill quantities not filled yet" => "Заполнить до сих пор не заполненные количества",
-
+			"Previous year" => "Прошлый год",
+			"This year" => "Этот год",
+			"Period initial state" => "Состояние на начало периода",
 		)
 
 	);
