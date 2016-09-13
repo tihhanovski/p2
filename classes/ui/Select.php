@@ -60,6 +60,7 @@
 
 		protected function additionalAttributes(&$attr){
 			$attr["onblur"] = "JavaScript:fieldOnBlur(this);";
+			//$attr["onchange"] = "JavaScript:fieldOnBlur(this);";	//chosen test
 			$attr["type"] = "text";
  		}
  		protected function htmlType(){

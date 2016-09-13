@@ -24,6 +24,7 @@
 					SETUP_3RD_MULTISELECT_CSS,
 					L3RD_METISMENU_CSS,
 					L3RD_MORRIS_CSS,
+					L3RD_CHOSEN_CSS,		//chosen test
 					//L3RD_BOOTSTRAP_CSS,
 				);
 			foreach ( $styles as $src)
@@ -43,6 +44,7 @@
 					L3RD_METISMENU_JS,
 					L3RD_RAPHAEL_JS,
 					L3RD_MORRIS_JS,
+					//L3RD_CHOSEN_JS,		//chosen test
 					//L3RD_BOOTSTRAP_JS,
 					WFW_WEB . "js/app.js",
 					WFW_WEB . "js/utils.js",
@@ -55,7 +57,7 @@
 					WFW_WEB . "js/filesControl.js",
 					WFW_WEB . "js/messagesControl.js",
 					WFW_WEB . "js/commentsControl.js",
-					WFW_WEB . "js/combobox.js",
+					//WFW_WEB . "js/combobox.js",
 					app()->ui()->url("js/mainMenu.js"),
 				);
 

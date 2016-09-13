@@ -925,6 +925,9 @@
 						"L3RD_MORRIS_CSS" => L3RD_WEB . "morris/morris.css",
 						"L3RD_RAPHAEL_JS" => L3RD_WEB . "raphael-min.js",
 
+						"L3RD_CHOSEN_CSS" => L3RD_WEB . "chosen/chosen.min.css",
+						"L3RD_CHOSEN_JS" => L3RD_WEB . "chosen/chosen.jquery.min.js",
+
 						//"SETUP_JQUERY_UI" => L3RD_WEB . "combogrid-1.5.0/resources/jquery/jquery-ui-1.8.9.custom.min.js",
 						"SETUP_JQUERY_I18N" => L3RD_WEB . "jquery-ui-i18n.js",
 						"SETUP_COMBOGRID" => L3RD_WEB . "combogrid-1.5.0/resources/plugin/jquery.ui.combogrid-1.5.0.js",

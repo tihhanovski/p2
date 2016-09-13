@@ -216,8 +216,10 @@
 
 		"select": function(data, col)
 		{
-			$('#' + data.fullpath + '_' + col.name + 'CellContainer').html(combo(data, col.name, col.selectOptions));
-			$('#' + data.fullpath + '_' + col.name).val(data[col.name]);
+			var id = '#' + data.fullpath + '_' + col.name;
+			$(id + 'CellContainer').html(combo(data, col.name, col.selectOptions));
+			$(id).val(data[col.name]);
+			//$(id).chosen();
 		},
 
 		"checkBox": function(data, col)

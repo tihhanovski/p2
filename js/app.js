@@ -221,6 +221,7 @@ var app = {
 			setDatePicker(".datepicker");
 			setNumericInt(".numericInt");
 			setNumericDbl(".numericDbl");
+			//$("select").css("min-width", "407px").chosen();		//chosen test
 		},
 
 		"rightPanelThreshold": 30,
