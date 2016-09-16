@@ -1100,6 +1100,7 @@
 			"Previous year" => "Прошлый год",
 			"This year" => "Этот год",
 			"Period initial state" => "Состояние на начало периода",
+			"Group by article groups" => "Группы материалов по отдельности",
 		)
 
 	);

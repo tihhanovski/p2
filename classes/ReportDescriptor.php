@@ -68,7 +68,7 @@
 			foreach($this->getAvailableColumns() as $c)
 			{
 				$cn = AVAILABLECOLUMN_FIELD_PREFIX . $c->name;
-				if($obj->$cn)
+				if(isset($obj->$cn) && $obj->$cn)
 					$b = false;
 			}
 
