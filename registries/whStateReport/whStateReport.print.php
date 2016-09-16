@@ -47,7 +47,7 @@
 		left join (
 			select articleId, " . ($obj->showMods ? "modifierId, " : "") . "sum(qty * qmod) as qty, sum(qty * cost * qmod) as tcost
 			from (
-				select articleId, " . ($obj->showMods ? "modifierId, " : "") . "quantity as qty, cost, if(whSrcId = 1, 1, -1) as qmod
+				select articleId, " . ($obj->showMods ? "modifierId, " : "") . "quantity as qty, cost, $qmodSql as qmod
 				from whmv
 				where dt <= $sd $innerFilter
 			) m group by articleId" . ($obj->showMods ? ", modifierId" : "") . "
