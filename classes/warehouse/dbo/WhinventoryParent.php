@@ -35,11 +35,18 @@ class WhinventoryParent extends WFWObject
     public function fillRows()
     {
         $showMods = app()->warehouse()->isArticleModifiersEnabled();
-        $innerFilter = " and (whSrcId = {$this->whId} or whDstId = {$this->whId})";
+        //$innerFilter = " and (whSrcId = {$this->whId} or whDstId = {$this->whId})";
         $modPart = $showMods ? "modifierId," : "";
         $sd = quote($this->dt);
         $outerFilter = $this->articlegroupId ? "where a.groupId = {$this->articlegroupId}" : "";
         $userId = app()->user()->id;
+
+        $qmodSql = $this->whId == DEFAULT_WAREHOUSE ?
+            "if(whSrcId = 1, 1, -1)" :
+            "if(whDstId = {$this->whId}, 1, -1)";
+        $innerFilter =
+            ($this->whId != DEFAULT_WAREHOUSE ? " and (whSrcId = {$this->whId} or whDstId = {$this->whId})" : "");
+
 
         $sql = "insert into whinventoryrow(whinventoryId, articleId, $modPart quantity,
             mdCreated, mdUpdated, mdCreatorId, mdUpdaterId)
@@ -49,7 +56,7 @@ class WhinventoryParent extends WFWObject
                 select articleId, $modPart sum(qty * qmod) as qty
                 from (
                     select articleId, $modPart quantity as qty,
-                    if(whSrcId = 1, 1, -1) as qmod
+                    $qmodSql as qmod
                     from whmv
                     where dt <= $sd $innerFilter
                 ) m group by articleId $modPart
