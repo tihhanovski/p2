@@ -638,11 +638,13 @@
 		function getValue($field)
 		{
 			if($field)
-				//if(substr($field, 0, 3) == "dyn")
+			{
+				if(substr($field, 0, 3) == "dyn")
 					if(isset($this->$field))
 						return $this->encodeValue($field, $this->$field);
-			//return $this->getForPath($field);
-			return "";	//TODO ?
+				return $this->getForPath($field);
+			}
+			return "";
 		}
 
 		function getForPath($path)
