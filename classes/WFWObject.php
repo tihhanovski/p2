@@ -638,9 +638,83 @@
 		function getValue($field)
 		{
 			if($field)
-				if(isset($this->$field))
-					return $this->encodeValue($field, $this->$field);
+				//if(substr($field, 0, 3) == "dyn")
+					if(isset($this->$field))
+						return $this->encodeValue($field, $this->$field);
+			//return $this->getForPath($field);
 			return "";	//TODO ?
+		}
+
+		function getForPath($path)
+		{
+			if(isComplex($path) || isIndexed($path))
+			{
+				if(isComplex($path))
+				{
+					list($var, $p2) = explode(CHILD_DELIMITER, $path, 2);
+					if(isIndexed($var))
+					{
+						list($var, $index) = explode(INDEX_DELIMITER, $var);
+						if(isset($this->$var) && is_array($this->$var))
+						{
+							//echo $var . "[" . $index . "]->" . $p2 . "<br/>";
+							$arr = $this->$var;
+							$obj = $arr[$index];
+							//print_r($obj);
+							//echo "<hr/>";
+
+							return $obj->getForPath($p2);
+						}
+					}
+					else
+					{
+						$obj = $this->$var;
+						if(!is_object($obj))
+							die($this->__table . "->" . $var . " is not an object");
+						return $obj->getForPath($p2);
+					}
+				}
+				else
+				{
+					list($var, $index) = explode(INDEX_DELIMITER, $var);
+					if(isset($this->$var) && is_array($this->$var))
+						return $this->$var[$index];
+				}
+			}
+			else
+			if($path)
+				if(isset($this->$path))
+					return $this->encodeValue($path, $this->$path);
+			return "";
+			/*
+		function setValueByPath($path, $value, $tree)
+		{
+			$this->checkLastSaved();	//TODO check speed, ilja 10.01.2014
+			if(isIndexed($path))
+			{
+				$children = $tree[$this->__table];
+
+				list($var, $path2) = explode(CHILD_DELIMITER, $path, 2);
+				if(isIndexed($var))
+				{
+					list($v, $index) = explode(INDEX_DELIMITER, $var);
+					$arr = $this->$v;
+					if(is_array($arr))
+						$obj = $arr[$index];
+				}
+				else
+					$obj = $this->$var;
+
+				if(is_object($obj))
+				{
+					$obj->setValueByPath($path2, $value, $tree);
+					$this->childValueChanged($path2, $value, $tree);
+				}
+			}
+			else
+				$this->setValue($path, $value);
+		}
+			*/
 		}
 
 		function validateValue($field, $oldValue, $newValue)

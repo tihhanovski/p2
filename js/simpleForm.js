@@ -750,7 +750,7 @@
 		var id = obj.fullpath + "_" + field;
 
 		return "<select id=\"" + id + "\" class=\"" + cls + "\" " +
-			"onblur=\"" + onblur + "\">" + options + "</select>";		//chosen test onchange=\"" + onblur + "\"
+			"onblur=\"" + onblur + "\" onchange=\"" + onblur + "\" >" + options + "</select>";		//chosen test onchange=\"" + onblur + "\"
 	}
 
 	function textbox(obj, field, value, cls, onblur)

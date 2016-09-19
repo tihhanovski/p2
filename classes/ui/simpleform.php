@@ -87,6 +87,8 @@
  		function __construct($name, $columns, $additional = null)
  		{
  			$this->name = $name;
+ 			$this->pathPrefix = $name;
+ 			$this->modelName = "gm" . str_replace("-", "", $name);
  			$this->columns = $columns;
  			$this->additional = $additional;
  		}
@@ -100,8 +102,8 @@
 
  			return "<div class=\"formRow\" id=\"{$this->name}Grid\"></div>" .
  					"<script type=\"text/javascript\">\n" .
- 					"var gm{$this->name} = " . json_encode($model) . ";\n" .
- 					"\$(function(){detailGrid.build(\"#{$this->name}Grid\", gm{$this->name});});\n" .
+ 					"var {$this->modelName} = " . json_encode($model) . ";\n" .
+ 					"\$(function(){detailGrid.build(\"#{$this->name}Grid\", {$this->modelName});});\n" .
  					"\n</script>";
  		}
  	}
@@ -464,7 +466,7 @@
 	 */
 	function applyMultiselStyle($chks, $caption)
 	{
-		$ret = "<div class=\"mselect mselect-list\">";
+		$ret = "<div class=\"mselect mselect-list multiSelect\">";
 		foreach($chks as $chk)
 		{
 			$ret .= "<div class=\"clearBoth mselect-list-item acsItem\">" . $chk->getInputPart() . "</div>";

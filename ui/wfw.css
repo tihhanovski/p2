@@ -1087,3 +1087,9 @@
   {
   	margin: 8px;
   }
+
+  .multiSelect
+  {
+  	max-height: 200px;
+  	overflow: auto;
+  }

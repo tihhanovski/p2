@@ -118,7 +118,7 @@
 			try
 			{
 				var x;
-				var rows = obj[model.name];
+				var rows = getDataObject(obj, model.name);
 				var rowsC = obj.fullpath + "_" + model.name;
 				if($.isArray(rows))
 					for(x = 0; x < rows.length; x++)

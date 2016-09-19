@@ -40,7 +40,7 @@
 		$l = app()->dbo("language");
 		if($l->find())
 			while($l->fetch())
-				echo textarea($obj, PROPERTY_PREFIX . "Signature_" . $l->code, t("signature") . " (" . $l->name . ")");
+				echo textarea($obj, PROPERTY_PREFIX . "Signature" . $l->code, t("signature") . " (" . $l->name . ")");
 
 		echo textbox($obj, PROPERTY_PREFIX . "Phone", "Phone"),
 		textbox($obj, PROPERTY_PREFIX . "Fax", "Fax"),

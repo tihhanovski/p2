@@ -1,3 +1,22 @@
+function getDataObject(obj, path)
+{
+	var p = path.replace("-", "_");
+	if(p.indexOf("_") < 0)
+		return obj[p];
+	else
+	{
+		var l1 = p.split("_");
+		var pref = l1[0];
+		var obj = obj[pref];
+		var np = "";
+		var x;
+		for(x = 1; x < l1.length; x++)
+			np += (np != "" ? "_" : "") + l1[x];
+		return getDataObject(obj, np);
+	}
+}
+
+
 function quote(s)
 {
 	return s.replace(new RegExp("\"", 'g'), "&quot;");
