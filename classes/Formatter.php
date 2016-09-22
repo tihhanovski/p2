@@ -236,7 +236,28 @@
 
 		function decodeHuman($s)
 		{
-			return 0 + str_replace(" ", "", str_replace(",", ".", $s));
+			$numeric = str_replace(" ", "", str_replace(",", ".", $s));
+			if(defined("NUMERIC_AUTOEVAL") && NUMERIC_AUTOEVAL)
+			{
+				//strip everything except 0-9 + - / * .
+				//TODO use regexp
+				$num = "";
+				for($i = 0; $i < strlen($numeric); $i++)
+				{
+					$s = substr($numeric, $i, 1);
+					if(($s >= "0" && $s <= "9") || $s == "." || $s == "+" || $s == "-" || $s == "*" || $s == "/" || $s == "(" || $s == ")")
+						$num .= $s;
+				}
+
+				$script = "\$var = $num;";
+				try
+				{
+					eval($script);
+				}catch(Exception $e)
+				{}
+				$numeric = $var;
+			}
+			return 0 + $numeric;
 		}
 	}
 

@@ -945,6 +945,7 @@
 						//TODO remove, backward compatibility only
 						"WEB_ROOT" => INSTANCE_WEB,
 						"PDF_FONT_SUBSETTING" => true,
+						"NUMERIC_AUTOEVAL" => false,
 				);
 		}
 

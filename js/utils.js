@@ -192,18 +192,20 @@ function setNumericDbl(s)
 	{
 		var kk = event.keyCode;
         // Allow only backspace and delete
-        if ( kk == 46 || kk == 8 || kk == 9 || (kk >= 37 && kk <= 40) || kk == 188 || kk == 190 || kk == 189 || kk == 110 || kk == 221)
+        if ( kk == 46 || kk == 8 || kk == 9 || (kk >= 37 && kk <= 40) 
+        	|| kk == 188 || kk == 190 || kk == 189 || kk == 110 || kk == 221 
+        	|| kk == 187 || kk == 220 || kk == 82)
         {
             // let it happen, don't do anything
         }
-        else 
+        else
         {
             // Ensure that it is a number and stop the keypress
-            if ((kk < 48 || kk > 57) && (kk < 96 || kk > 105 )) 
+            if ((kk < 48 || kk > 57) && (kk < 96 || kk > 105 ))
             {
-            	//alert(kk);
+            	log(kk);
                 event.preventDefault(); 
-            }   
+            }
         }
     });
 }
