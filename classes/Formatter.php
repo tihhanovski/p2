@@ -249,12 +249,17 @@
 						$num .= $s;
 				}
 
-				$script = "\$var = $num;";
-				try
+				$var = $num;
+				if($num !== "")
 				{
-					eval($script);
-				}catch(Exception $e)
-				{}
+					$script = "\$var = $num;";
+					//echo "now eval $script\n";
+					try
+					{
+						eval($script);
+					}catch(Exception $e)
+					{}
+				}
 				$numeric = $var;
 			}
 			return 0 + $numeric;

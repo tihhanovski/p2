@@ -1295,7 +1295,7 @@
 	    {
 	    	if(is_object($obj))
 	    	{
-	    		if($this->hasRight(PRIVILEGE_SELECT, $obj->__table))
+	    		if($this->hasRight(PRIVILEGE_SELECT, $obj->getPrivilegeName()))
 		    		return "<a href=\"" . $obj->getDocOpenUrl() . "\"" .
 		    			($target ? " target=\"$target\"" : "") .
 		    			">" . $obj->getCaption($fields, $sep) . "</a>";

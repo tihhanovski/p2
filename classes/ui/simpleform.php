@@ -6,6 +6,8 @@
  *
  */
 
+	const EMOJI_LOCKED = "&#128274;";
+
 	define("DGRID_COL_SELECT", "select");
 	define("DGRID_COL_TEXTBOX", "textbox");
 	define("DGRID_COL_DATEPICKER", "datepicker");

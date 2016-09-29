@@ -17,6 +17,14 @@ class WhmvbatchParent extends WFWObject
         "mdUpdated" =>      FORMAT_DATETIME,
     );
 
+    public function getPrivilegeName()
+    {
+        if($n = $this->getLink("typeId")->name)
+            return $n;
+        else
+            return $this->__table;
+    }
+
     protected $validators = array(
         "whSrcId" => VALIDATION_CLASS_METHOD,
         "whDstId" => VALIDATION_CLASS_METHOD,

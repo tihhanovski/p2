@@ -45,6 +45,11 @@
 	    protected $changed = array();
 	    protected $captionFields;
 
+	    public function getPrivilegeName()
+	    {
+	    	return $this->__table;
+	    }
+
 	    public function comment($comment)
 	    {
 	    	if($this->isInDatabase())

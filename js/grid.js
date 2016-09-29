@@ -325,8 +325,6 @@
 			if(cnt > 0)
 				return;
 			try{
-				//log(row.id);
-				//log(row);
 				this.addedRows++;
 				$("#gridStats3").html("" + this.addedRows + " / " + this.totalRows);
 				var cm = this.colModel;
