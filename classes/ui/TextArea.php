@@ -51,7 +51,7 @@
 		$l = app()->dbo("language");
 		if($l->find())
 			while($l->fetch())
-				$ret .= textarea($obj, PROPERTY_PREFIX . $field . "_" . $l->code, $l->name, $attr, $addAttr);
+				$ret .= textarea($obj, PROPERTY_PREFIX . $field . "" . $l->code, $l->name, $attr, $addAttr);
 
 		return $ret;
 	}
