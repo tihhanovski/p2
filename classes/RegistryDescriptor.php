@@ -988,12 +988,14 @@
 			$userId = (int)app()->user()->id;
 			$reg = app()->request("registry");
 
+			$cnt = 0;
 	 		while($q->fetchInto($row))
 	 		{
+	 			$cnt++;
 	 			$id = (int)$row[0];
 	 			$this->selectRow($id, $userId, $reg, true);
 		 	}
-		 	echo app()->jsonMessage(RESULT_OK, "1");
+		 	echo app()->jsonMessage(RESULT_OK, "1", array("selected" => $cnt));
 		}
 
 		function gridUnselectAll()
@@ -1049,9 +1051,10 @@
 		{
 				$reg = quote($reg);
 				if($m)
-					app()->query("insert into selected(userId, objreg, objid)values($userId, $reg, $id)");
+					$sql = "insert into selected(userId, objreg, objid)values($userId, $reg, $id)";
 				else
-					app()->query("delete from selected where userId = $userId and objreg = $reg and objid = $id");
+					$sql = "delete from selected where userId = $userId and objreg = $reg and objid = $id";
+			app()->query($sql);
 		}
 
 		private function selectionMethod($m)

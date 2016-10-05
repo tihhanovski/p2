@@ -1,11 +1,7 @@
 [
 	{
-		"name": "selected_objregId",
-		"fields": "objreg,objId",
+		"name": "selected_nx",
+		"fields": "objreg,objId,userId",
 		"type": "unique index"
-	},
-	{
-		"fields": "userId",
-		"type": "index"
 	}
 ]
