@@ -551,6 +551,16 @@
 					if(obj.onFieldUpdated)
 						obj.onFieldUpdated(o.id, o.value);
 				}catch(e1){}
+				try
+				{
+					if(app.onFieldUpdated)
+						app.onFieldUpdated(o.id, o.value);
+				}catch(e1){}
+				try
+				{
+					if(onFieldUpdated)
+						onFieldUpdated(o.id, o.value);
+				}catch(e1){}
 			}
 		}catch(e){}
 	}
@@ -810,6 +820,8 @@
 					func(data.obj, true, data.path);
 					updateOtherFields(data.update);
 				}
+				else
+					app.alert(data.message);
 			}, "json");
 	}
 

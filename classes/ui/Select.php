@@ -9,7 +9,7 @@
 	class BaseSelect extends BaseInput
 	{
 		public $nullable = true;
-		public $nullableValue = "";
+		public $nullableValue = NULL_VALUE;
 		public $nullableCaption = "";
 
 		function getMinimalRepresentation()

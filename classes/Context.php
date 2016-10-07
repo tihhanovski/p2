@@ -101,7 +101,6 @@
 			app()->requirePrivilegeJson(PRIVILEGE_UPDATE, $this->getPrivilegesObjectName());
 			list($var, $path2) = explode(CHILD_DELIMITER, $path, 2);
 			$this->obj->reorderChild($path2, $delta, $this->treeStructure);
-			app()->requireReloadPage();
 		}
 
 		/**

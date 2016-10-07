@@ -938,7 +938,7 @@
 
 						"SOFTWAREISSUES_EMAIL_ON_INSERT" => true,
 						"DEVELOPER_USER" => "admin",
-						"CLEAR_CONTECTS_ON_LOGIN" => false,
+						"CLEAR_CONTEXTS_ON_LOGIN" => false,
 						"UI_MODULE" => "ui/old/",
 
 
@@ -1169,6 +1169,12 @@
 			else
 				$this->setLocalesList(array(DEFAULT_LOCALE));
 			$this->initLocale();
+		}
+
+		public function indexPage()
+		{
+			$this->requireLogin();
+			$this->ui()->outputFrontpage();
 		}
 
 		/**
@@ -1574,7 +1580,7 @@
 					$this->user->setLogEnabled(true);
 					$this->addStat("login", "success", "ok");
 
-					if(CLEAR_CONTECTS_ON_LOGIN)
+					if(CLEAR_CONTEXTS_ON_LOGIN)
 						$this->getContextProvider()->clearContexts();
 
 					//check password errors

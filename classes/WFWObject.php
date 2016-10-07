@@ -634,7 +634,7 @@
 
 		function addUpdated($field, $value = null)	//TODO value not needed
 		{
-			$o = new EmptyObject();
+			$o = new stdClass();
 			$o->id = $this->fullpath . "_" . $field;
 			$o->value = $this->getValue($field);
 			app()->addUpdated($o);
@@ -770,14 +770,24 @@
 				if(!isset($this->$path))
 					$this->$path = array();
 				$a = $this->$path;
-				$a[] = $c;
-				$key = array_search($c, $a, true);
-				$this->$path = $a;
-				$c->fullpath = $this->fullpath . CHILD_DELIMITER . $path . INDEX_DELIMITER . $key;
-				$c->setDefaultValues();
-				$this->initializeChild($c);
-				return array($c, $key);
+				if($this->canAddChild($c))
+				{
+					$a[] = $c;
+					$key = array_search($c, $a, true);
+					$this->$path = $a;
+					$c->fullpath = $this->fullpath . CHILD_DELIMITER . $path . INDEX_DELIMITER . $key;
+					$c->setDefaultValues();
+					$this->initializeChild($c);
+					return array($c, $key);
+				}
+				else
+					throw new WFWException(t("Cant add child"));
 			}
+		}
+
+		public function canAddChild($obj)
+		{
+			return true;
 		}
 
 		/**
@@ -1158,7 +1168,13 @@
 
 	    function reorderChild($path, $delta, $tree)
 	    {
-	    	list($var, $path2) = explode(CHILD_DELIMITER, $path, 2);
+	    	if(strpos($path, CHILD_DELIMITER) !== false)
+	    		list($var, $path2) = explode(CHILD_DELIMITER, $path, 2);
+	    	else
+	    	{
+	    		$var = $path;
+	    		$path2 = "";
+	    	}
 	    	if(isIndexed($var))
 	    	{
 				list($v, $index) = explode(INDEX_DELIMITER, $var);
@@ -1185,6 +1201,7 @@
 						$obj->reorderChild($path2, $delta, $tree);
 				}
 	    	}
+			app()->requireReloadPage();
 	    }
 
 	    function removedFromParentDocument()
@@ -1219,9 +1236,9 @@
 						$child = $arr[$index];
 						$child->beingRemovedFromParentDocument();
 
-						if($obj->__table == "robjfile")
+						if($child->__table == "robjfile")
 						{
-							$obj->delete();
+							$child->delete();
 							unset($arr[$index]);
 						}
 						else

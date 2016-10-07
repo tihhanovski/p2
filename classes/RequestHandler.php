@@ -94,8 +94,7 @@
 
 		function index()
 		{
-			app()->requireLogin();
-			app()->ui()->outputFrontpage();
+			app()->indexPage();
 		}
 
 		function translationTool()

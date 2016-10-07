@@ -75,9 +75,9 @@
 				var canChange = model.rowsChangeable && obj.detailGridCanChange;
 
 				if(visible)
-					stl = "";
+					stl = '';
 				else
-					stl = "style=\"display: none;\"";
+					stl = 'style="display: none;"';
 				if(!obj.todelete)
 				{
 					var x;
@@ -110,6 +110,20 @@
 
 			this.addRows(obj, model);
 			detailGrid.resize(model);
+		},
+
+		"refill": function(obj, model)
+		{
+			this.clear(obj, model);
+			this.addRows(obj, model);
+		},
+
+		"clear": function(obj, model)
+		{
+			model.loading = true;
+			var rowsC = obj.fullpath + "_" + model.name;
+			$("#" + rowsC).html('');
+			model.loading = false;
 		},
 
 		"addRows": function(obj, model)
