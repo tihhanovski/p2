@@ -652,7 +652,7 @@
 		function getXLSExporter()
 		{
 			$this->w = new XLSExporter();
-			$this->w->sheetName = substr($this->header ? $this->header : t("report"), 0, MAX_XLS_WORKSHEET_NAME_LENGTH);
+			$this->w->sheetName = t("Report");	//substr($this->header ? $this->header : t("report"), 0, 10);
 			$this->w->fileName = $this->getExportFileName() . ".xlsx";
 			$this->w->getWorkbook();
 			return $this->w;
