@@ -171,8 +171,6 @@
 				if(isset($c->$f) && $c->$f)
 				{
 					$url = app()->url("?registry=" . app()->request("registry") . "&action=previewReport&output=$fmt");
-					//$ret .= "<div class=\"startReportButton\"><a href=\"$url\" target=\"_blank\" class=\"startReportButton\"><img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\" class=\"topmenuIcon\"/></a>" .
-					//		"<span class=\"topMenuCaption\"><a href=\"$url\" target=\"_blank\">" . t(strtoupper($fmt)) . "</a></span></div>";
 					$ret .= "<a href=\"$url\" target=\"_blank\" class=\"startReportButton\"><span>" .
 							"<img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\"/>" .
 							t(strtoupper($fmt)) . "</span></a>";
@@ -563,3 +561,13 @@
  			t($val->getCaption()) . "</div>";
 	}
 
+	function makeCheckboxArray($obj, $tbl, $prefix)
+	{
+		$ret = array();
+		$o = app()->dbo($tbl);
+		$o->closed = 0;
+		if($o->find())
+			while($o->fetch())
+				$ret[] = new CheckBox($obj, $prefix . $o->getIdValue(), $o->getCaption());
+		return $ret;
+	}
