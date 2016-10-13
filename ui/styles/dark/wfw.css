@@ -1038,3 +1038,9 @@ label
   {
   	margin-right: 5px;
   }
+
+  .multiSelect
+  {
+  	max-height: 200px;
+  	overflow: auto;
+  }
