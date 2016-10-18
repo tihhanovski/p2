@@ -7,6 +7,7 @@
  */
 
 	const EMOJI_LOCKED = "&#128274;";
+	const ENOJI_UNLOCKED = "&#128275;";
 
 	define("DGRID_COL_SELECT", "select");
 	define("DGRID_COL_TEXTBOX", "textbox");
