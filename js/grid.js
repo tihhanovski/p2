@@ -613,7 +613,12 @@
 
 		grid.selectAll = function()
 		{
-			$.get(setup.INSTANCE_WEB + "?action=gridSelectAll&registry=" + req.registry,
+			var url = setup.INSTANCE_WEB + "?action=gridSelectAll&registry=" + req.registry;
+			if((this.query != "")&&(this.sortname != ""))
+				url += "&qtype=" + this.sortname +
+				"&query=" + this.query;
+
+			$.get(url,
 				function(data)
 				{
 					bubble.hide();
