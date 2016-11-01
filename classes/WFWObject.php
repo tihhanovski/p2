@@ -127,7 +127,7 @@ class WFWObject extends DB_DataObject
         if(isset($this->validators) && is_array($this->validators))
             foreach ( $this->validators as $field => $val )
             {
-                $ret = ($this->validateValue($field, $this->$field, $this->$field)) & $ret;
+                $ret = ($this->validateValue($field, $this->$field, $this->$field)) & $ret; //TODO && or & ?
             }
         return $ret;
     }
@@ -214,6 +214,19 @@ class WFWObject extends DB_DataObject
             }
 
         return "";
+    }
+
+    public function getFirstCaption()
+    {
+        if(isset($this->captionFields) && is_array($this->captionFields))
+            return $this->getValue($this->captionFields[0]);
+        return "";
+    }
+
+    public function setFirstCaption($v)
+    {
+        if(isset($this->captionFields) && is_array($this->captionFields))
+            $this->setValue($this->captionFields[0], $v);
     }
 
     function getCaption($fields = null, $sep = null)
@@ -685,35 +698,6 @@ class WFWObject extends DB_DataObject
             if(isset($this->$path))
                 return $this->encodeValue($path, $this->$path);
         return "";
-        /*
-    function setValueByPath($path, $value, $tree)
-    {
-        $this->checkLastSaved();    //TODO check speed, ilja 10.01.2014
-        if(isIndexed($path))
-        {
-            $children = $tree[$this->__table];
-
-            list($var, $path2) = explode(CHILD_DELIMITER, $path, 2);
-            if(isIndexed($var))
-            {
-                list($v, $index) = explode(INDEX_DELIMITER, $var);
-                $arr = $this->$v;
-                if(is_array($arr))
-                    $obj = $arr[$index];
-            }
-            else
-                $obj = $this->$var;
-
-            if(is_object($obj))
-            {
-                $obj->setValueByPath($path2, $value, $tree);
-                $this->childValueChanged($path2, $value, $tree);
-            }
-        }
-        else
-            $this->setValue($path, $value);
-    }
-        */
     }
 
     function validateValue($field, $oldValue, $newValue)
@@ -995,6 +979,7 @@ class WFWObject extends DB_DataObject
     protected function saveLinkedField($k, $c)
     {
         if($this->$c)
+        {
             if($t = $this->getForeignKeyTable($k))
             {
                 $o = app()->dbo($t);
@@ -1004,18 +989,28 @@ class WFWObject extends DB_DataObject
                     $this->$k = $o->getIdValue();
                 else
                 {
+                    error_log("saveLinkedField($k, $c)");
+                    if(!app()->canUpdate($t))
+                        throw new WFWException("insufficient rights");
                     $o = app()->dbo($t);
                     $o->setFirstCaption($this->$c);
+                    if(!$o->validateDocument())
+                        throw new WFWException("Cant save linked fields");
                     $o->insert();
+                    if(!$o->getIdValue())
+                        throw new WFWException("Cant save linked fields");
                     $this->$k = $o->getIdValue();
                 }
             }
+        }
+        else
+            $this->$k = NULL_VALUE;
     }
 
     /**
      * saves linked fields data
      */
-    protected function saveLinkedFields()
+    public function saveLinkedFields()
     {
         if($this->hasLinkedFields())
             foreach ($this->linkedFields as $k => $c)

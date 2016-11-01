@@ -581,11 +581,11 @@
 
 
 		var v = $("input#" + document.activeElement.id);
-			if(v.size() == 1)
+			if(v.length == 1)
 				if(!$(v[0]).hasClass("datepicker"))
 					v[0].select();
 		v = $("textarea#" + document.activeElement.id);
-			if(v.size() == 1)
+			if(v.length == 1)
 				v[0].select();
 
 	}

@@ -210,6 +210,17 @@ var app = {
 			});
 		},
 
+		"setupAutocomplete": function(path, lookup)
+		{
+			$("#" + path).autocomplete({
+				"lookup": lookup,
+				onSelect: function(v)
+				{
+					saveField(path, path, v.value);
+				}
+			});
+		},
+
 		"onSelectAutocomplete": function(v, d, f)
 		{
 			$("#" + f).focus();

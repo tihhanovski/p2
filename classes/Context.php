@@ -175,6 +175,7 @@
 		{
 			app()->requirePrivilegeJson(PRIVILEGE_UPDATE, $this->getPrivilegesObjectName());
 
+			$this->obj->saveLinkedFields();
 			if($this->obj->validateDocument())
 			{
 				$this->obj->persist();

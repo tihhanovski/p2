@@ -184,6 +184,6 @@
 		$x = new TextBox($obj, $field, $caption, $attr, $addAttr);
 		$opn = json_encode(dbToArray($optionsSql));
 		return $x->toHtml() . "<script type=\"text/javascript\"> " .
-				"\$(\"#{$obj->fullpath}_{$field}\").autocomplete({lookup: $opn, onSelect: function(v, d){app.onSelectAutocomplete(v, d, \"{$obj->fullpath}_{$field}\")}});" .
+				"\$(function(){app.setupAutocomplete(\"{$obj->fullpath}_{$field}\", $opn);});" .
 				" </script>";
 	}
