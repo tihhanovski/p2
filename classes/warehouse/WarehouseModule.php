@@ -82,6 +82,14 @@ class WarehouseModule
 		return $ret;
 	}
 
+	public function getWarehouseCost($warehouseId, $articleId, $modifierId = DEFAULT_WHMV_MODIFIER, $date = "")
+	{
+		$s = new WarehouseState($warehouseId, $articleId, $modifierId, $date);
+		$s->calculate();
+		if($s->cost != 0)
+			return $s->cost;
+	}
+
 	/**
 	 *
 	 */
