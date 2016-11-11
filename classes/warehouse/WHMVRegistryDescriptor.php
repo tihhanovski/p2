@@ -86,12 +86,24 @@ class WHMVRegistryDescriptor extends RegistryDescriptor
 
 	protected function ui_companySrcId($obj)
 	{
-		return keySel($obj, "companySrcId", "Source company");
+		//return keySel($obj, "companySrcId", "Source company");
+		return textboxAutocompleteSql(
+			$obj,
+			"companySrcName",
+			"Source company",
+			"select name from company where closed = 0 and supplier = 1 order by name"
+			);
 	}
 
 	protected function ui_companyDstId($obj)
 	{
-		return keySel($obj, "companyDstId", "Destination company");
+		//return keySel($obj, "companyDstId", "Destination company");
+		return textboxAutocompleteSql(
+			$obj,
+			"companyDstName",
+			"Destination company",
+			"select name from company where closed = 0 and customer = 1 order by name"
+			);
 	}
 
 	protected function ui_totalCost($obj)

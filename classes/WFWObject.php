@@ -947,6 +947,8 @@ class WFWObject extends DB_DataObject
      */
     protected function loadLinkedField($k, $c)
     {
+        if(is_array($c))
+            $c = $c["nameField"];
         if(is_object($o = $this->getLink($k)))
             if(!app()->isDBError($o))
                 $this->setValue($c, $o->getFirstCaption());
@@ -978,6 +980,18 @@ class WFWObject extends DB_DataObject
      */
     protected function saveLinkedField($k, $c)
     {
+
+        if(is_array($c))
+        {
+            $def = $c["default"];
+            $insDefs = isset($c["insertDefaults"]) ? $c["insertDefaults"] : array();
+            $c = $c["nameField"];
+        }
+        else
+        {
+            $def = NULL_VALUE;
+            $insDefs = array();
+        }
         if($this->$c)
         {
             if($t = $this->getForeignKeyTable($k))
@@ -989,10 +1003,9 @@ class WFWObject extends DB_DataObject
                     $this->$k = $o->getIdValue();
                 else
                 {
-                    error_log("saveLinkedField($k, $c)");
                     if(!app()->canUpdate($t))
                         throw new WFWException("insufficient rights");
-                    $o = app()->dbo($t);
+                    $this->setLinkedFieldInsertDefaults($o, $insDefs);
                     $o->setFirstCaption($this->$c);
                     if(!$o->validateDocument())
                         throw new WFWException("Cant save linked fields");
@@ -1004,7 +1017,15 @@ class WFWObject extends DB_DataObject
             }
         }
         else
-            $this->$k = NULL_VALUE;
+            $this->$k = $def;
+
+        //echo "<hr/>saveLinkedField($k, $c)<br/>new v = {$this->$k}<hr/>";
+    }
+
+    public function setLinkedFieldInsertDefaults($o, $insDefs)
+    {
+        foreach ($insDefs as $f => $v)
+            $o->$f = $v;
     }
 
     /**

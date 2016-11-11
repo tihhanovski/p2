@@ -30,6 +30,25 @@ class WhmvbatchParent extends WFWObject
         "whDstId" => VALIDATION_CLASS_METHOD,
     );
 
+    protected $linkedFields = array(
+        "companySrcId" => array(
+            "nameField" => "companySrcName",
+            "default" => DEFAULT_COMPANY,
+            "insertDefaults" => array(
+                "customer" => 0,
+                "supplier" => 1,
+            ),
+        ),
+        "companyDstId" => array(
+            "nameField" => "companyDstName",
+            "default" => DEFAULT_COMPANY,
+            "insertDefaults" => array(
+                "customer" => 1,
+                "supplier" => 0,
+            ),
+        ),
+    );
+
     public function validate_whDstId()
     {
         $this->updChildrenWhField("whDstId");
@@ -141,6 +160,7 @@ class WhmvbatchParent extends WFWObject
     public function loadAdditionalData()
     {
         $this->calcTotals();
+        return parent::loadAdditionalData();
     }
 
 
