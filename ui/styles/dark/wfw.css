@@ -1044,3 +1044,14 @@ label
   	max-height: 200px;
   	overflow: auto;
   }
+
+  .filterLabelVertical
+  {
+  	color: #000000;
+  }
+
+  .filterInputBoxSmall {
+    float: left;
+    width: 60px;
+    padding-right: 20px;
+}
