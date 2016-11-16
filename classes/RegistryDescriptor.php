@@ -468,6 +468,8 @@
 			$gridSqlMethod = "getGridSql";
 			$gridGroupByMethod = "getGridGroupBy";
 
+			$this->mod = app()->request("mod");
+
 			if($modifier = app()->request("mod"))
 			{
 				if(method_exists($this, $m = $gridMethod . "_" . $modifier))
@@ -720,6 +722,40 @@
 			return $ret;
 		}
 
+		protected function getQueryStatsFields()
+		{
+			return "count(*) as cnt";
+		}
+
+		protected function getQueryStatsFormatters()
+		{
+			return null;
+		}
+
+		public function getQueryStats($c, $obj)
+		{
+		 	//getting count;
+		 	$a = explode("from", $this->sql);
+		 	unset($a[0]);
+		 	$csql = "select " . $this->getQueryStatsFields() . " from " . implode("from", $a) . $this->sqlQuery;
+		 	$data =& $c->getRow($csql, array(), DB_FETCHMODE_ASSOC);
+		 	if(!is_array($data))
+				if(is_object($data) && app()->isDBError($data))
+					die(app()->jsonMessage(RESULT_ERROR, $data->userinfo));
+
+
+			$obj->total = (int)$data["cnt"];
+			$obj->stats = $data;
+			if(is_array($sf = $this->getQueryStatsFormatters()))
+			{
+				foreach ($obj->stats as $k => $v)
+					if(isset($sf[$k]))
+						$obj->stats[$k] = getFormatter($sf[$k])->encodeHuman($v);
+			}
+
+			//die("mod = " . $this->mod . "<br/>" . $csql . "<hr/>" . print_r($obj->stats, 1));
+		}
+
 		/**
 		 * Construct and write out grid data in JSON format
 		 */
@@ -742,16 +778,8 @@
 		 	$obj->page = (int)(app()->request("page", 1));
 		 	$obj->filterOnStartup = isset($this->filterOnStartup) && $this->filterOnStartup;
 
-		 	//getting count;
-		 	$a = explode("from", $this->sql);
-		 	unset($a[0]);
-		 	$csql = "select count(*) from " . implode("from", $a) . $this->sqlQuery;
-		 	$data =& $c->getRow($csql, array(), DB_FETCHMODE_ORDERED);
-		 	if(!is_array($data))
-				if(is_object($data) && app()->isDBError($data))
-					die(app()->jsonMessage(RESULT_ERROR, $data->userinfo));
-
-			$obj->total = (int)$data[0];
+		 	//getting count and stats;
+		 	$this->getQueryStats($c, $obj);
 
 	 		$q =& $c->query($gsql);
 

@@ -52,6 +52,32 @@
 			gr.html(rc);
 		}
 
+		grid.updateRowsStatus = function()
+		{
+			$("#gridStats3").html("" + this.addedRows + " / " + this.totalRows);
+		}
+
+		grid.clearOtherStats = function()
+		{
+			$(".gridStats").each(function(){$(this).html("");});
+		}
+
+		grid.updateOtherStats = function()
+		{
+			this.clearOtherStats();
+			if(this.stats)
+			{
+				gg = this;
+				$(".gridStats").each(function(){
+					try{
+						var f = this.id.split("_")[1];
+						if(gg.stats[f])
+							$(this).html(gg.stats[f]);
+					}catch(e){}
+				})
+			}
+		}
+
 		grid.prependRow = function(grid, row)
 		{
 			//log("prependRow");
@@ -66,7 +92,7 @@
 			try{
 				//log("row does not exist");
 				this.addedRows++;
-				$("#gridStats3").html("" + this.addedRows + " / " + this.totalRows);
+				this.updateRowsStatus();
 
 				var fh = "";
 				if(grid.fixedHeight != 0)
@@ -135,6 +161,35 @@
 			);
 		}
 
+		grid.loadStatsOnly = function()
+		{
+			this.loadingPage = true;
+			var url = this.getUrl();
+			if((this.query != "")&&(this.sortname != ""))
+				url += "&qtype=" + this.sortname +
+				"&query=" + this.query;
+			this.setStatusLoading();
+			var gg = this;
+			$.get(url,
+					function(data)
+					{
+						$("#gridStats3").html("");
+						gg.totalRows = data.total;
+						gg.addedRows = $(".mGridRow").length;
+						gg.stats = data.stats;
+						gg.updateOtherStats();
+						gg.updateRowsStatus();
+						gg.loadingPage = false;
+					},
+					"json"
+			);
+		}
+
+		grid.setStatusLoading = function()
+		{
+			$("#gridStats3").html('<img src="' + setup.WFW_WEB + 'ui/img/16/progress.gif" border="0" class="mGridBottomIcon" />' + t("Loading..."));
+		}
+
 		grid.loadPage = function()
 		{
 			this.loadingPage = true;
@@ -147,17 +202,19 @@
 			if((this.query != "")&&(this.sortname != ""))
 				url += "&qtype=" + this.sortname +
 				"&query=" + this.query;
-			$("#gridStats3").html('<img src="' + setup.WFW_WEB + 'ui/img/16/progress.gif" border="0" class="mGridBottomIcon" />' + t("Loading..."));
+			this.setStatusLoading();
 			var gg = this;
 			$.get(url,
 					function(data)
 					{
 						$("#gridStats3").html("");
 						gg.totalRows = data.total;
+						gg.stats = data.stats;
 						var x;
 						if(data.rows)
 							for(x = 0; x < data.rows.length; x++)
 								gg.addRow(gg, data.rows[x]);
+						gg.updateOtherStats();
 						gg.loadingPage = false;
 						if(data.filterOnStartup)
 							gg.showFilterOnStartup(data.filterOnStartup);
@@ -326,7 +383,7 @@
 				return;
 			try{
 				this.addedRows++;
-				$("#gridStats3").html("" + this.addedRows + " / " + this.totalRows);
+				this.updateRowsStatus();
 				var cm = this.colModel;
 				var x;
 				var tw = 0;
@@ -494,6 +551,7 @@
 		{
 			this.currentPage = 0;
 			this.totalRows = 1e12;
+			this.stats = null;
 			this.addedRows = 0;
 		}
 
@@ -568,7 +626,7 @@
 			$(this.containerId).find(".gridSetupColumns").click(function(event)
 					{
 						var h = Math.min(400, $(window).height() - 100);
-						var html = '<div><div class="mGridVisibleColumnsHeader">' + t("Visible columns") + '</div>' + 
+						var html = '<div><div class="mGridVisibleColumnsHeader">' + t("Visible columns") + '</div>' +
 							'<div style="height: ' + (h - 65) + 'px; overflow: auto; border: 1px solid #c9c9c9; margin-bottom: 10px;">';
 						var x;
 						for(x = 0; x < grid.colModel.length; x++)

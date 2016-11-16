@@ -1102,6 +1102,7 @@
 			"Period initial state" => "Состояние на начало периода",
 			"Group by article groups" => "Группы материалов по отдельности",
 			"Cant add child" => "Невозможно добавить строку",
+			"Loaded rows / Total rows" => "Загруженных строк / Всего строк",
 		)
 
 	);

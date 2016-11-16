@@ -6,7 +6,7 @@
  *
  */
 
- 	const JS_VERSION = 29;
+ 	const JS_VERSION = 30;
 
  	define("WFW_CLASSPATH", WFW_ROOT . "classes/");
 
