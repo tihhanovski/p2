@@ -618,26 +618,27 @@
 			}
 		}
 
-		function filtersToXLS()
+		protected function outputPairsToXLS($a)
 		{
-		 	if(is_array($this->filters))
-			 	foreach ( $this->filters as $k => $v )
+			$bLength = count($this->columns);
+		 	if(is_array($a))
+			 	foreach ( $a as $k => $v )
 			 	{
 			 		$this->y++;
 			 		$this->w->write("A" . $this->y, encodeXLS($k));
 			 		$this->w->write("B" . $this->y, encodeXLS($v));
+			 		$this->w->mergeCells("B" . $this->y . ":" . $this->w->getCoord($bLength, $this->y));
 			 	}
+		}
+
+		function filtersToXLS()
+		{
+			$this->outputPairsToXLS($this->filters);
 		}
 
 		function bottomFiltersToXLS()
 		{
-		 	if(is_array($this->bottomFilters))
-			 	foreach ( $this->bottomFilters as $k => $v )
-			 	{
-			 		$this->y++;
-			 		$this->w->write("A" . $this->y, encodeXLS($k));
-			 		$this->w->write("B" . $this->y, encodeXLS($v));
-			 	}
+			$this->outputPairsToXLS($this->bottomFilters);
 		}
 
 		private function getExportFileName()
@@ -670,6 +671,7 @@
 
 		 	//caption
 		 	$this->w->write("A1", encodeXLS($this->header));
+		 	$this->w->mergeCells("A1:" . $this->w->getCoord(count($this->columns), 1));
 		 	$this->y += 2;
 
 		 	$this->filtersToXLS();
