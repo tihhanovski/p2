@@ -100,7 +100,7 @@
 
 				var html = '<div class="mGridRow ' + grid.getStyle(row) + '" id="mgr_' + row.id + '"' + (fh != '' ? ' style="' + fh + '"' : '') + '>' +
 					grid.getRowContents(grid, row) +
-					'</div>'
+					'</div>';
 				$("#gridContents").prepend(html);
 
 				var tw = 0;
@@ -117,12 +117,43 @@
 					$("#mgr_" + row.id).height(10 + h);
 					$("#mgr_" + row.id).children().height(h);
 				}
-				var gg = this;
-				$("#mgr_" + row.id).click(function(){gg.onRowClick(this.id);}).css("width", tw + "px");
+
+				$("#mgr_" + row.id).css("width", tw + "px");
+				this.setRowEventHandlers(row);
+
 			}catch(e)
 			{
 				log(e.message);
 			}
+		}
+
+		grid.setActiveRow = function(ctrlId)
+		{
+			var a = ctrlId.split("_");
+			var id = a[1];
+			var ctrl = $("#" + ctrlId);
+			//log("set active row " + ctrlId + "(id = " + id + ")");
+
+			$(".activeGridRow").removeClass("activeGridRow");
+			ctrl.addClass("activeGridRow");
+
+			var delta = $(".activeGridRow").offset().top + $(".activeGridRow").height() - $("#gridScroller").offset().top - $("#gridScroller").height();
+			//log("d: " + delta);
+			if(delta > 0)
+				$("#gridScroller").scrollTop($("#gridScroller").scrollTop() + delta);
+
+			var delta = $(".activeGridRow").offset().top - $("#gridScroller").offset().top;
+			//log("d: " + delta);
+			if(delta < 0)
+				$("#gridScroller").scrollTop($("#gridScroller").scrollTop() + delta);
+		}
+
+		grid.setRowEventHandlers = function(row)
+		{
+			var gg = this;
+			$("#mgr_" + row.id)
+				.click(function(){gg.setActiveRow(this.id);})
+				.dblclick(function(){gg.onRowClick(this.id);})
 		}
 
 		grid.reloadNewRow = function(id)
@@ -413,8 +444,8 @@
 					$("#mgr_" + row.id).children().height(h);
 				}
 
-				var gg = this;
-				$("#mgr_" + row.id).click(function(){gg.onRowClick(this.id);}).css("width", tw + "px");
+				$("#mgr_" + row.id).css("width", tw + "px");
+				this.setRowEventHandlers(row);
 			}catch(e)
 			{
 				log(e.message);
@@ -767,17 +798,59 @@
 			}
 		}
 
+		grid.addKeyboardNavigation = function()
+		{
+			$("body").keydown(function(event)
+			{
+				var activeRow = $(".activeGridRow");
+				if(activeRow.length < 1)
+				{
+					gg.setActiveRow($(".mGridRow")[0].id);
+					activeRow = $(".activeGridRow");
+				}
+				//log(event.which);
+				if(event.which == 40)
+					if(activeRow.length > 0)
+					{
+						//down
+						event.preventDefault();
+						//log("down from " + activeRow[0].id);
+						var next = activeRow.next();
+						if(next.length > 0)
+							gg.setActiveRow(next[0].id);
+					}
+				if(event.which == 38)
+					if(activeRow.length > 0)
+					{
+						//up
+						event.preventDefault();
+						//log("up from " + activeRow[0].id);
+						var prev = activeRow.prev();
+						if(prev.length > 0)
+							gg.setActiveRow(prev[0].id);
+					}
+				if(event.which == 13)
+					if(activeRow.length > 0)
+						activeRow.dblclick();
+			});
+		}
+
 		grid.makeGrid = function()
 		{
-			var s = $("#gridScroller").length;
+			var scrollerId = "#gridScroller";
+			var s = $().length;
 			var gg = this;
 
 			if(s == 0)
+			{
 				$(window).resize(function()
 				{
 					gg.resizeGrid();
 				});
+			}
 			this.init();
+			this.addKeyboardNavigation();
+
 		}
 		if(grid.afterSetup)
 				grid.afterSetup();
