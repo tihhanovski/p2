@@ -423,7 +423,7 @@
 		 			foreach ($this->grid->colModel as $col)
 		 				if($col->isPrintable() && $this->columnVisibilityOn($col))
 		 				{
-		 					$a[] = "lower(" . $col->findSql . ")";
+		 					$a[] = "lower(coalesce(" . $col->findSql . ", ''))";
 		 					$a[] = "' '";
 		 				}
 		 			if(count($a) > 1)
