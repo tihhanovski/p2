@@ -1106,3 +1106,9 @@
 {
 	color: #505050;
 }
+
+.activeGridRow
+{
+	background-color: #0099ff !important;
+	color: white;
+}
