@@ -58,8 +58,11 @@
 					WFW_WEB . "js/messagesControl.js",
 					WFW_WEB . "js/commentsControl.js",
 					//WFW_WEB . "js/combobox.js",
-					app()->ui()->url("js/mainMenu.js"),
+					//app()->ui()->url("js/mainMenu.js"),
 				);
+
+			if(app()->getAbsoluteFile("js/mainMenu.js"))
+				$scripts[] = app()->ui()->url("js/mainMenu.js");
 
 			foreach ( $scripts as $src)
 				echo "<script type=\"text/javascript\" src=\"$src?v=" . JS_VERSION . "\"></script>";

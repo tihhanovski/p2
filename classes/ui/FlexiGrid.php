@@ -137,6 +137,7 @@
 	{
 		public $url;
 		public $dataType = "json";
+		public $keyboardNavigation = GRID_KEYBOARD_NAVIGATION;
 
 		public $colModel;
 

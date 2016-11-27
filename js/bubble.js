@@ -111,7 +111,11 @@ var bubble = {
 			var html = '<div id="bubbleContainer" class="bubbleContainer" onclick="JavaScript:bubble.hide();"></div>';
 			$("body").append(html);
 		}
-		return $(this.containerId);
+		var ret = $(this.containerId);
+		//ret.keydown(function(event){
+		//	event.preventDefault();
+		//});
+		return ret;
 	}
 };
 

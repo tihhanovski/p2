@@ -800,6 +800,8 @@
 
 		grid.addKeyboardNavigation = function()
 		{
+			if(!grid.keyboardNavigation)
+				return;
 			$("body").keydown(function(event)
 			{
 				var activeRow = $(".activeGridRow");
@@ -830,8 +832,11 @@
 							gg.setActiveRow(prev[0].id);
 					}
 				if(event.which == 13)
+				{
+					event.preventDefault();
 					if(activeRow.length > 0)
 						activeRow.dblclick();
+				}
 			});
 		}
 
