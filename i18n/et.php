@@ -291,5 +291,8 @@
 			"No" => "Ei",
 			"Number is not unique" => "Number ei ole unikaalne!",
 			"Warehouse state will be negative after save" => "Peale salvestamist laoseis muutub negatiivseks",
+
+			"First name" => "Eesnimi",
+			"Last name" => "Perekonnanimi",
 		)
 	);

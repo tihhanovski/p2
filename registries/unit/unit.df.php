@@ -1,8 +1,8 @@
 <?php
-/*
- * Created on Sep 29, 2011
- *
- * (c) Ilja Tihhanovski, Intellisoft
+/**
+ * Unit detailform
+ * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
+ * @copyright (c) Ilja Tihhanovski
  *
  */
 
