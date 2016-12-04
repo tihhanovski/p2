@@ -28,7 +28,7 @@
 					//L3RD_BOOTSTRAP_CSS,
 				);
 			foreach ( $styles as $src)
-				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$src\" />";
+				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$src?v=" . JS_VERSION . "\" />";
 		}
 
 		public function includeScripts()
