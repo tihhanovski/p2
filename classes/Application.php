@@ -713,6 +713,11 @@
 			return INSTANCE_WEB . $s;
 		}
 
+		public function versionedUrl($s, $ver = "")
+		{
+			return $this->url($s) . ($ver != "" ? "?v=" . $ver : "");
+		}
+
 		function icon($fn, $size = 16)
 		{
 			return "<img src=\"" . $this->url("ui/img/$size/$fn") . "\" width=\"$size\" height=\"$size\" border=\"0\"/>";
