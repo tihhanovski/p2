@@ -16,8 +16,6 @@
 			$styles = array(
 					SETUP_CSS_MAIN,
 					L3RD_FONT_AWESOME_CSS,
-					//SETUP_3RD_COMBOGRID_CSS2,
-					//SETUP_3RD_COMBOGRID_CSS,	//combogrid
 					SETUP_JQUERY_UI_CSS,
 					app()->ui()->url("css/styles.css"),
 					app()->url("resources/ui.css"),
@@ -25,8 +23,13 @@
 					L3RD_METISMENU_CSS,
 					L3RD_MORRIS_CSS,
 					L3RD_CHOSEN_CSS,		//chosen test
-					//L3RD_BOOTSTRAP_CSS,
 				);
+			foreach ( $styles as $src)
+				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$src?v=" . JS_VERSION . "\" />";
+		}
+
+		public function includeStylesHtml($styles)
+		{
 			foreach ( $styles as $src)
 				echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"$src?v=" . JS_VERSION . "\" />";
 		}
@@ -64,8 +67,14 @@
 			if(app()->getAbsoluteFile("js/mainMenu.js"))
 				$scripts[] = app()->ui()->url("js/mainMenu.js");
 
+			$this->includeScriptsHtml($scripts);
+
+		}
+
+		public function includeScriptsHtml($scripts)
+		{
 			foreach ( $scripts as $src)
-				echo "<script type=\"text/javascript\" src=\"$src?v=" . JS_VERSION . "\"></script>";
+				echo "<script type=\"text/javascript\" src=\"$src?v=" . JS_VERSION . "\"></script>";			
 		}
 
 		public function includePageSetup()
