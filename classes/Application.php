@@ -1646,7 +1646,7 @@
 		/**
 		 * If user is not logged in, redirects to login form and dies
 		 */
-		function requireLogin()
+		public function requireLogin()
 		{
 			if(!$this->user()->getIdValue())
 				$this->location("?action=loginform");
