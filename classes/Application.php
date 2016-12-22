@@ -773,7 +773,6 @@
 		 */
 		public function addComment($comment, $objreg = "", $objId = 0, $userId = 0)
 		{
-			echo "addComment<br/>";
 			if(!$comment)
 				throw new WFWException("no comment");
 			if($objreg = "")
