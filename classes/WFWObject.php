@@ -388,6 +388,69 @@ class WFWObject extends DB_DataObject
         return true;//$f == "LinkedCaption" || $f == "link";
     }
 
+    function arrayToXml(array $arr, SimpleXMLElement $xml)
+    {
+        foreach ($arr as $k => $v)
+        {
+            if(is_object($v) && method_exists($v, "toSimpleXml"))
+                $v->toSimpleXml($xml->addChild($v->__table));
+            else
+                is_array($v)
+                    ? $this->arrayToXml($v, $xml->addChild($k))
+                    : $xml->addChild($k, $v);
+        }
+        return $xml;
+    }
+
+    function getCaptionXmlRepr(SimpleXMLElement $xml)
+    {
+        //echo "<b>" . $this->__table . "->getCaptionXmlRepr</b><br/>";
+
+        foreach ($this->keys() as $f)
+            $xml->addChild($f, $this->$f);
+
+        if(isset($this->captionFields) && is_array($this->captionFields))
+            foreach ($this->captionFields as $f)
+                $xml->addChild($f, $this->$f);
+    }
+
+    function addFieldToXml(SimpleXMLElement $xml, $name)
+    {
+        if(is_array($lnks = $this->links()))
+            if(isset($lnks[$name]))
+                if(is_object($o = $this->getLink($name)))
+                {
+                    $on = $name;
+                    if(strtolower(substr($on, -2)) == "id")
+                    {
+                        $on = substr($on, 0, strlen($on) - 2);
+                        if(isset($this->$on))
+                            $on = $name;
+                    }
+                    return $o->getCaptionXmlRepr($xml->addChild($on));
+                }
+        if (is_array($this->$name))
+            return $this->arrayToXml($this->$name, $xml->addChild($name));
+        if(is_object($this->$name))
+            return $this->$name->toSimpleXml($xml->addChild($name));
+        $xml->addChild($name, $this->$name);
+    }
+
+    function toSimpleXml(SimpleXMLElement $xml)
+    {
+        $ref = new ReflectionObject($this);
+        $pros = $ref->getProperties(ReflectionProperty::IS_PUBLIC);
+        foreach ($pros as $pro)
+        {
+            $name = $pro->getName();
+            if(isset($this->$name))
+                if (is_field_ok_for_json($name))
+                    $this->addFieldToXml($xml, $name);
+        }
+
+        return $xml;
+    }
+
     function get_data_for_json()
     {
         $ref = new ReflectionObject($this);
