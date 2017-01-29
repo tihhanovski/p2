@@ -759,6 +759,8 @@
 							$("#bubbleContents").html(data);
 							grid.resizeFilterControls();
 							grid.resizeGrid();
+							if(grid.afterFilterShown)
+								grid.afterFilterShown();
 						});
 			}
 			else
