@@ -178,7 +178,7 @@ function setNumericInt(s)
         else 
         {
             // Ensure that it is a number and stop the keypress
-            if ((kk < 48 || kk > 57) && (kk < 96 || kk > 105 )) 
+            if ((kk < 48 || kk > 57) && (kk < 96 || kk > 107 ) && kk != 109 && kk != 111)
             {
                 event.preventDefault(); 
             }
@@ -201,9 +201,8 @@ function setNumericDbl(s)
         else
         {
             // Ensure that it is a number and stop the keypress
-            if ((kk < 48 || kk > 57) && (kk < 96 || kk > 105 ))
+            if ((kk < 48 || kk > 57) && (kk < 96 || kk > 107 ) && kk != 109 && kk != 111)
             {
-            	log(kk);
                 event.preventDefault(); 
             }
         }
