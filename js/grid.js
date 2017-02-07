@@ -151,9 +151,12 @@
 		grid.setRowEventHandlers = function(row)
 		{
 			var gg = this;
-			$("#mgr_" + row.id)
-				.click(function(){gg.setActiveRow(this.id);})
-				.dblclick(function(){gg.onRowClick(this.id);})
+			if(isMobile())
+				$("#mgr_" + row.id).click(function(){gg.setActiveRow(this.id);gg.onRowClick(this.id);});
+			else
+				$("#mgr_" + row.id)
+					.click(function(){gg.setActiveRow(this.id);})
+					.dblclick(function(){gg.onRowClick(this.id);})
 		}
 
 		grid.reloadNewRow = function(id)
