@@ -1461,19 +1461,21 @@ class WFWObject extends DB_DataObject
     function log($acn, $acntype = LOG_TYPE_NORMAL)
     {
         if($this->canLog())
-                {
-                    $log = app()->dbo("objlog");
-                    $log->dt = date(FORMATSTRING_DATETIME_MACHINE);
-                    $log->robject = $this->getRObjectID();
-                    $log->val = $this->getSerializedLogData();
-                    $log->acn = $acn;
-                    $log->acntype = $acntype;
-                    $log->userId = app()->user()->getIdValue();
-                    if($this->isDBError($log))
-                        return false;
-                    else
-                        return $log->insert();
-                }
+        {
+            $log = app()->dbo("objlog");
+            $log->dt = date(FORMATSTRING_DATETIME_MACHINE);
+            $log->robject = $this->getRObjectID();
+            $log->val = $this->getSerializedLogData();
+            $log->acn = $acn;
+            $log->acntype = $acntype;
+            $log->userId = app()->user()->getIdValue();
+            if($this->isDBError($log))
+                $ret = false;
+            else
+                $ret = $log->insert();
+            $log->free();
+            return $ret;
+        }
     }
 
     function getSerializedLogData()

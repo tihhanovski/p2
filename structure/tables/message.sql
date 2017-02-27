@@ -8,4 +8,4 @@ CREATE TABLE message (
   recieved datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   replyToId int DEFAULT NULL,
   robject varchar(50) DEFAULT NULL
-) COMMENT='@system\nSõnumid kasutajate vahel (seotud dokumentidega jms)'
+) COMMENT='@system'

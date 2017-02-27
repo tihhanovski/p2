@@ -43,6 +43,8 @@
 			"ru_companygroup" => "Firmade grupp",
 			"ro_paymentterm" => "Maksetähtajad",
 			"ru_paymentterm" => "Maksetähtaeg",
+			"ro_currency" => "Valuutad",
+			"ru_currency" => "Valuuta",
 
 			"ro_company" => "Firmad",
 			"ru_company" => "Firma",
@@ -294,5 +296,7 @@
 
 			"First name" => "Eesnimi",
 			"Last name" => "Perekonnanimi",
+			"rate" => "Kurss",
+			"drate" => "Kurss 2",
 		)
 	);
