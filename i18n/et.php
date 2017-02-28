@@ -298,5 +298,7 @@
 			"Last name" => "Perekonnanimi",
 			"rate" => "Kurss",
 			"drate" => "Kurss 2",
+			"Allow all" => "Luba kõik",
+			"Decline all" => "Keela kõik",
 		)
 	);
