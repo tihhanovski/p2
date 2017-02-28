@@ -415,7 +415,8 @@
 				{
 					if($a == LOCKACTION_LOCK)
 					{
-						$context->save();
+						if(!$context->save())
+							throw new WFWException("cant $a");
 						app()->putContext($context);
 					}
 
