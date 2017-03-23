@@ -8,14 +8,15 @@
 
 	class SquaredMainMenuItem extends HtmlComponent
 	{
-		public $icon, $href, $caption;
+		public $icon, $href, $caption, $active;
 		public $items = array();
 
-		public function __construct($icon, $href, $caption)
+		public function __construct($icon, $href, $caption, $active = false)
 		{
 			$this->icon = $icon;
 			$this->href = $href;
 			$this->caption = $caption;
+			$this->active = $active;
 		}
 
 		public function addItem($m)
@@ -27,6 +28,7 @@
 		{
 			$hasChildren = count($this->items) > 0;
 			$ae = $hasChildren ? "aria-expanded=\"false\"" : "";
+			$ca = $this->active ? " class=\"active\"" : "";
 			$ret = "<a href=\"{$this->href}\" $ae >" .
 				"<span class=\"sidebar-nav-item-icon fa {$this->icon}\" aria-hidden=\"true\"></span>" .
 				$this->caption . "</a>";
@@ -38,7 +40,7 @@
 				$ret .= "</ul>";
 			}
 
-		 	return "<li>" . $ret . "</li>";
+		 	return "<li" . $ca . ">" . $ret . "</li>";
 		}
 	}
 
@@ -88,6 +90,8 @@
 
 		 	$registries = app()->registries();
 
+		 	$cr = app()->request(REQUEST_REGISTRY);
+
 		 	foreach ($modules as $m)
 		 	{
 		 		$mnuModule = new SquaredMainMenuItem("fa-cube", "#", t($m->name));
@@ -96,7 +100,11 @@
 		 		foreach ($parts as $icon => $mp)
 		 			foreach ($registries as $reg)
 		 				if($reg->module == $m->getIdValue() && $reg->menupartId == $mp->getIdValue() && $reg->typeId < 10)
-		 					$mnuModule->addItem(new SquaredMainMenuItem(/*$icon*/"", app()->url("?registry=" . $reg->name), t($reg->getCaption())));
+		 				{
+		 					if($cr == $reg->name)
+		 						$mnuModule->active = true;
+		 					$mnuModule->addItem(new SquaredMainMenuItem($icon, app()->url("?registry=" . $reg->name), t($reg->getCaption())));
+		 				}
 
 		 		$this->addItem($mnuModule);
 

@@ -4,7 +4,6 @@ $(function()
 	$( ".frontpageDasboardItems" ).sortable();
 	//$("#mainMenu").click(function(){app.mainMenu()});
 
-
 	app.mainMenu = function()
 	{
 		var mm = $("#mainMenu");
@@ -16,22 +15,24 @@ $(function()
 		}
 		else
 		{
-				$.get(baseUrl() + "?action=mainMenu",
-					function(data)
-					{
-						$("#mainMenu")
-							.html('<div class="popupMainMenu" id="popupMainMenu" style="display: none;">' + data +
-									'</div><div class="mainMenuExitPlaceholder" onclick="JavaScript:app.mainMenu();"></div>')
-							.show();
-						$("#menu").metisMenu();
+			var url = baseUrl() + "?action=mainMenu" + (req.registry ? "&registry=" + req.registry : "");
+			$.get(
+				url,
+				function(data)
+				{
+					$("#mainMenu")
+						.html('<div class="popupMainMenu" id="popupMainMenu" style="display: none;">' + data +
+								'</div><div class="mainMenuExitPlaceholder" onclick="JavaScript:app.mainMenu();"></div>')
+						.show();
+					$("#menu").metisMenu();
 
-						app.resizeMainMenu();
+					app.resizeMainMenu();
 
-						$("#popupMainMenu")
-							.css("left", (-$("#popupMainMenu").width()) + "px")
-							.show()
-							.animate({"left": "0px"}, "fast");
-					});
+					$("#popupMainMenu")
+						.css("left", (-$("#popupMainMenu").width()) + "px")
+						.show()
+						.animate({"left": "0px"}, "fast");
+			});
 		}
 	};
 
@@ -43,22 +44,22 @@ $(function()
 
 	app.resizeMainMenu = function()
 	{
-			var w = $(window);
-			var tmh = $(".topMenu").outerHeight();
-			var popup = $("#popupMainMenu");
-			var mh = w.height() - tmh;
-			var mw = 350;
-			$("#mainMenu").offset({ top: tmh, left: 0 })
-				.width(w.width())
-				.height(mh);
-			popup
-				.offset({top: tmh, left: 0})
-				.height(mh)
-				.width(mw);
+		var w = $(window);
+		var tmh = $(".topMenu").outerHeight();
+		var popup = $("#popupMainMenu");
+		var mh = w.height() - tmh;
+		var mw = 350;
+		$("#mainMenu").offset({ top: tmh, left: 0 })
+			.width(w.width())
+			.height(mh);
+		popup
+			.offset({top: tmh, left: 0})
+			.height(mh)
+			.width(mw);
 
-			$(".mainMenuExitPlaceholder")
-				.offset({top: tmh, left: popup.outerWidth()})
-				.height(mh)
-				.width(w.width() - mw);
+		$(".mainMenuExitPlaceholder")
+			.offset({top: tmh, left: popup.outerWidth()})
+			.height(mh)
+			.width(w.width() - mw);
 	};
 });
