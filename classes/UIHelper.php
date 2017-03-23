@@ -60,17 +60,10 @@
 					WFW_WEB . "js/filesControl.js",
 					WFW_WEB . "js/messagesControl.js",
 					WFW_WEB . "js/commentsControl.js",
-					//WFW_WEB . "js/combobox.js",
-					//app()->ui()->url("js/mainMenu.js"),
 				);
 
 			if(app()->getAbsoluteFile(UI_MODULE . "js/mainMenu.js"))
 				$scripts[] = app()->ui()->url("js/mainMenu.js");
-
-			//die(app()->getAbsoluteFile(UI_MODULE . "js/mainMenu.js"));
-
-			//die("<pre>" . print_r($scripts, 1));
-
 			$this->includeScriptsHtml($scripts);
 
 		}
