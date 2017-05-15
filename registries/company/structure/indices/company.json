@@ -1,0 +1,10 @@
+[
+    {
+        "fields": "code",
+        "type": "unique index"
+    },
+    {
+        "fields": "name",
+        "type": "index"
+    }
+]
