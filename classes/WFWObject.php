@@ -884,17 +884,20 @@ class WFWObject extends DB_DataObject
 
     function getPrimaryKeyField()
     {
-        $keys = $this->keys();
-        if(is_array($keys))
+        if(!isset($this->_primaryKeyField))
         {
-            if(count($keys) != 1)
-                die("wrong number of keys for " . $this->__table . "<hr/><pre>" . print_r($this, true) . "</pre><hr/>");
-            return $keys[0];
+            $keys = $this->keys();
+            if(is_array($keys))
+            {
+                if(count($keys) != 1)
+                    die("wrong number of keys for " . $this->__table . "<hr/><pre>" . print_r($this, true) . "</pre><hr/>");
+                $this->_primaryKeyField = $keys[0];
+            }
+            else
+                die("no keys array for " . $this->__table);
+            unset($keys);
         }
-        else
-        {
-            die("no keys array for " . $this->__table);
-        }
+        return $this->_primaryKeyField;
     }
 
     function saveChildren($tree)

@@ -2527,3 +2527,14 @@
     	libxml_clear_errors();
 	    return $ret;
 	}
+
+
+    $_lastMem = 0;
+    function logmem($s)
+    {
+        global $_lastMem;
+        $mu = memory_get_usage();
+        $dm = $mu - $_lastMem;
+        echo "<pre>" . $mu . "\t" . $dm . "\t" . $s . "\n</pre>";
+        $_lastMem = $mu;
+    }
