@@ -693,7 +693,7 @@
 		{
 			bubble
 				.pos($("#gridMoreButton").position().left, $("#gridMoreButton").position().top + $("#gridMoreButton").height())
-				.dimensions(200, 200)
+				.dimensions(300, 200)
 				.show(t("Loading..."));
 			$.get(setup.INSTANCE_WEB + "?action=moreMenuItemsHtml&registry=" + req.registry,
 				function(data)
