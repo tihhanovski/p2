@@ -328,7 +328,11 @@
 					case "closedicon":
 						return '<img src="' + setup.WFW_WEB + 'ui/img/16/closed-' + v + '.png" border="0"/>';
 					case "lockbox":
-						return '<img src="' + setup.WFW_WEB + 'ui/img/16/lock-' + v + '.png" border="0"/>';
+						return (v == 1 ?
+							'<i class="fa fa-lock" aria-hidden="true"></i>' :
+							'');
+
+						//return '<img src="' + setup.WFW_WEB + 'ui/img/16/lock-' + v + '.png" border="0"/>';
 					case "checkbox":
 						return '<img src="' + setup.WFW_WEB + 'ui/img/16/check-' + v + '.png" border="0"/>';
 					case "state":
