@@ -22,8 +22,14 @@
 		function getInputPart()
 		{
 			return "<label>" .
-				parent::getInputPart() .
-				$this->getCaption() . "</label>";
+				$this->getCheckboxHtml() .
+				$this->getCaption() . 
+				"</label>";
+		}
+
+		function getCheckboxHtml()
+		{
+			return parent::getInputPart();
 		}
 
 		function getInputPart_old()
