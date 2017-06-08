@@ -19,12 +19,12 @@
 	z-index: 40;
 }
 
-a.topMenuLink
+a.topMenuLink,.topMenuCaption,a.topMenuCaption,a.topMenuCaption:visited,.topMenuItem,a.topMenuItem
 {
 	color: #aaa;
 }
 
-a.topMenuLink:hover
+a.topMenuLink:hover,.topMenuCaption:hover,a.topMenuCaption:hover,.topMenuItem:hover,a.topMenuItem:hover
 {
 	color: #ffffff;
 }

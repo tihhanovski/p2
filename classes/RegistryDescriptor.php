@@ -133,12 +133,25 @@
             return $this->getEditorTopToolbar();
         }
 
+        function hasAddNewButton()
+        {
+            return app()->canUpdate();
+        }
+
+        function hasMoreMenu()
+        {
+            return method_exists($this, "moreMenuItemsHtml");
+        }
+
         function getIndexTopToolbar()
         {
             $buttons = array();
 
-            if(app()->canUpdate())
+            if($this->hasAddNewButton())
                 $buttons["New"] = "newDocument('". app()->request(REQUEST_REGISTRY) ."')";
+
+            if($this->hasMoreMenu())
+                $buttons["More"] = "grid.showMore()";
 
             return toolbar($buttons) . $this->getTopFilterToolbarItem();
         }

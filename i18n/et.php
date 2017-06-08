@@ -300,5 +300,12 @@
 			"drate" => "Kurss 2",
 			"Allow all" => "Luba kõik",
 			"Decline all" => "Keela kõik",
+			"More" => "Veel...",
+			"Select all" => "Vali kõik",
+			"Unselect all" => "Tühista valik",
+			"Invert selection" => "Inverteeri valik",
+			"Expected changes log" => "Eeldatavate muudatuste nimekiri",
+			"Proceed" => "Jätka",
+			"Changes log" => "Muudatuste logi",
 		)
 	);

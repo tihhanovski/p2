@@ -691,8 +691,11 @@
 
 		grid.showMore = function()
 		{
+			var gmb = $("#gridMoreButton");	//todo remove
+			if(gmb.length < 1)
+				gmb = $("#toolbar_more");
 			bubble
-				.pos($("#gridMoreButton").position().left, $("#gridMoreButton").position().top + $("#gridMoreButton").height())
+				.pos(gmb.position().left, gmb.position().top + gmb.outerHeight())
 				.dimensions(300, 200)
 				.show(t("Loading..."));
 			$.get(setup.INSTANCE_WEB + "?action=moreMenuItemsHtml&registry=" + req.registry,
