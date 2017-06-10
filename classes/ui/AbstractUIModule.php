@@ -92,5 +92,28 @@
 				linkItem("app.mainMenu();", "close");
 		}
 
+		public function getFaIcon($icon)
+		{
+			return "<i class=\"fa " . app()->ui()->getFaIconName($icon) . "\" aria-hidden=\"true\"></i>";
+		}
+
+		public function getFaIconName($icon)
+		{
+			if(!isset($this->_faIcons))
+				$this->_faIcons = array(
+						"pdf" => "fa-file-pdf-o",
+						"html" => "fa-file-code-o",
+						"xls" => "fa-file-excel-o",
+						"xlsx" => "fa-file-excel-o",
+						"excel" => "fa-file-excel-o",
+						"xml" => "fa-file-code-o",
+					);
+
+			return (isset($this->_faIcons[$icon])) ?
+				$this->_faIcons[$icon]:
+				"fa-question-circle-o";
+
+		}
+
 
 	}

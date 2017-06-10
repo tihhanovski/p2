@@ -172,9 +172,10 @@
 				if(isset($c->$f) && $c->$f)
 				{
 					$url = app()->url("?registry=" . app()->request("registry") . "&action=previewReport&output=$fmt");
-					$ret .= "<a href=\"$url\" target=\"_blank\" class=\"startReportButton\"><span>" .
-							"<img src=\"" . app()->url("ui/img/16/export-" . strtoupper($fmt) . ".png") . "\" border=\"0\"/>" .
-							t(strtoupper($fmt)) . "</span></a>";
+					$ret .= "<a href=\"$url\" target=\"_blank\" class=\"startReportButton\">" .
+							app()->ui()->getFaIcon($fmt) .
+							"&nbsp;" .
+							t(strtoupper($fmt)) . "</a>";
 				}
 			}
 			$html = lockedMemo($ret, "Start report");
