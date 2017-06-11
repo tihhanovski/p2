@@ -327,6 +327,12 @@
 		float: left;
 	}
 
+	a.toolbarIcon
+	{
+		font-size: 14pt;
+		color: #eeeeee;
+	}
+
 	.topMenuItem
 	{
 		padding-top: 4px;

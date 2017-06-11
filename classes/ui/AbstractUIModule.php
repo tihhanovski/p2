@@ -97,7 +97,7 @@
 			return "<i class=\"fa " . app()->ui()->getFaIconName($icon) . "\" aria-hidden=\"true\"></i>";
 		}
 
-		public function getFaIconName($icon)
+		public function getFaIconName($icon, $def = "fa-question-circle-o")
 		{
 			if(!isset($this->_faIcons))
 				$this->_faIcons = array(
@@ -107,11 +107,18 @@
 						"xlsx" => "fa-file-excel-o",
 						"excel" => "fa-file-excel-o",
 						"xml" => "fa-file-code-o",
+						"new" => "fa-plus",
+						"docs_list" => "fa-folder-open-o",
+						"save" => "fa-floppy-o",
+						"copy" => "fa-clipboard",
+						"delete" => "fa-times",
+						"undo" => "fa-undo",
+						"log" => "fa-clock-o", //fa-history
 					);
 
 			return (isset($this->_faIcons[$icon])) ?
 				$this->_faIcons[$icon]:
-				"fa-question-circle-o";
+				$def;
 
 		}
 

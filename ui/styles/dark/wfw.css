@@ -4,6 +4,12 @@
 	font-size: 10pt;
 }
 
+a.toolbarIcon
+{
+	font-size: 14pt;
+	color: #000000;
+}
+
 .userMenu
 {
 	background-color: #DE9207;

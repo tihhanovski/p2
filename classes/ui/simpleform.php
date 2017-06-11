@@ -314,12 +314,15 @@
 				$tcap = t($caption);
 				$id = str_replace(" ", "_", strtolower($caption));
 				$ctrlId = "toolbar_" . $id;
+				$icon = app()->ui()->getFaIcon($id);
+				/*
 				$icon = "ui/img/16/" . $id . ".png";
 				if(app()->getAbsoluteFile($icon))
 					$icon = "<img src=\"" . app()->url($icon) . "\" border=\"0\" alt=\"$tcap\" class=\"topmenuIcon\"/>";
 				else
 					$icon = "";//"[$icon] ";
-				$ret .= "<div id=\"$ctrlId\" class=\"topMenuItem\"><a href=\"JavaScript:$link;\" title=\"$tcap\" tabindex=\"-1\">" .
+				*/
+				$ret .= "<div id=\"$ctrlId\" class=\"topMenuItem\"><a href=\"JavaScript:$link;\" title=\"$tcap\" tabindex=\"-1\" class=\"toolbarIcon\">" .
 						$icon .
 						(SETUP_TOOLBAR_CAPTIONS_VISIBLE || (!$icon) ? "<span class=\"topMenuCaption\">" . $tcap . "</span>" : "") .
 						"</a></div>";
