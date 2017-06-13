@@ -107,6 +107,19 @@
 			return $this->forms;
 		}
 
+		public function clearFields()
+		{
+			if(is_object($c = new ReportContext($this->getContextName())))
+				if(is_object($obj = $c->obj))
+				{
+					$this->setDefaults($c);
+					$this->setDefaultColumns($c);
+					app()->putContext($c);
+					app()->requireReloadPage();
+				}
+			echo app()->jsonMessage();
+		}
+
 		private $columns;
 
 		function initColumns()

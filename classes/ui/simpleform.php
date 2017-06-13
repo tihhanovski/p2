@@ -160,6 +160,16 @@
 			return "";
 	}
 
+	function clearReportFieldsButton()
+	{
+		$ret = "<a href=\"JavaScript:app.func('clearFields');\" class=\"clearReportFieldsButton\">" .
+			//app()->ui()->getFaIcon($fmt) .
+			//"&nbsp;" .
+			t("Clear fields") . "</a>";
+		$html = lockedMemo($ret, "&nbsp;");
+		return $html;
+	}
+
 	function startReportButton($c = null)
 	{
 		$html = "";
@@ -187,7 +197,6 @@
 				"target=\"_blank\" class=\"startReportButton\">" . t("Start report") . "</a></div>";
 
 		return $html . "<script language=\"JavaScript\"> \$(function(){\$(\".startReportButton\").button();}); </script>";
-
 	}
 
 	function contextData($context = null)

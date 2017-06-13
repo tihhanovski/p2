@@ -21,4 +21,5 @@
 			prevNextMonthYear("dt1", "dt2"),
 			getAvailableColumnsSelector($this),
 			startReportButton($this),
+			clearReportFieldsButton(),
 		));
