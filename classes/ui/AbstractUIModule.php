@@ -92,9 +92,10 @@
 				linkItem("app.mainMenu();", "close");
 		}
 
-		public function getFaIcon($icon)
+		public function getFaIcon($icon, $def = "")
 		{
-			return "<i class=\"fa " . app()->ui()->getFaIconName($icon) . "\" aria-hidden=\"true\"></i>";
+			$in = app()->ui()->getFaIconName($icon, $def);
+			return $in ? "<i class=\"fa $in\" aria-hidden=\"true\"></i>" : "";
 		}
 
 		public function getFaIconName($icon, $def = "fa-question-circle-o")

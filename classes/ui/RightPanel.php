@@ -318,6 +318,14 @@
 		}
 	}
 
+	class PrintButtonOnlyInDB extends PrintButton
+	{
+		function toHtml()
+		{
+			return $this->context->obj->isInDatabase() ? parent::toHtml() : "";
+		}
+	}
+
 	class PrintButton extends RightPanelItem
 	{
 		function __construct($context, $form = "", $caption = "print document")
