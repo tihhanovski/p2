@@ -1,6 +1,6 @@
 <?php
 /**
- * Application
+ * ReportDescriptor
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
  * @copyright (c) 2011 Intellisoft OÜ
  *

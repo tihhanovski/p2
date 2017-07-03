@@ -39,6 +39,7 @@
 	require_once WFW_CLASSPATH . "Application.php";
 
 	require_once WFW_CLASSPATH . "XLSExporter.php";
+	require_once WFW_CLASSPATH . "XMLExporter.php";
 
 	require_once WFW_CLASSPATH . "ui/index.php";
 

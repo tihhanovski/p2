@@ -578,6 +578,9 @@
 			if($output == "xls")
 				$this->toXLS();
 
+			if($output == "xml")
+				$this->toXML();
+
 			if($output == "html")
 			{
 				echo "html not implemented yet";	//TODO
@@ -657,6 +660,25 @@
 			$this->w->fileName = $this->getExportFileName() . ".xlsx";
 			$this->w->getWorkbook();
 			return $this->w;
+		}
+
+		function getXMLExporter($t)
+		{
+			$this->xml = new XMLExporter($t);
+			return $this->xml;
+		}
+
+		public function toXML()
+		{
+		 	app()->requirePrivilegeJson(PRIVILEGE_SELECT);
+			$xml = $this->getXMLExporter($this->header);
+
+			$xml->addPairs($this->filters, "filters", "filter");
+			$xml->addRows($this->rows);
+
+			$xml->addPairs($this->bottomFilters, "footers", "footer");
+
+			$xml->output($this->getExportFileName());
 		}
 
 		/**
