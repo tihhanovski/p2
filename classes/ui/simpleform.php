@@ -236,6 +236,8 @@
 	{
 		if(!is_object($obj))
 			return "";
+		if(app()->uiHelper()->closeDocumentToolbarWritten)
+			return "";
 		app()->uiHelper()->closeDocumentToolbarWritten = true;
 
 		if(!$obj->isClosable())
