@@ -36,7 +36,7 @@
 	if($obj->companySrcId)
 	{
 		$sup = app()->get("company", $obj->companySrcId);
-		$model->addFilter(t("Supplier"), $suo->getCaption());
+		$model->addFilter(t("Supplier"), $sup->getCaption());
 	}
 
 	if($modFiltered = app()->warehouse()->isArticleModifiersEnabled() && $obj->modId != DEFAULT_WHMV_MODIFIER)
