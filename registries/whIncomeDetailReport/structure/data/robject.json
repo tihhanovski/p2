@@ -1,0 +1,14 @@
+{
+	"data":
+	[
+		{
+			"id": 10103,
+			"name": "whIncomeDetailReport",
+			"state": 2,
+			"typeId": 2,
+			"module": 7,
+			"menupartId": 2,
+			"pos": 0
+		}
+	]
+}
