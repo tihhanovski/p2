@@ -68,28 +68,14 @@
 	if($filterSql != "")
 		$filterSql = "where " . $filterSql;
 
-
-	//$qmodSql = $obj->whId == DEFAULT_WAREHOUSE ? "if(m.whSrcId = 1, 1, -1)" : "if(m.whDstId = {$obj->whId}, 1, -1)";
-	//$filterSql = ($modFiltered ? " and m.modifierId = {$obj->modId}" : "") .
-	//	($obj->whId != DEFAULT_WAREHOUSE ? " and (m.whSrcId = {$obj->whId} or m.whDstId = {$obj->whId})" : " and m.typeId <> " . WHMVTYPE_INTRA);
-
-
 	$sql = "select 
-			b.fullNr as doc, 
-			m.dt, 
+			a.id,
 			a.code, 
 			a.name, 
-			m.quantity as qty, 
-			m.cost, 
 			u.name as unit,
-			m.quantity * m.cost as tcost,
-			concat(
-				if(m.typeId = 1, '" . t("Initial state") . "', ''),
-				if(m.typeId = 2, sc.name, ''),
-				if(m.typeId = 4, sw.name, ''),
-				if(m.typeId = 6, '" . t("ru_whproduction") . "', ''),
-				if(m.typeId = 7, '" . t("ru_whinventory") . "', '')
-			) as ep
+			sum(m.quantity) as qty, 
+			round(sum(m.quantity * m.cost), 2) as tcost,
+			if(sum(m.quantity * m.cost) <> 0, sum(m.quantity) / sum(m.quantity * m.cost), null) as cost
 
 			from whmv m
 			left join article a on a.id = m.articleId
@@ -98,7 +84,8 @@
 			left join company sc on sc.id = m.companySrcId
 			left join warehouse sw on sw.id = m.whSrcId
 			$filterSql
-			order by m.dt, b.nrprefix, b.nr";
+			group by a.id, a.code, a.name, u.name
+			order by a.code, a.id";
 
 	//die("<pre>$sql");
 

@@ -10,7 +10,7 @@
 	/**
 	 * Article history report registry descriptor
 	 */
-	class WhincomedetailreportRegistryDescriptor extends ReportDescriptor
+	class WhincomesummaryreportRegistryDescriptor extends ReportDescriptor
 	{
 		public $pdfEnabled = true;
 		public $htmlEnabled = false;
@@ -23,9 +23,6 @@
 		{
 			app()->warehouse();
 			return array(
-				new PdfReportColumn("doc", "Document", 16),
-				new PdfReportColumn("dt", "Date", 18, "L", FORMAT_DATE),
-				new PdfReportColumn("ep", "Endpoint", 30, "L"),
 				new PdfReportColumn("code", "Article", 20, "L"),
 				new PdfReportColumn("name", "Name", 40, "L"),
 				new PdfReportColumn("qty", "Quantity", 20, "R", FORMAT_QUANTITY_WAREHOUSE, true, AGG_SUM),
