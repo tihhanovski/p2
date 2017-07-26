@@ -700,7 +700,7 @@
 				gmb = $("#toolbar_more");
 			bubble
 				.pos(gmb.position().left, gmb.position().top + gmb.outerHeight())
-				.dimensions(300, 200)
+				.dimensions(300, 300)
 				.show(t("Loading..."));
 			$.get(setup.INSTANCE_WEB + "?action=moreMenuItemsHtml&registry=" + req.registry,
 				function(data)

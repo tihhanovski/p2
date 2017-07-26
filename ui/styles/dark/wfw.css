@@ -1048,6 +1048,11 @@ label
   	margin-right: 5px;
   }
 
+  .moreMenuItem
+  {
+  	margin: 8px;
+  }
+
   .multiSelect
   {
   	max-height: 200px;
