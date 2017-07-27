@@ -173,6 +173,7 @@ class WhinventoryParent extends WFWObject
         $batch->companyDstId = DEFAULT_COMPANY;
         $batch->totalCost = 0;
         $batch->totalPrice = 0;
+        $batch->memo = "";
         $batch->insert();
         if(!$batch->id)
             return false;
@@ -190,7 +191,7 @@ class WhinventoryParent extends WFWObject
                     $m->free();
                 }
         if($batch->totalCost != 0)
-            $batch->update;
+            $batch->update();
 
         $this->locked = 1;
         return $this->update();
