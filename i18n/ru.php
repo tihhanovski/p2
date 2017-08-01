@@ -1108,6 +1108,7 @@
 			"ro_whIncomeDetailReport" => "Детальный отчет прихода на склад",
 			"ro_whIncomeSummaryReport" => "Суммарный отчет прихода на склад",
 			"Initial state" => "Начальное состояние",
+			"Order by" => "Сортировка",
 		)
 
 	);
