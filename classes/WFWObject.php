@@ -968,17 +968,20 @@ class WFWObject extends DB_DataObject
 
     function prepareCopyChildrenByClass($var, $cls, $tree)
     {
-        $array = $this->$var;
-        $thisID = $this->getPrimaryKeyField();
+        if(isset($this->$var))
+        {
+            $array = $this->$var;
+            $thisID = $this->getPrimaryKeyField();
 
-        if(is_array($array))
-            foreach ( $array as $k => $c )
-            {
-                $cf = $c->getPrimaryKeyField();
-                $parentID = $c->getParentIdField($this->__table);
-                unset($c->$parentID);
-                $c->prepareCopy($tree);
-            }
+            if(is_array($array))
+                foreach ( $array as $k => $c )
+                {
+                    $cf = $c->getPrimaryKeyField();
+                    $parentID = $c->getParentIdField($this->__table);
+                    unset($c->$parentID);
+                    $c->prepareCopy($tree);
+                }
+        }
     }
 
     function loadChildren($tree)
