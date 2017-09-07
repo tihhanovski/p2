@@ -359,7 +359,11 @@
             app()->requirePrivilege(PRIVILEGE_SELECT);
 
             if(!is_object($context = app()->getContext($this->getContextName())))
-                die(t("No context"));
+            {
+                $context = $this->createContext();
+                if($context->load())
+                    app()->putContext($context);
+            }
 
             if(file_exists($fn = $this->getPrintFormPath(app()->request("form"))))
                 include $fn;
