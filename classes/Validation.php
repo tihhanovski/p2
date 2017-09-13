@@ -67,13 +67,13 @@
  	{
  		public function validate($obj, $field)
  		{
- 			if($obj->$field == "")
+ 			if(($obj->$field == "") || ($obj->$field == "NULL"))
  			{
  				$obj->addWarning(new Warning("Field empty", $field, WARNING_ERROR));
  				return false;
  			}
 
-			if($obj->getFormat($field) == FORMAT_DATE && $obj->$field == "NULL")	//TODO
+			if($obj->getFormat($field) == FORMAT_DATE)	//TODO
 			{
 				$obj->addWarning(new Warning("Field empty", $field, WARNING_ERROR));
 				return false;
