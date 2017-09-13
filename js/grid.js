@@ -152,11 +152,24 @@
 		{
 			var gg = this;
 			if(isMobile())
-				$("#mgr_" + row.id).click(function(){gg.setActiveRow(this.id);gg.onRowClick(this.id);});
+				$("#mgr_" + row.id).click(function(event)
+					{
+						gg.lastEvent = event;
+						gg.setActiveRow(this.id);
+						gg.onRowClick(this.id);
+					});
 			else
 				$("#mgr_" + row.id)
-					.click(function(){gg.setActiveRow(this.id);})
-					.dblclick(function(){gg.onRowClick(this.id);})
+					.click(function(event)
+						{
+							gg.lastEvent = event;
+							gg.setActiveRow(this.id);
+						})
+					.dblclick(function(event)
+						{
+							gg.lastEvent = event;
+							gg.onRowClick(this.id);
+						})
 		}
 
 		grid.reloadNewRow = function(id)
