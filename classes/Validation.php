@@ -73,12 +73,6 @@
  				return false;
  			}
 
-			if($obj->getFormat($field) == FORMAT_DATE)	//TODO
-			{
-				$obj->addWarning(new Warning("Field empty", $field, WARNING_ERROR));
-				return false;
-			}
-
  			return true;
  		}
  	}
