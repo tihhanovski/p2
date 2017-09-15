@@ -1073,7 +1073,7 @@ class WFWObject extends DB_DataObject
                 else
                 {
                     if(!app()->canUpdate($t))
-                        throw new WFWException("insufficient rights");
+                        throw new WFWException(MSG_INSUFFICIENT_RIGHTS);
                     $this->setLinkedFieldInsertDefaults($o, $insDefs);
                     $o->setFirstCaption($this->$c);
                     if(!$o->validateDocument())

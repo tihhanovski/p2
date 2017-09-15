@@ -1667,7 +1667,7 @@
 		{
 			$this->requireLoginJson();
 			if(!$this->hasRight($privilege, $reg))
-				die($this->jsonMessage(RESULT_ERROR, t(MSG_INSUFFICIENT_RIGHTS)));	//TODO consider throwing exception
+				throw new WFWException(MSG_INSUFFICIENT_RIGHTS);
 		}
 
 		/**

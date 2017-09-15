@@ -1271,7 +1271,7 @@
             $tree = $this->getChildrenTree();
             if(!is_array($tree))
             {
-                $req = app()->request(REQUEST_REGISTRY);    // $_REQUEST[REQUEST_REGISTRY];
+                $req = app()->request(REQUEST_REGISTRY);
                 $tree = array($req => array());
             }
 
