@@ -466,10 +466,15 @@
 		if(is_array($arr))
 			foreach ($arr as $c)
 			{
-				if(is_object($c))
-					$ret .= $c->toHtml();
+				if(is_array($c))
+					$ret .= simpleform($c);
 				else
-					$ret .= $c;
+				{
+					if(is_object($c))
+						$ret .= $c->toHtml();
+					else
+						$ret .= $c;					
+				}
 			}
 		return $ret;
 	}
