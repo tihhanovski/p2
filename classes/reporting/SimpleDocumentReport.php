@@ -11,6 +11,14 @@
 	 */
 	class SimpleDocumentReport
 	{
+
+		public function getModel()
+		{
+			if(!isset($this->model))
+				$this->model = new ReportModel($this->getCaption($obj));
+			return $this->model;
+		}
+
 		/**
 		 * @param DB_Dataobject $obj
 		 */
@@ -18,7 +26,7 @@
 		{
 			app()->initReporting();
 
-			$model = new ReportModel($this->getCaption($obj));
+			$model = $this->getModel();
 
 			if(is_array($arr = $this->getTopFilters($obj)))
 				foreach ($arr as $c => $f)

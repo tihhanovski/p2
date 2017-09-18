@@ -516,7 +516,6 @@
 
 		function pdfHeader($pdf)
 		{
-
 		}
 
 		function setupPdf($pdf)
