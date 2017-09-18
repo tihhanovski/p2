@@ -803,6 +803,8 @@ class WFWObject extends DB_DataObject
         else
         {
             $class = $children[$path];
+            if(!$class)
+                throw new WFWException("Child class not found. Review children tree for \"$path\"");
             $c = DB_DataObject::factory($class);
             if(!is_a($c, "WFWObject"))
                 $c = new $class;
