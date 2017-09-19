@@ -42,6 +42,14 @@ class WFWObject extends DB_DataObject
         return $this->__table;
     }
 
+    public function requireUpdateGrids()    //TODO rework it
+    {
+        $o = new stdClass();
+        $o->id = "reloadGrids";
+        $o->value = $this->get_data_for_json();
+        app()->addUpdated($o);
+    }
+
     public function comment($comment)
     {
         if ($this->isInDatabase())
