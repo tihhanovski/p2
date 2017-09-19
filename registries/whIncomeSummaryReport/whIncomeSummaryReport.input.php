@@ -18,6 +18,8 @@
 
 			selectSql($obj, "companySrcId", "Supplier", "select id, name from company where closed = 0 and supplier = 1 order by name"),
 
+			checkbox($obj, "groupByGroup", "Group by article groups"),
+
 			getAvailableColumnsSelector($this),
 			startReportButton($this),
 			clearReportFieldsButton(),

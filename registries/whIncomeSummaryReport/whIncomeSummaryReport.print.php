@@ -73,6 +73,7 @@
 			a.code, 
 			a.name, 
 			u.name as unit,
+			g.name as grp,
 			sum(m.quantity) as qty, 
 			round(sum(m.quantity * m.cost), 2) as tcost,
 			if(sum(m.quantity * m.cost) <> 0, sum(m.quantity) / sum(m.quantity * m.cost), null) as cost
@@ -83,10 +84,16 @@
 			left join whmvbatch b on b.id = m.batchId
 			left join company sc on sc.id = m.companySrcId
 			left join warehouse sw on sw.id = m.whSrcId
+			left join articlegroup g on g.id = a.groupId
 			$filterSql
-			group by a.id, a.code, a.name, u.name
-			order by a.code, a.id";
+			group by a.id, a.code, a.name, u.name, g.name
+			order by " . ($obj->groupByGroup ? "g.name, a.code, a.id" : "a.code, a.id");
 
+	if($obj->groupByGroup)
+	{
+		$model->groupBy("grp");
+		$model->autoGroupCaption = true;
+	}
 	//die("<pre>$sql");
 
 	$model->fillBySql($sql);
