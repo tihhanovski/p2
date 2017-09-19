@@ -46,12 +46,3 @@
 
 			textarea($obj, "memo"),
 		));
-
-?><script type="text/javascript">
-
-	function xfillQuantitiesNotFilledYet()
-	{
-		app.alert("hei!");
-	}
-
-</script>
