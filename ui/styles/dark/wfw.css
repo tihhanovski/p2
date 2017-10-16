@@ -380,6 +380,12 @@ a.topMenu
 	z-index: 20;
 }
 
+.rightPanelFAIcon
+{
+	margin-left: -16px;
+	position: absolute;
+}
+
 .rightPanelItem
 {
 	clear: both;

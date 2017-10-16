@@ -3,7 +3,7 @@
 /**
  * System profile registry descriptor
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
- * @copyright (c) 08.06.2015 Intellisoft OÜ
+ * @copyright (c) 08.06.2015 Ilja Tihhanovski
  */
 
 echo simpleform(array(

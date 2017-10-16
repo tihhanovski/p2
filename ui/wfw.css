@@ -363,6 +363,12 @@
 	{
 	}
 
+	.rightPanelFAIcon
+	{
+		margin-left: -16px;
+		position: absolute;
+	}
+
 	.rightPanel
 	{
 		width: 200px;
@@ -1120,3 +1126,4 @@
 	background-color: #0099ff !important;
 	color: white;
 }
+
