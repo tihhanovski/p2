@@ -823,11 +823,16 @@
 			}
 		}
 
+		grid.removeKeyboardNavigation = function()
+		{
+			$("body").off("keydown");
+		}
+
 		grid.addKeyboardNavigation = function()
 		{
 			if(!grid.keyboardNavigation)
 				return;
-			$("body").keydown(function(event)
+			$("body").on("keydown", function(event)
 			{
 				var activeRow = $(".activeGridRow");
 				if(activeRow.length < 1)
