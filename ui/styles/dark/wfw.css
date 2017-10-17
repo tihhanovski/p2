@@ -1081,3 +1081,12 @@ label
 	background-color: #0099ff !important;
 	color: white;
 }
+
+.gridExportButton
+{
+	cursor: pointer; 
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 6px;
+	padding-left: 6px;
+	float: left;
