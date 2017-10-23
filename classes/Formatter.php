@@ -584,6 +584,7 @@
         {
             case FORMAT_FLOAT:                return FloatFormatter::singleton();
             case FORMAT_FLOAT0:                return FloatFormatter0::singleton();
+            case FORMAT_INT:                return FloatFormatter0::singleton();
             case FORMAT_FLOAT1:                return FloatFormatter1::singleton();
             case FORMAT_FLOAT2:                return FloatFormatter2::singleton();
             case FORMAT_FLOAT3:                return FloatFormatter3::singleton();
