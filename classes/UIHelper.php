@@ -51,7 +51,6 @@
 					//L3RD_BOOTSTRAP_JS,
 					WFW_WEB . "js/app.js",
 					WFW_WEB . "js/utils.js",
-					WFW_WEB . "js/autocomplete.js",
 					WFW_WEB . "js/bubble.js",
 					WFW_WEB . "js/tipSystem.js",
 					WFW_WEB . "js/grid.js",
