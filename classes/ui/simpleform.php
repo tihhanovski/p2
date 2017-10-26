@@ -104,10 +104,10 @@
  					$model[$key] = $value;
 
  			return "<div class=\"formRow\" id=\"{$this->name}Grid\"></div>" .
- 					"<script type=\"text/javascript\">\n" .
- 					"var {$this->modelName} = " . json_encode($model) . ";\n" .
- 					"\$(function(){detailGrid.build(\"#{$this->name}Grid\", {$this->modelName});});\n" .
- 					"\n</script>";
+ 					wrapScript(
+ 						"var {$this->modelName} = " . json_encode($model) . "; " .
+ 						"\$(function(){detailGrid.build(\"#{$this->name}Grid\", {$this->modelName});}); "
+ 					);
  		}
  	}
 
@@ -196,7 +196,7 @@
 				"<a href=\"" . app()->url("?registry=" . app()->request("registry") . "&action=previewReport") . "\" " .
 				"target=\"_blank\" class=\"startReportButton\">" . t("Start report") . "</a></div>";
 
-		return $html . "<script language=\"JavaScript\"> \$(function(){\$(\".startReportButton\").button();}); </script>";
+		return $html . wrapScript("\$(function(){\$(\".startReportButton\").button();});");
 	}
 
 	function contextData($context = null)
@@ -208,9 +208,7 @@
 			return "";
 
 		app()->uiHelper()->contextDataWritten = true;
-		return "<script type=\"text/javascript\"> " .
-				"var obj = " . json_encode($context->obj->get_data_for_json()) . "; " .
-				"</script>";
+		return wrapScript("var obj = " . json_encode($context->obj->get_data_for_json()) . ";");
 	}
 
 	function modificationData($obj)
@@ -313,7 +311,7 @@
 					"<div><a href=\"JavaScript:app.loadLinkedEmails();\">" . t("Reload") . "</a></div>" .
 					"</div>" .
 					"</div>" .
-					"<script language=\"JavaScript\"> \$(function(){app.loadLinkedEmails();}); </script>";
+					wrapScript("\$(function(){app.loadLinkedEmails();});");
 	}
 
 	function toolbar($buttons)
@@ -525,6 +523,10 @@
 		return $x->prepareInput($obj, "orderBy", "Order by", $items);
 	}
 
+	function wrapScript($s)
+	{
+		return "<script type=\"text/javascript\"> $s </script>";
+	}
 
 	function htmlReportHeader($caption)
 	{
@@ -592,3 +594,4 @@
 				$ret[] = new CheckBox($obj, $prefix . $o->getIdValue(), $o->getCaption());
 		return $ret;
 	}
+

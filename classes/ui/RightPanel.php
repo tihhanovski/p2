@@ -423,6 +423,6 @@
 				return "<div class=\"rightPanelItem rightPanelItemFiles\" " .
 						"style=\"padding-left: 16px; min-height: 16px;\" " .
 						"id=\"commentsControl\"></div>" .
-						"<script type=\"text/javascript\"> $(function(){commentsControl.create($(\"#commentsControl\"))});</script>";
+						wrapScript("\$(function(){commentsControl.create($(\"#commentsControl\"))});");
 		}
 	}

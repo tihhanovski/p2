@@ -169,6 +169,11 @@
 		return $x->toHtml();
 	}
 
+	function selectAutocomplete($obj, $field, $caption = null, $optionsSql = null, $attr = null, $addAttr = null)
+	{
+
+	}
+
 	function textboxAutocomplete($obj, $field, $caption = null, $attr = null, $addAttr = null)
 	{
 		$sql = "select distinct coalesce($field, '') from {$obj->__table}" .
@@ -183,7 +188,5 @@
 			return lockedMemo($obj->getValue($field), $caption == null ? t($field) : $caption);
 		$x = new TextBox($obj, $field, $caption, $attr, $addAttr);
 		$opn = json_encode(dbToArray($optionsSql));
-		return $x->toHtml() . "<script type=\"text/javascript\"> " .
-				"\$(function(){app.setupAutocomplete(\"{$obj->fullpath}_{$field}\", $opn);});" .
-				" </script>";
+		return $x->toHtml() . wrapScript("\$(function(){app.setupAutocomplete(\"{$obj->fullpath}_{$field}\", $opn);});");
 	}

@@ -118,15 +118,14 @@
 		{
 			$id = "grid";
 			$ret = "<table id=\"$id\"></table>" .
-					"<script type=\"text/javascript\">\n\n" .
+					wrapScript(
 					"function procMe( celDiv, id ) {\$( celDiv ).click( function() {document.location = \"" . app()->url() . "?action=open&" . $this->reqPart . "&id=\" + id;});}\n\n" .
 					"\$(document).ready(function(){" .
 					"var gridModel = " . json_encode($this) . ";" .
 					"gridModel.height = \$(window).height() - \$(\".pageHeader\").height() - 62;\n" .
 					"for(x = 0; x < gridModel.colModel.length; x++) gridModel.colModel[x].process = procMe; " .
 					"\$(\"#$id\").flexigrid(gridModel);\n\n" .
-					"});\n\n" .
-					"</script>";
+					"});");
 
 			return $ret;
 		}
@@ -221,9 +220,7 @@
 		function toHtml($id)
 		{
 			$ret = "<table id=\"$id\"></table>" .
-					"<script type=\"text/javascript\">\n\n" .
-					"\$(\"#grid\").flexigrid(" . json_encode($this) . ");\n\n" .
-					"</script>";
+					wrapScript("\$(\"#grid\").flexigrid(" . json_encode($this) . ");");
 
 			return $ret;
 		}
