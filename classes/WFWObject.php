@@ -206,8 +206,6 @@ class WFWObject extends DB_DataObject
 
     function getKeySelSetup($obj, $field)
     {
-        //$o = $obj->__table;
-        //die("return new KeySelSetup($o, $field, $this->__table, $this->keySelColumns());");
         return new KeySelSetup($obj, $field, $this->__table, $this->keySelColumns());
     }
 
@@ -994,6 +992,42 @@ class WFWObject extends DB_DataObject
         }
     }
 
+    protected function saveForeignValues()
+    {
+        //TODO
+    }
+
+    protected function loadForeignValues()
+    {
+        if(isset($this->foreignFields) && is_array($this->foreignFields))
+            foreach($this->foreignFields as $name => $desc)
+            {
+                if(is_array($desc))
+                {
+                    $ff = isset($desc["idField"]) ? $desc["idField"] : FALSE;
+                    $kf = isset($desc["keyField"]) ? isset($desc["keyField"]) : FALSE;
+                }
+                else
+                {
+                    $ff = $desc;
+                    $kf = FALSE;
+                }
+                
+                if($ff && $t = $this->getForeignKeyTable($ff))
+                    if(is_object($o = app()->get($t, (int)$this->$ff)))
+                    {
+                        if(!$kf)
+                            $kf = isset($o->selectKeyField) ? $o->selectKeyField : FALSE;
+                        if(!$kf)
+                            $kf = isset($o->captionFields) && is_array($o->captionFields) && isset($o->captionFields[0]) ? $o->captionFields[0] : FALSE;
+                        if($kf)
+                        {
+                            $this->$name = $kf ? $o->getValue($kf) : "";
+                        }
+                    }
+            }
+    }
+
     function loadChildren($tree)
     {
         if(is_array($tree))
@@ -1004,6 +1038,8 @@ class WFWObject extends DB_DataObject
                     while(list($k, $v) = each($cl))
                         $this->loadChildrenByClass($k, $v, $tree);
                 }
+
+        $this->loadForeignValues();
 
         if($this->hasDynamicProperties())
             $this->loadDynamicProperties();
@@ -1906,6 +1942,7 @@ class WFWObject extends DB_DataObject
 
 class WFWNamed extends WFWObject
 {
+    public $selectKeyField = "name";
     protected $captionFields = array("name");
 
     protected $closedField = "closed";  //closable
@@ -1932,6 +1969,8 @@ class WFWCodedAndNamed extends WFWObject
         "code" => array(VALIDATION_NOT_EMPTY, VALIDATION_UNIQUE),
         "name" => array(VALIDATION_NOT_EMPTY),
     );
+
+    public $selectKeyField = "code";
 
     protected $formats = array(
         "mdCreated" =>      FORMAT_DATETIME,

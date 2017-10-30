@@ -2,14 +2,18 @@
 /*
  * Created on Mar 2, 2012
  *
- * (c) Ilja Tihhanovski, Intellisoft
+ * (c) Ilja Tihhanovski
  *
  */
 
 
-	define("VALIDATION_NOT_EMPTY", "not empty");
-	define("VALIDATION_CLASS_METHOD", "class method");
-	define("VALIDATION_UNIQUE", "unique");
+	const VALIDATION_NOT_EMPTY = "not empty";
+	const VALIDATION_CLASS_METHOD = "class method";
+	const VALIDATION_UNIQUE = "unique";
+
+	const VALIDATION_FOREIGN = "fk";
+	const VALIDATION_FOREIGN_MUST_EXIST = "fk must exist";
+	const VALIDATION_FOREIGN_ADD_IF_NOT_EXIST = "fk add if not exist";
 
 	$_validators = array();
 
@@ -42,6 +46,14 @@
 		global $_validators;
 		$v_validators[$constraint] = $v;
 		return $v_validators[$constraint];
+	}
+
+	class ValidatorForeign extends Validator
+	{
+ 		public function validate($obj, $field)
+ 		{
+ 			return true;
+ 		}		
 	}
 
  	class Validator
