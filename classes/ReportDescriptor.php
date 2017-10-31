@@ -65,16 +65,20 @@
 		{
 			$obj = $context->obj;
 			$b = true;
-			foreach($this->getAvailableColumns() as $c)
-			{
-				$cn = AVAILABLECOLUMN_FIELD_PREFIX . $c->name;
-				if(isset($obj->$cn) && $obj->$cn)
-					$b = false;
-			}
+			$ac = $this->getAvailableColumns();
+			if(is_array($ac))
+			{			
+				foreach($ac as $c)
+				{
+					$cn = AVAILABLECOLUMN_FIELD_PREFIX . $c->name;
+					if(isset($obj->$cn) && $obj->$cn)
+						$b = false;
+				}
 
-			if($b)
-				foreach($this->getAvailableColumns() as $c)
-					$obj->setValue(AVAILABLECOLUMN_FIELD_PREFIX . $c->name, 1);
+				if($b)
+					foreach($ac as $c)
+						$obj->setValue(AVAILABLECOLUMN_FIELD_PREFIX . $c->name, 1);
+			}
 			return $b;
 		}
 

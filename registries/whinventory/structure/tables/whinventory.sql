@@ -9,7 +9,7 @@ CREATE TABLE whinventory (
   whId int not null,
   articlegroupId int,
   locked tinyint not null default 0,
-  memo text not null default '',
+  memo text,
   mdCreated datetime,
   mdUpdated datetime,
   mdCreatorId int,

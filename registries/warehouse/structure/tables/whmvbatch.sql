@@ -12,7 +12,7 @@ CREATE TABLE whmvbatch (
   companySrcId int not null,
   companyDstId int not null,
   locked tinyint not null default 0,
-  memo text not null default '',
+  memo text,
   totalCost decimal(18,2) not null default 0,
   totalPrice decimal(18,2) not null default 0,
   mdCreated datetime,

@@ -13,11 +13,11 @@ CREATE TABLE whmv (
   cost decimal(18,6) not null default 0,
   price decimal(18,6) not null default 0,
   discount decimal(18,2) not null default 0,
-  memo text not null default '',
-  mdCreated datetime DEFAULT NULL,
-  mdUpdated datetime DEFAULT NULL,
-  mdCreatorId int DEFAULT NULL,
-  mdUpdaterId int DEFAULT NULL,
+  memo text,
+  mdCreated datetime,
+  mdUpdated datetime,
+  mdCreatorId int,
+  mdUpdaterId int,
   iqp decimal(18,6) not null default 0,
   oqp decimal(18,6) not null default 0
 )
