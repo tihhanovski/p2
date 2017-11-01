@@ -17,6 +17,7 @@
 					new LockButton($context),
 					!$obj->isLocked() ? "<hr/>" : "",
 					!$obj->isLocked() ? new AppFuncButton($context, "fillQuantitiesNotFilledYet", "Fill quantities not filled yet") : "",
+					!$obj->isLocked() ? new AppFuncButton($context, "updateWhStates", "Update warehouse states with current values") : "",
 				),
 				false, false
 			),
