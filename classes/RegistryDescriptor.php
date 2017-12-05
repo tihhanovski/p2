@@ -522,7 +522,7 @@
             $this->sqlQuery = $this->getSqlQueryPart();
 
             $this->sqlRrQuery = "";
-            if($reloadRow = 0 + app()->request("reloadRow"))
+            if($reloadRow = (int)app()->request("reloadRow"))
             {
                 //find first col sql
                 $s = $this->plainSql($this->sql);

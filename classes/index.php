@@ -6,6 +6,13 @@
  *
  */
 
+
+	//TODO temporary PHP7 warning hack
+	if (PHP_MAJOR_VERSION >= 7) {
+	    set_error_handler(function ($errno, $errstr) {
+	       return strpos($errstr, 'Declaration of') === 0;
+	    }, E_WARNING);
+	}
  	const JS_VERSION = 47;
 
  	define("WFW_CLASSPATH", WFW_ROOT . "classes/");

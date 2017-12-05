@@ -1016,7 +1016,7 @@
 		 */
 		function isDebug()
 		{
-			return DEBUG && ((0 < 0 + $this->request("debug") + $this->request("dbg")) || (php_sapi_name() == "cli"));
+			return DEBUG && ((0 < (int)$this->request("debug") + (int)$this->request("dbg")) || (php_sapi_name() == "cli"));
 		}
 
 		/**

@@ -153,7 +153,7 @@ class WFWObject extends DB_DataObject
 
     function addWarning($w)
     {
-        if($w->field)
+        if(is_object($w) && isset($w->field) && $w->field)
             $w->field = $this->fullpath . CHILD_DELIMITER . $w->field;
         app()->addWarning($w);
     }
@@ -1463,8 +1463,10 @@ class WFWObject extends DB_DataObject
         return $ret;
     }
 
-    function update()
+    function update($o = false)
     {
+        if($o)
+            return $o->update();
         $this->enumerate();
         $this->setUpdateMetadata();
         $ret = parent::update();
@@ -1473,11 +1475,11 @@ class WFWObject extends DB_DataObject
         return $ret;
     }
 
-    function delete()
+    function delete($useWhere = false)
     {
         $this->log(LOG_ACTION_DEL);
         $this->changed = array();
-        return parent::delete();
+        return parent::delete($useWhere);
     }
 
     function setLogEnabled(/**boolean*/ $b)

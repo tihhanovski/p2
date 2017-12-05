@@ -31,7 +31,7 @@
 		/**
 		 * {@inheritdoc}
 		 */
-		public function find()
+		public function find($n = false)
 		{
 			return true;
 		}
@@ -39,7 +39,7 @@
 		/**
 		 * {@inheritdoc}
 		 */
-		public function get()
+		public function get($k = NULL, $v = NULL)
 		{
 			return $this->fetch();
 		}
@@ -73,7 +73,7 @@
 		/**
 		 * {@inheritdoc}
 		 */
-		public function setValue($field, $value)
+		public function setValue($field, $value, $setChanged = true)
 		{
 			$ret = parent::setValue($field, $value);
 			$value = $this->$field;
@@ -143,11 +143,11 @@
 		 * {@inheritdoc}
 		 * Not needed, doesn't work
 		 */
-		public function update() {}
+		public function update($o = false) {}
 
 		/**
 		 * {@inheritdoc}
 		 * Not needed, doesn't work
 		 */
-		public function delete() {}
+		public function delete($uw = false) {}
 	}
