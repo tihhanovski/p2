@@ -904,6 +904,7 @@
 						"CURRENCY_DEFAULT_D2" => "c",
 						"FORMATSTRING_DATEPICKER" => "dd.mm.yy",
 						"SERVER_TIMEZONE" => "Europe/Tallinn",
+						"SELECT_SEND_DATA_ONCHANGE" => false,
 
 						//TODO get rid of it
 						//"SETUP_3RD_COMBOGRID_CSS" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery-ui-1.8.9.custom.css",
