@@ -306,7 +306,7 @@
                 }
                 $numeric = $var;
             }
-            return 0 + $numeric;
+            return floatval($numeric);
         }
     }
 
