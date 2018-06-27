@@ -50,8 +50,11 @@
 				html += '<a href="JavaScript:void(0);" ' +
 					'class="addGridRowButton"><img src="' + setup.WFW_WEB + '/ui/img/16/add.png" border="0"/>' + t("Add row") + '</a>';
 
+            if(model.rowsChangeable && model.rowsAppendable && model.name == "persons")
+                html += '<form name="personForm" id="personForm">Select file for import: <input type="file" name="fileToUpload" id="fileToUpload"><input type="submit"></form>';
 			html += '</div></div>';
-
+			console.log("test");
+			console.log(model);
 			if(model.leftCaption)
 				html += '</div>';
 
@@ -60,10 +63,43 @@
 				model.startAddRow();
 			});
 
+            if(model.rowsChangeable && model.rowsAppendable && model.name == "persons") {
+                $("#personForm").submit(function ( e ) {
+                    e.preventDefault();
+					var str = model.fullpath.toString().split('_');
+
+					var res = str[0].substring(11, str[0].length-1);
+                    $.ajax({
+                        url: baseUrl() + '?action=importPersons&policyId='+obj.id,
+                        type: "POST",
+                        data:  new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(data){
+                            //console.log(data);
+                            //arr = JSON.parse(data);
+                            //isikud = JSON.parse(arr.obj);
+                            //$.each( isikud, function( index, value ){
+                                //model.startAddRowWithValue(value);
+                                //console.log(value);
+                            //});
+							reopenDocument();
+                        }
+                    });
+
+                    console.log("test upload");
+                });
+			}
 			model.startAddRow = function()
 			{
 				addChild(this.fullpath, this.addRow);
 			}
+
+            model.startAddRowWithValue = function(val)
+            {
+                addChildWithValue(this.fullpath, this.addRow,val);
+            }
 
 			model.addRow = function(obj, visible, path)
 			{
