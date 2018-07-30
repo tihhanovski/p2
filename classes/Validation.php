@@ -10,6 +10,7 @@
 	const VALIDATION_NOT_EMPTY = "not empty";
 	const VALIDATION_CLASS_METHOD = "class method";
 	const VALIDATION_UNIQUE = "unique";
+	const VALIDATION_PHONE = "phone";
 
 	const VALIDATION_FOREIGN = "fk";
 	const VALIDATION_FOREIGN_MUST_EXIST = "fk must exist";
@@ -34,6 +35,9 @@
 
 			case VALIDATION_UNIQUE:
 				return addValidator($constraint, new ValidatorUnique());
+
+			case VALIDATION_PHONE:
+				return addValidator($constraint, new ValidatorPhone());
 
 			default:
 				return addValidator($constraint, new Validator());
@@ -103,5 +107,26 @@
  				return false;
  			}
  			return true;
+ 		}
+ 	}
+
+	/**
+	 * Validate phone number
+	 * 
+	 * Valid phone number is considered to be which contains only:
+	 * - numbers
+	 * - spaces
+	 * - "+" sign
+	 */
+ 	class ValidatorPhone extends Validator
+ 	{
+ 		public function validate($obj, $field)
+ 		{
+			if (!preg_match('/^[0-9 \+]+$/i', $obj->$field) || !preg_match('/[0-9]/', $obj->$field)){
+ 				$obj->addWarning(new Warning("Not a valid phone number", $field, WARNING_ERROR));
+				return false;
+			}
+
+			return true;
  		}
  	}

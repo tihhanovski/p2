@@ -171,6 +171,7 @@
 			"Accounting code" => "Raamatupidamise kood",
 			"Payment terms" => "Maksetähtaeg",
 			"Field empty" => "Väli ei saa olla tühi!",
+			"Not a valid phone number" => "Väli ei sisalda korrektset telefoninumbrit!",
 			"Articles" => "Artiklid",
 			"Article" => "Artikkel",
 			"Price" => "Hind",
