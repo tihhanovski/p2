@@ -304,6 +304,11 @@
 
 	function select($obj, $field, $caption = null, $options = null, $attr = null, $addAttr = null)
 	{
+		if(!$obj->isEditable()) {
+			$link = $obj->getLink($field);
+			$value = $link ? app()->getLinkedCaption($link) : $obj->{$field}; 
+			return lockedMemo($value, $caption == null ? t($field) : $caption);
+		}
 		$x = new Select();
 		return $x->prepareInput($obj, $field, $caption, $options, $attr, $addAttr);
 	}
