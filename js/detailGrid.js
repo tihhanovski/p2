@@ -36,8 +36,10 @@
 			html += '<div id="' + model.name + 'GridContainer" class="ui-corner-all gridContainer" style="overflow: none;">';
 			html += '<div class="gridHead">';
 
-			html += this.colHeader({"name": "", "caption": "&nbsp;", "width": "1"});
-			for(x = 0; x < model.cols.length; x++)
+			if(model.rowsChangeable)
+				html += this.colHeader({"name": "", "caption": "&nbsp;", "width": "1"});
+			
+				for(x = 0; x < model.cols.length; x++)
 				html += this.colHeader(model.cols[x]);
 			if(model.rowsChangeable)
 				html += this.colHeader({"name": "", "caption": "&nbsp;", "width": "1"});
@@ -53,8 +55,8 @@
             if(model.rowsChangeable && model.rowsAppendable && model.name == "persons")
                 html += '<form name="personForm" id="personForm">Select file for import: <input type="file" name="fileToUpload" id="fileToUpload"><input type="submit"></form>';
 			html += '</div></div>';
-			console.log("test");
-			console.log(model);
+			// console.log("test");
+			// console.log(model);
 			if(model.leftCaption)
 				html += '</div>';
 
@@ -117,8 +119,13 @@
 				if(!obj.todelete)
 				{
 					var x;
-					var html = '<div id="' + obj.fullpath + '" ' + stl + ' class="gridRow">' +
-						'<div class="gridCell gridCellW1"></div></div>';
+					var html = '<div id="' + obj.fullpath + '" ' + stl + ' class="gridRow">';
+
+					if(canChange){
+						html += '<div class="gridCell gridCellW1"></div>';
+					}
+
+					html += '</div>';
 					$("#" + path).append(html);
 
 					this.focusedControl = null;
