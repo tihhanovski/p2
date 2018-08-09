@@ -824,7 +824,7 @@
 			var wh = $(window).height();
 			$("#gridHeader").width($(this.containerId).width());
 			$("#gridScroller")
-				.height(wh - ($("#gridScroller").position().top + $(this.containerId).find(".mGridFooter").height() + 10));
+				.height(wh - ($("#gridScroller").offset().top + $(this.containerId).find(".mGridFooter").height() + 10));
 			if(grid.filterShown)
 			{
 				$("#bubbleContents").height(wh - this.filterHeightDelta);
