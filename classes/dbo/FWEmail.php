@@ -211,7 +211,7 @@ class FWEmail extends WFWObject
 		$smtp = Mail::factory('smtp',
 			array (
 				'host' => $sys->dynSmtpServer,
-				//'port' => isset($sys->dynSmtpPort) ? $sys->dynSmtpPort : 25,
+				'port' => isset($sys->dynSmtpPort) ? $sys->dynSmtpPort : 25,
 		    	'auth' => ($sys->dynSmtpPassword != ""),
 		    	'username' => $sys->dynSmtpLogin,
 		    	'password' => $sys->dynSmtpPassword)
