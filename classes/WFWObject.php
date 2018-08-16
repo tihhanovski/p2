@@ -1642,7 +1642,7 @@ class WFWObject extends DB_DataObject
         if(!$this->isClosable())
             return false;
         $cf = $this->closedField;
-        return ($this->$cf == $this->closedValue);
+        return (isset($this->$cf) && $this->$cf == $this->closedValue);
     }
 
     function closeDocument()
@@ -1754,9 +1754,9 @@ class WFWObject extends DB_DataObject
             $rf->insert();
             if($rf->getIdValue())
             {
-                if(!file_exists($f = INSTANCE_ROOT . USERFILES . $rf->__table))
-                    mkdir($f);
-                rename($tempFileName, $f . "/" . $rf->getIdValue());
+                $this->ensureFolderExists();
+                $f = INSTANCE_ROOT . USERFILES . $this->__table . "/" . $this->getFolder();
+                rename($tempFileName, $f . '/' .$fileName);
                 return $rf->getIdValue();
             }
         }
