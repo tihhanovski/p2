@@ -158,6 +158,10 @@
 
         function getTopFilterToolbarItem()
         {
+            if (!$this->hasFilteredFields()) {
+                return '';
+            }
+            
             return "<div onclick=\"grid.toggleFilter();\" class=\"gridFilterCaption gridFilterCaptionTop pointerCursor\"></div>";
         }
 
