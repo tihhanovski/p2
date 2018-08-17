@@ -1,0 +1,6 @@
+[
+    {
+        "fields": "userId",
+        "type": "index"
+    }
+]
