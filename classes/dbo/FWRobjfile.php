@@ -26,7 +26,11 @@ class FWRobjfile extends WFWObject
     public function getActualPath()
     {
         if($this->isInDatabase())
-            return INSTANCE_ROOT . USERFILES . $this->__table . "/" . $this->getIdValue();
+            if ($linked = $this->getLinkedDocument()) {
+                return INSTANCE_ROOT . USERFILES . $linked->__table . "/" . $linked->getFolder() . $this->name;
+            } else {
+                return INSTANCE_ROOT . USERFILES . $this->__table . "/" . $this->getFolder() . $this->name;
+            }
         else
             return "";
     }
