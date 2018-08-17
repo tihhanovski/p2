@@ -91,7 +91,6 @@ class FWEmail extends WFWObject
 	{
 		dbglog("simpleSend($to, $subject, $body)");
 		$this->setDefaultValues();
-		$this->recipient = $to;
 		$this->subject = $subject;
 		$this->body = $body;
 		$this->sendTo($this->recipient);
@@ -179,6 +178,8 @@ class FWEmail extends WFWObject
 			"head_charset" => "UTF-8",
 			"head_encoding" => "base64",
 		);
+
+		$this->recipient = $addr;
 
 		$message = new Mail_mime($mimeparams);
 
