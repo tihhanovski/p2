@@ -30,6 +30,20 @@ echo simpleform(array(
 					//checkbox($obj, PROPERTY_PREFIX . "PrintCurrency2Sum", "Print totals in second currency"),
 					//textbox($obj, PROPERTY_PREFIX . "CompanyLogo", "Logo url"),
 					//dynMultiTextArea($obj, "CompanyAddress", "Address for documents"),
+					new DetailGrid(
+						"banks",
+						array(
+								new DetailGridColumn("name", "Name", 'textbox', 12),
+								new DetailGridColumn("iban", "IBAN", 'textbox', 12),
+								new DetailGridColumn("swift", "SWIFT", 'textbox', 6),
+							),
+						array(
+							"caption" => t("Banks"),
+							"leftCaption" => true,
+							"rowsChangeable" => true,
+							"rowsAppendable" => true,
+						)
+					)
 				)
 			),
 			new TabulatorItem(

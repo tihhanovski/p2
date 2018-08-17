@@ -14,4 +14,13 @@
 		{
 			return app()->system();
 		}
+
+		public function getChildrenTree()
+		{
+			return ["webuser" => 
+				[
+					"banks" => "bank"
+				]
+			];
+		}
 	}
