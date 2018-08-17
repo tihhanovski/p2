@@ -2252,7 +2252,9 @@
 			if(!isset($this->mimetypes))
 			{
 				$this->mimetypes = array();
-				$a = file_get_contents("/etc/mime.types");
+				if (!$a = @file_get_contents("/etc/mime.types")) {
+					$a = file_get_contents('http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
+				}
 				foreach (explode("\n", $a) as $r)
 				{
 					$r = trim($r);
