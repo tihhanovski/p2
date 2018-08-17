@@ -6,6 +6,9 @@
  *
  */
 
+	if (!defined('SHOW_HIDDEN_MODULES')) {
+		define('SHOW_HIDDEN_MODULES', true);
+	}
 
 	echo textbox($obj, "name"),
 		textarea($obj, "memo");
@@ -66,17 +69,44 @@
 	<?php
 
 	$r = app()->dbo("robject");
+	$r->orderBy('module DESC');
+	$modules = [];
+	$prevModule = null;
 	if($r->find())
 		while($r->fetch())
 		{
-			?><div class="gridRow">
-				<div class="gridCell gridCellW12"><?=t("ro_" . $r->name)?></div><?php
-			foreach($a as $v => $capt)
-			{
-				$c = new CheckBox($obj, "obj" . $r->getIdValue() . $v, " ");
-				?><div class="gridCell gridCellW6 center"><?=$c->getInputPart()?></div><?php
+			// Cache module data
+			if (!isset($modules[$r->module])) {
+				$rmodule = app()->dbo("rmodule");
+				$rmodule->id = $r->module;
+				$rmodule->find(true);
+				$modules[$r->module] = $rmodule;
+			} else {
+				$rmodule = $modules[$r->module];
 			}
-			?><div class="gridCell gridCellW12"><a href="JavaScript:allowRow(<?=$r->getIdValue()?>);"><?=$cAllow?></a> <a href="JavaScript:declineRow(<?=$r->getIdValue()?>);"><?=$cDecline?></a></div></div><?php
+
+			if (SHOW_HIDDEN_MODULES || strlen($rmodule->name) > 0) {
+				if (!$prevModule || $prevModule->getIdValue() !== $rmodule->getIdValue()) {
+				?>
+				<div class="gridRow moduleRow">
+					<div class="gridCell">
+						<strong><?=(strlen($rmodule->name) > 0) ? t($rmodule->name) : 'ID: '.$rmodule->getIdValue()?></strong>
+					</div>
+					<div class="clr"></div>
+				</div>
+				<?php 
+				} 
+				?>
+				<div class="gridRow">
+					<div class="gridCell gridCellW12"><?=t("ro_" . $r->name)?></div><?php
+				foreach($a as $v => $capt)
+				{
+					$c = new CheckBox($obj, "obj" . $r->getIdValue() . $v, " ");
+					?><div class="gridCell gridCellW6 center"><?=$c->getInputPart()?></div><?php
+				}
+				?><div class="gridCell gridCellW12"><a href="JavaScript:allowRow(<?=$r->getIdValue()?>);"><?=$cAllow?></a> <a href="JavaScript:declineRow(<?=$r->getIdValue()?>);"><?=$cDecline?></a></div></div><?php
+				$prevModule = $rmodule;
+			}
 		}
 
 	?><div class="clearBoth"></div></div></div><script type="text/javascript">
