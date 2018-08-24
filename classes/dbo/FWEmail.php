@@ -53,7 +53,14 @@ class FWEmail extends WFWObject
 		$this->loadDynProperties();
 		$u = app()->user();
 		$u->loadDynamicPropertiesIfNotLoaded();
-		return $u->dynEmailName . " <" . $u->dynEmail . ">";
+
+		if (isset($u->dynEmailName) && strlen($u->dynEmailName) > 0) {
+			return $u->dynEmailName . " <" . $u->dynEmail . ">";
+		} else {
+			$sys = app()->system();
+			$sys->loadDynamicPropertiesIfNotLoaded();
+			return $sys->dynCompanyName . " <" . $sys->dynCompanyEmail . ">";
+		}
 	}
 
     function getDefaultFor_body()
@@ -93,7 +100,7 @@ class FWEmail extends WFWObject
 		$this->setDefaultValues();
 		$this->subject = $subject;
 		$this->body = $body;
-		$this->sendTo($this->recipient);
+		$this->sendTo($to);
 		$this->sent = app()->now();
 		return $this->insert();
 	}
