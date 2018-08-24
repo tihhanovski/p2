@@ -109,23 +109,20 @@
 	    	$ret = parent::insert();
 	    	$this->updatePasswd();
 
-	    	//TODO rewrite and test it before uncomment
-	    	/*
-	    	$eml = app()->dbo("email");
-	    	$emlText = $this->getNewAccountEmailBody();
-	    	$this->updatePasswd();
-	    	if(!defined("USER_NEW_SEND_EMAIL"))
-	    		define("USER_NEW_SEND_EMAIL", false);
-			if(USER_NEW_SEND_EMAIL)
-	    		$eml->simpleSend($this->email, APP_TITLE . " : " . t("Your account is created"), $emlText);
-	    	*/
+	    	// To we need to send email?
+			if(defined('USER_NEW_SEND_EMAIL') && USER_NEW_SEND_EMAIL) {
+				$eml = app()->dbo("email");
+				$emlText = $this->getNewAccountEmailBody();
+				$this->updatePasswd();
+				$eml->simpleSend($this->email, APP_TITLE . ": " . t("Your account is created"), $emlText);
+			}
 
 	    	app()->addUserStat($this, "user created", "", "ok", USERSTATTYPE_MANIPULATION);
 
 	    	return $ret;
 	    }
 
-	    function getNewAccountEmailBody()
+	    private function getNewAccountEmailBody()
 	    {
 	    	//TODO use proper template for email body
 	    	$ret =
@@ -134,12 +131,10 @@
 	    		t("Your login name is") . ": " . $this->uid . "<br/>" .
 	    		t("And password is") . ": " . $this->pwd . "<br/><br/>" .
 	    		t("You could log in here") . "<br/>" .
-	    		FULL_INSTANCE_ROOT . "<br/><br/>" .
+	    		"<a href='".FULL_INSTANCE_ROOT."'>".FULL_INSTANCE_ROOT . "</a><br/><br/>" .
 
 	    		t("Please change your password as soon as possible. You can do it here") . ":<br/>" .
-	    		FULL_INSTANCE_ROOT . "?registry=profile#tabPasswd" . "<br/><br/>" .
-
-	    		t("Sincerelly yours") . "<br/>" . APP_TITLE;
+	    		"<a href='".FULL_INSTANCE_ROOT."?registry=profile#tabPasswd'>".FULL_INSTANCE_ROOT . "?registry=profile#tabPasswd" . "</a>";
 
 	    	return $ret;
 	    }

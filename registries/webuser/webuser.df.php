@@ -13,29 +13,39 @@
 	}
 	else
 	{
-		if($obj->isNew())
+		$cbs = "";
+		$r = app()->dbo("role");
+		if ($r->find()) {
+			while($r->fetch()) {
+				if($r->getIdValue() > SYSTEM_ROLE_ID) {
+					$cbs .= checkbox($obj, "role" . $r->getIdValue(), $r->name);
+				}
+			}
+		}
+
+		$cbs = new HtmlComponent(
+			[
+				lockedMemo('&nbsp;', 'roles'),
+				$cbs
+			]
+		, 'div', array('class' => 'roles'));
+
+		if ($obj->isNew()) {
 			echo simpleform(array(
 				textbox($obj, "name", "name(real)"),
 				textbox($obj, "uid"),
 				textbox($obj, "pwd"),
 				textbox($obj, "email"),
-				));
-		else
-		{
-			$cbs = "";
-			$r = app()->dbo("role");
-			if($r->find())
-				while($r->fetch())
-					if($r->getIdValue() > SYSTEM_ROLE_ID)
-						$cbs .= checkbox($obj, "role" . $r->getIdValue(), $r->name);
-
+				$cbs
+			));
+		} else {
 			echo simpleform(array(
 				lockedMemo($obj->uid, "uid"),
 				textbox($obj, "name", "name(real)"),
 				textbox($obj, "email"),
 				$cbs,
 				lockedMemo("<a href=\"JavaScript:passwdStart();\">" . t("Change password") . "</a>", "&nbsp;"),
-				));
+			));
 		}
 	}
 
