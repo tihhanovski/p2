@@ -869,7 +869,7 @@
 	function newDocument(registryName)
 	{
 		if(setup.DocOpenInTab)
-			openDocumentInNewTab("");
+			openDocumentInNewTab("", registryName);
 		else
 			openSpecificDocument(registryName, "");
 	}
@@ -900,15 +900,16 @@
 			"&id=" + id;
 	}
 
-	function openDocumentInNewTab(id)
+	function openDocumentInNewTab(id, registryName)
 	{
+		registryName = (typeof registryName === 'undefined') ? req.registry : registryName;
 		log("openDocumentInNewTab(" + id + ")");
 		if($("#openerForm").length == 0)
 			$("body").append('<form action="' + setup.INSTANCE_WEB + '" id="openerForm" method="GET" target="_blank"></form>');
 		try
 		{
 			$("#openerForm").html('<input type="hidden" name="action" value="open"/>' +
-					'<input type="hidden" name="registry" value="' + req.registry + '"/>' +
+				'<input type="hidden" name="registry" value="' + registryName + '"/>' +
 					'<input type="hidden" name="id" value="' + id + '"/>')[0].submit();
 			return;
 		}catch(e){log(e.message);}
