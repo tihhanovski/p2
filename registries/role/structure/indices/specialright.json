@@ -1,0 +1,11 @@
+[
+    {
+        "name": "PK",
+        "fields": "id",
+        "type": "primary key"
+    },
+    {
+        "fields": "registryId",
+        "type": "index"
+    }
+]

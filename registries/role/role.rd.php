@@ -24,7 +24,10 @@
 
 		function getChildrenTree()
 		{
-			return array("role" => array("rights" => "objectright"));
+			return array("role" => [
+				"rights" => "objectright", 
+				"specialrights" => "rolespecialright"
+			]);
 		}
 
 		function grantRobject()
@@ -48,6 +51,20 @@
 						$obj->grantGlobalPrivilege($cid, app()->request("v") ? true : false);
 						app()->putContext($context);
 					}
+			echo app()->jsonMessage();
+		}
+
+		function grantSpecialPrivilege()
+		{
+			if (is_object($context = $this->getExistingContext())) {
+				if (is_object($obj = $context->obj)) {
+					if ($cid = app()->request("cid")) {
+						$obj->grantSpecialPrivilege($cid, app()->request("v") ? true : false);
+						app()->putContext($context);
+					}
+				}
+			}
+
 			echo app()->jsonMessage();
 		}
 	}

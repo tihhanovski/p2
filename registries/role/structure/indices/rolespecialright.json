@@ -1,0 +1,6 @@
+[
+    {
+        "fields": "roleId",
+        "type": "index"
+    }
+]

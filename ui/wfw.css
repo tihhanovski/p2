@@ -520,6 +520,14 @@
 		overflow: hidden;
 	}
 
+	.gridCellW30
+	{
+		padding-left: 3px;
+		padding-right: 6px;
+		margin-right: 1px;
+		width: 590px;
+	}
+
 	.gridCellW24
 	{
 		padding-left: 3px;

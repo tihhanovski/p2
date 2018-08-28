@@ -106,6 +106,38 @@
 				}
 				?><div class="gridCell gridCellW12"><a href="JavaScript:allowRow(<?=$r->getIdValue()?>);"><?=$cAllow?></a> <a href="JavaScript:declineRow(<?=$r->getIdValue()?>);"><?=$cDecline?></a></div></div><?php
 				$prevModule = $rmodule;
+
+				$specialrights = $r->specialrights();
+				if (is_array($specialrights) && count($specialrights) > 0) {
+				?>
+					<div class="gridHead">
+						<div class="gridHeadCell gridCellW12"><?=t("specialrights")?></div>
+						<div class="gridHeadCell gridCellW6 center"><?=t('specialright_allowed')?></div>
+						<div class="gridHeadCell gridCellW30">&nbsp;</div>
+					</div>
+					<div class="gridHead">
+						<div class="gridHeadCell gridCellW12">&nbsp;</div>
+						<div class="gridHeadCell gridCellW6 center"><a href="JavaScript:allowSpecialCol('<?=$r->id?>');"><?=$cAllow?></a></div>
+						<div class="gridHeadCell gridCellW30">&nbsp;</div>
+					</div>
+					<div class="gridHead">
+						<div class="gridHeadCell gridCellW12">&nbsp;</div>
+						<div class="gridHeadCell gridCellW6 center"><a href="JavaScript:declineSpecialCol('<?=$r->id?>');"><?=$cDecline?></a></div>
+						<div class="gridHeadCell gridCellW30">&nbsp;</div>
+					</div>
+				<?php
+
+					foreach ($specialrights as $right) {
+						$c = new CheckBox($obj, "specialright". $r->id . $right->id, " ");
+					?>
+					<div class="gridRow">
+						<div class="gridCell gridCellW12"><?=$right->getCaption()?></div>
+						<div class="gridCell gridCellW6 center"><?=$c->getInputPart()?></div>
+						<div class="gridCell gridCellW30">&nbsp;</div>
+					</div>
+					<?php
+					}
+				}
 			}
 		}
 
@@ -131,4 +163,14 @@
 			app.func("grantGlobalPrivilege", {"cid": id, "v": 0});
 		}
 
+		function allowSpecialCol(id)
+		{
+			app.func("grantSpecialPrivilege", {"cid": id, "v": 1});
+		}
+
+		function declineSpecialCol(id)
+		{
+			app.func("grantSpecialPrivilege", {"cid": id, "v": 0});
+		}
+		
 </script>

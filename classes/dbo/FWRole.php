@@ -55,65 +55,131 @@ class FWRole extends WFWObject
 		}
 	}
 
-	    function loadChildrenByClass($var, $cls, $tree)
-	    {
-	    	if($cls == "objectright")
-	    	{
-	    		$obj = app()->dbo("robject");
-	    		if($obj->find())
-	    			while($obj->fetch())
-	    			{
-	    				$oid = $obj->getIdValue();
-	    				$sel = "obj" . $oid . "s";
-	    				$upd = "obj" . $oid . "u";
-	    				$del = "obj" . $oid . "d";
-	    				$lck = "obj" . $oid . "l";
+	function grantSpecialPrivilege($id, $b)
+	{
+		$val = $b ? 1 : 0;
+		if ($id) {
+			$obj = app()->dbo("specialright");
+			if ($obj->find()) {
+				while ($obj->fetch()) {
+					$this->setValue("specialright" . $id . $obj->getIdValue(), $val);
+				}
+			}
+		}
+	}
 
-	    				$rgt = app()->dbo("objectright");
-	    				$rgt->roleId = $this->getIdValue();
-	    				$rgt->registryId = $oid;
-	    				$rgt->find(true);
-	    				$this->$sel = $rgt->s;
-	    				$this->$upd = $rgt->u;
-	    				$this->$del = $rgt->d;
-	    				$this->$lck = $rgt->l;
-	    			}
-	    	}
-	    	else
-	    		return parent::loadChildrenByClass($var, $cls, $tree);
-	    }
+	function loadChildrenByClass($var, $cls, $tree)
+	{
+		if($cls == "objectright")
+		{
+			$obj = app()->dbo("robject");
+			if($obj->find())
+				while($obj->fetch())
+				{
+					$oid = $obj->getIdValue();
+					$sel = "obj" . $oid . "s";
+					$upd = "obj" . $oid . "u";
+					$del = "obj" . $oid . "d";
+					$lck = "obj" . $oid . "l";
 
-	    function saveChildrenByClass($var, $cls, $tree)
-	    {
-	    	if($cls == "objectright")
-	    	{
-	    		$obj = app()->dbo("robject");
-	    		if($obj->find())
-	    			while($obj->fetch())
-	    			{
-	    				$oid = $obj->getIdValue();
-	    				$sel = "obj" . $oid . "s";
-	    				$upd = "obj" . $oid . "u";
-	    				$del = "obj" . $oid . "d";
-	    				$lck = "obj" . $oid . "l";
+					$rgt = app()->dbo("objectright");
+					$rgt->roleId = $this->getIdValue();
+					$rgt->registryId = $oid;
+					$rgt->find(true);
+					$this->$sel = $rgt->s;
+					$this->$upd = $rgt->u;
+					$this->$del = $rgt->d;
+					$this->$lck = $rgt->l;
+				}
+		} elseif($cls == "rolespecialright") {
+			$obj = app()->dbo("robject");
+			if($obj->find())
+				while($obj->fetch())
+				{
+					$oid = $obj->getIdValue();
 
-	    				$rgt = app()->dbo("objectright");
-	    				$rgt->roleId = $this->getIdValue();
-	    				$rgt->registryId = $oid;
-	    				$found = $rgt->find(true);
-	    				$rgt->s = $this->$sel;
-	    				$rgt->u = $this->$upd;
-	    				$rgt->d = $this->$del;
-	    				$rgt->l = $this->$lck;
-	    				if($found)
-	    					$rgt->update();
-	    				else
-	    					$rgt->insert();
-	    			}
-	    	}
-	    	else
-	    		return parent::saveChildrenByClass($var, $cls, $tree);
-	    }
+					$right = app()->dbo("specialright");
+					$right->registryId = $oid;
+					if ($right->find()) {
+						while($right->fetch()) {
+							$field = "specialright"  . $oid . $right->getIdValue();
+
+							$rgt = app()->dbo("rolespecialright");
+							$rgt->roleId = $this->getIdValue();
+							$rgt->specialrightId = $right->getIdValue();
+							$found = $rgt->find(true);
+
+							if ($found) {
+								$this->$field = 1;
+							}
+						}
+					}
+				}
+		}
+		else
+			return parent::loadChildrenByClass($var, $cls, $tree);
+	}
+
+	function saveChildrenByClass($var, $cls, $tree)
+	{
+		if($cls == "objectright")
+		{
+			$obj = app()->dbo("robject");
+			if($obj->find())
+				while($obj->fetch())
+				{
+					$oid = $obj->getIdValue();
+					$sel = "obj" . $oid . "s";
+					$upd = "obj" . $oid . "u";
+					$del = "obj" . $oid . "d";
+					$lck = "obj" . $oid . "l";
+
+					$rgt = app()->dbo("objectright");
+					$rgt->roleId = $this->getIdValue();
+					$rgt->registryId = $oid;
+					$found = $rgt->find(true);
+					$rgt->s = $this->$sel;
+					$rgt->u = $this->$upd;
+					$rgt->d = $this->$del;
+					$rgt->l = $this->$lck;
+					if($found)
+						$rgt->update();
+					else
+						$rgt->insert();
+				} 
+		} elseif($cls == "rolespecialright") {
+			$obj = app()->dbo("robject");
+			if ($obj->find()) {
+				while($obj->fetch()) {
+					$oid = $obj->getIdValue();
+
+					$right = app()->dbo("specialright");
+					$right->registryId = $oid;
+					if ($right->find()) {
+						while($right->fetch()) {
+							$field = "specialright"  . $oid . $right->getIdValue();
+
+							$rgt = app()->dbo("rolespecialright");
+							$rgt->roleId = $this->getIdValue();
+							$rgt->specialrightId = $right->getIdValue();
+							$found = $rgt->find(true);
+							if ($found) {
+								if ($this->$field) {
+									$rgt->update();
+								} else {
+									$rgt->delete();
+								}
+							} elseif($this->$field) {
+								$rgt->insert();
+							}
+						}
+					}
+				}
+			}
+		}
+		else
+			return parent::saveChildrenByClass($var, $cls, $tree);
+	}
 }
 
 

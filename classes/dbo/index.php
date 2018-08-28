@@ -16,6 +16,7 @@
 	require_once WFW_CLASSPATH . "dbo/FWLanguage.php";
 	require_once WFW_CLASSPATH . "dbo/FWTipsystem.php";
 	require_once WFW_CLASSPATH . "dbo/FWSoftwareIssue.php";
+	require_once WFW_CLASSPATH . "dbo/FWSpecialright.php";
 	require_once WFW_CLASSPATH . "dbo/FWObjectLink.php";
 	require_once WFW_CLASSPATH . "dbo/FWRobjfile.php";
 	require_once WFW_CLASSPATH . "dbo/FWArticle.php";
