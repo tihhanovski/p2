@@ -326,6 +326,28 @@
 		}
 	}
 
+	class PrintButtonSaveBefore extends PrintButton
+	{
+		function toHtml()
+		{
+			return "<div class=\"rightPanelItem\">" .
+					"<a href=\"?action=printDocument&registry=" . $this->context->obj->__table .
+					($this->form ? "&form=" . $this->form : "") . 
+					"&id=" . $this->context->obj->getIdValue() . "\" target=\"_blank\" tabindex=\"-1\" onclick=\"return app.saveAndFollow(this);\">" .
+					"<img src=\"" . app()->url("ui/img/16/print.png") . "\" border=\"0\"/>" . t($this->caption) .
+					"</a></div>";
+		}
+	}
+
+	class PrintButtonSaveBeforeOnlyInDB extends PrintButtonSaveBefore
+	{
+		function toHtml()
+		{
+			return $this->context->obj->isInDatabase() ? parent::toHtml() : "";
+		}
+	}
+
+
 	class PrintButton extends RightPanelItem
 	{
 		function __construct($context, $form = "", $caption = "print document")

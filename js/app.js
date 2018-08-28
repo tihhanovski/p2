@@ -539,6 +539,48 @@ var app = {
 			this.ajaxCommand(url, progressMsg, callAfter);
 		},
 
+		"funcWithSave": function (name, params, progressMsg, callAfter)
+		{
+			if (!obj.__hasUnsavedChanges) {
+				this.func(name, params, progressMsg, callAfter);
+			} else {
+				var oldAfterSaveDocument = this.afterSaveDocument;
+				this.afterSaveDocument = function(){
+					this.func(name, params, progressMsg, callAfter);
+					oldAfterSaveDocument();
+					this.afterSaveDocument = oldAfterSaveDocument;
+				};
+				this.saveDocument();
+			}
+		},
+
+		"saveAndFollow": function(elem)
+		{
+			var href = elem.href;
+			var target = elem.target;
+
+			var openLink = function() {
+				if (target == '_blank') {
+					window.open(href, '_blank').focus();
+				} else {
+					window.location = href;
+				}
+			};
+
+			if (obj.__hasUnsavedChanges) {
+				if (href) {
+					this.afterSaveDocument = openLink;
+				}
+				this.saveDocument();
+			} else {
+				openLink();
+			}
+
+
+			// Prevent following link by default
+			return false;
+		},
+
 		"ajaxCommand": function(s, progressMsg, callAfter)
 		{
 			if(progressMsg)
