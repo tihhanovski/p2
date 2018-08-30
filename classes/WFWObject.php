@@ -21,8 +21,11 @@ define("CAPTION_SEPARATOR", " : ");
 define("LOG_ACTION_INS", 0);
 define("LOG_ACTION_UPD", 1);
 define("LOG_ACTION_DEL", 2);
+define("LOG_ACTION_SEARCH", 3);
+define("LOG_ACTION_PDF", 4);
 define("LOG_TYPE_NORMAL", 0);
 define("LOG_TYPE_DOC", 1);
+define("LOG_TYPE_PERSONALDATA", 2);
 
 define("LIST_DELIMITER", ";");
 
@@ -1012,7 +1015,7 @@ class WFWObject extends DB_DataObject
                     $ff = $desc;
                     $kf = FALSE;
                 }
-                
+
                 if($ff && $t = $this->getForeignKeyTable($ff))
                     if(is_object($o = app()->get($t, (int)$this->$ff)))
                     {
@@ -2026,4 +2029,3 @@ function is_field_ok_for_json($name)
         && $name !== "primaryKey"
         && $name !== "rights");
 }
-
