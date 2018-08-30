@@ -40,7 +40,7 @@
 			$c = new Context($this->getContextName(), $this->getChildrenTree(), "");
 			$c->obj = $this->getObj();
 			$c->obj->fullpath = app()->request(REQUEST_REGISTRY);// "sysprofile";
-			$c->obj->loadChildren(null);
+			$c->obj->loadChildren($this->getChildrenTree());
 			return $c;
 		}
 
