@@ -1490,6 +1490,22 @@
 				);
 				$rights[$row[0]] = $o;
 			}
+
+			// Load special rights
+			$sql = "select ro.name, o.name AS rightName " .
+					"from rolespecialright r " .
+					"inner join specialright o on o.id = r.specialrightId " .
+					"inner join robject ro on ro.id = o.registryId " .
+					"inner join userrole u on u.roleid = r.roleid and u.userid = " . $this->user->getIdValue() .
+					" group by o.name";
+			$c = $this->user->getDatabaseConnection();
+			$q =& $c->query($sql);
+			$row = array();
+			while($q->fetchInto($row, DB_FETCHMODE_ORDERED))
+			{
+				$rights[$row[0]][$row[1]] = 1;
+			}
+
 			$this->user->rights = $rights;
 		}
 
@@ -1504,6 +1520,19 @@
 			if(!$registry)
 				$registry = $this->getCurrentRegistry();
 			return $this->user->getIdValue() && isset($this->user->rights[$registry]) && is_array($this->user->rights[$registry]) && isset($this->user->rights[$registry][$right]) && $this->user->rights[$registry][$right];
+		}
+
+		/**
+		 * Check if current user can do special right
+		 * 
+		 * @param String $right
+		 * @param String $s registry (current registry if empty)
+		 * 
+		 * @return bool
+		 */
+		function canDo($right, $s = "")
+		{
+			return $this->hasRight($right, $s);
 		}
 
 		/**
