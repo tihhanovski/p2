@@ -502,16 +502,17 @@
 		rq = new Object();
 		rq.action = "saveField";
 		rq.path = fullpath;
-		// if iinput is array
+		
+		// if input is array
         if ($("[name='" + htmlId + "[]']").length > 1) {
             var inputs = $("[name^='" + htmlId + "']").serializeArray();
 			var values = $.map(inputs, function(item){
 	            return item.value;
 	        });
-            rq.v = values.join(',');
-        } else {
-            rq.v = value;
+            value = values.join(',');
         }
+
+		rq.v = value;
         app.markFieldAsSaving(htmlId);
 		app.nowHasUnsavedChanges(true);
 		$.post(baseUrl(), rq,
