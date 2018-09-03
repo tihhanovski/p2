@@ -38,7 +38,7 @@
 		{
 			if(!isset($this->fname))
 				$this->fname = tempnam("/tmp", $this->fileName);
- 
+
 			$u = app()->user();
 			$this->xls = new PHPExcel();
 			$this->xls->getProperties()->setCreator($u->name)
@@ -126,6 +126,5 @@
 			header("Content-Disposition: inline; filename=\"{$this->fileName}\"");
 			$fh=fopen($this->fname, "rb");
 			fpassthru($fh);
-			unlink($this->fname);
 		}
 	}
