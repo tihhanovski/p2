@@ -602,7 +602,7 @@
 		 	foreach ( $this->columns as $col )
 		 	{
 		 		$x++;
-		 		$this->w->write($this->w->getCoord($x, $this->y), encodeXLS($row[$col->name]));
+		 		$this->w->write($this->w->getCoord($x, $this->y), encodeXLS($col->format(isset($row[$col->name]) ? $row[$col->name] : "")));
 		 	}
 		}
 
@@ -951,4 +951,3 @@
 		$obj->appendObjFile($tmp, $fileName);
 		$pdf->Output($fileName, 'I');	//TODO output from file?
 	}
-
