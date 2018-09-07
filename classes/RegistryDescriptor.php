@@ -935,7 +935,7 @@
                 {
                     //include app()->getAbsoluteFile("ui/edit.start.php");
                     include $fn;
-                    //include app()->getAbsoluteFile("ui/edit.finish.php");
+                    include app()->getAbsoluteFile("ui/edit.finish.php");
                 }
                 else
                     include app()->getAbsoluteFile("ui/detailNotFound.php");
