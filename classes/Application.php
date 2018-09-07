@@ -760,7 +760,19 @@
 		 */
 		function getCurrentRegistry()
 		{
-			return $this->request(REQUEST_REGISTRY);
+			$registry = $this->request(REQUEST_REGISTRY);
+
+			if ($registry) {
+				return $registry;
+			}
+
+			$context = app()->getContextByPath($this->request('path'));
+			
+			if ($context) {
+				return $context->getPrivilegesObjectName();
+			}
+
+			return '';
 		}
 
 		/**
