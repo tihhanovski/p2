@@ -540,12 +540,12 @@ class RequestHandler
             for ($row = 2; $row <= $highestRow; $row++) {
                 //  Read a row of data into an array
                 $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
-                    NULL,
-                    TRUE,
-                    FALSE);
+                NULL,
+                TRUE,
+                FALSE);
                 $values = $rowData[0];
-                $otvet = app()->query("insert into  insuredperson (policyId, code, name)
-                                values($policyId, '$values[0]', '$values[1]')");
+                $otvet = app()->query("insert into  insuredperson (policyId, code, name, phone)
+                values($policyId, '$values[0]', '$values[1]', '$values[2]')");
 
                 //var_dump($otvet);
             }
