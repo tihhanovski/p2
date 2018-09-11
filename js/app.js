@@ -611,6 +611,8 @@ var app = {
 
 			if(data.state == "ok")
 			{
+				if(obj.__isNotSaved && parseInt(data.message) > 0)
+					req.id = data.message;
 				if(data.update)
 					updateOtherFields(data.update);
 				if(data.reloadPage)
