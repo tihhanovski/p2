@@ -756,7 +756,10 @@
         public function getQueryStats($c, $obj)
         {
             //getting count;
-            $csql = "select " . $this->getQueryStatsFields() . " from (" . $this->sql . $this->sqlQuery . ") as rowCount";
+            $a = explode("from", $this->sql);
+            unset($a[0]);
+            $csql = "select " . $this->getQueryStatsFields() . " from " . implode("from", $a) . $this->sqlQuery;
+            //$csql = "select " . $this->getQueryStatsFields() . " from (" . $this->sql . $this->sqlQuery . ") as rowCount";
             $data =& $c->getRow($csql, array(), DB_FETCHMODE_ASSOC);
             if(!is_array($data))
                 if(is_object($data) && app()->isDBError($data))
