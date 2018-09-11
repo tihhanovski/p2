@@ -22,6 +22,15 @@ class FWRole extends WFWObject
     	"mdUpdated" => 		FORMAT_DATETIME,
     );
 
+    function delete($useWhere = false)
+    {
+		// Delete user relations to this role
+		$userroles = app()->dbo('userrole');
+		$userroles->roleId = $this->id;
+		$userroles->delete();
+        return parent::delete($useWhere);
+    }
+
     function isEditable()
     {
     	if($this->getIdValue() == SYSTEM_ROLE_ID)	//system role not editable
