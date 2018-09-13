@@ -39,6 +39,11 @@ class RequestHandler
                 $this->$action();
                 return;
             }
+
+            if (method_exists(app(), $action)) {
+                app()->$action();
+                return;
+            }
         } else {
             $this->index();
             return;
