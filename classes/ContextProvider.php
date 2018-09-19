@@ -139,10 +139,12 @@
 		{
 			$ud = $this->getUserDir();
 			$d = dir($ud);
-			while (false !== ($file = $d->read()))
-				if(substr($file, 0, 1) != ".")
-					unlink($ud . $file);
-			$d->close();
+			if ($d) {
+				while (false !== ($file = $d->read()))
+					if(substr($file, 0, 1) != ".")
+						unlink($ud . $file);
+				$d->close();
+			}
 		}
 	}
 
