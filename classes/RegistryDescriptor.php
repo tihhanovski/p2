@@ -370,9 +370,12 @@
             }
 
             if(file_exists($fn = $this->getPrintFormPath(app()->request("form"))))
+            {
+                $context->obj->log(LOG_ACTION_PRINT);
                 include $fn;
-            else
+            } else {
                 die("<a href=\"JavaScript:history.go(-1);\">" . t("print form not found") . "</a>");
+            }
         }
 
         public function canCloseDocument()

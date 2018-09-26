@@ -23,6 +23,7 @@ define("LOG_ACTION_UPD", 1);
 define("LOG_ACTION_DEL", 2);
 define("LOG_ACTION_SEARCH", 3);
 define("LOG_ACTION_PDF", 4);
+define("LOG_ACTION_PRINT", 5);
 define("LOG_TYPE_NORMAL", 0);
 define("LOG_TYPE_DOC", 1);
 define("LOG_TYPE_PERSONALDATA", 2);
