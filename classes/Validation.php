@@ -122,6 +122,10 @@
  	{
  		public function validate($obj, $field)
  		{
+			if (strlen($obj->$field) === 0) {
+				return true;
+			}
+
 			if (!preg_match('/^[0-9 \+]+$/i', $obj->$field) || !preg_match('/[0-9]/', $obj->$field)){
  				$obj->addWarning(new Warning("Not a valid phone number", $field, WARNING_ERROR));
 				return false;
