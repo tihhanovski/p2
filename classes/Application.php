@@ -2152,6 +2152,9 @@
 			"cant delete new document",
 			"Yes",
 			"No",
+			"Submit",
+			"Select file for import:",
+			"To import persons, save current item first."
 		);
 
 		/**

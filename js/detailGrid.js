@@ -52,8 +52,13 @@
 				html += '<a href="JavaScript:void(0);" ' +
 					'class="addGridRowButton"><img src="' + setup.WFW_WEB + '/ui/img/16/add.png" border="0"/>' + t("Add row") + '</a>';
 
-			if (obj.id && model.rowsChangeable && model.rowsAppendable && model.name == "persons")
-                html += '<form name="personForm" id="personForm">Select file for import: <input type="file" name="fileToUpload" id="fileToUpload"><input type="submit"></form>';
+			if (model.rowsChangeable && model.rowsAppendable && model.name == "persons") {
+				if (obj.id) {
+					html += '<form name="personForm" id="personForm">'+t('Select file for import:')+' <input type="file" name="fileToUpload" id="fileToUpload"><input type="submit" value="'+t('Submit')+'"></form>';
+				} else {
+					html += '<div>'+t('To import persons, save current item first.')+'</div>';
+				}
+			}
 			html += '</div></div>';
 			// console.log("test");
 			// console.log(model);
