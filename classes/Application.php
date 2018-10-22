@@ -1509,7 +1509,7 @@
 					"inner join specialright o on o.id = r.specialrightId " .
 					"inner join robject ro on ro.id = o.registryId " .
 					"inner join userrole u on u.roleid = r.roleid and u.userid = " . $this->user->getIdValue() .
-					" group by o.name";
+					" group by o.name, o.registryId";
 			$c = $this->user->getDatabaseConnection();
 			$q =& $c->query($sql);
 			$row = array();
@@ -1517,7 +1517,7 @@
 			{
 				$rights[$row[0]][$row[1]] = 1;
 			}
-
+			
 			$this->user->rights = $rights;
 		}
 
