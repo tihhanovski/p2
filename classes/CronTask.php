@@ -96,7 +96,13 @@ function runCronTasks($dir = "")
 		return;
 	}
 	app()->localAuth();
-	app()->setLocale(DEFAULT_LOCALE);
+	
+	// Set locale only once
+	// Avoids losing translations after first cron task since setLocale empties translations array
+	// and translation files are included using include_once
+	if (is_null(app()->getLocale())) {
+		app()->setLocale(DEFAULT_LOCALE);
+	}
 
 	$forced = false;
 	global $argv;
