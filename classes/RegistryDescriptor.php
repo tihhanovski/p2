@@ -162,7 +162,7 @@
                 return '';
             }
             
-            return "<div onclick=\"grid.toggleFilter();\" class=\"gridFilterCaption gridFilterCaptionTop pointerCursor\"></div>";
+            return "<div onclick=\"grid.toggleFilter();\" class=\"gridFilterCaption gridFilterCaptionTop pointerCursor\">".t("Filter")."</div>";
         }
 
         function getLogTopToolbar()
