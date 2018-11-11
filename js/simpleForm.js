@@ -105,13 +105,11 @@
 		return result;
 	}
 
-	function processWarning(w)
-	{
-		processWarning(w, 10)
-	}
-
 	function processWarning(w, timeout)
 	{
+		// Default timeout
+		timeout = timeout || 10;
+
 		//log("warning(field: " + w.field + "; severity: " + w.severity + "; message: " + w.message + ")");
 		var wc = getWarningsContainer(w.field);
 		var wcls = "warningSeverity" + w.severity;
