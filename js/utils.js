@@ -144,7 +144,8 @@ function setDatePicker(s)
 		onClose: function(dateText, inst)
 		{
 			log("datepicker.onClose: " + this.id);
-			this.focus();
+			// TODO: find better way to fix IE focus issue
+			//this.focus();
 			this.onblur = this.savedOnBlur;
 			saveField(this.id, this.id, this.value, null);
 			app.lastFocusedDatePicker = "";
