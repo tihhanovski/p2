@@ -122,7 +122,7 @@
 	    	return $ret;
 	    }
 
-	    private function getNewAccountEmailBody()
+	    protected function getNewAccountEmailBody()
 	    {
 	    	//TODO use proper template for email body
 	    	$ret =
