@@ -63,7 +63,7 @@ function discoverCLITasks($dir, &$arr)
 }
 
 /**
- * Discover and execute cron tasks.
+ * Discover and execute CLI tasks.
  * @param String $dir if empty, looking for tasks in framework, app and instance folders
  */
 function runCLITask()

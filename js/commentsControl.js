@@ -5,7 +5,7 @@ var	commentsControl = {
 			try
 			{
 				var cid = ctrl[0].id;
-				var html = '<div id="commentsContainer" class="commentsContainer"></div>' +
+				var html = '<i class="fa fa-comments-o rightPanelFAIcon" aria-hidden="true"></i><div id="commentsContainer" class="commentsContainer"></div>' +
 					'<div id="addComment">' +
 					'<textarea id="newComment" class="newCommentText" onkeypress="Javascript:commentsControl.newCommentTextKP(event);"></textarea>' +
 					'</div>';

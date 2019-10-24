@@ -904,6 +904,7 @@
 						"CURRENCY_DEFAULT_D2" => "c",
 						"FORMATSTRING_DATEPICKER" => "dd.mm.yy",
 						"SERVER_TIMEZONE" => "Europe/Tallinn",
+						"SELECT_SEND_DATA_ONCHANGE" => false,
 
 						//TODO get rid of it
 						//"SETUP_3RD_COMBOGRID_CSS" => L3RD_WEB . "combogrid-1.5.0/resources/css/smoothness/jquery-ui-1.8.9.custom.css",
@@ -1016,7 +1017,7 @@
 		 */
 		function isDebug()
 		{
-			return DEBUG && ((0 < 0 + $this->request("debug") + $this->request("dbg")) || (php_sapi_name() == "cli"));
+			return DEBUG && ((0 < (int)$this->request("debug") + (int)$this->request("dbg")) || (php_sapi_name() == "cli"));
 		}
 
 		/**
@@ -1667,7 +1668,7 @@
 		{
 			$this->requireLoginJson();
 			if(!$this->hasRight($privilege, $reg))
-				die($this->jsonMessage(RESULT_ERROR, t(MSG_INSUFFICIENT_RIGHTS)));	//TODO consider throwing exception
+				throw new WFWException(MSG_INSUFFICIENT_RIGHTS);
 		}
 
 		/**

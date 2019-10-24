@@ -76,7 +76,7 @@ var bubble = {
 
 	"packHeight": function()
 	{
-		var h1 = $("#bubbleContents").children().height();
+		var h1 = $("#bubbleContents").children().outerHeight();
 		if(h1 < this.height)
 			$("#bubbleContents").height(h1 + 38);
 

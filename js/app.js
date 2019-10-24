@@ -210,13 +210,12 @@ var app = {
 			});
 		},
 
-		"setupAutocomplete": function(path, lookup)
+		"setupAutocomplete": function(path, source)
 		{
 			$("#" + path).autocomplete({
-				"lookup": lookup,
-				onSelect: function(v)
-				{
-					saveField(path, path, v.value);
+				"source": source,
+				select: function( event, ui ) {
+					saveField(path, path, ui.item.value);
 				}
 			});
 		},

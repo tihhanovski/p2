@@ -3,7 +3,7 @@ create table robjfile (
   name varchar(100) not null,
   robj varchar(50) not null,
   rid int not null,
-  memo text not null default '',
+  memo text,
   mdCreated datetime,
   mdUpdated datetime,
   mdCreatorId int,

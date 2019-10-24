@@ -12,5 +12,13 @@
 	require_once 'DB/DataObject/Error.php';
 
 	$options = &PEAR::getStaticProperty('DB_DataObject', 'options');
-	$config = parse_ini_file('setup/dbo.ini', TRUE);
-	$options = $config['DB_DataObject'];
+	if(file_exists("setup/dbo.php"))
+		require_once("setup/dbo.php");
+	else
+	{
+		if(file_exists("setup/dbo.ini"))
+		{
+			$config = parse_ini_file('setup/dbo.ini', TRUE);
+			$options = $config['DB_DataObject'];
+		}
+	}

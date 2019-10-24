@@ -89,5 +89,7 @@
 			"ro_article" => "Articles",
 			"logaction-1" => "Updated",
 			"ro_whArticleHistoryReport" => "Article history report",
+			"ro_whIncomeDetailReport" => "Warehouse income detail report",
+			"ro_whIncomeSummaryReport" => "Warehouse income summary report",
 		)
 	);

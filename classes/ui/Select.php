@@ -58,11 +58,14 @@
 			return "staticValue";
 		}
 
-		protected function additionalAttributes(&$attr){
+		protected function additionalAttributes(&$attr)
+		{
 			$attr["onblur"] = "JavaScript:fieldOnBlur(this);";
-			//$attr["onchange"] = "JavaScript:fieldOnBlur(this);";	//chosen test
-			$attr["type"] = "text";
+			if(SELECT_SEND_DATA_ONCHANGE)
+				$attr["onchange"] = "JavaScript:fieldOnBlur(this);";
+			//$attr["type"] = "text";
  		}
+
  		protected function htmlType(){
  			return "select";
  		}

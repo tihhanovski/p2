@@ -359,7 +359,11 @@
             app()->requirePrivilege(PRIVILEGE_SELECT);
 
             if(!is_object($context = app()->getContext($this->getContextName())))
-                die(t("No context"));
+            {
+                $context = $this->createContext();
+                if($context->load())
+                    app()->putContext($context);
+            }
 
             if(file_exists($fn = $this->getPrintFormPath(app()->request("form"))))
                 include $fn;
@@ -518,7 +522,7 @@
             $this->sqlQuery = $this->getSqlQueryPart();
 
             $this->sqlRrQuery = "";
-            if($reloadRow = 0 + app()->request("reloadRow"))
+            if($reloadRow = (int)app()->request("reloadRow"))
             {
                 //find first col sql
                 $s = $this->plainSql($this->sql);
@@ -1267,7 +1271,7 @@
             $tree = $this->getChildrenTree();
             if(!is_array($tree))
             {
-                $req = app()->request(REQUEST_REGISTRY);    // $_REQUEST[REQUEST_REGISTRY];
+                $req = app()->request(REQUEST_REGISTRY);
                 $tree = array($req => array());
             }
 

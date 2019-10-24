@@ -130,7 +130,7 @@
 		/**
 		 * {@inheritdoc}
 		 */
-		function setValue($field, $value)
+		function setValue($field, $value, $setChanged = true)
 		{
 			if(strpos($field, SAVENOW_PREFIX) === 0)
 				parent::setValue(substr($field, strlen(SAVENOW_PREFIX)), $value);

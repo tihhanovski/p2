@@ -152,11 +152,24 @@
 		{
 			var gg = this;
 			if(isMobile())
-				$("#mgr_" + row.id).click(function(){gg.setActiveRow(this.id);gg.onRowClick(this.id);});
+				$("#mgr_" + row.id).click(function(event)
+					{
+						gg.lastEvent = event;
+						gg.setActiveRow(this.id);
+						gg.onRowClick(this.id);
+					});
 			else
 				$("#mgr_" + row.id)
-					.click(function(){gg.setActiveRow(this.id);})
-					.dblclick(function(){gg.onRowClick(this.id);})
+					.click(function(event)
+						{
+							gg.lastEvent = event;
+							gg.setActiveRow(this.id);
+						})
+					.dblclick(function(event)
+						{
+							gg.lastEvent = event;
+							gg.onRowClick(this.id);
+						})
 		}
 
 		grid.reloadNewRow = function(id)
@@ -326,7 +339,12 @@
 					case "icon":
 						return '<img src="' + v + '" border="0"/>';
 					case "closedicon":
-						return '<img src="' + setup.WFW_WEB + 'ui/img/16/closed-' + v + '.png" border="0"/>';
+						return (v == 1 ?
+								'<i class="fa fa-times" aria-hidden="true"></i>' :
+								''
+							);
+
+						//return '<img src="' + setup.WFW_WEB + 'ui/img/16/closed-' + v + '.png" border="0"/>';
 					case "lockbox":
 						return (v == 1 ?
 							'<i class="fa fa-lock" aria-hidden="true"></i>' :
@@ -566,11 +584,14 @@
 		{
 			return (this.hasFilteredFields ?
 					'<div id="gridFilterButton" class="mGridFooterPanel pointerCursor">' +
-					'<img src="' + setup.WFW_WEB + 'ui/img/16/funnel.png" border="0" alt="' + t('Filter') + '" class="mGridBottomIcon" />' +
+					//'<img src="' + setup.WFW_WEB + 'ui/img/16/funnel.png" border="0" alt="' + t('Filter') + '" class="mGridBottomIcon" />' +
+					'<i class="fa fa-filter mGridBottomIcon" aria-hidden="true"></i>' +
 					'<div class=\"gridFilterCaption gridFilterCaptionShort\">' + t("Filter") + '</div>' +
 				'</div>': '') +
-				'<div class="mGridFooterPanel gridSetupColumns" style="cursor: pointer;">' +
-				'<img src="' + setup.WFW_WEB + 'ui/img/16/eye.png" border="0" alt="' + t('Visible columns') + '" class="mGridBottomIcon"/>' + t('Visible columns') +
+				'<div class="mGridFooterPanel gridSetupColumns pointerCursor">' +
+				//'<img src="' + setup.WFW_WEB + 'ui/img/16/eye.png" border="0" alt="' + t('Visible columns') + '" class="mGridBottomIcon"/>' + 
+				'<i class="fa fa-eye mGridBottomIcon" aria-hidden="true"></i>' +
+				t('Visible columns') +
 				'</div>' +
 				'<div id="gridFind" class="mGridFooterPanel"><input type="text" id="gridFindBox" value="' + quote(this.query) + '"/></div>' +
 				'<div id="gridStats" class="mGridFooterPanel"></div>' +
@@ -605,18 +626,19 @@
 
 		grid.initExporters = function()
 		{
-			this.addExporter("XLS");
-			this.addExporter("PDF");
-			//this.addExporter("CSV");
-			//this.addExporter("JSON");
+			this.addExporter("XLS", "fa-file-excel-o");
+			this.addExporter("PDF", "fa-file-pdf-o");
+			//this.addExporter("CSV", "fa-file-code-o");
+			//this.addExporter("JSON", "fa-file-text-o");
 		}
 
-		grid.addExporter = function(type)
+		grid.addExporter = function(type, icon)
 		{
 			var grid = this;
 			var id = 'gridExporter' + type;
-			var html = '<div style="cursor: pointer; float: left; margin-right: 3px;" id="' + id + '">' +
-				'<img src="' + setup.WFW_WEB + 'ui/img/16/export-' + type + '.png" border="0" alt="' + type + '"/></div>'
+			var html = '<div class="gridExportButton" id="' + id + '">' +
+				'<i class="fa ' + icon + '" aria-hidden="true"></i>' +
+				'</div>'
 			$("#gridExport").append(html);
 			$("#" + id).click(function(event){
 				var url = setup.INSTANCE_WEB +
@@ -700,7 +722,7 @@
 				gmb = $("#toolbar_more");
 			bubble
 				.pos(gmb.position().left, gmb.position().top + gmb.outerHeight())
-				.dimensions(300, 200)
+				.dimensions(300, 300)
 				.show(t("Loading..."));
 			$.get(setup.INSTANCE_WEB + "?action=moreMenuItemsHtml&registry=" + req.registry,
 				function(data)
@@ -810,11 +832,16 @@
 			}
 		}
 
+		grid.removeKeyboardNavigation = function()
+		{
+			$("body").off("keydown");
+		}
+
 		grid.addKeyboardNavigation = function()
 		{
 			if(!grid.keyboardNavigation)
 				return;
-			$("body").keydown(function(event)
+			$("body").on("keydown", function(event)
 			{
 				var activeRow = $(".activeGridRow");
 				if(activeRow.length < 1)

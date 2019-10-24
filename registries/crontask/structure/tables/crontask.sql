@@ -3,5 +3,5 @@ CREATE TABLE crontask (
   name varchar(100)  not null DEFAULT '',
   started datetime,
   finished datetime,
-  log longtext not null default ''
+  log longtext
 )

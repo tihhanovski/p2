@@ -79,6 +79,7 @@ class WhinventoryrowParent extends WFWObject
         $m->companySrcId = DEFAULT_COMPANY;
         $m->companyDstId = DEFAULT_COMPANY;
         $m->quantity = abs($delta);
+        $m->memo = "";
         $m->cost = $delta > 0 ? $this->cost : 0;
         return $m;
     }

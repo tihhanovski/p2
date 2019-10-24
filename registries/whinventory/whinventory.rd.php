@@ -63,7 +63,18 @@
 					app()->putContext($context);
 				}
 			echo app()->jsonMessage();
+		}
 
+		public function updateWhStates()
+		{
+			app()->requirePrivilegeJson(PRIVILEGE_UPDATE);
+			if(is_object($context = app()->getContext($this->getContextName())))
+				if(is_object($obj = $context->obj))
+				{
+					$obj->updateWhStates();
+					app()->putContext($context);
+				}
+			echo app()->jsonMessage();			
 		}
 
 	}

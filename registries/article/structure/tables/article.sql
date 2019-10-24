@@ -3,7 +3,7 @@ CREATE TABLE article (
   unitId int,
   code varchar(50) not null,
   name varchar(100) not null,
-  memo text not null,
+  memo text,
   closed tinyint NOT NULL DEFAULT 0,
   typeId int NOT NULL DEFAULT 1,
   mdCreated datetime,

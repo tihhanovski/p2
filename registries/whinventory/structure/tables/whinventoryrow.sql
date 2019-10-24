@@ -6,7 +6,7 @@ create table whinventoryrow(
 	quantity decimal(18,6),
 	realQuantity decimal(18,6),
 	cost decimal(18,6),
-	memo text not null default '',
+	memo text,
   	mdCreated datetime,
   	mdUpdated datetime,
   	mdCreatorId int,

@@ -421,9 +421,8 @@
 				return "";
 			else
 				return "<div class=\"rightPanelItem rightPanelItemFiles\" " .
-						"style=\"padding-left: 16px; background: url('" . app()->url("ui/img/16/comments.png") . "'); " .
-						"background-repeat: no-repeat; background-position: left top; min-height: 16px;\" " .
+						"style=\"padding-left: 16px; min-height: 16px;\" " .
 						"id=\"commentsControl\"></div>" .
-						"<script type=\"text/javascript\"> $(function(){commentsControl.create($(\"#commentsControl\"))});</script>";
+						wrapScript("\$(function(){commentsControl.create($(\"#commentsControl\"))});");
 		}
 	}

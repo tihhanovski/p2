@@ -42,6 +42,14 @@ class WFWObject extends DB_DataObject
         return $this->__table;
     }
 
+    public function requireUpdateGrids()    //TODO rework it
+    {
+        $o = new stdClass();
+        $o->id = "reloadGrids";
+        $o->value = $this->get_data_for_json();
+        app()->addUpdated($o);
+    }
+
     public function comment($comment)
     {
         if ($this->isInDatabase())
@@ -145,7 +153,7 @@ class WFWObject extends DB_DataObject
 
     function addWarning($w)
     {
-        if($w->field)
+        if(is_object($w) && isset($w->field) && $w->field)
             $w->field = $this->fullpath . CHILD_DELIMITER . $w->field;
         app()->addWarning($w);
     }
@@ -198,8 +206,6 @@ class WFWObject extends DB_DataObject
 
     function getKeySelSetup($obj, $field)
     {
-        //$o = $obj->__table;
-        //die("return new KeySelSetup($o, $field, $this->__table, $this->keySelColumns());");
         return new KeySelSetup($obj, $field, $this->__table, $this->keySelColumns());
     }
 
@@ -803,6 +809,8 @@ class WFWObject extends DB_DataObject
         else
         {
             $class = $children[$path];
+            if(!$class)
+                throw new WFWException("Child class not found. Review children tree for \"$path\"");
             $c = DB_DataObject::factory($class);
             if(!is_a($c, "WFWObject"))
                 $c = new $class;
@@ -968,16 +976,55 @@ class WFWObject extends DB_DataObject
 
     function prepareCopyChildrenByClass($var, $cls, $tree)
     {
-        $array = $this->$var;
-        $thisID = $this->getPrimaryKeyField();
+        if(isset($this->$var))
+        {
+            $array = $this->$var;
+            $thisID = $this->getPrimaryKeyField();
 
-        if(is_array($array))
-            foreach ( $array as $k => $c )
+            if(is_array($array))
+                foreach ( $array as $k => $c )
+                {
+                    $cf = $c->getPrimaryKeyField();
+                    $parentID = $c->getParentIdField($this->__table);
+                    unset($c->$parentID);
+                    $c->prepareCopy($tree);
+                }
+        }
+    }
+
+    protected function saveForeignValues()
+    {
+        //TODO
+    }
+
+    protected function loadForeignValues()
+    {
+        if(isset($this->foreignFields) && is_array($this->foreignFields))
+            foreach($this->foreignFields as $name => $desc)
             {
-                $cf = $c->getPrimaryKeyField();
-                $parentID = $c->getParentIdField($this->__table);
-                unset($c->$parentID);
-                $c->prepareCopy($tree);
+                if(is_array($desc))
+                {
+                    $ff = isset($desc["idField"]) ? $desc["idField"] : FALSE;
+                    $kf = isset($desc["keyField"]) ? isset($desc["keyField"]) : FALSE;
+                }
+                else
+                {
+                    $ff = $desc;
+                    $kf = FALSE;
+                }
+                
+                if($ff && $t = $this->getForeignKeyTable($ff))
+                    if(is_object($o = app()->get($t, (int)$this->$ff)))
+                    {
+                        if(!$kf)
+                            $kf = isset($o->selectKeyField) ? $o->selectKeyField : FALSE;
+                        if(!$kf)
+                            $kf = isset($o->captionFields) && is_array($o->captionFields) && isset($o->captionFields[0]) ? $o->captionFields[0] : FALSE;
+                        if($kf)
+                        {
+                            $this->$name = $kf ? $o->getValue($kf) : "";
+                        }
+                    }
             }
     }
 
@@ -991,6 +1038,8 @@ class WFWObject extends DB_DataObject
                     while(list($k, $v) = each($cl))
                         $this->loadChildrenByClass($k, $v, $tree);
                 }
+
+        $this->loadForeignValues();
 
         if($this->hasDynamicProperties())
             $this->loadDynamicProperties();
@@ -1070,7 +1119,7 @@ class WFWObject extends DB_DataObject
                 else
                 {
                     if(!app()->canUpdate($t))
-                        throw new WFWException("insufficient rights");
+                        throw new WFWException(MSG_INSUFFICIENT_RIGHTS);
                     $this->setLinkedFieldInsertDefaults($o, $insDefs);
                     $o->setFirstCaption($this->$c);
                     if(!$o->validateDocument())
@@ -1414,8 +1463,10 @@ class WFWObject extends DB_DataObject
         return $ret;
     }
 
-    function update()
+    function update($o = false)
     {
+        if($o)
+            return $o->update();
         $this->enumerate();
         $this->setUpdateMetadata();
         $ret = parent::update();
@@ -1424,11 +1475,11 @@ class WFWObject extends DB_DataObject
         return $ret;
     }
 
-    function delete()
+    function delete($useWhere = false)
     {
         $this->log(LOG_ACTION_DEL);
         $this->changed = array();
-        return parent::delete();
+        return parent::delete($useWhere);
     }
 
     function setLogEnabled(/**boolean*/ $b)
@@ -1893,6 +1944,7 @@ class WFWObject extends DB_DataObject
 
 class WFWNamed extends WFWObject
 {
+    public $selectKeyField = "name";
     protected $captionFields = array("name");
 
     protected $closedField = "closed";  //closable
@@ -1919,6 +1971,8 @@ class WFWCodedAndNamed extends WFWObject
         "code" => array(VALIDATION_NOT_EMPTY, VALIDATION_UNIQUE),
         "name" => array(VALIDATION_NOT_EMPTY),
     );
+
+    public $selectKeyField = "code";
 
     protected $formats = array(
         "mdCreated" =>      FORMAT_DATETIME,

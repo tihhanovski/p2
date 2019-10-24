@@ -363,6 +363,12 @@
 	{
 	}
 
+	.rightPanelFAIcon
+	{
+		margin-left: -16px;
+		position: absolute;
+	}
+
 	.rightPanel
 	{
 		width: 200px;
@@ -690,11 +696,13 @@
 	.warningSeverityinfo {color: black;}
 	.topmenuIcon{position: absolute;}
 	.topMenuCaption{padding-left: 20px;}
-	.autocomplete-w1 { position:absolute; top:0px; left:0px; margin:8px 0 0 6px; /* IE6 fix: */ _background:none; _margin:0; }
-	.autocomplete { border:1px solid #999; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
-	.autocomplete .selected { background:#F0F0F0; }
-	.autocomplete div { padding:2px 5px; white-space:nowrap; }
-	.autocomplete strong { font-weight:normal; color:#3399FF; }
+
+	.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+	.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+	.autocomplete-selected { background: #F0F0F0; }
+	.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+	.autocomplete-group { padding: 2px 5px; }
+	.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
 
 	a:VISITED {color: blue;}
 	a:HOVER {color: #ff5050;}
@@ -1117,4 +1125,14 @@
 {
 	background-color: #0099ff !important;
 	color: white;
+}
+
+.gridExportButton
+{
+	cursor: pointer; 
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-right: 6px;
+	padding-left: 6px;
+	float: left;
 }

@@ -2,7 +2,7 @@
 /**
  * Article detailform
  * @author Ilja Tihhanovski <ilja.tihhanovski@gmail.com>
- * @copyright (c) Intellisoft OÜ
+ * @copyright (c) Ilja Tihhanovski
  *
  */
 

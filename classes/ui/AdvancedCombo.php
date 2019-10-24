@@ -59,13 +59,13 @@
 			$f = $this->field;
 			$value = $this->obj->$f;
 			$cols = json_encode($this->columns);
-			return "<script language=\"JavaScript\">" .
+			return wrapScript(
 					"\$(function() {" .
 					"setComboAdv(\"{$this->obj->fullpath}_{$this->field}\", " .
 						"\"{$this->cls}\", \"" . $o->getPrimaryKeyField() . "\", $cols, " .
 						"\"$value\", \$(window).width - 300, null, " . 
 						(app()->canUpdate($this->cls) ? "true" : "false") . ");" .
 					//"alert('$cols');" .
-					"});</script>";
+					"});");
 		}
 	}
