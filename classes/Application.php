@@ -603,9 +603,9 @@
 		 * @param String $defLang
 		 * @return String
 		 */
-      	static function parseBrowserLanguage($http_accept, $deflang = DEFAULT_LOCALE) 
+      	static function parseBrowserLanguage($http_accept, $deflang = DEFAULT_LOCALE)
       	{
-        	if(isset($http_accept) && strlen($http_accept) > 1)  
+        	if(isset($http_accept) && strlen($http_accept) > 1)
          	{
             	//Split possible languages into array
             	$x = explode(",",$http_accept);
@@ -630,7 +630,7 @@
 	            }
         	}
         	return strtolower($deflang);
-     	} 
+     	}
 
 		/**
 		 * Initializes i18n
@@ -2345,7 +2345,7 @@
 
 	/**
 	 * Translate message, shortcut for app()->translate()
-	 * @param mixed $s 
+	 * @param mixed $s
 	 * @return String
 	 */
 	function t($s)
@@ -2469,9 +2469,15 @@
 		return $dt . " " . $tm;
 	}
 
-	function xmlField($f, $v)
+	function xmlField($f, $v, $attrs = null)
 	{
-		return "<$f>$v</$f>\n";
+		$as = "";
+		if(!is_null($attrs))
+			foreach ($attrs as $key => $value)
+			{
+				$as .= " $key=\"" . htmlentities($value) . "\"";
+			}
+		return "<" . $f . $as . ">$v</$f>\n";
 	}
 
 	function xmlSimpleField($f, $v)
