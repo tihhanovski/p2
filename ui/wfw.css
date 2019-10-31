@@ -291,14 +291,20 @@
 
 	.bordered {border: 1px solid #eeeeee;}
 
-	.gridContainer
+	#gridContainer
 	{
-		border: 1px solid #eeeeee;
-		padding: 1px;
-		margin-bottom: 5px;
-		padding-bottom: 4px;
+		border: 0px solid #eeeeee;
+		padding: 0px;
+		margin-bottom: 0px;
+		padding-bottom: 0px;
 		clear: both;
-	}
+
+		-webkit-touch-callout: none; /* iOS Safari */
+	      -webkit-user-select: none; /* Safari */
+	       -khtml-user-select: none; /* Konqueror HTML */
+	         -moz-user-select: none; /* Old versions of Firefox */
+	          -ms-user-select: none; /* Internet Explorer/Edge */
+	              user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */	}
 
 	.topMenu
 	{
@@ -1129,7 +1135,7 @@
 
 .gridExportButton
 {
-	cursor: pointer; 
+	cursor: pointer;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 6px;
