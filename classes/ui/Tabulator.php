@@ -67,7 +67,7 @@
 			foreach($this->_items as $k => $i)
 				$ret .= "<div id=\"{$k}\">" . $i->getContentsHtml() . "<div style=\"clear: both;\"></div></div>";
 
-			$ret .= "</div><script type=\"text/javascript\"> $(function() {\$( \"#{$this->id}\" ).tabs();}); </script>";
+			$ret .= "</div><script type=\"text/javascript\"> $(function() {\$( \"#{$this->id}\").tabs();}); </script>";
 
 			return $ret;
 		}
