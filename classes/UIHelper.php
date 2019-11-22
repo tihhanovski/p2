@@ -70,7 +70,7 @@
 		public function includeScriptsHtml($scripts)
 		{
 			foreach ( $scripts as $src)
-				echo "<script type=\"text/javascript\" src=\"$src?v=" . JS_VERSION . "\"></script>";			
+				echo "<script type=\"text/javascript\" src=\"$src?v=" . JS_VERSION . "\"></script>";
 		}
 
 		public function includePageSetup()
@@ -94,6 +94,7 @@
 					"DocOpenInTab" => (isset($u->dynDocOpenInTab) && $u->dynDocOpenInTab == 1),
 					"datepickerFormat" => FORMATSTRING_DATEPICKER,
 					"user" => $ud,
+					"dblClickEnabled" => SETUP_DBLCLICK_ENABLED,
 				),
 				"req" => array(
 					REQUEST_ACTION => app()->request(REQUEST_ACTION),

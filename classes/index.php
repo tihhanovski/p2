@@ -13,7 +13,7 @@
 	       return strpos($errstr, 'Declaration of') === 0;
 	    }, E_WARNING);
 	}
- 	const JS_VERSION = 47;
+ 	const JS_VERSION = 48;
 
  	define("WFW_CLASSPATH", WFW_ROOT . "classes/");
 

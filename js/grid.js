@@ -107,7 +107,7 @@
 
 				var h = 0;
 				$("#mgr_" + row.id).children().each(function(){
-							if(h < $(this).height()) 
+							if(h < $(this).height())
 								h = $(this).height();
 							tw += $(this).width;
 						});
@@ -151,7 +151,7 @@
 		grid.setRowEventHandlers = function(row)
 		{
 			var gg = this;
-			if(isMobile())
+			if(isMobile() || (!setup.dblClickEnabled))
 				$("#mgr_" + row.id).click(function(event)
 					{
 						gg.lastEvent = event;
@@ -589,7 +589,7 @@
 					'<div class=\"gridFilterCaption gridFilterCaptionShort\">' + t("Filter") + '</div>' +
 				'</div>': '') +
 				'<div class="mGridFooterPanel gridSetupColumns pointerCursor">' +
-				//'<img src="' + setup.WFW_WEB + 'ui/img/16/eye.png" border="0" alt="' + t('Visible columns') + '" class="mGridBottomIcon"/>' + 
+				//'<img src="' + setup.WFW_WEB + 'ui/img/16/eye.png" border="0" alt="' + t('Visible columns') + '" class="mGridBottomIcon"/>' +
 				'<i class="fa fa-eye mGridBottomIcon" aria-hidden="true"></i>' +
 				t('Visible columns') +
 				'</div>' +
@@ -696,7 +696,7 @@
 							{
 								if(grid.setup[col.name] != 0)
 									grid.setup[col.name] = 1;
-								html += '<div class="mGridVisibleColumnsItem"><label>' + checkbox(grid.setup, col.name) + col.display + '</label></div>'; //col.display + ' &gt;&gt; ' + col.name + '</div>';								
+								html += '<div class="mGridVisibleColumnsItem"><label>' + checkbox(grid.setup, col.name) + col.display + '</label></div>'; //col.display + ' &gt;&gt; ' + col.name + '</div>';
 							}
 						}
 						html += '</div><div style="text-align: right;"><a href="JavaScript:reloadPage();">' + t('OK') + '</a></div></div>';

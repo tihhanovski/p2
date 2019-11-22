@@ -945,6 +945,7 @@
 						"DEVELOPER_USER" => "admin",
 						"CLEAR_CONTEXTS_ON_LOGIN" => false,
 						"UI_MODULE" => "ui/old/",
+						"SETUP_DBLCLICK_ENABLED" => true,
 
 
 						//TODO remove, backward compatibility only
