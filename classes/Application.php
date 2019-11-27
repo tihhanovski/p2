@@ -921,9 +921,10 @@
 						"SETUP_3RD_XLS" => L3RD_ROOT . "phpexcel/Classes/PHPExcel.php",
 						"SETUP_3RD_MULTISELECT_JS" => L3RD_WEB . "jquery.multiselect.js",
 						"SETUP_3RD_MULTISELECT_CSS" => L3RD_WEB . "jquery.multiselect.css",
-						"SETUP_JQUERY" => L3RD_WEB . "jquery.js",
+						"SETUP_JQUERY" => "https://code.jquery.com/jquery-1.12.4.js", //L3RD_WEB . "jquery.js",
+						"SETUP_JQUERY_UI" => "https://code.jquery.com/ui/1.12.1/jquery-ui.js", //L3RD_WEB . "jquery-ui/jquery-ui.js",
+
 						"SETUP_JQUERY_MIGRATE" => L3RD_WEB . "jquery-migrate-1.3.0.js",
-						"SETUP_JQUERY_UI" => L3RD_WEB . "jquery-ui/jquery-ui.js",
 						"SETUP_JQUERY_UI_CSS" => L3RD_WEB . "jquery-ui/jquery-ui.css",
 
 						"L3RD_MORRIS_JS" => L3RD_WEB . "morris/morris.js",

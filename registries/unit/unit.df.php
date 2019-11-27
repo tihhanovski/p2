@@ -10,10 +10,10 @@
 	echo simpleform(array(
 			textbox($obj, "name", "Name"),
 			textarea($obj, "memo"),
-			textbox($obj, "articleId", "Article"),
+			textbox($obj, "articleIdEntry", "Article"),
 		));
 
-?><script>
+?><input type="text" id="articleId"/><input type="text" id="articleLabel"/><script>
 
 $(function()
 {
