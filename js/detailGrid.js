@@ -220,9 +220,10 @@
 			var ctrlId = data.fullpath + '_' + col.name;
 			var html = '<input id="' + ctrlId + '" type="hidden" />' +
 				'<input class="keySelInput" id="' + ctrlId + 'Entry" type="text" />' +
-				'<span id="' + ctrlId + 'Label" class="keySelNameField"></span>';
+				'<span id="' + ctrlId + 'Label" class="keySelNameField"></span>' +
+				'<!-- source: ' + col.source + ' -->';
 			detailGrid.getCellContainer(data, col).html(html);
-			setKeySel3(ctrlId, col.source);
+			setKeySel3(ctrlId, col.source + '.php');
 			//todo fill entry and label fields!
 		},
 

@@ -229,9 +229,7 @@
 	        		$("#" + labelField).val( ui.item.value );
 	        		return false;
 	      		}
-	    });
-
-		.autocomplete( "instance" )._renderItem = function( ul, item )
+	    }).autocomplete( "instance" )._renderItem = function( ul, item )
 		{
 	      	return $( "<li>" )
 	        	.append( "<div>" + item.label + '<div class="autocompleteItemValue">' + item.value + "</div></div>" )

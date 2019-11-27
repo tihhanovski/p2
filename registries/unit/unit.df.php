@@ -17,7 +17,7 @@
 
 $(function()
 {
-	setKeySel3(obj.fullpath + "_articleId", "article");
+	setKeySel3(obj.fullpath + "_articleId", "article.php");
 });
 
 
