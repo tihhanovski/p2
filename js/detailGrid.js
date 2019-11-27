@@ -195,6 +195,8 @@
 					col.dataHandler = detailGrid.doubleBox;
 				if(col.control == "keysel")
 					col.dataHandler = detailGrid.keysel;
+					if(col.control == "keysel3")
+						col.dataHandler = detailGrid.keysel3;
 				if(col.control == "reorder")
 					col.dataHandler = detailGrid.reorder;
 				if(col.control == "textboxautocomplete")
@@ -211,6 +213,22 @@
 			var html = '<div style="padding-top: 4px;"><a href="JavaScript:moveChildUp(\'' + data.fullpath + '\');">' + img('up.png', '') + '</a>' +
 				'<a href="JavaScript:moveChildDn(\'' + data.fullpath + '\');">' + img('dn.png', '') + '</a></div>';
 			$('#' + data.fullpath + '_' + col.name + 'CellContainer').html(html);
+		},
+
+		"keysel3": function(data, col)
+		{
+			var ctrlId = data.fullpath + '_' + col.name;
+			var html = '<input id="' + ctrlId + '" type="hidden" />' +
+				'<input class="keySelInput" id="' + ctrlId + 'Entry" type="text" />' +
+				'<span id="' + ctrlId + 'Label" class="keySelNameField"></span>';
+			detailGrid.getCellContainer(data, col).html(html);
+			setKeySel3(ctrlId, col.source);
+			//todo fill entry and label fields!
+		},
+
+		"getCellContainer": function(data, col)
+		{
+			return $('#' + data.fullpath + '_' + col.name + 'CellContainer');
 		},
 
 		"keysel": function(data, col)

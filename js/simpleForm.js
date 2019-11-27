@@ -199,6 +199,47 @@
 		$('#' + id).trigger("updateCombo");
 	}
 
+	/*function setKeySel3_1(fld, acSource)
+	{
+		setKeySel3(fld + "_entry", fld, fld + "_memo", acSource);
+	}
+	*/
+
+	function setKeySel3(idField, acSource, entryField, labelField)
+	{
+		if(entryField == undefined)
+			entryField = idField + "Entry";
+		if(labelField == undefined)
+			labelField = idField + "Label";
+		console.log("setting keysel3 for: \n\t" + idField + ";\n\t" + entryField + ";\n\t" + labelField + ";\n\t" + acSource);
+
+		$("#" + entryField).autocomplete(
+			{
+				minLength: 2,
+				source: acSource,
+	      		focus: function( event, ui )
+				{
+	        		$("#" + entryField).val( ui.item.label );
+	        		return false;
+	      		},
+	      		select: function( event, ui )
+				{
+	        		$("#" + entryField).val( ui.item.label );
+	        		$("#" + idField).val( ui.item.id );
+	        		$("#" + labelField).val( ui.item.value );
+	        		return false;
+	      		}
+	    });
+
+		.autocomplete( "instance" )._renderItem = function( ul, item )
+		{
+	      	return $( "<li>" )
+	        	.append( "<div>" + item.label + '<div class="autocompleteItemValue">' + item.value + "</div></div>" )
+				.appendTo( ul );
+	    };
+	}
+
+
 	function setKeySel(id, foreignTable, foreignTableField, columns, value, width, callbackF, allowNewButton, registryName, canSelect, af)
 	{
 
