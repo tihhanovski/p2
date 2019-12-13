@@ -53,8 +53,6 @@
             if(model.rowsChangeable && model.rowsAppendable && model.name == "persons")
                 html += '<form name="personForm" id="personForm">Select file for import: <input type="file" name="fileToUpload" id="fileToUpload"><input type="submit"></form>';
 			html += '</div></div>';
-			console.log("test");
-			console.log(model);
 			if(model.leftCaption)
 				html += '</div>';
 
@@ -217,14 +215,14 @@
 
 		"keysel3": function(data, col)
 		{
+			//log('keysel3 for field: ' + col.name + ' = ' + data[col.name]);
 			var ctrlId = data.fullpath + '_' + col.name;
 			var html = '<input id="' + ctrlId + '" type="hidden" />' +
 				'<input class="keySelInput" id="' + ctrlId + 'Entry" type="text" />' +
-				'<span id="' + ctrlId + 'Label" class="keySelNameField"></span>' +
-				'<!-- source: ' + col.source + ' -->';
+				'<span id="' + ctrlId + 'Label" class="keySelNameField"></span>';
 			detailGrid.getCellContainer(data, col).html(html);
-			setKeySel3(ctrlId, col.source + '.php');
-			//todo fill entry and label fields!
+			setKeySel3(ctrlId, col.source);
+			setKeySel3Value(ctrlId, col.source, data[col.name]);
 		},
 
 		"getCellContainer": function(data, col)

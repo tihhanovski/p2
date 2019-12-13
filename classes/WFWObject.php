@@ -50,6 +50,12 @@ class WFWObject extends DB_DataObject
         app()->addUpdated($o);
     }
 
+    public function setupKeysel3SearchTerm($term)
+    {
+      $s = implode(", ' ', ", $this->captionFields);
+      $this->whereAdd("concat($s) like " . quote("%" . $term . "%"));
+    }
+
     public function comment($comment)
     {
         if ($this->isInDatabase())
@@ -1012,7 +1018,7 @@ class WFWObject extends DB_DataObject
                     $ff = $desc;
                     $kf = FALSE;
                 }
-                
+
                 if($ff && $t = $this->getForeignKeyTable($ff))
                     if(is_object($o = app()->get($t, (int)$this->$ff)))
                     {
@@ -1979,6 +1985,23 @@ class WFWCodedAndNamed extends WFWObject
         "mdUpdated" =>      FORMAT_DATETIME,
     );
 
+    public function getKeysel3Data()
+    {
+      $a = array(
+        "id" => $this->getIdValue(),
+      );
+      if(isset($this->selectKeyField))
+        if($this->selectKeyField)
+          $a["label"] = $this->getValue($this->selectKeyField);
+      $v = "";
+      if(isset($this->captionFields) && is_array($this->captionFields))
+        foreach ($this->captionFields as $f)
+          if(!(isset($this->selectKeyField)) || $f != $this->selectKeyField)
+            $v .= $this->getValue($f);
+      $a["value"] = $v;
+      return $a;    
+    }
+
     public function canCopy(){return true;}
 
     public function advancedComboColumns()
@@ -2026,4 +2049,3 @@ function is_field_ok_for_json($name)
         && $name !== "primaryKey"
         && $name !== "rights");
 }
-

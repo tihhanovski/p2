@@ -199,42 +199,70 @@
 		$('#' + id).trigger("updateCombo");
 	}
 
-	/*function setKeySel3_1(fld, acSource)
+	function setKeySel3Value(idField, source, value, entryField, labelField)
 	{
-		setKeySel3(fld + "_entry", fld, fld + "_memo", acSource);
-	}
-	*/
-
-	function setKeySel3(idField, acSource, entryField, labelField)
-	{
+		var acSource = '?registry=' + source + '&action=keysel3value&id=' + value;
 		if(entryField == undefined)
 			entryField = idField + "Entry";
 		if(labelField == undefined)
 			labelField = idField + "Label";
-		console.log("setting keysel3 for: \n\t" + idField + ";\n\t" + entryField + ";\n\t" + labelField + ";\n\t" + acSource);
+		if(value == undefined)
+			return;
+
+		var url = baseUrl() + acSource;
+		$("#" + idField).val( value );
+
+		$.get(url,
+			function(data)
+			{
+				if(data.state == "ok")
+				{
+					$("#" + entryField).val( data.data.label );
+					$("#" + idField).val( data.data.id );
+					$("#" + labelField).html( data.data.value );
+				}
+				else
+				{
+					log('unsuccessfull retrieval of data for keysel')
+					log("\tvalue: " + value + " for keysel3: \n\t" + idField + ";\n\t" + entryField + ";\n\t" + labelField + ";\n\t" + acSource);
+					log(data.message);
+				}
+			}, "json");
+
+	}
+
+	function setKeySel3(idField, source, entryField, labelField)
+	{
+		var acSource = '?registry=' + source + '&action=keysel3data';
+		if(entryField == undefined)
+			entryField = idField + "Entry";
+		if(labelField == undefined)
+			labelField = idField + "Label";
+		//log("setting keysel3 for: \n\t" + idField + ";\n\t" + entryField + ";\n\t" + labelField + ";\n\t" + acSource);
 
 		$("#" + entryField).autocomplete(
-			{
-				minLength: 2,
-				source: acSource,
-	      		focus: function( event, ui )
-				{
-	        		$("#" + entryField).val( ui.item.label );
-	        		return false;
-	      		},
-	      		select: function( event, ui )
-				{
-	        		$("#" + entryField).val( ui.item.label );
-	        		$("#" + idField).val( ui.item.id );
-	        		$("#" + labelField).val( ui.item.value );
-	        		return false;
-	      		}
-	    }).autocomplete( "instance" )._renderItem = function( ul, item )
 		{
-	      	return $( "<li>" )
-	        	.append( "<div>" + item.label + '<div class="autocompleteItemValue">' + item.value + "</div></div>" )
+				minLength: 3,
+				source: acSource,
+	      focus: function( event, ui )
+				{
+					$("#" + entryField).val( ui.item.label );
+					return false;
+	      },
+	      select: function( event, ui )
+				{
+					$("#" + entryField).val( ui.item.label );
+					$("#" + idField).val( ui.item.id );
+					$("#" + labelField).html( ui.item.value );
+					saveField(idField, idField, ui.item.id);
+					return false;
+	      }
+	   }).autocomplete( "instance" )._renderItem = function( ul, item )
+		{
+			return $( "<li>" )
+				.append( "<div>" + item.label + '<div class="autocompleteItemValue">' + item.value + "</div></div>" )
 				.appendTo( ul );
-	    };
+	  };
 	}
 
 

@@ -41,6 +41,47 @@
         }
 
         /**
+         * returns JSON data for keysel3 input control
+         * uses request parameter id
+         * TODO experimental!
+         */
+        public function keysel3value()
+        {
+          app()->requirePrivilegeJson(PRIVILEGE_SELECT);
+          $id = (int)app()->request("id", "0");
+          if($id)
+          {
+            $f = app()->get(app()->request(REQUEST_REGISTRY), $id);
+            echo app()->jsonMessage(RESULT_OK, RESULT_OK, array("data" => $f->getKeysel3Data()));
+            return;
+          }
+          echo app()->jsonMessage(RESULT_ERROR, t("Something went wrong"));
+        }
+
+        /**
+         * returns JSON data for keysel3 input control
+         * uses request parameter term
+         * TODO experimental!
+         */
+        public function keysel3data()
+        {
+          $ret = array();
+          app()->requirePrivilegeJson(PRIVILEGE_SELECT);
+          $q = app()->request("term");
+        	if(strlen($q) > 2)
+          {
+            $f = app()->dbo(app()->request(REQUEST_REGISTRY));
+            $f->setupKeysel3SearchTerm($q);
+
+          	if($f->find())
+          		while($f->fetch())
+          			$ret[] = $f->getKeysel3Data();
+          }
+
+        	echo json_encode($ret);
+        }
+
+        /**
          * adds comment
          */
         public function comment()
@@ -115,9 +156,9 @@
             if(is_object($context = app()->getContext($this->getContextName())))
                 if(is_object($obj = $context->obj))
                     foreach ($obj->getLinkedEmails() as $eml)
-                        $html .= "<div class=\"linkedEmailItem\">" . 
-                            "<div class=\"linkedEmailCaption\">" . app()->getLinkedCaption($eml, array("recipient", "bcc", "mdUpdated"), "; ") . "<div>" . 
-                            "</div class=\"linkedEmailResult\">" . $eml->getHumanEncodedResult() .  "</div>" . 
+                        $html .= "<div class=\"linkedEmailItem\">" .
+                            "<div class=\"linkedEmailCaption\">" . app()->getLinkedCaption($eml, array("recipient", "bcc", "mdUpdated"), "; ") . "<div>" .
+                            "</div class=\"linkedEmailResult\">" . $eml->getHumanEncodedResult() .  "</div>" .
                             "</div>";
             echo $html;
         }
