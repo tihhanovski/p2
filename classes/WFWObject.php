@@ -54,6 +54,20 @@ class WFWObject extends DB_DataObject
     {
       $s = implode(", ' ', ", $this->captionFields);
       $this->whereAdd("concat($s) like " . quote("%" . $term . "%"));
+      $ord = "";
+      if(isset($this->selectKeyField))
+        if($this->selectKeyField)
+          $ord = $this->selectKeyField;
+      if($ord == "")
+        if(isset($this->captionFields) && is_array($this->captionFields))
+          foreach ($this->captionFields as $f)
+          {
+            $ord = $f;
+            break;
+          }
+
+      if($ord != "")
+        $this->orderBy($ord);
     }
 
     public function comment($comment)
@@ -1999,7 +2013,7 @@ class WFWCodedAndNamed extends WFWObject
           if(!(isset($this->selectKeyField)) || $f != $this->selectKeyField)
             $v .= $this->getValue($f);
       $a["value"] = $v;
-      return $a;    
+      return $a;
     }
 
     public function canCopy(){return true;}
