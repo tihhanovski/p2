@@ -24,3 +24,4 @@
 	require_once WFW_CLASSPATH . "ui/MainMenu.php";
 	require_once WFW_CLASSPATH . "ui/simpleform.php";
 	require_once WFW_CLASSPATH . "ui/AbstractUIModule.php";
+	require_once WFW_CLASSPATH . "ui/KeySel3.php";
