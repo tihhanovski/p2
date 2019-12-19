@@ -6,7 +6,7 @@
  *
  */
 
-class FWCompany extends WFWObject
+class FWCompany extends WFWCodedAndNamed
 {
     protected $validators = array(
         "code" => VALIDATION_NOT_EMPTY,
@@ -35,7 +35,7 @@ class FWCompany extends WFWObject
         );
     }
 
-    protected function advancedComboColumns()
+    public function advancedComboColumns()
     {
         return array(
             array(

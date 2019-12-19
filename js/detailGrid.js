@@ -53,8 +53,6 @@
             if(model.rowsChangeable && model.rowsAppendable && model.name == "persons")
                 html += '<form name="personForm" id="personForm">Select file for import: <input type="file" name="fileToUpload" id="fileToUpload"><input type="submit"></form>';
 			html += '</div></div>';
-			console.log("test");
-			console.log(model);
 			if(model.leftCaption)
 				html += '</div>';
 
@@ -195,6 +193,8 @@
 					col.dataHandler = detailGrid.doubleBox;
 				if(col.control == "keysel")
 					col.dataHandler = detailGrid.keysel;
+					if(col.control == "keysel3")
+						col.dataHandler = detailGrid.keysel3;
 				if(col.control == "reorder")
 					col.dataHandler = detailGrid.reorder;
 				if(col.control == "textboxautocomplete")
@@ -211,6 +211,23 @@
 			var html = '<div style="padding-top: 4px;"><a href="JavaScript:moveChildUp(\'' + data.fullpath + '\');">' + img('up.png', '') + '</a>' +
 				'<a href="JavaScript:moveChildDn(\'' + data.fullpath + '\');">' + img('dn.png', '') + '</a></div>';
 			$('#' + data.fullpath + '_' + col.name + 'CellContainer').html(html);
+		},
+
+		"keysel3": function(data, col)
+		{
+			//log('keysel3 for field: ' + col.name + ' = ' + data[col.name]);
+			var ctrlId = data.fullpath + '_' + col.name;
+			var html = '<input id="' + ctrlId + '" type="hidden" />' +
+				'<input class="keySelInput" id="' + ctrlId + 'Entry" type="text" />' +
+				'<span id="' + ctrlId + 'Label" class="keySelNameField"></span>';
+			detailGrid.getCellContainer(data, col).html(html);
+			setKeySel3(ctrlId, col.source);
+			setKeySel3Value(ctrlId, col.source, data[col.name]);
+		},
+
+		"getCellContainer": function(data, col)
+		{
+			return $('#' + data.fullpath + '_' + col.name + 'CellContainer');
 		},
 
 		"keysel": function(data, col)

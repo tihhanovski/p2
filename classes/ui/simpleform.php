@@ -58,6 +58,23 @@
  		}
  	}
 
+	class KeySel3Column
+ 	{
+ 		public $name, $caption, $control, $width, $source;
+
+ 		function __construct($name, $caption, $width, $cls)
+ 		{
+ 			$this->name = $name;
+ 			if($caption == null)
+ 				$this->caption = t($name);
+ 			else
+ 				$this->caption = t($caption);
+ 			$this->control = "keysel3";
+ 			$this->width = $width;
+			$this->source = $cls;
+ 		}
+	}
+
  	class KeySelColumn
  	{
  		public $name, $caption, $control, $width, $setup;
@@ -305,8 +322,8 @@
 		$id = $obj->fullpath . "_linkedEmails";
 		if($obj->isInDatabase())
 			return "<div class=\"formRowLocked\">" .
-					"<div class=\"formLabel\">" . t("Sent emails") ."</div>" . 
-					"<div class=\"formInputContainerLocked boxedMemoUI\">" . 
+					"<div class=\"formLabel\">" . t("Sent emails") ."</div>" .
+					"<div class=\"formInputContainerLocked boxedMemoUI\">" .
 					"<div id=\"$id\"></div>" .
 					"<div><a href=\"JavaScript:app.loadLinkedEmails();\">" . t("Reload") . "</a></div>" .
 					"</div>" .
@@ -471,7 +488,7 @@
 					if(is_object($c))
 						$ret .= $c->toHtml();
 					else
-						$ret .= $c;					
+						$ret .= $c;
 				}
 			}
 		return $ret;
@@ -594,4 +611,3 @@
 				$ret[] = new CheckBox($obj, $prefix . $o->getIdValue(), $o->getCaption());
 		return $ret;
 	}
-

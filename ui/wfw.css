@@ -1143,3 +1143,14 @@
 	padding-left: 6px;
 	float: left;
 }
+
+.ui-autocomplete {
+	max-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.autocompleteItemValue
+{
+	font-size: 8pt;
+}

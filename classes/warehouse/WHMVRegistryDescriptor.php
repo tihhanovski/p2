@@ -152,7 +152,9 @@ class WHMVRegistryDescriptor extends RegistryDescriptor
 		if(defined("WAREHOUSE_ARTICLE_SELECTOR") && WAREHOUSE_ARTICLE_SELECTOR == "select")
 			return new DetailGridColumn("articleId", "component", "select", $w, getSelectOptions(SQL_COMBO_WAREHOUSE_ARTICLE, null, false));
 
-		return new KeySelColumn("articleId", "component", $w, "whmv");	//default keysel
+		return new KeySel3Column("articleId", "component", $w, "article");
+
+		//return new KeySelColumn("articleId", "component", $w, "whmv");	//default keysel
 	}
 
 	protected function ui_rows_modifier()

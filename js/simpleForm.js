@@ -199,6 +199,73 @@
 		$('#' + id).trigger("updateCombo");
 	}
 
+	function setKeySel3Value(idField, source, value, entryField, labelField)
+	{
+		var acSource = '?registry=' + source + '&action=keysel3value&id=' + value;
+		if(entryField == undefined)
+			entryField = idField + "Entry";
+		if(labelField == undefined)
+			labelField = idField + "Label";
+		if(value == undefined)
+			return;
+
+		var url = baseUrl() + acSource;
+		$("#" + idField).val( value );
+
+		$.get(url,
+			function(data)
+			{
+				if(data.state == "ok")
+				{
+					$("#" + entryField).val( data.data.label );
+					$("#" + idField).val( data.data.id );
+					$("#" + labelField).html( data.data.value );
+				}
+				else
+				{
+					log('unsuccessfull retrieval of data for keysel')
+					log("\tvalue: " + value + " for keysel3: \n\t" + idField + ";\n\t" + entryField + ";\n\t" + labelField + ";\n\t" + acSource);
+					log(data.message);
+				}
+			}, "json");
+
+	}
+
+	function setKeySel3(idField, source, entryField, labelField)
+	{
+		var acSource = '?registry=' + source + '&action=keysel3data';
+		if(entryField == undefined)
+			entryField = idField + "Entry";
+		if(labelField == undefined)
+			labelField = idField + "Label";
+		//log("setting keysel3 for: \n\t" + idField + ";\n\t" + entryField + ";\n\t" + labelField + ";\n\t" + acSource);
+
+		$("#" + entryField).autocomplete(
+		{
+				minLength: 3,
+				source: acSource,
+	      focus: function( event, ui )
+				{
+					$("#" + entryField).val( ui.item.label );
+					return false;
+	      },
+	      select: function( event, ui )
+				{
+					$("#" + entryField).val( ui.item.label );
+					$("#" + idField).val( ui.item.id );
+					$("#" + labelField).html( ui.item.value );
+					saveField(idField, idField, ui.item.id);
+					return false;
+	      }
+	   }).autocomplete( "instance" )._renderItem = function( ul, item )
+		{
+			return $( "<li>" )
+				.append( "<div>" + item.label + '<div class="autocompleteItemValue">' + item.value + "</div></div>" )
+				.appendTo( ul );
+	  };
+	}
+
+
 	function setKeySel(id, foreignTable, foreignTableField, columns, value, width, callbackF, allowNewButton, registryName, canSelect, af)
 	{
 
