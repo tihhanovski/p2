@@ -12,7 +12,7 @@
 	class SimpleDocumentReport
 	{
 
-		public function getModel()
+		public function getModel($obj = null)
 		{
 			if(!isset($this->model))
 				$this->model = new ReportModel($this->getCaption($obj));
@@ -26,7 +26,7 @@
 		{
 			app()->initReporting();
 
-			$model = $this->getModel();
+			$model = $this->getModel($obj);
 
 			if(is_array($arr = $this->getTopFilters($obj)))
 				foreach ($arr as $c => $f)
