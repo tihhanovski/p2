@@ -28,4 +28,4 @@
 		?><button class="filterButton" onclick="JavaScript:grid.<?=$k?>();"><?=t($v)?></button><?php
 	}
 
-?></div><script type="text/javascript"> app.setupFieldFormats(); $(".filterButton").button(); </script>
+?></div><script type="text/javascript"> app.setupFieldFormats(); </script>

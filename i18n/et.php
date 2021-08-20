@@ -310,5 +310,6 @@
 			"ro_whIncomeDetailReport" => "Detailne lao sissetulekute aruanne",
 			"ro_whIncomeSummaryReport" => "Üldine lao sissetulekute aruanne",
 			"Initial state" => "Algseis",
+			"Delete document?" => "Kas kustutada dokument?",
 		)
 	);

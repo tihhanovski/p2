@@ -45,7 +45,7 @@ var app = {
 				'</div>';
 			bubble.reset();
 			bubble.dimensions(400, 150).show(html);
-			$("#btnOK").button().click(function( event ) {
+			$("#btnOK").click(function( event ) {
         		event.preventDefault();
         		bubble.hide();
       		}).focus();
@@ -63,12 +63,12 @@ var app = {
 				'</div>';
 			bubble.reset();
 			bubble.dimensions(400, 150).show(html);
-			$("#btnYes").button({icons: {primary: "ui-icon-check"}}).click(function( event ) {
+			$("#btnYes").click(function( event ) {
         		event.preventDefault();
         		bubble.hide();
         		func();
       		});
-			$("#btnNo").button({icons: {primary: "ui-icon-close"}}).click(function( event ) {
+			$("#btnNo").click(function( event ) {
         		event.preventDefault();
         		bubble.hide();
         		if(funcNo)

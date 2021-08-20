@@ -213,7 +213,7 @@
 				"<a href=\"" . app()->url("?registry=" . app()->request("registry") . "&action=previewReport") . "\" " .
 				"target=\"_blank\" class=\"startReportButton\">" . t("Start report") . "</a></div>";
 
-		return $html . wrapScript("\$(function(){\$(\".startReportButton\").button();});");
+		return $html;
 	}
 
 	function contextData($context = null)
