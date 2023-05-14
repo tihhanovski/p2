@@ -311,5 +311,13 @@
 			"ro_whIncomeSummaryReport" => "Üldine lao sissetulekute aruanne",
 			"Initial state" => "Algseis",
 			"Delete document?" => "Kas kustutada dokument?",
+			"uid" => "Kasutajanimi",
+			"name(real)" => "Nimi (tegelik)",
+			"email" => "E-post",
+			"User interface" => "Kasutajaliides",
+			"signature" => "Allkiri",
+			"Mobile phone" => "Mobiil",
+			"Occupation" => "Amet",
+			"Open documents in tabs" => "Avada dokumendid eraldi sakkides"
 		)
 	);
